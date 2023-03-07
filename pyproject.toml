@@ -1,0 +1,15 @@
+[project]
+name = "leetCode"
+authors = [
+    {name = "Xu Jing", email = "jx_tdem@chd.edu.cn"},
+]
+description = "LeetCode Problems' Solutions Using Python"
+
+[tool.pyright]
+defineConstant = { DEBUG = true }
+reportMissingImports = false
+reportMissingTypeStubs = true
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
