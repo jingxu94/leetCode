@@ -1,12 +1,15 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from collections import Counter
+from typing import Optional
+
+from .utils import ListNode
 
 
-class Solution:
+class Pro0201To0400:
+    def __init__(self):
+        pass
+
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        # 234.Palindrome Linked List
         fd_mid, fd_end = head, head
         tmp_reverse = None
         while fd_end and fd_end.next:
@@ -21,3 +24,8 @@ class Solution:
                 return False
             fd_end, fd_mid = fd_end.next, fd_mid.next
         return True
+
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        # 383.Ransom Note
+        note, mag = Counter(ransomNote), Counter(magazine)
+        return (note & mag) == note

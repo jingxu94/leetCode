@@ -1,12 +1,14 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from typing import Optional
+
+from .utils import ListNode
 
 
-class Solution:
+class Pro0801To1000:
+    def __init__(self):
+        pass
+
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 876.Middle of the Linked List
         slow, fast = head, head
         while fast and fast.next:
             slow = slow.next

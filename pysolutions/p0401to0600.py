@@ -1,5 +1,12 @@
-class Solution:
+from typing import List
+
+
+class Pro0401To0600:
+    def __init__(self):
+        pass
+
     def fizzBuzz(self, n: int) -> List[str]:
+        # 412.Fizz Buzz
         answer = []
         for num in range(1, n + 1):
             if num % 3 == 0 and num % 5 == 0:
