@@ -78,3 +78,51 @@ class Pro0001To0200:
             else:
                 result += roman[s[i]]
         return result
+
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        # 14.Longest Common Prefix
+        prefix = []
+        for i in range(len(strs[0])):
+            for alpha in strs[1:]:
+                try:
+                    if strs[0][i] != alpha[i]:
+                        return "".join(prefix)
+                except IndexError:
+                    return "".join(prefix)
+            prefix.append(strs[0][i])
+        return strs[0]
+
+    def isValid(self, s: str) -> bool:
+        # 20.Valid Parentheses
+        stack = []
+        for i in range(len(s)):
+            if stack == [] and s[i] in (")", "]", "}"):
+                return False
+            elif s[i] in ("(", "[", "{"):
+                stack.append(s[i])
+            elif stack[-1] == "(" and s[i] == ")":
+                stack.pop()
+            elif stack[-1] == "[" and s[i] == "]":
+                stack.pop()
+            elif stack[-1] == "{" and s[i] == "}":
+                stack.pop()
+            elif s[i] in (")", "]", "}"):
+                return False
+        return stack == []
+
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        # 21.Merge Two Sorted Lists
+        result = ListNode()
+        curr = result
+        while list1 and list2:
+            if list1.val < list2.val:
+                curr.next = ListNode(list1.val)
+                curr, list1 = curr.next, list1.next
+            else:
+                curr.next = ListNode(list2.val)
+                curr, list2 = curr.next, list2.next
+        if list1:
+            curr.next = list1
+        if list2:
+            curr.next = list2
+        return result.next
