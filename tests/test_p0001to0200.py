@@ -111,3 +111,19 @@ class TestP0001To0200(unittest.TestCase):
         expres2 = [0, 1, 2, 3, 4]
         self.assertEqual(self.sl.removeDuplicates(nums1), expres1)
         self.assertEqual(self.sl.removeDuplicates(nums2), expres2)
+
+    def test_strStr(self):
+        # 28.Find the Index of the First Occurrence in a String
+        haystack1, needle1 = "sadbutsad", "sad"
+        expres1 = 0
+        haystack2, needle2 = "leetcode", "leeto"
+        expres2 = -1
+        self.assertEqual(self.sl.strStr(haystack1, needle1), expres1)
+        self.assertEqual(self.sl.strStr(haystack2, needle2), expres2)
+
+    def test_searchInsert(self):
+        # 35.Search Insert Position
+        nums = [1, 3, 5, 6]
+        self.assertEqual(self.sl.searchInsert(nums, 5), 2)
+        self.assertEqual(self.sl.searchInsert(nums, 2), 1)
+        self.assertEqual(self.sl.searchInsert(nums, 7), 4)

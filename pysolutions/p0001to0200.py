@@ -148,3 +148,29 @@ class Pro0001To0200:
         nums[:] = sorted(frozenset(nums))
         # return len(nums)
         return nums
+
+    def removeElement(self, nums: List[int], val: int) -> int:
+        # 27.Remove Element
+        while val in nums:
+            nums.remove(val)
+        return len(nums)
+
+    def strStr(self, haystack: str, needle: str) -> int:
+        # 28.Find the Index of the First Occurrence in a String
+        index = 0
+        while haystack:
+            if haystack.startswith(needle):
+                return index
+            else:
+                index += 1
+                haystack = haystack[1:]
+        return -1
+
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        # 35.Search Insert Position
+        if target <= nums[0]:
+            return 0
+        for i in range(len(nums) - 1):
+            if nums[i] < target <= nums[i + 1]:
+                return i + 1
+        return len(nums)
