@@ -77,3 +77,37 @@ class TestP0001To0200(unittest.TestCase):
         while expres3:
             self.assertEqual(res3.val, expres3.val)
             res3, expres3 = res3.next, expres3.next
+
+    def test_detectCycle(self):
+        # 142.Linked List Cycle II
+        input = ListNode()
+        curr = input
+        curr.next = ListNode(3)
+        curr = curr.next
+        curr.next = ListNode(2)
+        curr = curr.next
+        cycle = curr
+        curr.next = ListNode(0)
+        curr = curr.next
+        curr.next = ListNode(-4)
+        curr = curr.next
+        curr.next = cycle
+        self.assertEqual(self.sl.detectCycle(input.next).val, 2)
+
+    def test_removeDuplicates(self):
+        # 26.Remove Duplicates from Sorted Array
+        # === Custom Judege ===
+        # int[] nums = [...]; // Input array
+        # int[] expectedNums = [...]; // The expected answer with correct length
+        # int k = removeDuplicates(nums); // Calls your implementation
+        # assert k == expectedNums.length;
+        # for (int i = 0; i < k; i++) {
+        #     assert nums[i] == expectedNums[i];
+        # }
+        # =====================
+        nums1 = [1, 1, 2]
+        nums2 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+        expres1 = [1, 2]
+        expres2 = [0, 1, 2, 3, 4]
+        self.assertEqual(self.sl.removeDuplicates(nums1), expres1)
+        self.assertEqual(self.sl.removeDuplicates(nums2), expres2)
