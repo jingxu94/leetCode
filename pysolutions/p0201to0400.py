@@ -1,3 +1,4 @@
+import random
 from collections import Counter
 from typing import Optional
 
@@ -24,6 +25,18 @@ class Pro0201To0400:
                 return False
             fd_end, fd_mid = fd_end.next, fd_mid.next
         return True
+
+    def getRandom(self, head: Optional[ListNode]) -> int:
+        # 382.Linked List Random Node
+        maxnode = 1
+        result = 0
+        curr = head
+        while curr:
+            if random.random() < 1 / maxnode:
+                result = curr.val
+            curr = curr.next
+            maxnode += 1
+        return result
 
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         # 383.Ransom Note

@@ -1,3 +1,4 @@
+import random
 import unittest
 
 from pysolutions import Pro0001To0200
@@ -127,3 +128,20 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.searchInsert(nums, 5), 2)
         self.assertEqual(self.sl.searchInsert(nums, 2), 1)
         self.assertEqual(self.sl.searchInsert(nums, 7), 4)
+
+    def test_plusOne(self):
+        # 66.Plus One
+        self.assertEqual(self.sl.plusOne([1, 2, 3]), [1, 2, 4])
+        self.assertEqual(self.sl.plusOne([4, 3, 2, 1]), [4, 3, 2, 2])
+        self.assertEqual(self.sl.plusOne([9]), [1, 0])
+
+    def test_addBinary(self):
+        # 67.Add Binary
+        self.assertEqual(self.sl.addBinary("11", "1"), "100")
+        self.assertEqual(self.sl.addBinary("1010", "1011"), "10101")
+
+    def test_mySqrt(self):
+        # 69.Sqrt(x)
+        for _ in range(10):
+            num = random.randint(0, 2**31 - 1)
+            self.assertEqual(self.sl.mySqrt(num), int(num**0.5))

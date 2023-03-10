@@ -174,3 +174,66 @@ class Pro0001To0200:
             if nums[i] < target <= nums[i + 1]:
                 return i + 1
         return len(nums)
+
+    def lengthOfLastWord(self, s: str) -> int:
+        # 58.Length of Last Word
+        return len(s.split()[-1])
+
+    def plusOne(self, digits: List[int]) -> List[int]:
+        # 66.Plus One
+        # === Solution 1 ===
+        # digit = 0
+        # maxpow = len(digits) - 1
+        # for i, val in enumerate(digits):
+        #     digit += val * 10 ** (maxpow - i)
+        # digit += 1
+        # result = []
+        # for i in range(len(str(digit))):
+        #     result.append(int(str(digit)[i]))
+        # return result
+        # ==================
+        result = []
+        next1 = 1
+        for num in digits[-1::-1]:
+            result.append((num + next1) % 10)
+            if (num + next1) > 9:
+                next1 = 1
+            else:
+                next1 = 0
+        if next1:
+            result.append(next1)
+        return result[-1::-1]
+
+    def addBinary(self, a: str, b: str) -> str:
+        # 67.Add Binary
+        def num2bstr(num):
+            bstr = []
+            while num:
+                bstr.append(str(num % 2))
+                num = num // 2
+            if bstr == []:
+                return "0"
+            return "".join(bstr[-1::-1])
+
+        def bstr2num(bstr):
+            num = 0
+            maxpow = len(bstr) - 1
+            for i in range(len(bstr)):
+                num += int(bstr[i]) * 2 ** (maxpow - i)
+            return num
+
+        return num2bstr(bstr2num(a) + bstr2num(b))
+
+    def mySqrt(self, x: int) -> int:
+        # 69.Sqrt(x)
+        if x == 0:
+            return 0
+        left, right = 1, x
+        while left <= right:
+            mid = (left + right) // 2
+            if mid**2 <= x < (mid + 1) ** 2:
+                return mid
+            elif x < mid**2:
+                right = mid - 1
+            else:
+                left = mid + 1
