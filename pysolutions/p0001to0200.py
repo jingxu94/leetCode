@@ -237,3 +237,25 @@ class Pro0001To0200:
                 right = mid - 1
             else:
                 left = mid + 1
+
+    def climbStairs(self, n: int) -> int:
+        # 70.Climbing Stairs
+        ways, one, two = 0, 1, 0
+        for _ in range(n):
+            ways = one + two
+            two = one
+            one = ways
+        return ways
+
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 83.Remove Duplicates from Sorted List
+        if not head:
+            return None
+        curr, res = head, head
+        while curr and curr.next:
+            if curr.next.val != res.val:
+                res.next = curr.next
+                res = res.next
+            curr = curr.next
+        res.next = None
+        return head
