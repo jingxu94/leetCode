@@ -173,3 +173,15 @@ class TestP0001To0200(unittest.TestCase):
         while expres3:
             self.assertEqual(res3.val, expres3.val)
             res3, expres3 = res3.next, expres3.next
+
+    def test_merge(self):
+        # 88.Merge Sorted Array
+        nums1, m, nums2, n = [1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3
+        self.sl.merge(nums1, m, nums2, n)
+        self.assertEqual(nums1, [1, 2, 2, 3, 5, 6])
+        nums1, m, nums2, n = [1], 1, [], 0
+        self.sl.merge(nums1, m, nums2, n)
+        self.assertEqual(nums1, [1])
+        nums1, m, nums2, n = [0], 0, [1], 1
+        self.sl.merge(nums1, m, nums2, n)
+        self.assertEqual(nums1, [1])

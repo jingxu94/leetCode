@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from .utils import ListNode
+from .utils import ListNode, TreeNode
 
 
 class Pro0001To0200:
@@ -259,3 +259,40 @@ class Pro0001To0200:
             curr = curr.next
         res.next = None
         return head
+
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """88.Merge Sorted Array
+        Do not return anything, modify nums1 in-place instead.
+        """
+        a, b, write_index = m - 1, n - 1, m + n - 1
+
+        while b >= 0:
+            if a >= 0 and nums1[a] > nums2[b]:
+                nums1[write_index] = nums1[a]
+                a -= 1
+            else:
+                nums1[write_index] = nums2[b]
+                b -= 1
+
+            write_index -= 1
+
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        # 109.Convert Sorted List to Binary Search Tree
+        def constructBST(leftHead: ListNode, rightHead: ListNode) -> TreeNode:
+            if leftHead == rightHead:
+                return None
+            slow, fast = leftHead, leftHead
+            while fast != rightHead and fast.next != rightHead:
+                slow = slow.next
+                fast = fast.next.next
+            root = TreeNode(slow.val)
+            root.left = constructBST(leftHead, slow)
+            root.right = constructBST(slow.next, rightHead)
+            return root
+
+        if not head:
+            return None
+        if not head.next:
+            root = TreeNode(head.val)
+            return root
+        return constructBST(head, None)
