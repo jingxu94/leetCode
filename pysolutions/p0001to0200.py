@@ -127,6 +127,44 @@ class Pro0001To0200:
             curr.next = list2
         return result.next
 
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        # 23.Merge k Sorted Lists
+        # result = ListNode()
+        # curr = result
+        # nlist = len(lists)
+        # if nlist == 0:
+        #     return None
+        # elif nlist == 1:
+        #     return lists[0]
+        # else:
+        #     list1 = lists[0]
+        #     for list2 in lists[1:]:
+        #         while list1 and list2:
+        #             if list1.val < list2.val:
+        #                 curr.next = ListNode(list1.val)
+        #                 curr, list1 = curr.next, list1.next
+        #             else:
+        #                 curr.next = ListNode(list2.val)
+        #                 curr, list2 = curr.next, list2.next
+        #         if list1:
+        #             curr.next = list1
+        #         if list2:
+        #             curr.next = list2
+        #         curr, list1 = result, result.next
+        #     return result.next
+        # =============================
+        v = []
+        for i in lists:
+            x = i
+            while x:
+                v += [x.val]
+                x = x.next
+        v = sorted(v, reverse=True)
+        ans = None
+        for i in v:
+            ans = ListNode(i, ans)
+        return ans
+
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 142.Linked List Cycle II
         fast, slow = head, head

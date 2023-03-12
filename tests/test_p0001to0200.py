@@ -1,5 +1,6 @@
 import random
 import unittest
+from typing import Optional
 
 from pysolutions import Pro0001To0200
 
@@ -17,23 +18,24 @@ class TestP0001To0200(unittest.TestCase):
     def sl(self):
         return Pro0001To0200()
 
+    def _eq_ListNode(self, ans: Optional[ListNode], expected: Optional[ListNode]):
+        while ans and expected:
+            self.assertEqual(ans.val, expected.val)
+            ans, expected = ans.next, expected.next
+        if ans or expected:
+            raise ValueError("ListNode with different length!")
+
     def test_addTwoNumbers(self):
         # 2.Add Two Numberes
-        l1 = ListNode(2, next=ListNode(4, next=ListNode(3)))
-        l2 = ListNode(5, next=ListNode(6, next=ListNode(4)))
-        res = self.sl.addTwoNumbers(l1, l2)
-        expect_res = ListNode(7, next=ListNode(0, next=ListNode(8)))
-        while res:
-            self.assertEqual(res.val, expect_res.val)
-            res, expect_res = res.next, expect_res.next
+        l1, l2 = set_ListNode([2, 4, 3]), set_ListNode([5, 6, 4])
+        ans = self.sl.addTwoNumbers(l1, l2)
+        expected = ListNode(7, next=ListNode(0, next=ListNode(8)))
+        self._eq_ListNode(ans, expected)
 
-        l1 = ListNode(0)
-        l2 = ListNode(0)
-        res = self.sl.addTwoNumbers(l1, l2)
-        expect_res = ListNode(0)
-        while res:
-            self.assertEqual(res.val, expect_res.val)
-            res, expect_res = res.next, expect_res.next
+        l1, l2 = ListNode(0), ListNode(0)
+        ans = self.sl.addTwoNumbers(l1, l2)
+        expected = ListNode(0)
+        self._eq_ListNode(ans, expected)
 
     def test_longestCommonPrefix(self):
         # 14.Longest Common Prefix
@@ -41,10 +43,10 @@ class TestP0001To0200(unittest.TestCase):
         strs2 = ["dog", "racecar", "car"]
         res1 = self.sl.longestCommonPrefix(strs1)
         res2 = self.sl.longestCommonPrefix(strs2)
-        expres1 = "fl"
-        expres2 = ""
-        self.assertEqual(res1, expres1)
-        self.assertEqual(res2, expres2)
+        expected1 = "fl"
+        expected2 = ""
+        self.assertEqual(res1, expected1)
+        self.assertEqual(res2, expected2)
 
     def test_isValid(self):
         # 20.Valid Parentheses
@@ -63,21 +65,22 @@ class TestP0001To0200(unittest.TestCase):
         l22 = set_ListNode([])
         l31 = set_ListNode([])
         l32 = set_ListNode([0])
-        expres1 = set_ListNode([1, 1, 2, 3, 4, 4])
-        expres2 = set_ListNode([])
-        expres3 = set_ListNode([0])
-        res1 = self.sl.mergeTwoLists(l11, l12)
-        res2 = self.sl.mergeTwoLists(l21, l22)
-        res3 = self.sl.mergeTwoLists(l31, l32)
-        while expres1:
-            self.assertEqual(res1.val, expres1.val)
-            res1, expres1 = res1.next, expres1.next
-        while expres2:
-            self.assertEqual(res2.val, expres2.val)
-            res2, expres2 = res2.next, expres2.next
-        while expres3:
-            self.assertEqual(res3.val, expres3.val)
-            res3, expres3 = res3.next, expres3.next
+        expected1 = set_ListNode([1, 1, 2, 3, 4, 4])
+        expected2 = set_ListNode([])
+        expected3 = set_ListNode([0])
+        ans1 = self.sl.mergeTwoLists(l11, l12)
+        ans2 = self.sl.mergeTwoLists(l21, l22)
+        ans3 = self.sl.mergeTwoLists(l31, l32)
+        self._eq_ListNode(ans1, expected1)
+        self._eq_ListNode(ans2, expected2)
+        self._eq_ListNode(ans3, expected3)
+
+    def test_mergeKLists(self):
+        # 23.Merge k Sorted Lists
+        lists = [set_ListNode([1, 4, 5]), set_ListNode([1, 3, 4]), set_ListNode([2, 6])]
+        expected = set_ListNode([1, 1, 2, 3, 4, 4, 5, 6])
+        ans = self.sl.mergeKLists(lists)
+        self._eq_ListNode(ans, expected)
 
     def test_detectCycle(self):
         # 142.Linked List Cycle II
@@ -108,19 +111,19 @@ class TestP0001To0200(unittest.TestCase):
         # =====================
         nums1 = [1, 1, 2]
         nums2 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
-        expres1 = [1, 2]
-        expres2 = [0, 1, 2, 3, 4]
-        self.assertEqual(self.sl.removeDuplicates(nums1), expres1)
-        self.assertEqual(self.sl.removeDuplicates(nums2), expres2)
+        expected1 = [1, 2]
+        expected2 = [0, 1, 2, 3, 4]
+        self.assertEqual(self.sl.removeDuplicates(nums1), expected1)
+        self.assertEqual(self.sl.removeDuplicates(nums2), expected2)
 
     def test_strStr(self):
         # 28.Find the Index of the First Occurrence in a String
         haystack1, needle1 = "sadbutsad", "sad"
-        expres1 = 0
+        expected1 = 0
         haystack2, needle2 = "leetcode", "leeto"
-        expres2 = -1
-        self.assertEqual(self.sl.strStr(haystack1, needle1), expres1)
-        self.assertEqual(self.sl.strStr(haystack2, needle2), expres2)
+        expected2 = -1
+        self.assertEqual(self.sl.strStr(haystack1, needle1), expected1)
+        self.assertEqual(self.sl.strStr(haystack2, needle2), expected2)
 
     def test_searchInsert(self):
         # 35.Search Insert Position
@@ -158,21 +161,15 @@ class TestP0001To0200(unittest.TestCase):
         input1 = set_ListNode([1, 1, 2, 2, 3, 4, 5, 5, 5, 5])
         input2 = set_ListNode([1, 1, 2, 3, 3, 3, 3, 3, 4])
         input3 = set_ListNode([])
-        expres1 = set_ListNode([1, 2, 3, 4, 5])
-        expres2 = set_ListNode([1, 2, 3, 4])
-        expres3 = set_ListNode([])
-        res1 = self.sl.deleteDuplicates(input1)
-        res2 = self.sl.deleteDuplicates(input2)
-        res3 = self.sl.deleteDuplicates(input3)
-        while expres1:
-            self.assertEqual(res1.val, expres1.val)
-            res1, expres1 = res1.next, expres1.next
-        while expres2:
-            self.assertEqual(res2.val, expres2.val)
-            res2, expres2 = res2.next, expres2.next
-        while expres3:
-            self.assertEqual(res3.val, expres3.val)
-            res3, expres3 = res3.next, expres3.next
+        expected1 = set_ListNode([1, 2, 3, 4, 5])
+        expected2 = set_ListNode([1, 2, 3, 4])
+        expected3 = set_ListNode([])
+        ans1 = self.sl.deleteDuplicates(input1)
+        ans2 = self.sl.deleteDuplicates(input2)
+        ans3 = self.sl.deleteDuplicates(input3)
+        self._eq_ListNode(ans1, expected1)
+        self._eq_ListNode(ans2, expected2)
+        self._eq_ListNode(ans3, expected3)
 
     def test_merge(self):
         # 88.Merge Sorted Array
