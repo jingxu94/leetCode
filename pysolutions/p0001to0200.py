@@ -314,24 +314,30 @@ class Pro0001To0200:
 
             write_index -= 1
 
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # 100.Same Tree
+        if p is None and q is None:
+            return True
+        elif not p or not q:
+            return False
+        elif (p.val != q.val) or (p.left and not q.left) or (p.right and not q.right):
+            return False
+        else:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         # 101.Symmetric Tree
-        def _eq_treenode(left: Optional[TreeNode], right: Optional[TreeNode]) -> bool:
-            if (left.val != right.val) or (left.left and not right.right) or (left.right and not right.left):
-                return False
-            elif left.left and not left.right:
-                return _eq_treenode(left.left, right.right)
-            elif left.right and not left.left:
-                return _eq_treenode(left.right, right.left)
-            elif left.left and left.right:
-                return _eq_treenode(left.left, right.right) and _eq_treenode(left.right, right.left)
-            else:
+        def _eq_treenode(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+            if p is None and q is None:
                 return True
+            elif not p or not q:
+                return False
+            elif (p.val != q.val) or (p.left and not q.right) or (p.right and not q.left):
+                return False
+            else:
+                return _eq_treenode(p.left, q.right) and _eq_treenode(p.right, q.left)
 
-        if root is None:
-            return True
-        else:
-            return _eq_treenode(root, root)
+        return _eq_treenode(root, root)
 
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
         # 109.Convert Sorted List to Binary Search Tree
