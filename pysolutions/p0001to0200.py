@@ -314,6 +314,25 @@ class Pro0001To0200:
 
             write_index -= 1
 
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        # 101.Symmetric Tree
+        def _eq_treenode(left: Optional[TreeNode], right: Optional[TreeNode]) -> bool:
+            if (left.val != right.val) or (left.left and not right.right) or (left.right and not right.left):
+                return False
+            elif left.left and not left.right:
+                return _eq_treenode(left.left, right.right)
+            elif left.right and not left.left:
+                return _eq_treenode(left.right, right.left)
+            elif left.left and left.right:
+                return _eq_treenode(left.left, right.right) and _eq_treenode(left.right, right.left)
+            else:
+                return True
+
+        if root is None:
+            return True
+        else:
+            return _eq_treenode(root, root)
+
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
         # 109.Convert Sorted List to Binary Search Tree
         def constructBST(leftHead: ListNode, rightHead: ListNode) -> TreeNode:
