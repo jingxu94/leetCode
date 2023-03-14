@@ -314,6 +314,20 @@ class Pro0001To0200:
 
             write_index -= 1
 
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # 94.Binary Tree Inorder Traversal
+        def _treenode_traver(root: Optional[TreeNode], ans: List[int]):
+            if root is not None:
+                _treenode_traver(root.left, ans)
+                ans.append(root.val)
+                _treenode_traver(root.right, ans)
+            else:
+                return
+
+        self.ans = []
+        _treenode_traver(root, self.ans)
+        return self.ans
+
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # 100.Same Tree
         if p is None and q is None:
@@ -339,9 +353,40 @@ class Pro0001To0200:
 
         return _eq_treenode(root, root)
 
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        # 104.Maximum Depth of Binary Tree
+        def tree_depth(root: Optional[TreeNode], depth: int):
+            if root is None:
+                self._depths.append(0)
+                return 0
+            if root.left is None and root.right is None:
+                self._depths.append(depth)
+                return
+            else:
+                if root.left:
+                    tree_depth(root.left, depth + 1)
+                if root.right:
+                    tree_depth(root.right, depth + 1)
+
+        self._depths = []
+        tree_depth(root, 1)
+        return max(self._depths)
+
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        # 108.Convert Sorted Array to Binary Search Tree
+        if len(nums) == 0:
+            return
+        else:
+            indmid = len(nums) // 2
+            return TreeNode(
+                val=nums[indmid],
+                left=self.sortedArrayToBST(nums[:indmid]),
+                right=self.sortedArrayToBST(nums[indmid + 1 :]),
+            )
+
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
         # 109.Convert Sorted List to Binary Search Tree
-        def constructBST(leftHead: ListNode, rightHead: ListNode) -> TreeNode:
+        def constructBST(leftHead: Optional[ListNode], rightHead: Optional[ListNode]) -> Optional[TreeNode]:
             if leftHead == rightHead:
                 return None
             slow, fast = leftHead, leftHead
@@ -360,12 +405,78 @@ class Pro0001To0200:
             return root
         return constructBST(head, None)
 
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        # 110.Balanced Binary Tree
+        def tree_depth(root: Optional[TreeNode], depth: int):
+            if root is None:
+                self._depths.append(0)
+                return 0
+            if root.left is None and root.right is None:
+                self._depths.append(depth)
+                return
+            else:
+                if root.left:
+                    tree_depth(root.left, depth + 1)
+                if root.right:
+                    tree_depth(root.right, depth + 1)
+
+        if root is None:
+            return True
+        self._depths = []
+        tree_depth(root.left, 1)
+        ld = self._depths
+        self._depths = []
+        tree_depth(root.right, 1)
+        if max(ld) - max(self._depths) > 1 or max(ld) - max(self._depths) < -1:
+            return False
+        else:
+            return self.isBalanced(root.left) and self.isBalanced(root.right)
+
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        # 111.Minimum Depth of Binary Tree
+        def tree_depth(root: Optional[TreeNode], depth: int):
+            if root is None:
+                self._depths.append(0)
+                return 0
+            if root.left is None and root.right is None:
+                self._depths.append(depth)
+                return
+            else:
+                if root.left:
+                    tree_depth(root.left, depth + 1)
+                if root.right:
+                    tree_depth(root.right, depth + 1)
+
+        self._depths = []
+        tree_depth(root, 1)
+        return min(self._depths)
+
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        # 112.Path Sum
+        def tree_path_sum(curr: Optional[TreeNode], pathsum: int):
+            if curr.left is None and curr.right is None:
+                self._sumlist.append(pathsum + curr.val)
+            elif curr.left is None and curr.right:
+                tree_path_sum(curr.right, pathsum + curr.val)
+            elif curr.right is None and curr.left:
+                tree_path_sum(curr.left, pathsum + curr.val)
+            else:
+                tree_path_sum(curr.left, pathsum + curr.val)
+                tree_path_sum(curr.right, pathsum + curr.val)
+
+        self._sumlist = []
+        if root is None:
+            return False
+        else:
+            tree_path_sum(root, 0)
+        return targetSum in self._sumlist
+
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         # 129.Sum Root to Leaf Numbers
         ans = 0
         self.ans_list = []
 
-        def _sum_treenode(ans, node: Optional[TreeNode]):
+        def tree_sum_node(ans, node: Optional[TreeNode]):
             if node is None:
                 self.ans_list.append(0)
                 return
@@ -374,9 +485,9 @@ class Pro0001To0200:
                 self.ans_list.append(ans)
                 return
             if node.left:
-                _sum_treenode(ans, node.left)
+                tree_sum_node(ans, node.left)
             if node.right:
-                _sum_treenode(ans, node.right)
+                tree_sum_node(ans, node.right)
 
-        _sum_treenode(ans, root)
+        tree_sum_node(ans, root)
         return sum(self.ans_list)
