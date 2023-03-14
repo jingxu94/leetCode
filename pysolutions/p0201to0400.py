@@ -26,6 +26,17 @@ class Pro0201To0400:
             fd_end, fd_mid = fd_end.next, fd_mid.next
         return True
 
+    def firstBadVersion(self, n: int) -> int:
+        # 278.First Bad Version
+        left, right = 1, n
+        while left < right:
+            mid = left + (right - left) // 2
+            if isBadVersion(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left
+
     def getRandom(self, head: Optional[ListNode]) -> int:
         # 382.Linked List Random Node
         maxnode = 1

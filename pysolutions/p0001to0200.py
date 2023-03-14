@@ -165,22 +165,6 @@ class Pro0001To0200:
             ans = ListNode(i, ans)
         return ans
 
-    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 142.Linked List Cycle II
-        fast, slow = head, head
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
-                break
-        else:
-            return None
-        pos1, pos2 = head, slow
-        while pos1 != pos2:
-            pos1 = pos1.next
-            pos2 = pos2.next
-        return pos1
-
     def removeDuplicates(self, nums: List[int]) -> List[int]:
         # 26.Remove Duplicates from Sorted Array
         nums[:] = sorted(frozenset(nums))
@@ -491,3 +475,19 @@ class Pro0001To0200:
 
         tree_sum_node(ans, root)
         return sum(self.ans_list)
+
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 142.Linked List Cycle II
+        fast, slow = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                break
+        else:
+            return None
+        pos1, pos2 = head, slow
+        while pos1 != pos2:
+            pos1 = pos1.next
+            pos2 = pos2.next
+        return pos1
