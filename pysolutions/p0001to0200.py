@@ -359,3 +359,24 @@ class Pro0001To0200:
             root = TreeNode(head.val)
             return root
         return constructBST(head, None)
+
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        # 129.Sum Root to Leaf Numbers
+        ans = 0
+        self.ans_list = []
+
+        def _sum_treenode(ans, node: Optional[TreeNode]):
+            if node is None:
+                self.ans_list.append(0)
+                return
+            ans = ans * 10 + node.val
+            if node.left is None and node.right is None:
+                self.ans_list.append(ans)
+                return
+            if node.left:
+                _sum_treenode(ans, node.left)
+            if node.right:
+                _sum_treenode(ans, node.right)
+
+        _sum_treenode(ans, root)
+        return sum(self.ans_list)
