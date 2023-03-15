@@ -1,7 +1,7 @@
-from collections import Counter
+from collections import Counter, deque
 from typing import List, Optional
 
-from .utils import ListNode
+from .utils import ListNode, TreeNode
 
 
 class Pro0801To1000:
@@ -45,3 +45,15 @@ class Pro0801To1000:
         for num in range(min(nums), max(nums) + 1):
             nums_sorted.extend([num] * nums_dict[num])
         return nums_sorted
+
+    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
+        # 958.Check Completeness of a Binary Tree
+        queue = deque([root])
+        while queue[0]:
+            node = queue.popleft()
+            queue.extend([node.left, node.right])
+        while queue and not queue[0]:
+            queue.popleft()
+        if queue:
+            return False
+        return True
