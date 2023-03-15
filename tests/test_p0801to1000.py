@@ -2,6 +2,8 @@ import unittest
 
 from pysolutions import Pro0801To1000
 
+from .tools import set_TreeNode
+
 
 class TestP0801To1000(unittest.TestCase):
     @property
@@ -27,3 +29,10 @@ class TestP0801To1000(unittest.TestCase):
         expres2 = [0, 0, 1, 1, 2, 5]
         self.assertEqual(self.sl.sortArray(nums1), expres1)
         self.assertEqual(self.sl.sortArray(nums2), expres2)
+
+    def test_isCompleteTree(self):
+        # 958.Check Completeness of a Binary Tree
+        root1 = set_TreeNode([1, 2, 3, 4, 5, 6])
+        root2 = set_TreeNode([1, 2, 3, 4, 5, None, 7])
+        self.assertTrue(self.sl.isCompleteTree(root1))
+        self.assertFalse(self.sl.isCompleteTree(root2))

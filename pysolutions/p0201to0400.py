@@ -1,6 +1,6 @@
 import random
 from collections import Counter
-from typing import Optional
+from typing import List, Optional
 
 from .utils import ListNode
 
@@ -8,6 +8,14 @@ from .utils import ListNode
 class Pro0201To0400:
     def __init__(self):
         pass
+
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        # 217.Contains Duplicate
+        cont = Counter(nums)
+        for key in cont.elements():
+            if cont[key] > 1:
+                return True
+        return False
 
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         # 234.Palindrome Linked List
