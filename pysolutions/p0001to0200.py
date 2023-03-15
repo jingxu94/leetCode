@@ -491,3 +491,10 @@ class Pro0001To0200:
             pos1 = pos1.next
             pos2 = pos2.next
         return pos1
+
+    def rotate(self, nums: List[int], k: int) -> None:
+        """189.Rotate Array
+        Do not return anything, modify nums in-place instead.
+        """
+        k = k % len(nums)
+        nums[k:], nums[:k] = nums[:-k], nums[-k:]

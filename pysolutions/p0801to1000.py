@@ -57,3 +57,10 @@ class Pro0801To1000:
         if queue:
             return False
         return True
+
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        # 977.Squares of a Sorted Array
+        ans = []
+        for num in nums:
+            ans.append(num**2)
+        return sorted(ans)
