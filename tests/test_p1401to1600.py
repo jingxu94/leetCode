@@ -13,3 +13,12 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.runningSum([1, 2, 3, 4]), [1, 3, 6, 10])
         self.assertEqual(self.sl.runningSum([1, 1, 1, 1, 1]), [1, 2, 3, 4, 5])
         self.assertEqual(self.sl.runningSum([3, 1, 2, 10, 1]), [3, 4, 6, 16, 17])
+
+    def test_average(self):
+        # 1491.Average Salary Excluding the Minimum and Maximum Salary
+        self.assertEqual(self.sl.average([4000, 3000, 1000, 2000]), 2500.00)
+
+    def test_countOdds(self):
+        # 1523.Count Odd Numbers in an Interval Range
+        self.assertEqual(self.sl.countOdds(3, 7), 3)
+        self.assertEqual(self.sl.countOdds(8, 10), 1)
