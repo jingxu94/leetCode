@@ -45,6 +45,21 @@ class Pro0201To0400:
                 left = mid + 1
         return left
 
+    def guessNumber(self, n: int) -> int:
+        # 374.Guess Number Higher or Lower
+        left, right = 1, n
+        while left <= right:
+            mid = (left + right) // 2
+            callback = guess(mid)
+            if callback == 0:
+                return mid
+            elif callback < 0:
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return -1
+
     def getRandom(self, head: Optional[ListNode]) -> int:
         # 382.Linked List Random Node
         maxnode = 1

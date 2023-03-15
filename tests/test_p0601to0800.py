@@ -8,6 +8,11 @@ class TestP0601To0800(unittest.TestCase):
     def sl(self):
         return Pro0601To0800()
 
+    def test_search(self):
+        # 704.Binary Search
+        self.assertEqual(self.sl.search([-1, 0, 3, 5, 9, 12], 9), 4)
+        self.assertEqual(self.sl.search([-1, 0, 3, 5, 9, 12], 2), -1)
+
     def test_pivotIndex(self):
         # 724.Find Pivot Index
         self.assertEqual(self.sl.pivotIndex([1, 7, 3, 6, 5, 6]), 3)
