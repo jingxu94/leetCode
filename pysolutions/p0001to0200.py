@@ -197,6 +197,13 @@ class Pro0001To0200:
                 return i + 1
         return len(nums)
 
+    def maxSubArray(self, nums: List[int]) -> int:
+        # 53.Maximum Subarray
+        dp = nums
+        for i in range(1, len(nums)):
+            dp[i] = max(nums[i], nums[i] + dp[i - 1])
+        return max(dp)
+
     def lengthOfLastWord(self, s: str) -> int:
         # 58.Length of Last Word
         return len(s.split()[-1])

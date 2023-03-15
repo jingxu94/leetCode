@@ -82,22 +82,6 @@ class TestP0001To0200(unittest.TestCase):
         ans = self.sl.mergeKLists(lists)
         self._eq_ListNode(ans, expected)
 
-    def test_detectCycle(self):
-        # 142.Linked List Cycle II
-        input = ListNode()
-        curr = input
-        curr.next = ListNode(3)
-        curr = curr.next
-        curr.next = ListNode(2)
-        curr = curr.next
-        cycle = curr
-        curr.next = ListNode(0)
-        curr = curr.next
-        curr.next = ListNode(-4)
-        curr = curr.next
-        curr.next = cycle
-        self.assertEqual(self.sl.detectCycle(input.next).val, 2)
-
     def test_removeDuplicates(self):
         # 26.Remove Duplicates from Sorted Array
         # === Custom Judege ===
@@ -131,6 +115,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.searchInsert(nums, 5), 2)
         self.assertEqual(self.sl.searchInsert(nums, 2), 1)
         self.assertEqual(self.sl.searchInsert(nums, 7), 4)
+
+    def test_maxSubArray(self):
+        # 53.Maximum Subarray
+        self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)
+        self.assertEqual(self.sl.maxSubArray([1]), 1)
+        self.assertEqual(self.sl.maxSubArray([5, 4, -1, 7, 8]), 23)
 
     def test_plusOne(self):
         # 66.Plus One
@@ -182,3 +172,19 @@ class TestP0001To0200(unittest.TestCase):
         nums1, m, nums2, n = [0], 0, [1], 1
         self.sl.merge(nums1, m, nums2, n)
         self.assertEqual(nums1, [1])
+
+    def test_detectCycle(self):
+        # 142.Linked List Cycle II
+        input = ListNode()
+        curr = input
+        curr.next = ListNode(3)
+        curr = curr.next
+        curr.next = ListNode(2)
+        curr = curr.next
+        cycle = curr
+        curr.next = ListNode(0)
+        curr = curr.next
+        curr.next = ListNode(-4)
+        curr = curr.next
+        curr.next = cycle
+        self.assertEqual(self.sl.detectCycle(input.next).val, 2)
