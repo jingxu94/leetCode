@@ -19,3 +19,13 @@ class Pro0601To0800:
                 return bin_search(nums[:indmid], target, base)
 
         return bin_search(nums, target, 0)
+
+    def pivotIndex(self, nums: List[int]) -> int:
+        # 724.Find Pivot Index
+        total = sum(nums)
+        lsum = 0
+        for i in range(len(nums)):
+            if total - nums[i] - lsum == lsum:
+                return i
+            lsum += nums[i]
+        return -1

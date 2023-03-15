@@ -1,0 +1,15 @@
+import unittest
+
+from pysolutions import Pro0601To0800
+
+
+class TestP0601To0800(unittest.TestCase):
+    @property
+    def sl(self):
+        return Pro0601To0800()
+
+    def test_pivotIndex(self):
+        # 724.Find Pivot Index
+        self.assertEqual(self.sl.pivotIndex([1, 7, 3, 6, 5, 6]), 3)
+        self.assertEqual(self.sl.pivotIndex([1, 2, 3]), -1)
+        self.assertEqual(self.sl.pivotIndex([2, 1, -1]), 0)
