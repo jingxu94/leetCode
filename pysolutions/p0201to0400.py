@@ -45,6 +45,20 @@ class Pro0201To0400:
                 left = mid + 1
         return left
 
+    def moveZeroes(self, nums: List[int]) -> List[int]:
+        """283.Move Zeroes
+        Do not return anything, modify nums in-place instead.
+        """
+        nactivate = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[nactivate] = nums[i]
+                nactivate += 1
+        for i in range(nactivate, len(nums)):
+            nums[i] = 0
+
+        return nums
+
     def guessNumber(self, n: int) -> int:
         # 374.Guess Number Higher or Lower
         left, right = 1, n

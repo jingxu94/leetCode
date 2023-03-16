@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List, Optional
 
 from .utils import ListNode, TreeNode
@@ -523,6 +524,15 @@ class Pro0001To0200:
             pos1 = pos1.next
             pos2 = pos2.next
         return pos1
+
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        # 167.Two Sum 2 - Input Array Is Sorted
+        cont = Counter(numbers)
+        for i in cont:
+            if target - i in cont:
+                ind1 = numbers.index(i)
+                ind2 = numbers[ind1 + 1 :].index(target - i) + ind1 + 1
+                return [ind1 + 1, ind2 + 1]
 
     def rotate(self, nums: List[int], k: int) -> None:
         """189.Rotate Array

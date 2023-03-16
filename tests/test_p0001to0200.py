@@ -241,3 +241,10 @@ class TestP0001To0200(unittest.TestCase):
         curr = curr.next
         curr.next = cycle
         self.assertEqual(self.sl.detectCycle(input.next).val, 2)
+
+    def test_twoSum(self):
+        # 167.Two Sum 2 - Input Array Is Sorted
+        self.assertEqual(self.sl.twoSum([2, 7, 11, 15], 9), [1, 2])
+        self.assertEqual(self.sl.twoSum([2, 3, 4], 6), [1, 3])
+        self.assertEqual(self.sl.twoSum([-1, 0], -1), [1, 2])
+        self.assertEqual(self.sl.twoSum([0, 0, 3, 4], 0), [1, 2])
