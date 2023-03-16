@@ -27,3 +27,8 @@ class TestP1401To1600(unittest.TestCase):
         # 1539.Kth Missing Positive Number
         self.assertEqual(self.sl.findKthPositive([2, 3, 4, 7, 11], 5), 9)
         self.assertEqual(self.sl.findKthPositive([1, 2, 3, 4], 2), 6)
+
+    def test_maxNonOverlapping(self):
+        # 1546.Maximum Number of Non-Overlapping Subarrays With Sum Equals Target
+        self.assertEqual(self.sl.maxNonOverlapping([1, 1, 1, 1, 1], 2), 2)
+        self.assertEqual(self.sl.maxNonOverlapping([-1, 3, 5, 1, 4, 2, -9], 6), 2)

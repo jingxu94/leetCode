@@ -34,3 +34,17 @@ class Pro1401To1600:
             else:
                 right = mid
         return left + k
+
+    def maxNonOverlapping(self, nums: List[int], target: int) -> int:
+        # 1546.Maximum Number of Non-Overlapping Subarrays With Sum Equals Target
+        seen = set([0])
+        ans = curr = 0
+        for num in nums:
+            curr += num
+            prev = curr - target
+            if prev in seen:
+                ans += 1
+                seen = set()
+            seen.add(curr)
+
+        return ans

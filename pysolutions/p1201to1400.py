@@ -14,6 +14,13 @@ class Pro1201To1400:
             sm += int(digits[i])
         return pd - sm
 
+    def maximum69Number(self, num: int) -> int:
+        # 1323.Maximum 69 Number
+        numstr = str(num)
+        if "6" not in numstr:
+            return num
+        return num + 3 * 10 ** (len(numstr) - numstr.index("6") - 1)
+
     def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
         # 1337.The K Weakest Rows in a Matrix
         soldiers = []

@@ -13,6 +13,12 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(self.sl.subtractProductAndSum(234), 15)
         self.assertEqual(self.sl.subtractProductAndSum(4421), 21)
 
+    def test_maximum69Number(self):
+        # 1323.Maximum 69 Number
+        self.assertEqual(self.sl.maximum69Number(9669), 9969)
+        self.assertEqual(self.sl.maximum69Number(9996), 9999)
+        self.assertEqual(self.sl.maximum69Number(9999), 9999)
+
     def test_kWeakestRows(self):
         # 1337.The K Weakest Rows in a Matrix
         mat1 = [

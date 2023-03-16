@@ -242,6 +242,18 @@ class TestP0001To0200(unittest.TestCase):
         curr.next = cycle
         self.assertEqual(self.sl.detectCycle(input.next).val, 2)
 
+    def test_reverseWords(self):
+        # 151.Reverse Words in a String
+        s1 = "the sky is blue"
+        s2 = "  hello world  "
+        s3 = "a good   example"
+        expected1 = "blue is sky the"
+        expected2 = "world hello"
+        expected3 = "example good a"
+        self.assertEqual(self.sl.reverseWords(s1), expected1)
+        self.assertEqual(self.sl.reverseWords(s2), expected2)
+        self.assertEqual(self.sl.reverseWords(s3), expected3)
+
     def test_twoSum(self):
         # 167.Two Sum 2 - Input Array Is Sorted
         self.assertEqual(self.sl.twoSum([2, 7, 11, 15], 9), [1, 2])

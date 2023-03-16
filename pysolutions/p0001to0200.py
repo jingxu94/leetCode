@@ -1,3 +1,4 @@
+import re
 from collections import Counter
 from typing import List, Optional
 
@@ -8,7 +9,7 @@ class Pro0001To0200:
     def __init__(self):
         pass
 
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum_1(self, nums: List[int], target: int) -> List[int]:
         # 1.Two Sum
         checked = {}
         i = 0
@@ -524,6 +525,12 @@ class Pro0001To0200:
             pos1 = pos1.next
             pos2 = pos2.next
         return pos1
+
+    def reverseWords(self, s: str) -> str:
+        # 151.Reverse Words in a String
+        words = re.findall(r"\w+", s)
+        words.reverse()
+        return " ".join(words)
 
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         # 167.Two Sum 2 - Input Array Is Sorted
