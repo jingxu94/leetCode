@@ -1,16 +1,11 @@
 import random
 import unittest
+from collections import deque
 from typing import Optional
 
 from pysolutions import Pro0001To0200
 
-from .tools import set_ListNode
-
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from .tools import ListNode, TreeNode, set_ListNode, set_TreeNode
 
 
 class TestP0001To0200(unittest.TestCase):
@@ -24,6 +19,35 @@ class TestP0001To0200(unittest.TestCase):
             ans, expected = ans.next, expected.next
         if ans or expected:
             raise ValueError("ListNode with different length!")
+
+    def _isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # 100.Same Tree
+        def check(p, q):
+            # if both are None
+            if not p and not q:
+                return True
+            # one of p and q is None
+            if not q or not p:
+                return False
+            if p.val != q.val:
+                return False
+            return True
+
+        deq = deque(
+            [
+                (p, q),
+            ]
+        )
+        while deq:
+            p, q = deq.popleft()
+            if not check(p, q):
+                return False
+
+            if p:
+                deq.append((p.left, q.left))
+                deq.append((p.right, q.right))
+
+        return True
 
     def test_addTwoNumbers(self):
         # 2.Add Two Numberes
@@ -172,6 +196,35 @@ class TestP0001To0200(unittest.TestCase):
         nums1, m, nums2, n = [0], 0, [1], 1
         self.sl.merge(nums1, m, nums2, n)
         self.assertEqual(nums1, [1])
+
+    @unittest.skip("FIXME: There is a bug in set TreeNode when None in elements")
+    def test_buildTree(self):
+        # 106.Construct Binary Tree from Inorder and Postorder Traversal
+        inorder = [9, 3, 15, 20, 7]
+        postorder = [9, 15, 7, 20, 3]
+        ans = self.sl.buildTree(inorder, postorder)
+        expected = set_TreeNode([3, 9, 20, None, None, 15, 7])
+        self.assertTrue(self._isSameTree(ans, expected))
+        inorder = [-1]
+        postorder = [-1]
+        ans = self.sl.buildTree(inorder, postorder)
+        expected = set_TreeNode([-1])
+        self.assertTrue(self._isSameTree(ans, expected))
+        inorder = [1, 2]
+        postorder = [2, 1]
+        ans = self.sl.buildTree(inorder, postorder)
+        expected = set_TreeNode([1, None, 2])
+        self.assertTrue(self._isSameTree(ans, expected))
+        inorder = [2, 1]
+        postorder = [2, 1]
+        ans = self.sl.buildTree(inorder, postorder)
+        expected = set_TreeNode([1, 2])
+        self.assertTrue(self._isSameTree(ans, expected))
+        inorder = [2, 3, 1]
+        postorder = [3, 2, 1]
+        ans = self.sl.buildTree(inorder, postorder)
+        expected = set_TreeNode([1, 2, None, None, 3])
+        self.assertTrue(self._isSameTree(ans, expected))
 
     def test_detectCycle(self):
         # 142.Linked List Cycle II

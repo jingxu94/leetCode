@@ -363,6 +363,31 @@ class Pro0001To0200:
         tree_depth(root, 1)
         return max(self._depths)
 
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        # 106.Construct Binary Tree from Inorder and Postorder Traversal
+        def build_tree(inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+            if postorder:
+                root = TreeNode(postorder.pop())
+                iind = inorder.index(root.val)
+                if iind > 0:
+                    if inorder[iind - 1] in postorder:
+                        root.left = build_tree(inorder[:iind], postorder[:iind])
+                if iind < len(inorder) - 1:
+                    root.right = build_tree(inorder[iind + 1 :], postorder[-len(inorder) + iind + 1 :])
+
+                return root
+
+        return build_tree(inorder, postorder)
+
+        # def build_tree(stop):
+        #     if inorder and inorder[-1] != stop:
+        #         root = TreeNode(postorder.pop())
+        #         root.right = build_tree(root.val)
+        #         inorder.pop()
+        #         root.left = build_tree(stop)
+        #         return root
+        # return build_tree(None)
+
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         # 108.Convert Sorted Array to Binary Search Tree
         if len(nums) == 0:
