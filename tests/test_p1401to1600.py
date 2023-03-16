@@ -22,3 +22,8 @@ class TestP1401To1600(unittest.TestCase):
         # 1523.Count Odd Numbers in an Interval Range
         self.assertEqual(self.sl.countOdds(3, 7), 3)
         self.assertEqual(self.sl.countOdds(8, 10), 1)
+
+    def test_findKthPositive(self):
+        # 1539.Kth Missing Positive Number
+        self.assertEqual(self.sl.findKthPositive([2, 3, 4, 7, 11], 5), 9)
+        self.assertEqual(self.sl.findKthPositive([1, 2, 3, 4], 2), 6)
