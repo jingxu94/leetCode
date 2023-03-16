@@ -8,6 +8,11 @@ class TestP1201To1400(unittest.TestCase):
     def sl(self):
         return Pro1201To1400()
 
+    def test_subtractProductAndSum(self):
+        # 1281.Subtract the Product and Sum of Digits of an Integer
+        self.assertEqual(self.sl.subtractProductAndSum(234), 15)
+        self.assertEqual(self.sl.subtractProductAndSum(4421), 21)
+
     def test_kWeakestRows(self):
         # 1337.The K Weakest Rows in a Matrix
         mat1 = [

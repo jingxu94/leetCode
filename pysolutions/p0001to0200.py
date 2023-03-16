@@ -540,3 +540,12 @@ class Pro0001To0200:
         """
         k = k % len(nums)
         nums[k:], nums[:k] = nums[:-k], nums[-k:]
+
+    def hammingWeight(self, n: int) -> int:
+        # 191.Number of 1 Bits
+        count = 0
+        while n > 0:
+            if n % 2 == 1:
+                count += 1
+            n = n // 2
+        return count

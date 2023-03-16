@@ -5,6 +5,15 @@ class Pro1201To1400:
     def __init__(self):
         pass
 
+    def subtractProductAndSum(self, n: int) -> int:
+        # 1281.Subtract the Product and Sum of Digits of an Integer
+        digits = str(n)
+        pd, sm = 1, 0
+        for i in range(len(digits)):
+            pd *= int(digits[i])
+            sm += int(digits[i])
+        return pd - sm
+
     def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
         # 1337.The K Weakest Rows in a Matrix
         soldiers = []

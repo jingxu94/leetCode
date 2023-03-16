@@ -248,3 +248,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.twoSum([2, 3, 4], 6), [1, 3])
         self.assertEqual(self.sl.twoSum([-1, 0], -1), [1, 2])
         self.assertEqual(self.sl.twoSum([0, 0, 3, 4], 0), [1, 2])
+
+    def test_hammingWeight(self):
+        # 191.Number of 1 Bits
+        input1 = 0b00000000000000000000000000001011
+        input2 = 0b00000000000000000000000010000000
+        input3 = 0b11111111111111111111111111111101
+        self.assertEqual(self.sl.hammingWeight(input1), 3)
+        self.assertEqual(self.sl.hammingWeight(input2), 1)
+        self.assertEqual(self.sl.hammingWeight(input3), 31)
