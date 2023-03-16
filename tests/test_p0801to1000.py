@@ -10,6 +10,12 @@ class TestP0801To1000(unittest.TestCase):
     def sl(self):
         return Pro0801To1000()
 
+    def test_peakIndexInMountainArray(self):
+        # 852.Peak index in a Mountain Array
+        self.assertEqual(self.sl.peakIndexInMountainArray([0, 1, 0]), 1)
+        self.assertEqual(self.sl.peakIndexInMountainArray([0, 2, 1, 0]), 1)
+        self.assertEqual(self.sl.peakIndexInMountainArray([0, 10, 5, 2]), 1)
+
     def test_minEatingSpeed(self):
         # 875.Koko Eating Bananas
         piles1 = [3, 6, 7, 11]

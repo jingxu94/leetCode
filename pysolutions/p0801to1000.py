@@ -8,6 +8,17 @@ class Pro0801To1000:
     def __init__(self):
         pass
 
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        # 852.Peak Index in a Mountain Array
+        left, right = 0, len(arr) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if arr[mid] < arr[mid + 1]:
+                left = mid + 1
+            else:
+                right = mid
+        return left
+
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         # 875.Koko Eating Bananas
         def eat(piles: List[int], h: int, speed: int):
