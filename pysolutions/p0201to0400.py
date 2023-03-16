@@ -9,6 +9,20 @@ class Pro0201To0400:
     def __init__(self):
         pass
 
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        # 205.Isomoriphic Strings
+        if len(s) != len(t):
+            return False
+        mapping_st, mapping_ts = dict(), dict()
+        for i in range(len(s)):
+            if mapping_ts.get(t[i]) is None:
+                mapping_ts[t[i]] = s[i]
+            if mapping_st.get(s[i]) is None:
+                mapping_st[s[i]] = t[i]
+            if s[i] != mapping_ts[t[i]] or t[i] != mapping_st[s[i]]:
+                return False
+        return True
+
     def containsDuplicate(self, nums: List[int]) -> bool:
         # 217.Contains Duplicate
         cont = Counter(nums)
@@ -90,3 +104,12 @@ class Pro0201To0400:
         # 383.Ransom Note
         note, mag = Counter(ransomNote), Counter(magazine)
         return (note & mag) == note
+
+    def isSubsequence(self, s: str, t: str) -> bool:
+        # 392.Is Subsequence
+        if s == "":
+            return True
+        for i in range(len(t)):
+            if s[0] == t[i]:
+                return self.isSubsequence(s[1:], t[i + 1 :])
+        return False

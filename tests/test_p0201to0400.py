@@ -14,6 +14,13 @@ class TestP0201To0400(unittest.TestCase):
     def sl(self):
         return Pro0201To0400()
 
+    def test_isIsomorphic(self):
+        # 205.Isomorphic Strings
+        self.assertTrue(self.sl.isIsomorphic("egg", "add"))
+        self.assertFalse(self.sl.isIsomorphic("foo", "bar"))
+        self.assertTrue(self.sl.isIsomorphic("paper", "title"))
+        self.assertFalse(self.sl.isIsomorphic("badc", "baba"))
+
     def test_containDuplicate(self):
         # 217.Contains Duplicate
         self.assertTrue(self.sl.containsDuplicate([1, 2, 3, 1]))
@@ -26,3 +33,8 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.moveZeroes([0, 1, 0, 3, 12]), [1, 3, 12, 0, 0])
         self.assertListEqual(self.sl.moveZeroes([0]), [0])
         self.assertEqual(self.sl.moveZeroes([0]), [0])
+
+    def test_isSubsequence(self):
+        # 392.Is Subsequence
+        self.assertTrue(self.sl.isSubsequence("abc", "ahbgdc"))
+        self.assertFalse(self.sl.isSubsequence("axc", "ahbgdc"))
