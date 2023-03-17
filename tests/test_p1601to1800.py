@@ -19,3 +19,10 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(res1, self.sl.maximumWealth(accounts1))
         self.assertEqual(res2, self.sl.maximumWealth(accounts2))
         self.assertEqual(res3, self.sl.maximumWealth(accounts3))
+
+    def test_nearestValidPoint(self):
+        # 1779.Find Nearest Point That Has the Same X or Y Coordinate
+        points = [[1, 2], [3, 1], [2, 4], [2, 3], [4, 4]]
+        self.assertEqual(self.sl.nearestValidPoint(3, 4, points), 2)
+        self.assertEqual(self.sl.nearestValidPoint(3, 4, [[3, 4]]), 0)
+        self.assertEqual(self.sl.nearestValidPoint(3, 4, [[2, 3]]), -1)

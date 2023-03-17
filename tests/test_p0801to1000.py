@@ -42,3 +42,8 @@ class TestP0801To1000(unittest.TestCase):
         root2 = set_TreeNode([1, 2, 3, 4, 5, None, 7])
         self.assertTrue(self.sl.isCompleteTree(root1))
         self.assertFalse(self.sl.isCompleteTree(root2))
+
+    def test_largestPerimeter(self):
+        # 976.Largest Perimeter Triangle
+        self.assertEqual(self.sl.largestPerimeter([2, 1, 2]), 5)
+        self.assertEqual(self.sl.largestPerimeter([1, 2, 1, 10]), 0)

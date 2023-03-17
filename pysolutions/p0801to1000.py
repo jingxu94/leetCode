@@ -69,6 +69,14 @@ class Pro0801To1000:
             return False
         return True
 
+    def largestPerimeter(self, nums: List[int]) -> int:
+        # 976.Largest Perimeter Triangle
+        nums.sort()
+        for i in range(len(nums) - 3, -1, -1):
+            if nums[i] + nums[i + 1] > nums[i + 2]:
+                return nums[i] + nums[i + 1] + nums[i + 2]
+        return 0
+
     def sortedSquares(self, nums: List[int]) -> List[int]:
         # 977.Squares of a Sorted Array
         ans = []
