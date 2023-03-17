@@ -23,6 +23,14 @@ class Pro0201To0400:
                 return False
         return True
 
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 206.Reverse Linked List
+        curr, ans = head, None
+        while curr:
+            ans = ListNode(val=curr.val, next=ans)
+            curr = curr.next
+        return ans
+
     def containsDuplicate(self, nums: List[int]) -> bool:
         # 217.Contains Duplicate
         cont = Counter(nums)

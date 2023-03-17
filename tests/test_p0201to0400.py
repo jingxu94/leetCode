@@ -1,12 +1,9 @@
 import unittest
+from typing import Optional
 
 from pysolutions import Pro0201To0400
 
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from .tools import ListNode, set_ListNode
 
 
 class TestP0201To0400(unittest.TestCase):
@@ -14,12 +11,25 @@ class TestP0201To0400(unittest.TestCase):
     def sl(self):
         return Pro0201To0400()
 
+    def _eq_ListNode(self, ans: Optional[ListNode], expected: Optional[ListNode]):
+        while ans and expected:
+            self.assertEqual(ans.val, expected.val)
+            ans, expected = ans.next, expected.next
+        if ans or expected:
+            raise ValueError("ListNode with different length!")
+
     def test_isIsomorphic(self):
         # 205.Isomorphic Strings
         self.assertTrue(self.sl.isIsomorphic("egg", "add"))
         self.assertFalse(self.sl.isIsomorphic("foo", "bar"))
         self.assertTrue(self.sl.isIsomorphic("paper", "title"))
         self.assertFalse(self.sl.isIsomorphic("badc", "baba"))
+
+    def test_reverseList(self):
+        # 206.Reverse Linked List
+        self._eq_ListNode(self.sl.reverseList(set_ListNode([1, 2, 3, 4, 5])), set_ListNode([5, 4, 3, 2, 1]))
+        self._eq_ListNode(self.sl.reverseList(set_ListNode([1, 2])), set_ListNode([2, 1]))
+        self._eq_ListNode(self.sl.reverseList(set_ListNode([])), set_ListNode([]))
 
     def test_containDuplicate(self):
         # 217.Contains Duplicate
