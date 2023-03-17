@@ -88,6 +88,20 @@ class Pro0201To0400:
             cnums1[key] = min(num, cnums1[key])
         return list(cnums1.elements())
 
+    def isPerfectSquare(self, num: int) -> bool:
+        # 367.Valid Perfect Square
+        left, right = 1, num
+        while left <= right:
+            mid = (left + right) // 2
+            square = mid**2
+            if square == num:
+                return True
+            elif square < num:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False
+
     def guessNumber(self, n: int) -> int:
         # 374.Guess Number Higher or Lower
         left, right = 1, n
@@ -100,7 +114,6 @@ class Pro0201To0400:
                 right = mid - 1
             else:
                 left = mid + 1
-
         return -1
 
     def getRandom(self, head: Optional[ListNode]) -> int:

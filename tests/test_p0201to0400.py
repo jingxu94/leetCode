@@ -39,6 +39,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.intersect([1, 2, 2, 1], [2, 2]), [2, 2])
         self.assertEqual(self.sl.intersect([4, 9, 5], [9, 4, 9, 8, 4]), [4, 9])
 
+    def test_isPerfectSquare(self):
+        # 367.Valid Perfect Square
+        self.assertTrue(self.sl.isPerfectSquare(16))
+        self.assertFalse(self.sl.isPerfectSquare(14))
+
     def test_isSubsequence(self):
         # 392.Is Subsequence
         self.assertTrue(self.sl.isSubsequence("abc", "ahbgdc"))

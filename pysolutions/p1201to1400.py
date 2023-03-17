@@ -1,3 +1,4 @@
+from bisect import bisect_left
 from typing import List
 
 
@@ -39,3 +40,26 @@ class Pro1201To1400:
                 num -= 1
             steps += 1
         return steps
+
+    def findTheDistanceValue1(self, arr1: List[int], arr2: List[int], d: int) -> int:
+        # 1385.Find the Distance Value Between Two Arrays
+        check = []
+        for i in range(-d, d + 1):
+            check.extend(map(lambda x: x + i, arr2))
+        ans = 0
+        for num in arr1:
+            if num not in check:
+                ans += 1
+        return ans
+
+    def findTheDistanceValue2(self, arr1: List[int], arr2: List[int], d: int) -> int:
+        # 1385.Find the Distance Value Between Two Arrays
+        # Solution2: Using bisect_left
+        arr2.sort()
+        n = len(arr2)
+        count = 0
+        for x in arr1:
+            i = bisect_left(arr2, x)
+            if (i == n or arr2[i] - x > d) and (i == 0 or x - arr2[i - 1] > d):
+                count += 1
+        return count

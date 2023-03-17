@@ -44,3 +44,15 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(res1, self.sl.numberOfSteps(num1))
         self.assertEqual(res2, self.sl.numberOfSteps(num2))
         self.assertEqual(res3, self.sl.numberOfSteps(num3))
+
+    def test_findTheDistanceValue(self):
+        # 1385.Find the Distance Value Between Two Arrays
+        arr1, arr2, d, ans = [4, 5, 8], [10, 9, 1, 8], 2, 2
+        self.assertEqual(self.sl.findTheDistanceValue1(arr1, arr2, d), ans)
+        self.assertEqual(self.sl.findTheDistanceValue2(arr1, arr2, d), ans)
+        arr1, arr2, d, ans = [1, 4, 2, 3], [-4, -3, 6, 10, 20, 30], 3, 2
+        self.assertEqual(self.sl.findTheDistanceValue1(arr1, arr2, d), ans)
+        self.assertEqual(self.sl.findTheDistanceValue2(arr1, arr2, d), ans)
+        arr1, arr2, d, ans = [2, 1, 100, 3], [-5, -2, 10, -3, 7], 6, 1
+        self.assertEqual(self.sl.findTheDistanceValue1(arr1, arr2, d), ans)
+        self.assertEqual(self.sl.findTheDistanceValue2(arr1, arr2, d), ans)
