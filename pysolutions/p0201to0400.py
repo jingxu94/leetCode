@@ -73,6 +73,12 @@ class Pro0201To0400:
 
         return nums
 
+    def reverseString(self, s: List[str]) -> None:
+        """344.Reverse String
+        Do not return anything, modify s in-place instead.
+        """
+        s.reverse()
+
     def guessNumber(self, n: int) -> int:
         # 374.Guess Number Higher or Lower
         left, right = 1, n
@@ -113,3 +119,23 @@ class Pro0201To0400:
             if s[0] == t[i]:
                 return self.isSubsequence(s[1:], t[i + 1 :])
         return False
+
+
+# 208.Implement Trie (Prefix Tree)
+# class Trie:
+#     def __init__(self):
+#         self.words = []
+#
+#     def insert(self, word: str) -> None:
+#         self.words.append(word)
+#
+#     def search(self, word: str) -> bool:
+#         if word in self.words:
+#             return True
+#         return False
+#
+#     def startsWith(self, prefix: str) -> bool:
+#         for word in self.words:
+#             if word.startswith(prefix):
+#                 return True
+#         return False
