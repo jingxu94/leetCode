@@ -79,6 +79,15 @@ class Pro0201To0400:
         """
         s.reverse()
 
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        # 350.Intersection of Two Arrays 2
+        cnums1 = Counter(nums1)
+        cnums2 = Counter(nums2)
+        for key in cnums1.keys():
+            num = cnums2.get(key, 0)
+            cnums1[key] = min(num, cnums1[key])
+        return list(cnums1.elements())
+
     def guessNumber(self, n: int) -> int:
         # 374.Guess Number Higher or Lower
         left, right = 1, n

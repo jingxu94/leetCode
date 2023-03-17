@@ -489,6 +489,18 @@ class Pro0001To0200:
             tree_path_sum(root, 0)
         return targetSum in self._sumlist
 
+    def maxProfit(self, prices: List[int]) -> int:
+        # 121.Best Time to Buy and Sell Stock
+        left, right, bestsell = 0, 1, 0
+        while right < len(prices):
+            sell = prices[right] - prices[left]
+            if sell > 0:
+                bestsell = max(sell, bestsell)
+            else:
+                left = right
+            right += 1
+        return bestsell
+
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         # 129.Sum Root to Leaf Numbers
         ans = 0

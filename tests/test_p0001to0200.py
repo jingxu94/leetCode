@@ -226,6 +226,11 @@ class TestP0001To0200(unittest.TestCase):
         expected = set_TreeNode([1, 2, None, None, 3])
         self.assertTrue(self._isSameTree(ans, expected))
 
+    def test_maxProfit(self):
+        # 121.Best Time to Buy and Sell Stock
+        self.assertEqual(self.sl.maxProfit([7, 1, 5, 3, 6, 4]), 5)
+        self.assertEqual(self.sl.maxProfit([7, 6, 4, 3, 1]), 0)
+
     def test_detectCycle(self):
         # 142.Linked List Cycle II
         input = ListNode()
