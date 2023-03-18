@@ -1,4 +1,3 @@
-import re
 from typing import List
 
 
@@ -19,6 +18,24 @@ class Pro0401To0600:
             else:
                 answer.append(str(num))
         return answer
+
+    def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
+        # 566.Reshape the Matrix
+        m, n = len(mat), len(mat[0])
+        if m * n != r * c:
+            return mat
+        cnt = 0
+        ans = []
+        row = []
+        for i in range(m):
+            for j in range(n):
+                row.append(mat[i][j])
+                cnt += 1
+                if cnt == c:
+                    ans.append(row)
+                    row = []
+                    cnt = 0
+        return ans
 
     def reverseWords(self, s: str) -> str:
         # 557.Reverse Words in a String 3

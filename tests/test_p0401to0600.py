@@ -16,3 +16,10 @@ class TestP0401To0600(unittest.TestCase):
         expected2 = "doG gniD"
         self.assertEqual(self.sl.reverseWords(s1), expected1)
         self.assertEqual(self.sl.reverseWords(s2), expected2)
+
+    def test_matrixReshape(self):
+        # 566.Reshape the Matrix
+        mat, r, c = [[1, 2], [3, 4]], 1, 4
+        self.assertListEqual(self.sl.matrixReshape(mat, r, c), [[1, 2, 3, 4]])
+        r = 2
+        self.assertListEqual(self.sl.matrixReshape(mat, r, c), [[1, 2], [3, 4]])

@@ -232,6 +232,11 @@ class TestP0001To0200(unittest.TestCase):
         expected = set_TreeNode([1, 2, None, None, 3])
         self.assertTrue(self._isSameTree(ans, expected))
 
+    def test_generate(self):
+        # 118.Pascal's Triangle
+        self.assertListEqual(self.sl.generate(5), [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]])
+        self.assertListEqual(self.sl.generate(1), [[1]])
+
     def test_maxProfit(self):
         # 121.Best Time to Buy and Sell Stock
         self.assertEqual(self.sl.maxProfit([7, 1, 5, 3, 6, 4]), 5)

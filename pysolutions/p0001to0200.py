@@ -506,6 +506,22 @@ class Pro0001To0200:
             tree_path_sum(root, 0)
         return targetSum in self._sumlist
 
+    def generate(self, numRows: int) -> List[List[int]]:
+        # 118.Pascal's Triangle
+        if numRows == 1:
+            return [[1]]
+        elif numRows == 2:
+            return [[1], [1, 1]]
+        else:
+            pascal_tri = [[1], [1, 1]]
+            for row in range(3, numRows + 1):
+                curr = [1]
+                for index in range(row - 2):
+                    curr.append(pascal_tri[-1][index] + pascal_tri[-1][index + 1])
+                curr.append(1)
+                pascal_tri.append(curr)
+            return pascal_tri
+
     def maxProfit(self, prices: List[int]) -> int:
         # 121.Best Time to Buy and Sell Stock
         left, right, bestsell = 0, 1, 0
