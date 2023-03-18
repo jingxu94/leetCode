@@ -18,6 +18,11 @@ class TestP0201To0400(unittest.TestCase):
         if ans or expected:
             raise ValueError("ListNode with different length!")
 
+    def test_isHappy(self):
+        # 202.Happy Number
+        self.assertTrue(self.sl.isHappy(19))
+        self.assertFalse(self.sl.isHappy(2))
+
     def test_isIsomorphic(self):
         # 205.Isomorphic Strings
         self.assertTrue(self.sl.isIsomorphic("egg", "add"))

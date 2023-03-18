@@ -9,6 +9,21 @@ class Pro0201To0400:
     def __init__(self):
         pass
 
+    def isHappy(self, n: int) -> bool:
+        # 202.Happy Number
+        checked = []
+        while n != 1 and n not in checked:
+            checked.append(n)
+            num = 0
+            while n // 10 > 0:
+                num += (n % 10) ** 2
+                n = n // 10
+            num += (n % 10) ** 2
+            n = num
+        if n == 1:
+            return True
+        return False
+
     def isIsomorphic(self, s: str, t: str) -> bool:
         # 205.Isomoriphic Strings
         if len(s) != len(t):

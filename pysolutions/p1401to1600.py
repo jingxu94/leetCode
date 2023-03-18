@@ -17,6 +17,18 @@ class Pro1401To1600:
         # 1491.Average Salary Excluding the Minimum and Maximum Salary
         return (sum(salary) - max(salary) - min(salary)) / (len(salary) - 2)
 
+    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
+        # 1502.Can Make Arithmetic Progression From Sequence
+        length = len(arr)
+        if length == 2:
+            return True
+        arr.sort()
+        gap = arr[0] - arr[1]
+        for i in range(1, length - 1):
+            if arr[i] - arr[i + 1] != gap:
+                return False
+        return True
+
     def countOdds(self, low: int, high: int) -> int:
         # 1523.Count Odd Numbers in an Interval Range
         nodd = (high - low) // 2

@@ -26,3 +26,10 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(self.sl.nearestValidPoint(3, 4, points), 2)
         self.assertEqual(self.sl.nearestValidPoint(3, 4, [[3, 4]]), 0)
         self.assertEqual(self.sl.nearestValidPoint(3, 4, [[2, 3]]), -1)
+
+    def test_areAlmostEqual(self):
+        # 1790.Check if One String Swap Can Make Strings Equal
+        self.assertTrue(self.sl.areAlmostEqual("bank", "kanb"))
+        self.assertTrue(self.sl.areAlmostEqual("kelb", "kelb"))
+        self.assertFalse(self.sl.areAlmostEqual("attack", "defend"))
+        self.assertFalse(self.sl.areAlmostEqual("yhy", "hyc"))

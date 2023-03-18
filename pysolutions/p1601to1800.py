@@ -25,3 +25,20 @@ class Pro1601To1800:
         if smd == math.inf:
             return -1
         return index
+
+    def areAlmostEqual(self, s1: str, s2: str) -> bool:
+        # 1790.Check if One String Swap Can Make Strings Equal
+        ndiff = 0
+        diff_ind = []
+        for i in range(len(s1)):
+            if s1[i] != s2[i]:
+                ndiff += 1
+                diff_ind.append(i)
+            if ndiff == 2:
+                if s1[diff_ind[0]] != s2[diff_ind[1]] or s1[diff_ind[1]] != s2[diff_ind[0]]:
+                    return False
+            if ndiff > 2:
+                return False
+        if ndiff == 1:
+            return False
+        return True

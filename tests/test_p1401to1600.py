@@ -18,6 +18,11 @@ class TestP1401To1600(unittest.TestCase):
         # 1491.Average Salary Excluding the Minimum and Maximum Salary
         self.assertEqual(self.sl.average([4000, 3000, 1000, 2000]), 2500.00)
 
+    def test_canMakeArithmeticProgression(self):
+        # 1502.Can Make Arithmetic Progression From Sequence
+        self.assertTrue(self.sl.canMakeArithmeticProgression([3, 5, 1]))
+        self.assertFalse(self.sl.canMakeArithmeticProgression([1, 2, 4]))
+
     def test_countOdds(self):
         # 1523.Count Odd Numbers in an Interval Range
         self.assertEqual(self.sl.countOdds(3, 7), 3)
