@@ -1,5 +1,5 @@
 import random
-from collections import Counter
+from collections import Counter, deque
 from typing import List, Optional
 
 from .utils import ListNode
@@ -70,6 +70,28 @@ class Pro0201To0400:
                 return False
             fd_end, fd_mid = fd_end.next, fd_mid.next
         return True
+
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        # 239.Sliding Window Maximum
+        if not nums:
+            return []
+        # Initialize deque and result list
+        window = deque()
+        result = []
+
+        for i, num in enumerate(nums):
+            # Remove elements outside the current window from the front of the deque
+            while window and window[0] < i - k + 1:
+                window.popleft()
+            # Remove elements smaller than the current element from the back of the deque
+            while window and nums[window[-1]] < num:
+                window.pop()
+            # Add the current index to the back of the deque
+            window.append(i)
+            # Add the maximum value (front of the deque) to the result list
+            if i >= k - 1:
+                result.append(nums[window[0]])
+        return result
 
     def firstBadVersion(self, n: int) -> int:
         # 278.First Bad Version
