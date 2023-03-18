@@ -72,6 +72,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(res1, expected1)
         self.assertEqual(res2, expected2)
 
+    def test_removeNthFromEnd(self):
+        # 19.Remove Nth Node From of List
+        self._eq_ListNode(self.sl.removeNthFromEnd(set_ListNode([1, 2, 3, 4, 5]), 2), set_ListNode([1, 2, 3, 5]))
+        self._eq_ListNode(self.sl.removeNthFromEnd(set_ListNode([1]), 1), set_ListNode([]))
+        self._eq_ListNode(self.sl.removeNthFromEnd(set_ListNode([1, 2]), 1), set_ListNode([1]))
+
     def test_isValid(self):
         # 20.Valid Parentheses
         input1 = "()"

@@ -94,6 +94,23 @@ class Pro0001To0200:
             prefix.append(strs[0][i])
         return strs[0]
 
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        # 19.Remove Nth Node From End of List
+        length, curr = 0, head
+        while curr:
+            length, curr = length + 1, curr.next
+        steps = length - n
+        if steps == 0 and n == 1:
+            return None
+        elif steps == 0:
+            return head.next
+        else:
+            curr = head
+            for _ in range(steps - 1):
+                curr = curr.next
+            curr.next = curr.next.next
+            return head
+
     def isValid(self, s: str) -> bool:
         # 20.Valid Parentheses
         stack = []
