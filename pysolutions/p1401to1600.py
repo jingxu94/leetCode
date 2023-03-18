@@ -48,3 +48,29 @@ class Pro1401To1600:
             seen.add(curr)
 
         return ans
+
+
+class BrowserHistory:
+    # 1472.Design Browser History
+    def __init__(self, homepage: str):
+        self._history, self._future = [], []
+        self._curr = homepage
+
+    def visit(self, url: str) -> None:
+        self._history.append(self._curr)
+        self._curr = url
+        self._future = []
+
+    def back(self, steps: int) -> str:
+        while steps > 0 and self._history:
+            self._future.append(self._curr)
+            self._curr = self._history.pop()
+            steps -= 1
+        return self._curr
+
+    def forward(self, steps: int) -> str:
+        while steps > 0 and self._future:
+            self._history.append(self._curr)
+            self._curr = self._future.pop()
+            steps -= 1
+        return self._curr
