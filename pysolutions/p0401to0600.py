@@ -1,6 +1,8 @@
 from collections import Counter
 from typing import List
 
+from .utils import Node
+
 
 class Pro0401To0600:
     def __init__(self):
@@ -33,6 +35,18 @@ class Pro0401To0600:
             else:
                 answer.append(str(num))
         return answer
+
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        # 496.Next Greater Element1
+        ans = list([-1 for _ in range(len(nums1))])
+        for i, num in enumerate(nums1):
+            index = nums2.index(num)
+            if index < len(nums2) - 1:
+                for j, check in enumerate(nums2[index + 1 :]):
+                    if check > num:
+                        ans[i] = check
+                        break
+        return ans
 
     def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         # 566.Reshape the Matrix
@@ -71,3 +85,15 @@ class Pro0401To0600:
             if ct_s1 == Counter(s2[i : i + len(s1)]):
                 return True
         return False
+
+    def preorder(self, root: Node) -> List[int]:
+        # 589.N-ary Tree Preorder Traversal
+        if root is None:
+            return []
+        stack, ans = [root], []
+        while stack:
+            node = stack.pop()
+            ans.append(node.val)
+            for child in reversed(node.children):
+                stack.append(child)
+        return ans

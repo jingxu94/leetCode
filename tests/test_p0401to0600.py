@@ -13,6 +13,11 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.longestPalindrome("abccccdd"), 7)
         self.assertEqual(self.sl.longestPalindrome("a"), 1)
 
+    def test_nextGreaterElement(self):
+        # 496.Next Greater Element1
+        self.assertListEqual(self.sl.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
+        self.assertListEqual(self.sl.nextGreaterElement([2, 4], [1, 2, 3, 4]), [3, -1])
+
     def test_reverseWords(self):
         # 557.Reverse Words in a String 3
         s1 = "Let's take LeetCode contest"

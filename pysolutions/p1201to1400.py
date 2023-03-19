@@ -6,6 +6,16 @@ class Pro1201To1400:
     def __init__(self):
         pass
 
+    def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
+        # 1232.Check If It Is a Straight Line
+        if len(coordinates) < 3:
+            return True
+        dx, dy = coordinates[0][0] - coordinates[1][0], coordinates[0][1] - coordinates[1][1]
+        for point in coordinates[2:]:
+            if (coordinates[0][0] - point[0]) * dy != (coordinates[0][1] - point[1]) * dx:
+                return False
+        return True
+
     def subtractProductAndSum(self, n: int) -> int:
         # 1281.Subtract the Product and Sum of Digits of an Integer
         digits = str(n)

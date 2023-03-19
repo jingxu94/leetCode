@@ -8,6 +8,12 @@ class TestP1201To1400(unittest.TestCase):
     def sl(self):
         return Pro1201To1400()
 
+    def test_checkStraightLine(self):
+        # 1232.Check If It Is a Straight Line
+        self.assertTrue(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]))
+        self.assertFalse(self.sl.checkStraightLine([[1, 1], [2, 2], [3, 4], [4, 5], [5, 6], [7, 7]]))
+        self.assertFalse(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 5]]))
+
     def test_subtractProductAndSum(self):
         # 1281.Subtract the Product and Sum of Digits of an Integer
         self.assertEqual(self.sl.subtractProductAndSum(234), 15)
