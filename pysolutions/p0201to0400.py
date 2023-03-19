@@ -1,5 +1,5 @@
 import random
-from collections import Counter, deque
+from collections import Counter, defaultdict, deque
 from typing import List, Optional
 
 from .utils import ListNode
@@ -188,21 +188,64 @@ class Pro0201To0400:
         return False
 
 
-# 208.Implement Trie (Prefix Tree)
-# class Trie:
-#     def __init__(self):
-#         self.words = []
-#
-#     def insert(self, word: str) -> None:
-#         self.words.append(word)
-#
-#     def search(self, word: str) -> bool:
-#         if word in self.words:
-#             return True
-#         return False
-#
-#     def startsWith(self, prefix: str) -> bool:
-#         for word in self.words:
-#             if word.startswith(prefix):
-#                 return True
-#         return False
+class Trie:
+    # 208.Implement Trie (Prefix Tree)
+    def __init__(self):
+        self.words = []
+
+    def insert(self, word: str) -> None:
+        self.words.append(word)
+
+    def search(self, word: str) -> bool:
+        if word in self.words:
+            return True
+        return False
+
+    def startsWith(self, prefix: str) -> bool:
+        for word in self.words:
+            if word.startswith(prefix):
+                return True
+        return False
+
+
+class WordDictionaryS1:
+    # 211.Design Add and Search Words Data Structure
+    def __init__(self):
+        self.words = defaultdict(list)
+
+    def addWord(self, word: str) -> None:
+        self.words[len(word)].append(word)
+
+    def search(self, word: str) -> bool:
+        n = len(word)
+        if "." in word:
+            for w in self.words[n]:
+                if all(word[i] in (w[i], ".") for i in range(n)):
+                    return True
+            else:
+                return False
+        return word in self.words[n]
+
+
+class WordDictionaryS2:
+    # 211.Design Add and Search Words Data Structure
+
+    def __init__(self):
+        self.wdict = dict()
+
+    def addWord(self, word: str) -> None:
+        nword_list = self.wdict.get(str(len(word)), [])
+        if word not in nword_list:
+            nword_list.append(word)
+            self.wdict[str(len(word))] = nword_list
+
+    def search(self, word: str) -> bool:
+        nword_list = self.wdict.get(str(len(word)), [])
+        if nword_list == []:
+            return False
+        if "." in word:
+            for nword in nword_list:
+                if all(word[i] in [nword[i], "."] for i in range(len(word))):
+                    return True
+            return False
+        return word in nword_list
