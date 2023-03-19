@@ -6,6 +6,20 @@ class Pro0401To0600:
     def __init__(self):
         pass
 
+    def longestPalindrome(self, s: str) -> int:
+        # 409.Longest Palindrome
+        single, double, flag = 0, 0, 0
+        count = Counter(s)
+        for key in count.keys():
+            if count[key] % 2 == 0:
+                double += count[key]
+            else:
+                flag = 1
+                single += count[key] - 1
+        if flag:
+            single += 1
+        return single + double
+
     def fizzBuzz(self, n: int) -> List[str]:
         # 412.Fizz Buzz
         answer = []

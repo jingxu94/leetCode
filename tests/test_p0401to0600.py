@@ -8,6 +8,11 @@ class TestP0401To0600(unittest.TestCase):
     def sl(self):
         return Pro0401To0600()
 
+    def test_longestPalindrom(self):
+        # 409.Longest Palindrome
+        self.assertEqual(self.sl.longestPalindrome("abccccdd"), 7)
+        self.assertEqual(self.sl.longestPalindrome("a"), 1)
+
     def test_reverseWords(self):
         # 557.Reverse Words in a String 3
         s1 = "Let's take LeetCode contest"
