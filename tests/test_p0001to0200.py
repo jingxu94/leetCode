@@ -61,6 +61,12 @@ class TestP0001To0200(unittest.TestCase):
         expected = ListNode(0)
         self._eq_ListNode(ans, expected)
 
+    def test_lengthOfLongestSubstring(self):
+        # 3.Longest Substring Without Repeating Characters
+        self.assertEqual(self.sl.lengthOfLongestSubstring("abcabcbb"), 3)
+        self.assertEqual(self.sl.lengthOfLongestSubstring("bbbbb"), 1)
+        self.assertEqual(self.sl.lengthOfLongestSubstring("pwwkew"), 3)
+
     def test_longestCommonPrefix(self):
         # 14.Longest Common Prefix
         strs1 = ["flower", "flow", "flight"]

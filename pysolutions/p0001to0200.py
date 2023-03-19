@@ -37,6 +37,22 @@ class Pro0001To0200:
             curr = curr.next
         return result.next
 
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # 3.Longest Subtring Without Repeating Characters
+        chars = Counter()
+        left = right = 0
+        ans = 0
+        while right < len(s):
+            rchar = s[right]
+            chars[rchar] += 1
+            while chars[rchar] > 1:
+                lchar = s[left]
+                chars[lchar] -= 1
+                left += 1
+            ans = max(ans, right - left + 1)
+            right += 1
+        return ans
+
     def isPalindrome(self, x: int) -> bool:
         # 9.Palindrome Number
         if x < 0:

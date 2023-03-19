@@ -23,3 +23,8 @@ class TestP0401To0600(unittest.TestCase):
         self.assertListEqual(self.sl.matrixReshape(mat, r, c), [[1, 2, 3, 4]])
         r = 2
         self.assertListEqual(self.sl.matrixReshape(mat, r, c), [[1, 2], [3, 4]])
+
+    def test_checkInclusion(self):
+        # 567.Permutation in String
+        self.assertTrue(self.sl.checkInclusion("ab", "eidbaooo"))
+        self.assertFalse(self.sl.checkInclusion("ab", "eidboaoo"))

@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List
 
 
@@ -44,3 +45,15 @@ class Pro0401To0600:
         for word in words:
             reversed_words.append(word[::-1])
         return " ".join(reversed_words)
+
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        # 567.Permutation in String
+        if s1 in s2:
+            return True
+        ct_s1, ct_s2 = Counter(s1), Counter(s2)
+        if not all(ct_s1[key] <= ct_s2.get(key, 0) for key in ct_s1.keys()):
+            return False
+        for i in range(len(s2) - len(s1) + 1):
+            if ct_s1 == Counter(s2[i : i + len(s1)]):
+                return True
+        return False
