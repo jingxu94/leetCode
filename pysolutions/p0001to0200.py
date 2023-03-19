@@ -223,6 +223,36 @@ class Pro0001To0200:
                 haystack = haystack[1:]
         return -1
 
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        # 34.Find First and Last Position of Element in Sorted Array
+        def find_left(nums, target):
+            low, high = 0, len(nums) - 1
+            while low <= high:
+                mid = (low + high) // 2
+                if nums[mid] < target:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+            return low
+
+        def find_right(nums, target):
+            low, high = 0, len(nums) - 1
+            while low <= high:
+                mid = (low + high) // 2
+                if nums[mid] <= target:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+            return high
+
+        left = find_left(nums, target)
+        right = find_right(nums, target)
+
+        if left <= right:
+            return [left, right]
+        else:
+            return [-1, -1]
+
     def searchInsert(self, nums: List[int], target: int) -> int:
         # 35.Search Insert Position
         if target <= nums[0]:

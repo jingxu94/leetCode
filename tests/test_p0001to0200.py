@@ -145,6 +145,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.strStr(haystack1, needle1), expected1)
         self.assertEqual(self.sl.strStr(haystack2, needle2), expected2)
 
+    def test_searchRange(self):
+        # 34.Find First and Last Position of Element in Sorted Array
+        self.assertListEqual(self.sl.searchRange([5, 7, 7, 8, 8, 10], 8), [3, 4])
+        self.assertListEqual(self.sl.searchRange([5, 7, 7, 8, 8, 10], 6), [-1, -1])
+        self.assertListEqual(self.sl.searchRange([], 0), [-1, -1])
+
     def test_searchInsert(self):
         # 35.Search Insert Position
         nums = [1, 3, 5, 6]
