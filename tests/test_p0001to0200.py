@@ -152,6 +152,33 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.searchInsert(nums, 2), 1)
         self.assertEqual(self.sl.searchInsert(nums, 7), 4)
 
+    def test_isValidSudoku(self):
+        # 36.Valid Sudoku
+        board1 = [
+            ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+            ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+            [".", "9", "8", ".", ".", ".", ".", "6", "."],
+            ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+            ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+            ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+            [".", "6", ".", ".", ".", ".", "2", "8", "."],
+            [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+            [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+        ]
+        board2 = [
+            ["8", "3", ".", ".", "7", ".", ".", ".", "."],
+            ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+            [".", "9", "8", ".", ".", ".", ".", "6", "."],
+            ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+            ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+            ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+            [".", "6", ".", ".", ".", ".", "2", "8", "."],
+            [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+            [".", ".", ".", ".", "8", ".", ".", "7", "9"],
+        ]
+        self.assertTrue(self.sl.isValidSudoku(board1))
+        self.assertFalse(self.sl.isValidSudoku(board2))
+
     def test_maxSubArray(self):
         # 53.Maximum Subarray
         self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)
@@ -181,6 +208,12 @@ class TestP0001To0200(unittest.TestCase):
         outputs = [1, 2, 3, 5, 8, 13, 21, 34, 55]
         for input, output in zip(inputs, outputs):
             self.assertEqual(self.sl.climbStairs(input), output)
+
+    def test_searchMatrix(self):
+        # 74.Search a 2D Matrix
+        matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]
+        self.assertTrue(self.sl.searchMatrix(matrix, 3))
+        self.assertFalse(self.sl.searchMatrix(matrix, 13))
 
     def test_deleteDuplicates(self):
         # 83.Remove Duplicates from Sorted List

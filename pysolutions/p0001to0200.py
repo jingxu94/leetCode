@@ -232,6 +232,16 @@ class Pro0001To0200:
                 return i + 1
         return len(nums)
 
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # 36.Valid Sudoku
+        res = []
+        for i in range(9):
+            for j in range(9):
+                element = board[i][j]
+                if element != ".":
+                    res += [(i, element), (element, j), (i // 3, j // 3, element)]
+        return len(res) == len(set(res))
+
     def maxSubArray(self, nums: List[int]) -> int:
         # 53.Maximum Subarray
         dp = nums
@@ -310,6 +320,23 @@ class Pro0001To0200:
             two = one
             one = ways
         return ways
+
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        # 74.Search a 2D Matrix
+        if not matrix or not matrix[0]:
+            return False
+        m, n = len(matrix), len(matrix[0])
+        low, high = 0, m * n - 1
+        while low <= high:
+            mid = (low + high) // 2
+            mid_element = matrix[mid // n][mid % n]
+            if mid_element == target:
+                return True
+            elif mid_element < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return False
 
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 83.Remove Duplicates from Sorted List
