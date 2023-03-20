@@ -8,6 +8,11 @@ class TestP0601To0800(unittest.TestCase):
     def sl(self):
         return Pro0601To0800()
 
+    def test_canPlaceFlowers(self):
+        # 605.Can Place Flowers
+        self.assertTrue(self.sl.canPlaceFlowers([1, 0, 0, 0, 1], 1))
+        self.assertFalse(self.sl.canPlaceFlowers([1, 0, 0, 0, 1], 2))
+
     def test_maxAreaOfIsland(self):
         # 695.Max Area of Island
         grid = [

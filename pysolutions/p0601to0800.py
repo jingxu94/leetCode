@@ -5,6 +5,24 @@ class Pro0601To0800:
     def __init__(self):
         pass
 
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        # 605.Can Place Flowers
+        def have_noadj(flowerbed, index):
+            lf, rf = True, True
+            if index > 0 and flowerbed[index - 1] == 1:
+                lf = False
+            if index < len(flowerbed) - 1 and flowerbed[index + 1] == 1:
+                rf = False
+            if lf and rf:
+                return 1
+
+        flowers = 0
+        for i in range(len(flowerbed)):
+            if flowerbed[i] == 0 and have_noadj(flowerbed, i):
+                flowers += 1
+                flowerbed[i] = 1
+        return n <= flowers
+
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         # 695.Max Area of Island
         def dfs(grid, row, col):
