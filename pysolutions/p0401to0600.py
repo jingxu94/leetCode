@@ -36,6 +36,20 @@ class Pro0401To0600:
                 answer.append(str(num))
         return answer
 
+    def arrangeCoins(self, n: int) -> int:
+        # 441.Arranging Coins
+        left, right = 0, n
+        while left <= right:
+            mid = (left + right) // 2
+            total_coins = ((1 + mid) * mid) // 2
+            if total_coins == n:
+                return mid
+            elif total_coins > n:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return right
+
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # 496.Next Greater Element1
         ans = list([-1 for _ in range(len(nums1))])

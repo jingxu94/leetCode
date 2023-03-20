@@ -13,6 +13,11 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.longestPalindrome("abccccdd"), 7)
         self.assertEqual(self.sl.longestPalindrome("a"), 1)
 
+    def test_arrangeCoins(self):
+        # 441.Arranging Coins
+        self.assertEqual(self.sl.arrangeCoins(5), 2)
+        self.assertEqual(self.sl.arrangeCoins(8), 3)
+
     def test_nextGreaterElement(self):
         # 496.Next Greater Element1
         self.assertListEqual(self.sl.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])

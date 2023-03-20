@@ -7,7 +7,15 @@ class Pro1201To1400:
         pass
 
     def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
-        # 1232.Check If It Is a Straight Line
+        """1232.Check If It Is a Straight Line
+        Check if the given coordinates form a straight line.
+
+        Args:
+        coordinates (List[List[int]]): List of x, y coordinates.
+
+        Returns:
+        bool: True if coordinates form a straight line, False otherwise.
+        """
         if len(coordinates) < 3:
             return True
         dx, dy = coordinates[0][0] - coordinates[1][0], coordinates[0][1] - coordinates[1][1]
@@ -17,7 +25,15 @@ class Pro1201To1400:
         return True
 
     def subtractProductAndSum(self, n: int) -> int:
-        # 1281.Subtract the Product and Sum of Digits of an Integer
+        """1281.Subtract the Product and Sum of Digits of an Integer
+        Subtract the product of digits and the sum of digits of an integer.
+
+        Args:
+        n (int): The integer.
+
+        Returns:
+        int: The difference between the product and sum of the digits of the integer.
+        """
         digits = str(n)
         pd, sm = 1, 0
         for i in range(len(digits)):
@@ -26,14 +42,31 @@ class Pro1201To1400:
         return pd - sm
 
     def maximum69Number(self, num: int) -> int:
-        # 1323.Maximum 69 Number
+        """1323.Maximum 69 Number
+        Change the first 6 in the given number to 9 and return the resulting number.
+
+        Args:
+        num (int): The input number.
+
+        Returns:
+        int: The maximum number that can be formed by changing the first 6 to 9.
+        """
         numstr = str(num)
         if "6" not in numstr:
             return num
         return num + 3 * 10 ** (len(numstr) - numstr.index("6") - 1)
 
     def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
-        # 1337.The K Weakest Rows in a Matrix
+        """1337.The K Weakest Rows in a Matrix
+        Find the K weakest rows in a matrix based on the number of soldiers.
+
+        Args:
+        mat (List[List[int]]): The input matrix.
+        k (int): The number of weakest rows to return.
+
+        Returns:
+        List[int]: List of indices of the K weakest rows.
+        """
         soldiers = []
         for row in range(len(mat)):
             soldiers.append(sum(mat[row]))
@@ -41,7 +74,15 @@ class Pro1201To1400:
         return arg_soldiers[:k]
 
     def numberOfSteps(self, num: int) -> int:
-        # 1342.Number of Steps to Reduce a Number to Zero
+        """1342.Number of Steps to Reduce a Number to Zero
+        Calculate the number of steps to reduce a number to zero by dividing by 2 if it's even or subtracting 1 if it's odd.
+
+        Args:
+        num (int): The input number.
+
+        Returns:
+        int: The number of steps to reduce the number to zero.
+        """
         steps = 0
         while num > 0:
             if num % 2 == 0:
@@ -52,7 +93,17 @@ class Pro1201To1400:
         return steps
 
     def findTheDistanceValue1(self, arr1: List[int], arr2: List[int], d: int) -> int:
-        # 1385.Find the Distance Value Between Two Arrays
+        """1385.Find the Distance Value Between Two Arrays
+        Find the distance value between two arrays.
+
+        Args:
+        arr1 (List[int]): The first array.
+        arr2 (List[int]): The second array.
+        d (int): The distance value.
+
+        Returns:
+        int: The distance value between two arrays.
+        """
         check = []
         for i in range(-d, d + 1):
             check.extend(map(lambda x: x + i, arr2))
@@ -63,7 +114,17 @@ class Pro1201To1400:
         return ans
 
     def findTheDistanceValue2(self, arr1: List[int], arr2: List[int], d: int) -> int:
-        # 1385.Find the Distance Value Between Two Arrays
+        """1385.Find the Distance Value Between Two Arrays
+        Find the distance value between two arrays using bisect_left.
+
+        Args:
+        arr1 (List[int]): The first array.
+        arr2 (List[int]): The second array.
+        d (int): The distance value.
+
+        Returns:
+        int: The distance value between two arrays.
+        """
         # Solution2: Using bisect_left
         arr2.sort()
         n = len(arr2)

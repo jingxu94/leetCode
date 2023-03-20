@@ -58,8 +58,21 @@ class Pro1401To1600:
                 ans += 1
                 seen = set()
             seen.add(curr)
-
         return ans
+
+    def sumOddLengthSubarrays(self, arr: List[int]) -> int:
+        # 1588.Sum of All Odd Length Subarrays
+        total_sum = 0
+        n = len(arr)
+        for i in range(n):
+            left_count = i
+            right_count = n - i - 1
+            left_odd = (left_count + 1) // 2
+            right_odd = (right_count + 1) // 2
+            left_even = left_count // 2 + 1
+            right_even = right_count // 2 + 1
+            total_sum += arr[i] * (left_odd * right_odd + left_even * right_even)
+        return total_sum
 
 
 class BrowserHistory:

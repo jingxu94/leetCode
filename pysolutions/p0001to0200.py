@@ -436,6 +436,25 @@ class Pro0001To0200:
 
         return _eq_treenode(root, root)
 
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        # 102.Binary Tree Level Order Traversal
+        if root is None:
+            return []
+        tree_levels = []
+
+        def tree_level(node, level):
+            if node is None:
+                return
+            if level > len(tree_levels):
+                tree_levels.append([node.val])
+            else:
+                tree_levels[level - 1].append(node.val)
+            tree_level(node.left, level + 1)
+            tree_level(node.right, level + 1)
+
+        tree_level(root, 1)
+        return tree_levels
+
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         # 104.Maximum Depth of Binary Tree
         def tree_depth(root: Optional[TreeNode], depth: int):

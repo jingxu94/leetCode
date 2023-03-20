@@ -37,3 +37,8 @@ class TestP1401To1600(unittest.TestCase):
         # 1546.Maximum Number of Non-Overlapping Subarrays With Sum Equals Target
         self.assertEqual(self.sl.maxNonOverlapping([1, 1, 1, 1, 1], 2), 2)
         self.assertEqual(self.sl.maxNonOverlapping([-1, 3, 5, 1, 4, 2, -9], 6), 2)
+
+    def test_sumOddLengthSubarrays(self):
+        # 1588.Sum of All Odd Length Subarrays
+        self.assertEqual(self.sl.sumOddLengthSubarrays([1, 4, 2, 5, 3]), 58)
+        self.assertEqual(self.sl.sumOddLengthSubarrays([1, 2]), 3)
