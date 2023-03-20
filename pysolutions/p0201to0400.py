@@ -93,6 +93,10 @@ class Pro0201To0400:
                 result.append(nums[window[0]])
         return result
 
+    def isAnagram(self, s: str, t: str) -> bool:
+        # 242.Valid Anagram
+        return Counter(s) == Counter(t)
+
     def firstBadVersion(self, n: int) -> int:
         # 278.First Bad Version
         left, right = 1, n
@@ -177,6 +181,15 @@ class Pro0201To0400:
         # 383.Ransom Note
         note, mag = Counter(ransomNote), Counter(magazine)
         return (note & mag) == note
+
+    def firstUniqChar(self, s: str) -> int:
+        # 387.First Unique Character in a String
+        count = Counter(s)
+        if all(count[key] > 1 for key in count.keys()):
+            return -1
+        for i in range(len(s)):
+            if count[s[i]] == 1:
+                return i
 
     def isSubsequence(self, s: str, t: str) -> bool:
         # 392.Is Subsequence

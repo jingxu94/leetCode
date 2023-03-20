@@ -50,6 +50,11 @@ class TestP0201To0400(unittest.TestCase):
         expected = [3, 3, 5, 5, 6, 7]
         self.assertListEqual(ans, expected)
 
+    def test_isAnagram(self):
+        # 242.Valid Anagram
+        self.assertTrue(self.sl.isAnagram("anagram", "nagaram"))
+        self.assertFalse(self.sl.isAnagram("rat", "car"))
+
     def test_moveZeroes(self):
         # 283.Move Zeroes
         self.assertListEqual(self.sl.moveZeroes([0, 1, 0, 3, 12]), [1, 3, 12, 0, 0])
@@ -66,6 +71,18 @@ class TestP0201To0400(unittest.TestCase):
         # 367.Valid Perfect Square
         self.assertTrue(self.sl.isPerfectSquare(16))
         self.assertFalse(self.sl.isPerfectSquare(14))
+
+    def test_canConstruct(self):
+        # 383.Ransom Note
+        self.assertFalse(self.sl.canConstruct("a", "b"))
+        self.assertFalse(self.sl.canConstruct("aa", "ab"))
+        self.assertTrue(self.sl.canConstruct("aa", "aab"))
+
+    def test_firstUniqChar(self):
+        # 387.First Unique Character in a String
+        self.assertEqual(self.sl.firstUniqChar("leetcode"), 0)
+        self.assertEqual(self.sl.firstUniqChar("loveleetcode"), 2)
+        self.assertEqual(self.sl.firstUniqChar("aabb"), -1)
 
     def test_isSubsequence(self):
         # 392.Is Subsequence
