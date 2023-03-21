@@ -3,7 +3,7 @@ from typing import Optional
 
 from pysolutions import Pro0201To0400
 
-from .tools import ListNode, set_ListNode
+from pysolutions.utils import ListNode, create_linked_list
 
 
 class TestP0201To0400(unittest.TestCase):
@@ -32,9 +32,9 @@ class TestP0201To0400(unittest.TestCase):
 
     def test_reverseList(self):
         # 206.Reverse Linked List
-        self._eq_ListNode(self.sl.reverseList(set_ListNode([1, 2, 3, 4, 5])), set_ListNode([5, 4, 3, 2, 1]))
-        self._eq_ListNode(self.sl.reverseList(set_ListNode([1, 2])), set_ListNode([2, 1]))
-        self._eq_ListNode(self.sl.reverseList(set_ListNode([])), set_ListNode([]))
+        self._eq_ListNode(self.sl.reverseList(create_linked_list([1, 2, 3, 4, 5])), create_linked_list([5, 4, 3, 2, 1]))
+        self._eq_ListNode(self.sl.reverseList(create_linked_list([1, 2])), create_linked_list([2, 1]))
+        self._eq_ListNode(self.sl.reverseList(create_linked_list([])), create_linked_list([]))
 
     def test_containDuplicate(self):
         # 217.Contains Duplicate
@@ -83,6 +83,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.firstUniqChar("leetcode"), 0)
         self.assertEqual(self.sl.firstUniqChar("loveleetcode"), 2)
         self.assertEqual(self.sl.firstUniqChar("aabb"), -1)
+
+    def test_findTheDifference(self):
+        # 389.Find the Different
+        self.assertEqual(self.sl.findTheDifference("abcd", "abcde"), "e")
+        self.assertEqual(self.sl.findTheDifference("", "y"), "y")
 
     def test_isSubsequence(self):
         # 392.Is Subsequence

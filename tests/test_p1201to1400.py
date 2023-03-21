@@ -51,6 +51,11 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(res2, self.sl.numberOfSteps(num2))
         self.assertEqual(res3, self.sl.numberOfSteps(num3))
 
+    def test_countNegatives(self):
+        # 1351.Count Negative Numbers in a Sorted Matrix
+        self.assertEqual(self.sl.countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]), 8)
+        self.assertEqual(self.sl.countNegatives([[3, 2], [1, 0]]), 0)
+
     def test_findTheDistanceValue(self):
         # 1385.Find the Distance Value Between Two Arrays
         arr1, arr2, d, ans = [4, 5, 8], [10, 9, 1, 8], 2, 2

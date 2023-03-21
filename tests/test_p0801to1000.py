@@ -2,7 +2,7 @@ import unittest
 
 from pysolutions import Pro0801To1000
 
-from .tools import set_TreeNode
+from pysolutions.utils import create_binary_tree
 
 
 class TestP0801To1000(unittest.TestCase):
@@ -38,8 +38,8 @@ class TestP0801To1000(unittest.TestCase):
 
     def test_isCompleteTree(self):
         # 958.Check Completeness of a Binary Tree
-        root1 = set_TreeNode([1, 2, 3, 4, 5, 6])
-        root2 = set_TreeNode([1, 2, 3, 4, 5, None, 7])
+        root1 = create_binary_tree([1, 2, 3, 4, 5, 6])
+        root2 = create_binary_tree([1, 2, 3, 4, 5, None, 7])
         self.assertTrue(self.sl.isCompleteTree(root1))
         self.assertFalse(self.sl.isCompleteTree(root2))
 
@@ -47,3 +47,9 @@ class TestP0801To1000(unittest.TestCase):
         # 976.Largest Perimeter Triangle
         self.assertEqual(self.sl.largestPerimeter([2, 1, 2]), 5)
         self.assertEqual(self.sl.largestPerimeter([1, 2, 1, 10]), 0)
+
+    def test_orangesRotting(self):
+        # 994.Rotting Oranges
+        self.assertEqual(self.sl.orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), 4)
+        self.assertEqual(self.sl.orangesRotting([[2, 1, 1], [0, 1, 1], [1, 0, 1]]), -1)
+        self.assertEqual(self.sl.orangesRotting([[0, 2]]), 0)

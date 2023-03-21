@@ -23,6 +23,15 @@ class TestP0401To0600(unittest.TestCase):
         self.assertListEqual(self.sl.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertListEqual(self.sl.nextGreaterElement([2, 4], [1, 2, 3, 4]), [3, -1])
 
+    def test_updateMatrix(self):
+        # 542.0 1 Matrix
+        mat = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+        expected = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+        self.assertEqual(self.sl.updateMatrix(mat), expected)
+        mat = [[0, 0, 0], [0, 1, 0], [1, 1, 1]]
+        expected = [[0, 0, 0], [0, 1, 0], [1, 2, 1]]
+        self.assertEqual(self.sl.updateMatrix(mat), expected)
+
     def test_reverseWords(self):
         # 557.Reverse Words in a String 3
         s1 = "Let's take LeetCode contest"

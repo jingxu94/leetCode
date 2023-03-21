@@ -5,7 +5,7 @@ from typing import Optional
 
 from pysolutions import Pro0001To0200
 
-from .tools import ListNode, TreeNode, set_ListNode, set_TreeNode
+from pysolutions.utils import ListNode, TreeNode, create_binary_tree, create_linked_list
 
 
 class TestP0001To0200(unittest.TestCase):
@@ -51,7 +51,7 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_addTwoNumbers(self):
         # 2.Add Two Numberes
-        l1, l2 = set_ListNode([2, 4, 3]), set_ListNode([5, 6, 4])
+        l1, l2 = create_linked_list([2, 4, 3]), create_linked_list([5, 6, 4])
         ans = self.sl.addTwoNumbers(l1, l2)
         expected = ListNode(7, next=ListNode(0, next=ListNode(8)))
         self._eq_ListNode(ans, expected)
@@ -80,9 +80,11 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_removeNthFromEnd(self):
         # 19.Remove Nth Node From of List
-        self._eq_ListNode(self.sl.removeNthFromEnd(set_ListNode([1, 2, 3, 4, 5]), 2), set_ListNode([1, 2, 3, 5]))
-        self._eq_ListNode(self.sl.removeNthFromEnd(set_ListNode([1]), 1), set_ListNode([]))
-        self._eq_ListNode(self.sl.removeNthFromEnd(set_ListNode([1, 2]), 1), set_ListNode([1]))
+        self._eq_ListNode(
+            self.sl.removeNthFromEnd(create_linked_list([1, 2, 3, 4, 5]), 2), create_linked_list([1, 2, 3, 5])
+        )
+        self._eq_ListNode(self.sl.removeNthFromEnd(create_linked_list([1]), 1), create_linked_list([]))
+        self._eq_ListNode(self.sl.removeNthFromEnd(create_linked_list([1, 2]), 1), create_linked_list([1]))
 
     def test_isValid(self):
         # 20.Valid Parentheses
@@ -95,15 +97,15 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_mergeTwoLists(self):
         # 21.Merge Two Sorted Lists
-        l11 = set_ListNode([1, 2, 4])
-        l12 = set_ListNode([1, 3, 4])
-        l21 = set_ListNode([])
-        l22 = set_ListNode([])
-        l31 = set_ListNode([])
-        l32 = set_ListNode([0])
-        expected1 = set_ListNode([1, 1, 2, 3, 4, 4])
-        expected2 = set_ListNode([])
-        expected3 = set_ListNode([0])
+        l11 = create_linked_list([1, 2, 4])
+        l12 = create_linked_list([1, 3, 4])
+        l21 = create_linked_list([])
+        l22 = create_linked_list([])
+        l31 = create_linked_list([])
+        l32 = create_linked_list([0])
+        expected1 = create_linked_list([1, 1, 2, 3, 4, 4])
+        expected2 = create_linked_list([])
+        expected3 = create_linked_list([0])
         ans1 = self.sl.mergeTwoLists(l11, l12)
         ans2 = self.sl.mergeTwoLists(l21, l22)
         ans3 = self.sl.mergeTwoLists(l31, l32)
@@ -113,8 +115,8 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_mergeKLists(self):
         # 23.Merge k Sorted Lists
-        lists = [set_ListNode([1, 4, 5]), set_ListNode([1, 3, 4]), set_ListNode([2, 6])]
-        expected = set_ListNode([1, 1, 2, 3, 4, 4, 5, 6])
+        lists = [create_linked_list([1, 4, 5]), create_linked_list([1, 3, 4]), create_linked_list([2, 6])]
+        expected = create_linked_list([1, 1, 2, 3, 4, 4, 5, 6])
         ans = self.sl.mergeKLists(lists)
         self._eq_ListNode(ans, expected)
 
@@ -223,12 +225,12 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_deleteDuplicates(self):
         # 83.Remove Duplicates from Sorted List
-        input1 = set_ListNode([1, 1, 2, 2, 3, 4, 5, 5, 5, 5])
-        input2 = set_ListNode([1, 1, 2, 3, 3, 3, 3, 3, 4])
-        input3 = set_ListNode([])
-        expected1 = set_ListNode([1, 2, 3, 4, 5])
-        expected2 = set_ListNode([1, 2, 3, 4])
-        expected3 = set_ListNode([])
+        input1 = create_linked_list([1, 1, 2, 2, 3, 4, 5, 5, 5, 5])
+        input2 = create_linked_list([1, 1, 2, 3, 3, 3, 3, 3, 4])
+        input3 = create_linked_list([])
+        expected1 = create_linked_list([1, 2, 3, 4, 5])
+        expected2 = create_linked_list([1, 2, 3, 4])
+        expected3 = create_linked_list([])
         ans1 = self.sl.deleteDuplicates(input1)
         ans2 = self.sl.deleteDuplicates(input2)
         ans3 = self.sl.deleteDuplicates(input3)
@@ -248,33 +250,37 @@ class TestP0001To0200(unittest.TestCase):
         self.sl.merge(nums1, m, nums2, n)
         self.assertEqual(nums1, [1])
 
-    @unittest.skip("FIXME: There is a bug in set TreeNode when None in elements")
+    def test_isValidBST(self):
+        # 98.Validate Binary Search Tree
+        self.assertTrue(self.sl.isValidBST(create_binary_tree([2, 1, 3])))
+        self.assertFalse(self.sl.isValidBST(create_binary_tree([5, 1, 4, None, None, 3, 6])))
+
     def test_buildTree(self):
         # 106.Construct Binary Tree from Inorder and Postorder Traversal
         inorder = [9, 3, 15, 20, 7]
         postorder = [9, 15, 7, 20, 3]
         ans = self.sl.buildTree(inorder, postorder)
-        expected = set_TreeNode([3, 9, 20, None, None, 15, 7])
+        expected = create_binary_tree([3, 9, 20, None, None, 15, 7])
         self.assertTrue(self._isSameTree(ans, expected))
         inorder = [-1]
         postorder = [-1]
         ans = self.sl.buildTree(inorder, postorder)
-        expected = set_TreeNode([-1])
+        expected = create_binary_tree([-1])
         self.assertTrue(self._isSameTree(ans, expected))
         inorder = [1, 2]
         postorder = [2, 1]
         ans = self.sl.buildTree(inorder, postorder)
-        expected = set_TreeNode([1, None, 2])
+        expected = create_binary_tree([1, None, 2])
         self.assertTrue(self._isSameTree(ans, expected))
         inorder = [2, 1]
         postorder = [2, 1]
         ans = self.sl.buildTree(inorder, postorder)
-        expected = set_TreeNode([1, 2])
+        expected = create_binary_tree([1, 2])
         self.assertTrue(self._isSameTree(ans, expected))
         inorder = [2, 3, 1]
         postorder = [3, 2, 1]
         ans = self.sl.buildTree(inorder, postorder)
-        expected = set_TreeNode([1, 2, None, None, 3])
+        expected = create_binary_tree([1, 2, None, None, 3])
         self.assertTrue(self._isSameTree(ans, expected))
 
     def test_generate(self):

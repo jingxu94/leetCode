@@ -26,6 +26,18 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(res2, self.sl.maximumWealth(accounts2))
         self.assertEqual(res3, self.sl.maximumWealth(accounts3))
 
+    def test_interpret(self):
+        # 1678.Goal Parser Interpretation
+        self.assertEqual(self.sl.interpret("G()(al)"), "Goal")
+        self.assertEqual(self.sl.interpret("G()()()()(al)"), "Gooooal")
+        self.assertEqual(self.sl.interpret("(al)G(al)()()G"), "alGalooG")
+
+    def test_mergeAlternately(self):
+        # 1768.Merge Strings Alternately
+        self.assertEqual(self.sl.mergeAlternately("abc", "pqr"), "apbqcr")
+        self.assertEqual(self.sl.mergeAlternately("ab", "pqrs"), "apbqrs")
+        self.assertEqual(self.sl.mergeAlternately("abcd", "pq"), "apbqcd")
+
     def test_nearestValidPoint(self):
         # 1779.Find Nearest Point That Has the Same X or Y Coordinate
         points = [[1, 2], [3, 1], [2, 4], [2, 3], [4, 4]]
