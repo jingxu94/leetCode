@@ -44,3 +44,47 @@ def create_binary_tree(nums: List[Optional[int]]) -> Optional[TreeNode]:
         return None
 
     return create_tree(0)
+
+
+def list_linked_list(head: Optional[ListNode]) -> List[int]:
+    result = []
+    curr = head
+    while curr:
+        result.append(curr.val)
+        curr = curr.next
+    return result
+
+
+def list_binary_tree(root: Optional[TreeNode]) -> List[Optional[int]]:
+    if not root:
+        return []
+    result = []
+    queue: List[Optional[TreeNode]] = [root]
+    while queue:
+        node = queue.pop(0)
+        if node:
+            result.append(node.val)
+            queue.extend([node.left, node.right] if node else [])
+        else:
+            result.append(None)
+    while result[-1] is None:
+        result.pop()
+    return result
+
+
+def eq_linked_list(list1: Optional[ListNode], list2: Optional[ListNode]) -> bool:
+    while list1 and list2:
+        if list1.val != list2.val:
+            return False
+        list1, list2 = list1.next, list2.next
+    return list1 is None and list2 is None
+
+
+def eq_binary_tree(tree1: Optional[TreeNode], tree2: Optional[TreeNode]) -> bool:
+    if tree1 is None and tree2 is None:
+        return True
+    if tree1 is None or tree2 is None:
+        return False
+    return (
+        tree1.val == tree2.val and eq_binary_tree(tree1.left, tree2.left) and eq_binary_tree(tree1.right, tree2.right)
+    )
