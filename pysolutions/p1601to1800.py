@@ -1,10 +1,34 @@
 import math
+from collections import Counter
 from typing import List
 
 
 class Pro1601To1800:
     def __init__(self):
         pass
+
+    def specialArray(self, nums: List[int]) -> int:
+        # 1608.Special Array With X Elements Greater Than or Equal X
+        count = Counter(nums)
+
+        def nbigger(num):
+            total = 0
+            for key in count.keys():
+                if key >= num:
+                    total += count[key]
+            return total
+
+        left, right = 0, len(nums)
+        while left <= right:
+            mid = (left + right) // 2
+            bigger = nbigger(mid)
+            if bigger == mid:
+                return mid
+            elif bigger > mid:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return -1
 
     def maximumWealth(self, accounts: List[List[int]]) -> int:
         # 1672.Richest Customer Wealth

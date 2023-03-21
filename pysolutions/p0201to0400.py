@@ -24,6 +24,18 @@ class Pro0201To0400:
             return True
         return False
 
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        # 203.Remove Linked List Elements
+        foward = ListNode(0, next=head)
+        ans = ListNode()
+        curr = ans
+        while foward.next:
+            foward = foward.next
+            if foward.val != val:
+                curr.next = ListNode(foward.val)
+                curr = curr.next
+        return ans.next
+
     def isIsomorphic(self, s: str, t: str) -> bool:
         # 205.Isomoriphic Strings
         if len(s) != len(t):

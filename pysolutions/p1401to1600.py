@@ -60,6 +60,18 @@ class Pro1401To1600:
             seen.add(curr)
         return ans
 
+    def diagonalSum(self, mat: List[List[int]]) -> int:
+        # 1572.Matrix Diagonal Sum
+        rcs = len(mat)
+        pdiag, sdiag = 0, 0
+        for i in range(rcs):
+            pdiag += mat[i][i]
+            sdiag += mat[i][rcs - 1 - i]
+        if rcs % 2 == 1:
+            mid = rcs // 2
+            sdiag -= mat[mid][mid]
+        return pdiag + sdiag
+
     def sumOddLengthSubarrays(self, arr: List[int]) -> int:
         # 1588.Sum of All Odd Length Subarrays
         total_sum = 0

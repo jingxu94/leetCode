@@ -38,6 +38,12 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.maxNonOverlapping([1, 1, 1, 1, 1], 2), 2)
         self.assertEqual(self.sl.maxNonOverlapping([-1, 3, 5, 1, 4, 2, -9], 6), 2)
 
+    def test_diagonalSum(self):
+        # 1572.Matrix Diagonal Sum
+        self.assertEqual(self.sl.diagonalSum([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), 25)
+        self.assertEqual(self.sl.diagonalSum([[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]), 8)
+        self.assertEqual(self.sl.diagonalSum([[5]]), 5)
+
     def test_sumOddLengthSubarrays(self):
         # 1588.Sum of All Odd Length Subarrays
         self.assertEqual(self.sl.sumOddLengthSubarrays([1, 4, 2, 5, 3]), 58)

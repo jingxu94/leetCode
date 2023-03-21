@@ -8,6 +8,12 @@ class TestP1601To1800(unittest.TestCase):
     def sl(self):
         return Pro1601To1800()
 
+    def test_specialArray(self):
+        # 1608.Special Array With X Elements Greater Than or Equal X
+        self.assertEqual(self.sl.specialArray([3, 5]), 2)
+        self.assertEqual(self.sl.specialArray([0, 0]), -1)
+        self.assertEqual(self.sl.specialArray([0, 4, 3, 0, 4]), 3)
+
     def test_maximumWealth(self):
         # 1672.Richest Customer Wealth
         accounts1, accounts2, accounts3 = (

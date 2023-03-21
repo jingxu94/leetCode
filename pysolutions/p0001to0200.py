@@ -1,8 +1,16 @@
 import re
-from collections import Counter
+from collections import Counter, deque
 from typing import List, Optional
 
 from .utils import ListNode, TreeNode
+
+
+class Node:
+    def __init__(self, val: int = 0, left: "Node" = None, right: "Node" = None, next: "Node" = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
 
 
 class Pro0001To0200:
@@ -598,6 +606,20 @@ class Pro0001To0200:
             tree_path_sum(root, 0)
         return targetSum in self._sumlist
 
+    def connect(self, root: "Optional[Node]") -> "Optional[Node]":
+        # 116.Populating Next Right Pointers in Each Node
+        if not root:
+            return None
+        q = deque([root])
+        while q:
+            right_node = None
+            for _ in range(len(q)):
+                curr = q.popleft()
+                curr.next, right_node = right_node, curr
+                if curr.right:
+                    q.extend([curr.right, curr.left])
+        return root
+
     def generate(self, numRows: int) -> List[List[int]]:
         # 118.Pascal's Triangle
         if numRows == 1:
@@ -646,6 +668,16 @@ class Pro0001To0200:
 
         tree_sum_node(ans, root)
         return sum(self.ans_list)
+
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        # 141.Linked List Cycle
+        fast, slow = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
 
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 142.Linked List Cycle II

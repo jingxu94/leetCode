@@ -1,4 +1,6 @@
-from typing import List
+from typing import List, Optional
+
+from .utils import TreeNode
 
 
 class Pro0601To0800:
@@ -22,6 +24,30 @@ class Pro0601To0800:
                 flowers += 1
                 flowerbed[i] = 1
         return n <= flowers
+
+    def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+        # 617.Merge Two Binary Trees
+        def merge_bin_tree(curr1: TreeNode, curr2: TreeNode):
+            curr1.val += curr2.val
+            if curr1.left is not None and curr2.left is not None:
+                merge_bin_tree(curr1.left, curr2.left)
+            elif curr1.left is None:
+                curr1.left = curr2.left
+            if curr1.right is not None and curr2.right is not None:
+                merge_bin_tree(curr1.right, curr2.right)
+            elif curr1.right is None:
+                curr1.right = curr2.right
+
+        if root1 is not None and root2 is None:
+            return root1
+        elif root1 is None and root2 is not None:
+            return root2
+        elif root1 is None and root2 is None:
+            return None
+        else:
+            curr1, curr2 = root1, root2
+            merge_bin_tree(curr1, curr2)
+            return root1
 
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         # 695.Max Area of Island
