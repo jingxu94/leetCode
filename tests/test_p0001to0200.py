@@ -1,11 +1,8 @@
 import random
 import unittest
-from collections import deque
-from typing import Optional
 
 from pysolutions import Pro0001To0200
-
-from pysolutions.utils import ListNode, TreeNode, create_binary_tree, create_linked_list
+from pysolutions.utils import ListNode, create_binary_tree, create_linked_list, eq_binary_tree, eq_linked_list
 
 
 class TestP0001To0200(unittest.TestCase):
@@ -13,53 +10,17 @@ class TestP0001To0200(unittest.TestCase):
     def sl(self):
         return Pro0001To0200()
 
-    def _eq_ListNode(self, ans: Optional[ListNode], expected: Optional[ListNode]):
-        while ans and expected:
-            self.assertEqual(ans.val, expected.val)
-            ans, expected = ans.next, expected.next
-        if ans or expected:
-            raise ValueError("ListNode with different length!")
-
-    def _isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        # 100.Same Tree
-        def check(p, q):
-            # if both are None
-            if not p and not q:
-                return True
-            # one of p and q is None
-            if not q or not p:
-                return False
-            if p.val != q.val:
-                return False
-            return True
-
-        deq = deque(
-            [
-                (p, q),
-            ]
-        )
-        while deq:
-            p, q = deq.popleft()
-            if not check(p, q):
-                return False
-
-            if p:
-                deq.append((p.left, q.left))
-                deq.append((p.right, q.right))
-
-        return True
-
     def test_addTwoNumbers(self):
         # 2.Add Two Numberes
         l1, l2 = create_linked_list([2, 4, 3]), create_linked_list([5, 6, 4])
         ans = self.sl.addTwoNumbers(l1, l2)
         expected = ListNode(7, next=ListNode(0, next=ListNode(8)))
-        self._eq_ListNode(ans, expected)
+        self.assertTrue(eq_linked_list(ans, expected))
 
         l1, l2 = ListNode(0), ListNode(0)
         ans = self.sl.addTwoNumbers(l1, l2)
         expected = ListNode(0)
-        self._eq_ListNode(ans, expected)
+        self.assertTrue(eq_linked_list(ans, expected))
 
     def test_lengthOfLongestSubstring(self):
         # 3.Longest Substring Without Repeating Characters
@@ -80,11 +41,15 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_removeNthFromEnd(self):
         # 19.Remove Nth Node From of List
-        self._eq_ListNode(
-            self.sl.removeNthFromEnd(create_linked_list([1, 2, 3, 4, 5]), 2), create_linked_list([1, 2, 3, 5])
+        self.assertTrue(
+            eq_linked_list(
+                self.sl.removeNthFromEnd(create_linked_list([1, 2, 3, 4, 5]), 2), create_linked_list([1, 2, 3, 5])
+            )
         )
-        self._eq_ListNode(self.sl.removeNthFromEnd(create_linked_list([1]), 1), create_linked_list([]))
-        self._eq_ListNode(self.sl.removeNthFromEnd(create_linked_list([1, 2]), 1), create_linked_list([1]))
+        self.assertTrue(eq_linked_list(self.sl.removeNthFromEnd(create_linked_list([1]), 1), create_linked_list([])))
+        self.assertTrue(
+            eq_linked_list(self.sl.removeNthFromEnd(create_linked_list([1, 2]), 1), create_linked_list([1]))
+        )
 
     def test_isValid(self):
         # 20.Valid Parentheses
@@ -109,16 +74,16 @@ class TestP0001To0200(unittest.TestCase):
         ans1 = self.sl.mergeTwoLists(l11, l12)
         ans2 = self.sl.mergeTwoLists(l21, l22)
         ans3 = self.sl.mergeTwoLists(l31, l32)
-        self._eq_ListNode(ans1, expected1)
-        self._eq_ListNode(ans2, expected2)
-        self._eq_ListNode(ans3, expected3)
+        self.assertTrue(eq_linked_list(ans1, expected1))
+        self.assertTrue(eq_linked_list(ans2, expected2))
+        self.assertTrue(eq_linked_list(ans3, expected3))
 
     def test_mergeKLists(self):
         # 23.Merge k Sorted Lists
         lists = [create_linked_list([1, 4, 5]), create_linked_list([1, 3, 4]), create_linked_list([2, 6])]
         expected = create_linked_list([1, 1, 2, 3, 4, 4, 5, 6])
         ans = self.sl.mergeKLists(lists)
-        self._eq_ListNode(ans, expected)
+        self.assertTrue(eq_linked_list(ans, expected))
 
     def test_removeDuplicates(self):
         # 26.Remove Duplicates from Sorted Array
@@ -234,9 +199,9 @@ class TestP0001To0200(unittest.TestCase):
         ans1 = self.sl.deleteDuplicates(input1)
         ans2 = self.sl.deleteDuplicates(input2)
         ans3 = self.sl.deleteDuplicates(input3)
-        self._eq_ListNode(ans1, expected1)
-        self._eq_ListNode(ans2, expected2)
-        self._eq_ListNode(ans3, expected3)
+        self.assertTrue(eq_linked_list(ans1, expected1))
+        self.assertTrue(eq_linked_list(ans2, expected2))
+        self.assertTrue(eq_linked_list(ans3, expected3))
 
     def test_merge(self):
         # 88.Merge Sorted Array
@@ -261,27 +226,27 @@ class TestP0001To0200(unittest.TestCase):
         postorder = [9, 15, 7, 20, 3]
         ans = self.sl.buildTree(inorder, postorder)
         expected = create_binary_tree([3, 9, 20, None, None, 15, 7])
-        self.assertTrue(self._isSameTree(ans, expected))
+        self.assertTrue(eq_binary_tree(ans, expected))
         inorder = [-1]
         postorder = [-1]
         ans = self.sl.buildTree(inorder, postorder)
         expected = create_binary_tree([-1])
-        self.assertTrue(self._isSameTree(ans, expected))
+        self.assertTrue(eq_binary_tree(ans, expected))
         inorder = [1, 2]
         postorder = [2, 1]
         ans = self.sl.buildTree(inorder, postorder)
         expected = create_binary_tree([1, None, 2])
-        self.assertTrue(self._isSameTree(ans, expected))
+        self.assertTrue(eq_binary_tree(ans, expected))
         inorder = [2, 1]
         postorder = [2, 1]
         ans = self.sl.buildTree(inorder, postorder)
         expected = create_binary_tree([1, 2])
-        self.assertTrue(self._isSameTree(ans, expected))
+        self.assertTrue(eq_binary_tree(ans, expected))
         inorder = [2, 3, 1]
         postorder = [3, 2, 1]
         ans = self.sl.buildTree(inorder, postorder)
         expected = create_binary_tree([1, 2, None, None, 3])
-        self.assertTrue(self._isSameTree(ans, expected))
+        self.assertTrue(eq_binary_tree(ans, expected))
 
     def test_generate(self):
         # 118.Pascal's Triangle

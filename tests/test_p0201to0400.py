@@ -1,22 +1,13 @@
 import unittest
-from typing import Optional
 
 from pysolutions import Pro0201To0400
-
-from pysolutions.utils import ListNode, create_linked_list
+from pysolutions.utils import create_linked_list, eq_linked_list
 
 
 class TestP0201To0400(unittest.TestCase):
     @property
     def sl(self):
         return Pro0201To0400()
-
-    def _eq_ListNode(self, ans: Optional[ListNode], expected: Optional[ListNode]):
-        while ans and expected:
-            self.assertEqual(ans.val, expected.val)
-            ans, expected = ans.next, expected.next
-        if ans or expected:
-            raise ValueError("ListNode with different length!")
 
     def test_isHappy(self):
         # 202.Happy Number
@@ -32,9 +23,13 @@ class TestP0201To0400(unittest.TestCase):
 
     def test_reverseList(self):
         # 206.Reverse Linked List
-        self._eq_ListNode(self.sl.reverseList(create_linked_list([1, 2, 3, 4, 5])), create_linked_list([5, 4, 3, 2, 1]))
-        self._eq_ListNode(self.sl.reverseList(create_linked_list([1, 2])), create_linked_list([2, 1]))
-        self._eq_ListNode(self.sl.reverseList(create_linked_list([])), create_linked_list([]))
+        self.assertTrue(
+            eq_linked_list(
+                self.sl.reverseList(create_linked_list([1, 2, 3, 4, 5])), create_linked_list([5, 4, 3, 2, 1])
+            )
+        )
+        self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([1, 2])), create_linked_list([2, 1])))
+        self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([])), create_linked_list([])))
 
     def test_containDuplicate(self):
         # 217.Contains Duplicate
