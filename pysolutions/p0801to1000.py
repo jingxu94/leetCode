@@ -83,3 +83,35 @@ class Pro0801To1000:
         for num in nums:
             ans.append(num**2)
         return sorted(ans)
+
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        # 994.Rotting Oranges
+        m, n = len(grid), len(grid[0])
+        if all(grid[i][j] != 1 for i in range(m) for j in range(n)):
+            return 0
+        time = 0
+        dx = [0, 1, 0, -1, 0]
+        queue = deque([])
+        queue_next = deque([])
+        for row in range(m):
+            for col in range(n):
+                if grid[row][col] == 2:
+                    queue.append((row, col))
+        while queue:
+            row, col = queue.popleft()
+            for i in range(4):
+                nr, nc = row + dx[i], col + dx[i + 1]
+                if nr < 0 or nr == m or nc < 0 or nc == n or grid[nr][nc] != 1:
+                    continue
+                grid[nr][nc] = 2
+                queue_next.append((nr, nc))
+            if not queue:
+                time += 1
+                if queue_next:
+                    queue, queue_next = queue_next, deque([])
+                else:
+                    time -= 1
+        if any(grid[i][j] == 1 for i in range(m) for j in range(n)):
+            return -1
+        else:
+            return time

@@ -2,7 +2,7 @@ import random
 from collections import Counter, defaultdict, deque
 from typing import List, Optional
 
-from .utils import ListNode
+from .utils import ListNode, TreeNode
 
 
 class Pro0201To0400:
@@ -82,6 +82,16 @@ class Pro0201To0400:
                 return False
             fd_end, fd_mid = fd_end.next, fd_mid.next
         return True
+
+    def lowestCommonAncestor(self, root: "TreeNode", p: "TreeNode", q: "TreeNode") -> "TreeNode":
+        # 235.Lowest Common Ancestor of a Binary Search Tree
+        while root:
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                return root
 
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         # 239.Sliding Window Maximum
@@ -202,6 +212,13 @@ class Pro0201To0400:
         for i in range(len(s)):
             if count[s[i]] == 1:
                 return i
+
+    def findTheDifference(self, s: str, t: str) -> str:
+        # 389.Find the Difference
+        counts, countt = Counter(s), Counter(t)
+        for key in countt.keys():
+            if countt[key] - counts.get(key, 0) != 0:
+                return key
 
     def isSubsequence(self, s: str, t: str) -> bool:
         # 392.Is Subsequence

@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, deque
 from typing import List
 
 from .utils import Node
@@ -61,6 +61,27 @@ class Pro0401To0600:
                         ans[i] = check
                         break
         return ans
+
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        # 542.0 1 Matrix
+        m, n = len(mat), len(mat[0])
+        dx = [0, 1, 0, -1, 0]
+        queue = deque([])
+        for row in range(m):
+            for col in range(n):
+                if mat[row][col] == 0:
+                    queue.append((row, col))
+                else:
+                    mat[row][col] = -1
+        while queue:
+            row, col = queue.popleft()
+            for i in range(4):
+                nr, nc = row + dx[i], col + dx[i + 1]
+                if nr < 0 or nr == m or nc < 0 or nc == n or mat[nr][nc] != -1:
+                    continue
+                mat[nr][nc] = mat[row][col] + 1
+                queue.append((nr, nc))
+        return mat
 
     def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         # 566.Reshape the Matrix

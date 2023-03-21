@@ -1,5 +1,5 @@
 import math
-from collections import Counter
+from collections import Counter, deque
 from typing import List
 
 
@@ -36,6 +36,38 @@ class Pro1601To1800:
         for customer in accounts:
             rich.append(sum(customer))
         return max(rich)
+
+    def interpret(self, command: str) -> str:
+        # 1678.Goal Parser Interpretation
+        queue = deque(command)
+        ans = ""
+        while queue:
+            fst = queue.popleft()
+            if fst == "G":
+                ans += fst
+            else:
+                sec = queue.popleft()
+                if sec == ")":
+                    ans += "o"
+                else:
+                    ans += "al"
+                    queue.popleft()
+                    queue.popleft()
+        return ans
+
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        # 1768.Merge Strings Alternately
+        qa, qb = deque(word1), deque(word2)
+        ans = ""
+        while qa and qb:
+            ans += qa.popleft() + qb.popleft()
+        if qa:
+            while qa:
+                ans += qa.popleft()
+        if qb:
+            while qb:
+                ans += qb.popleft()
+        return ans
 
     def nearestValidPoint(self, x: int, y: int, points: List[List[int]]) -> int:
         # 1779.Find Nearest Point That Has the Same X or Y Coordinate

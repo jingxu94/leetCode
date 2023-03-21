@@ -1,3 +1,4 @@
+import math
 import re
 from collections import Counter, deque
 from typing import List, Optional
@@ -418,6 +419,44 @@ class Pro0001To0200:
         self.ans = []
         _treenode_traver(root, self.ans)
         return self.ans
+
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        # 98.Validate Binary Search Tree
+        # ==============================================
+        # S1: Two step: Traversal and IsSorted
+        # ==============================================
+        # def in_order_traversal(node: Optional[TreeNode]):
+        #     if not node:
+        #         return []
+        #     return in_order_traversal(node.left) + [node.val] + in_order_traversal(node.right)
+        #
+        # def is_sorted(lst: list) -> bool:
+        #     for i in range(len(lst) - 1):
+        #         if lst[i] >= lst[i + 1]:
+        #             return False
+        #     return True
+        #
+        # values = in_order_traversal(root)
+        # return is_sorted(values)
+        # ==============================================
+        # S2: Perform the in-order traversal while checking the
+        #     order of the node values at the same time
+        # ==============================================
+        if not root:
+            return True
+        stack = []
+        node = root
+        prev_value = -math.inf
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            if prev_value >= node.val:
+                return False
+            prev_value = node.val
+            node = node.right
+        return True
 
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # 100.Same Tree

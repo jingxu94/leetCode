@@ -92,6 +92,23 @@ class Pro1201To1400:
             steps += 1
         return steps
 
+    def countNegatives(self, grid: List[List[int]]) -> int:
+        # 1351.Count Negative Numbers in a Sorted Matrix
+        def binary_search(row: List[int]) -> int:
+            left, right = 0, len(row)
+            while left < right:
+                mid = (left + right) // 2
+                if row[mid] < 0:
+                    right = mid
+                else:
+                    left = mid + 1
+            return len(row) - left
+
+        count = 0
+        for row in grid:
+            count += binary_search(row)
+        return count
+
     def findTheDistanceValue1(self, arr1: List[int], arr2: List[int], d: int) -> int:
         """1385.Find the Distance Value Between Two Arrays
         Find the distance value between two arrays.
