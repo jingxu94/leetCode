@@ -9,6 +9,7 @@ from .p1401to1600 import Pro1401To1600
 from .p1601to1800 import Pro1601To1800
 from .p1801to2000 import Pro1801To2000
 from .p2001to2200 import Pro2001To2200
+from .p2201to2400 import Pro2201To2400
 from .p2401to2600 import Pro2401To2600
 
 __all__ = [
@@ -23,5 +24,6 @@ __all__ = [
     "Pro1601To1800",
     "Pro1801To2000",
     "Pro2001To2200",
+    "Pro2201To2400",
     "Pro2401To2600",
 ]
