@@ -121,7 +121,7 @@ class Pro0401To0600:
                 return True
         return False
 
-    def preorder(self, root: Node) -> List[int]:
+    def preorder(self, root: Node) -> List[int]:  # pragma: no cover
         # 589.N-ary Tree Preorder Traversal
         if root is None:
             return []

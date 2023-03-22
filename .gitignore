@@ -5,6 +5,7 @@
 !.gitignore
 !.flake8
 !.pre-commit-config.yaml
+!.coveragerc
 !pyproject.toml
 !*.py
 !*.md

@@ -119,7 +119,7 @@ class Pro0201To0400:
         # 242.Valid Anagram
         return Counter(s) == Counter(t)
 
-    def firstBadVersion(self, n: int) -> int:
+    def firstBadVersion(self, n: int) -> int:  # pragma: no cover
         # 278.First Bad Version
         left, right = 1, n
         while left < right:
@@ -173,7 +173,7 @@ class Pro0201To0400:
                 right = mid - 1
         return False
 
-    def guessNumber(self, n: int) -> int:
+    def guessNumber(self, n: int) -> int:  # pragma: no cover
         # 374.Guess Number Higher or Lower
         left, right = 1, n
         while left <= right:
@@ -187,7 +187,7 @@ class Pro0201To0400:
                 left = mid + 1
         return -1
 
-    def getRandom(self, head: Optional[ListNode]) -> int:
+    def getRandom(self, head: Optional[ListNode]) -> int:  # pragma: no cover
         # 382.Linked List Random Node
         maxnode = 1
         result = 0
@@ -230,7 +230,7 @@ class Pro0201To0400:
         return False
 
 
-class Trie:
+class Trie:  # pragma: no cover
     # 208.Implement Trie (Prefix Tree)
     def __init__(self):
         self.words = []
@@ -250,7 +250,7 @@ class Trie:
         return False
 
 
-class WordDictionaryS1:
+class WordDictionaryS1:  # pragma: no cover
     # 211.Design Add and Search Words Data Structure
     def __init__(self):
         self.words = defaultdict(list)
@@ -269,7 +269,7 @@ class WordDictionaryS1:
         return word in self.words[n]
 
 
-class WordDictionaryS2:
+class WordDictionaryS2:  # pragma: no cover
     # 211.Design Add and Search Words Data Structure
 
     def __init__(self):

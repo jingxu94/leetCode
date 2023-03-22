@@ -1,6 +1,7 @@
 import unittest
 
 from pysolutions import Pro0601To0800
+from pysolutions.utils import create_binary_tree, eq_binary_tree
 
 
 class TestP0601To0800(unittest.TestCase):
@@ -12,6 +13,17 @@ class TestP0601To0800(unittest.TestCase):
         # 605.Can Place Flowers
         self.assertTrue(self.sl.canPlaceFlowers([1, 0, 0, 0, 1], 1))
         self.assertFalse(self.sl.canPlaceFlowers([1, 0, 0, 0, 1], 2))
+
+    def test_mergeTrees(self):
+        # 617.Merge Two Binary Trees
+        root1 = create_binary_tree([1, 3, 2, 5])
+        root2 = create_binary_tree([2, 1, 3, None, 4, None, 7])
+        expected = create_binary_tree([3, 4, 5, 5, 4, None, 7])
+        self.assertTrue(eq_binary_tree(self.sl.mergeTrees(root1, root2), expected))
+        root1 = create_binary_tree([1])
+        root2 = create_binary_tree([1, 2])
+        expected = create_binary_tree([2, 2])
+        self.assertTrue(eq_binary_tree(self.sl.mergeTrees(root1, root2), expected))
 
     def test_maxAreaOfIsland(self):
         # 695.Max Area of Island

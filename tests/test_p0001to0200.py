@@ -2,7 +2,15 @@ import random
 import unittest
 
 from pysolutions import Pro0001To0200
-from pysolutions.utils import ListNode, create_binary_tree, create_linked_list, eq_binary_tree, eq_linked_list
+from pysolutions.utils import (
+    ListNode,
+    TreeNode,
+    create_binary_tree,
+    create_linked_list,
+    eq_binary_tree,
+    eq_linked_list,
+    list_binary_tree,
+)
 
 
 class TestP0001To0200(unittest.TestCase):
@@ -10,16 +18,27 @@ class TestP0001To0200(unittest.TestCase):
     def sl(self):
         return Pro0001To0200()
 
+    def test_twoSum_1(self):
+        # 1.Two Sum
+        self.assertEqual(self.sl.twoSum_1([2, 7, 11, 15], 9), [0, 1])
+        self.assertEqual(self.sl.twoSum_1([3, 2, 4], 6), [1, 2])
+        self.assertEqual(self.sl.twoSum_1([3, 3], 6), [0, 1])
+
     def test_addTwoNumbers(self):
         # 2.Add Two Numberes
         l1, l2 = create_linked_list([2, 4, 3]), create_linked_list([5, 6, 4])
         ans = self.sl.addTwoNumbers(l1, l2)
-        expected = ListNode(7, next=ListNode(0, next=ListNode(8)))
+        expected = create_linked_list([7, 0, 8])
         self.assertTrue(eq_linked_list(ans, expected))
 
         l1, l2 = ListNode(0), ListNode(0)
         ans = self.sl.addTwoNumbers(l1, l2)
         expected = ListNode(0)
+        self.assertTrue(eq_linked_list(ans, expected))
+
+        l1, l2 = create_linked_list([9, 9, 9, 9, 9, 9, 9]), create_linked_list([9, 9, 9, 9])
+        ans = self.sl.addTwoNumbers(l1, l2)
+        expected = create_linked_list([8, 9, 9, 9, 0, 0, 0, 1])
         self.assertTrue(eq_linked_list(ans, expected))
 
     def test_lengthOfLongestSubstring(self):
@@ -28,16 +47,36 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.lengthOfLongestSubstring("bbbbb"), 1)
         self.assertEqual(self.sl.lengthOfLongestSubstring("pwwkew"), 3)
 
+    def test_isPalindrome(self):
+        # 9.Palindrome Number
+        self.assertTrue(self.sl.isPalindrome(121))
+        self.assertFalse(self.sl.isPalindrome(-121))
+        self.assertFalse(self.sl.isPalindrome(10))
+
+    def test_romanToInt(self):
+        # 13.Roman to Integer
+        self.assertEqual(self.sl.romanToInt("III"), 3)
+        self.assertEqual(self.sl.romanToInt("LVIII"), 58)
+        self.assertEqual(self.sl.romanToInt("MCMXCIV"), 1994)
+
     def test_longestCommonPrefix(self):
         # 14.Longest Common Prefix
         strs1 = ["flower", "flow", "flight"]
         strs2 = ["dog", "racecar", "car"]
+        strs3 = ["ab", "a"]
+        strs4 = [""]
         res1 = self.sl.longestCommonPrefix(strs1)
         res2 = self.sl.longestCommonPrefix(strs2)
+        res3 = self.sl.longestCommonPrefix(strs3)
+        res4 = self.sl.longestCommonPrefix(strs4)
         expected1 = "fl"
         expected2 = ""
+        expected3 = "a"
+        expected4 = ""
         self.assertEqual(res1, expected1)
         self.assertEqual(res2, expected2)
+        self.assertEqual(res3, expected3)
+        self.assertEqual(res4, expected4)
 
     def test_removeNthFromEnd(self):
         # 19.Remove Nth Node From of List
@@ -50,15 +89,17 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(
             eq_linked_list(self.sl.removeNthFromEnd(create_linked_list([1, 2]), 1), create_linked_list([1]))
         )
+        self.assertTrue(
+            eq_linked_list(self.sl.removeNthFromEnd(create_linked_list([1, 2]), 2), create_linked_list([2]))
+        )
 
     def test_isValid(self):
         # 20.Valid Parentheses
-        input1 = "()"
-        input2 = "()[]{}"
-        input3 = "(]"
-        self.assertTrue(self.sl.isValid(input1))
-        self.assertTrue(self.sl.isValid(input2))
-        self.assertFalse(self.sl.isValid(input3))
+        self.assertTrue(self.sl.isValid("()"))
+        self.assertTrue(self.sl.isValid("()[]{}"))
+        self.assertFalse(self.sl.isValid("(]"))
+        self.assertFalse(self.sl.isValid("}}}"))
+        self.assertFalse(self.sl.isValid("(])"))
 
     def test_mergeTwoLists(self):
         # 21.Merge Two Sorted Lists
@@ -215,10 +256,38 @@ class TestP0001To0200(unittest.TestCase):
         self.sl.merge(nums1, m, nums2, n)
         self.assertEqual(nums1, [1])
 
+    def test_inorderTraversal(self):
+        # 94.Binary Tree Inorder Traversal
+        self.assertEqual(self.sl.inorderTraversal(TreeNode(1, right=TreeNode(2, left=TreeNode(3)))), [1, 3, 2])
+        self.assertEqual(self.sl.inorderTraversal(create_binary_tree([])), [])
+        self.assertEqual(self.sl.inorderTraversal(create_binary_tree([1])), [1])
+
     def test_isValidBST(self):
         # 98.Validate Binary Search Tree
         self.assertTrue(self.sl.isValidBST(create_binary_tree([2, 1, 3])))
         self.assertFalse(self.sl.isValidBST(create_binary_tree([5, 1, 4, None, None, 3, 6])))
+
+    def test_isSameTree(self):
+        # 100.Same Tree
+        self.assertTrue(self.sl.isSameTree(create_binary_tree([1, 2, 3]), create_binary_tree([1, 2, 3])))
+        self.assertFalse(self.sl.isSameTree(create_binary_tree([1, 2]), create_binary_tree([1, None, 2])))
+        self.assertFalse(self.sl.isSameTree(create_binary_tree([1, 2, 1]), create_binary_tree([1, 1, 2])))
+
+    def test_isSymmetric(self):
+        # 101.Symmetric Tree
+        self.assertTrue(self.sl.isSymmetric(create_binary_tree([1, 2, 2, 3, 4, 4, 3])))
+        self.assertFalse(self.sl.isSymmetric(create_binary_tree([1, 2, 2, None, 3, None, 3])))
+
+    def test_levelOrder(self):
+        # 102.Binary Tree level Order Traversal
+        self.assertEqual(self.sl.levelOrder(create_binary_tree([3, 9, 20, None, None, 15, 7])), [[3], [9, 20], [15, 7]])
+        self.assertEqual(self.sl.levelOrder(create_binary_tree([1])), [[1]])
+        self.assertEqual(self.sl.levelOrder(create_binary_tree([])), [])
+
+    def test_maxDepth(self):
+        # 104.Maximum Depth of Binary Tree
+        self.assertEqual(self.sl.maxDepth(create_binary_tree([3, 9, 20, None, None, 15, 7])), 3)
+        self.assertEqual(self.sl.maxDepth(create_binary_tree([1, None, 2])), 2)
 
     def test_buildTree(self):
         # 106.Construct Binary Tree from Inorder and Postorder Traversal
@@ -248,6 +317,40 @@ class TestP0001To0200(unittest.TestCase):
         expected = create_binary_tree([1, 2, None, None, 3])
         self.assertTrue(eq_binary_tree(ans, expected))
 
+    def test_sortedListToBST(self):
+        # 109.Convert Sorted List to Binary Search Tree
+        head = create_linked_list([-10, -3, 0, 5, 9])
+        expected = [[0, -3, 9, -10, None, 5], [0, -10, 5, None, -3, None, 9]]
+        ans = list_binary_tree(self.sl.sortedListToBST(head))
+        self.assertTrue(ans in expected)
+        head = create_linked_list([])
+        expected = create_binary_tree([])
+        ans = self.sl.sortedListToBST(head)
+        self.assertTrue(eq_binary_tree(ans, expected))
+
+    def test_isBalanced(self):
+        # 110.Balanced Binary Tree
+        self.assertTrue(self.sl.isBalanced(create_binary_tree([3, 9, 20, None, None, 15, 7])))
+        self.assertFalse(self.sl.isBalanced(create_binary_tree([1, 2, 2, 3, 3, None, None, 4, 4])))
+        self.assertTrue(self.sl.isBalanced(create_binary_tree([])))
+
+    def test_minDepth(self):
+        # 111.Minimum Depth of Binary Tree
+        self.assertEqual(self.sl.minDepth(create_binary_tree([3, 9, 20, None, None, 15, 7])), 2)
+        input = TreeNode(2, right=TreeNode(3, right=TreeNode(4, right=TreeNode(5, right=TreeNode(6)))))
+        self.assertEqual(self.sl.minDepth(input), 5)
+
+    def test_hasPathSum(self):
+        # 112.Path Sum
+        root = create_binary_tree([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, 1])
+        self.assertTrue(self.sl.hasPathSum(root, 22))
+        self.assertFalse(self.sl.hasPathSum(create_binary_tree([1, 2, 3]), 5))
+
+    def test_connect(self):
+        # 116.Populating Next Right Pointers in Each Node
+        # TODO: Test function for Class Node
+        pass
+
     def test_generate(self):
         # 118.Pascal's Triangle
         self.assertListEqual(self.sl.generate(5), [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]])
@@ -257,6 +360,23 @@ class TestP0001To0200(unittest.TestCase):
         # 121.Best Time to Buy and Sell Stock
         self.assertEqual(self.sl.maxProfit([7, 1, 5, 3, 6, 4]), 5)
         self.assertEqual(self.sl.maxProfit([7, 6, 4, 3, 1]), 0)
+
+    def test_sumNumbers(self):
+        # 129.Sum Root to Leaf Numbers
+        self.assertEqual(self.sl.sumNumbers(create_binary_tree([1, 2, 3])), 25)
+        self.assertEqual(self.sl.sumNumbers(create_binary_tree([4, 9, 0, 5, 1])), 1026)
+
+    def test_hasCycle(self):
+        # 141.Linked List Cycle
+        head = create_linked_list([3, 2, 0, -4])
+        pos, fast = head.next, head.next.next.next
+        fast.next = pos
+        self.assertTrue(self.sl.hasCycle(head))
+        head = create_linked_list([1, 2])
+        pos, fast = head, head.next
+        fast.next = pos
+        self.assertTrue(self.sl.hasCycle(head))
+        self.assertFalse(self.sl.hasCycle(create_linked_list([1])))
 
     def test_detectCycle(self):
         # 142.Linked List Cycle II

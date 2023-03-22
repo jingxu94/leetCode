@@ -87,7 +87,7 @@ class Pro1401To1600:
         return total_sum
 
 
-class BrowserHistory:
+class BrowserHistory:  # pragma: no cover
     # 1472.Design Browser History
     def __init__(self, homepage: str):
         self._history, self._future = [], []

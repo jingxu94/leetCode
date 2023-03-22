@@ -3,15 +3,7 @@ import re
 from collections import Counter, deque
 from typing import List, Optional
 
-from .utils import ListNode, TreeNode
-
-
-class Node:
-    def __init__(self, val: int = 0, left: "Node" = None, right: "Node" = None, next: "Node" = None):
-        self.val = val
-        self.left = left
-        self.right = right
-        self.next = next
+from .utils import ListNode, Node, TreeNode
 
 
 class Pro0001To0200:
@@ -25,7 +17,6 @@ class Pro0001To0200:
         while target - nums[i] not in checked:
             checked[nums[i]] = i
             i += 1
-
         return [checked[target - nums[i]], i]
 
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
@@ -150,7 +141,7 @@ class Pro0001To0200:
                 stack.pop()
             elif stack[-1] == "{" and s[i] == "}":
                 stack.pop()
-            elif s[i] in (")", "]", "}"):
+            else:
                 return False
         return stack == []
 
@@ -408,17 +399,18 @@ class Pro0001To0200:
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         # 94.Binary Tree Inorder Traversal
-        def _treenode_traver(root: Optional[TreeNode], ans: List[int]):
-            if root is not None:
-                _treenode_traver(root.left, ans)
-                ans.append(root.val)
-                _treenode_traver(root.right, ans)
-            else:
-                return
-
-        self.ans = []
-        _treenode_traver(root, self.ans)
-        return self.ans
+        return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right) if root else []
+        # def _treenode_traver(root: Optional[TreeNode], ans: List[int]):
+        #     if root is not None:
+        #         _treenode_traver(root.left, ans)
+        #         ans.append(root.val)
+        #         _treenode_traver(root.right, ans)
+        #     else:
+        #         return
+        #
+        # self.ans = []
+        # _treenode_traver(root, self.ans)
+        # return self.ans
 
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         # 98.Validate Binary Search Tree
@@ -560,24 +552,51 @@ class Pro0001To0200:
 
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
         # 109.Convert Sorted List to Binary Search Tree
-        def constructBST(leftHead: Optional[ListNode], rightHead: Optional[ListNode]) -> Optional[TreeNode]:
-            if leftHead == rightHead:
-                return None
-            slow, fast = leftHead, leftHead
-            while fast != rightHead and fast.next != rightHead:
-                slow = slow.next
-                fast = fast.next.next
-            root = TreeNode(slow.val)
-            root.left = constructBST(leftHead, slow)
-            root.right = constructBST(slow.next, rightHead)
-            return root
+        # Find the length of the linked list
+        def find_length(node: Optional[ListNode]) -> int:
+            length = 0
+            while node:
+                node = node.next
+                length += 1
+            return length
 
-        if not head:
-            return None
-        if not head.next:
-            root = TreeNode(head.val)
-            return root
-        return constructBST(head, None)
+        # Convert the linked list to a BST using a helper function
+        def convert_to_bst(left: int, right: int) -> Optional[TreeNode]:
+            nonlocal head
+            if left > right:
+                return None
+            mid = (left + right) // 2
+            # Recursively build the left subtree
+            left_child = convert_to_bst(left, mid - 1)
+            # Create the current node with the value from the linked list
+            current = TreeNode(head.val)
+            current.left = left_child
+            # Move to the next value in the linked list
+            head = head.next
+            # Recursively build the right subtree
+            current.right = convert_to_bst(mid + 1, right)
+            return current
+
+        length = find_length(head)
+        return convert_to_bst(0, length - 1)
+        # def constructBST(leftHead: Optional[ListNode], rightHead: Optional[ListNode]) -> Optional[TreeNode]:
+        #     if leftHead == rightHead:
+        #         return None
+        #     slow, fast = leftHead, leftHead
+        #     while fast != rightHead and fast.next != rightHead:
+        #         slow = slow.next
+        #         fast = fast.next.next
+        #     root = TreeNode(slow.val)
+        #     root.left = constructBST(leftHead, slow)
+        #     root.right = constructBST(slow.next, rightHead)
+        #     return root
+        #
+        # if not head:
+        #     return None
+        # if not head.next:
+        #     root = TreeNode(head.val)
+        #     return root
+        # return constructBST(head, None)
 
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         # 110.Balanced Binary Tree
@@ -645,7 +664,7 @@ class Pro0001To0200:
             tree_path_sum(root, 0)
         return targetSum in self._sumlist
 
-    def connect(self, root: "Optional[Node]") -> "Optional[Node]":
+    def connect(self, root: Optional[Node]) -> Optional[Node]:  # pragma: no cover
         # 116.Populating Next Right Pointers in Each Node
         if not root:
             return None

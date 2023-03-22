@@ -15,9 +15,11 @@ class TreeNode:
 
 
 class Node:
-    def __init__(self, val=None, children=None):
+    def __init__(self, val: int = 0, left=None, right=None, next=None):
         self.val = val
-        self.children = children
+        self.left = left
+        self.right = right
+        self.next = next
 
 
 def create_linked_list(nums: List[int]) -> Optional[ListNode]:
@@ -41,9 +43,22 @@ def create_binary_tree(nums: List[Optional[int]]) -> Optional[TreeNode]:
             node.left = create_tree(2 * index + 1)
             node.right = create_tree(2 * index + 2)
             return node
-        return None
 
     return create_tree(0)
+
+    # def create_tree() -> Optional[TreeNode]:
+    #     nonlocal index
+    #     if index >= len(nums) or nums[index] is None:
+    #         index += 1
+    #         return None
+    #     node = TreeNode(nums[index])
+    #     index += 1
+    #     node.left = create_tree()
+    #     node.right = create_tree()
+    #     return node
+    #
+    # index = 0
+    # return create_tree()
 
 
 def list_linked_list(head: Optional[ListNode]) -> List[int]:

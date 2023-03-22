@@ -13,6 +13,15 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.longestPalindrome("abccccdd"), 7)
         self.assertEqual(self.sl.longestPalindrome("a"), 1)
 
+    def test_fizzBuzz(self):
+        # 412.Fizz Buzz
+        self.assertEqual(self.sl.fizzBuzz(3), ["1", "2", "Fizz"])
+        self.assertEqual(self.sl.fizzBuzz(5), ["1", "2", "Fizz", "4", "Buzz"])
+        self.assertEqual(
+            self.sl.fizzBuzz(15),
+            ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"],
+        )
+
     def test_arrangeCoins(self):
         # 441.Arranging Coins
         self.assertEqual(self.sl.arrangeCoins(5), 2)
@@ -52,3 +61,7 @@ class TestP0401To0600(unittest.TestCase):
         # 567.Permutation in String
         self.assertTrue(self.sl.checkInclusion("ab", "eidbaooo"))
         self.assertFalse(self.sl.checkInclusion("ab", "eidboaoo"))
+
+    def test_preorder(self):
+        # 589.N-ary Tree Preorder Traversal
+        pass

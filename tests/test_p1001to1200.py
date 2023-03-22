@@ -14,3 +14,4 @@ class TestP1001To1200(unittest.TestCase):
         words2 = ["cool", "lock", "cook"]
         self.assertListEqual(self.sl.commonChars(words1), ["e", "l", "l"])
         self.assertListEqual(self.sl.commonChars(words2), ["c", "o"])
+        self.assertListEqual(self.sl.commonChars(["words"]), ["w", "o", "r", "d", "s"])

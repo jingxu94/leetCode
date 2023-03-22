@@ -1,7 +1,7 @@
 import unittest
 
 from pysolutions import Pro0201To0400
-from pysolutions.utils import create_linked_list, eq_linked_list
+from pysolutions.utils import create_binary_tree, create_linked_list, eq_binary_tree, eq_linked_list
 
 
 class TestP0201To0400(unittest.TestCase):
@@ -13,6 +13,18 @@ class TestP0201To0400(unittest.TestCase):
         # 202.Happy Number
         self.assertTrue(self.sl.isHappy(19))
         self.assertFalse(self.sl.isHappy(2))
+
+    def test_removeElements(self):
+        # 203.Remove Linked List Elements
+        head = create_linked_list([1, 2, 6, 3, 4, 5, 6])
+        ans = self.sl.removeElements(head, 6)
+        self.assertTrue(eq_linked_list(create_linked_list([1, 2, 3, 4, 5]), ans))
+        head = create_linked_list([])
+        ans = self.sl.removeElements(head, 1)
+        self.assertTrue(eq_linked_list(create_linked_list([]), ans))
+        head = create_linked_list([7, 7, 7, 7])
+        ans = self.sl.removeElements(head, 7)
+        self.assertTrue(eq_linked_list(create_linked_list([]), ans))
 
     def test_isIsomorphic(self):
         # 205.Isomorphic Strings
@@ -37,6 +49,26 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
         self.assertFalse(self.sl.containsDuplicate([1, 2, 3, 4]))
 
+    def test_isPalindrome(self):
+        # 234.Palindrome Linked List
+        self.assertTrue(self.sl.isPalindrome(create_linked_list([1, 2, 2, 1])))
+        self.assertFalse(self.sl.isPalindrome(create_linked_list([1, 2])))
+
+    def test_lowestCommonAncestor(self):
+        # 235.Lowest Common Ancestor of a Binary Search Tree
+        root = create_binary_tree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
+        p, q = root.left, root.right
+        expected = root
+        self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
+        root = create_binary_tree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
+        p, q = root.left, root.left.right
+        expected = root.left
+        self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
+        root = create_binary_tree([2, 1])
+        p, q = root, root.left
+        expected = root
+        self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
+
     def test_maxSlidingWindow(self):
         # 239.Sliding Window Maximum
         nums = [1, 3, -1, -3, 5, 3, 6, 7]
@@ -49,6 +81,11 @@ class TestP0201To0400(unittest.TestCase):
         # 242.Valid Anagram
         self.assertTrue(self.sl.isAnagram("anagram", "nagaram"))
         self.assertFalse(self.sl.isAnagram("rat", "car"))
+
+    def test_firstBadVersion(self):
+        # 278.First Bad Version
+        # There's no inner function isBadVersion()
+        pass
 
     def test_moveZeroes(self):
         # 283.Move Zeroes
