@@ -1,6 +1,31 @@
+import math
+from queue import Queue
+from typing import List
+
+
 class Pro2401To2600:
     def __init__(self) -> None:
         pass
+
+    def minScore(self, n: int, roads: List[List[int]]) -> int:
+        # 2492.Minimum Score of a Path Between Two Cities
+        ans = math.inf
+        gr = [[] for _ in range(n + 1)]
+        for edge in roads:
+            gr[edge[0]].append((edge[1], edge[2]))  # u-> {v, dis}
+            gr[edge[1]].append((edge[0], edge[2]))  # v-> {u, dis}
+        vis = [0] * (n + 1)
+        q = Queue()
+        q.put(1)
+        vis[1] = 1
+        while not q.empty():
+            node = q.get()
+            for v, dis in gr[node]:
+                ans = min(ans, dis)
+                if vis[v] == 0:
+                    vis[v] = 1
+                    q.put(v)
+        return int(ans)
 
     def splitNum(self, num: int) -> int:
         # 2578.Split With Minimum Sum
