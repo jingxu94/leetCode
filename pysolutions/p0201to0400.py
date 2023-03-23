@@ -212,11 +212,12 @@ class Pro0201To0400:
         if s == "":
             return -1
         count = Counter(s)
-        if all(count[key] > 1 for key in count.keys()):
-            return -1
+        # if all(count[key] > 1 for key in count.keys()):
+        #     return -1
         for i in range(len(s)):
             if count[s[i]] == 1:
                 return i
+        return -1
 
     def findTheDifference(self, s: str, t: str) -> str:
         # 389.Find the Difference
@@ -224,6 +225,7 @@ class Pro0201To0400:
         for key in countt.keys():
             if countt[key] - counts.get(key, 0) != 0:
                 return key
+        return ""
 
     def isSubsequence(self, s: str, t: str) -> bool:
         # 392.Is Subsequence

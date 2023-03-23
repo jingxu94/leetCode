@@ -1,5 +1,6 @@
 import random
 import unittest
+from typing import Optional
 
 from pysolutions import Pro0001To0200
 from pysolutions.utils import (
@@ -237,6 +238,9 @@ class TestP0001To0200(unittest.TestCase):
         for _ in range(10):
             num = random.randint(0, 2**31 - 1)
             self.assertEqual(self.sl.mySqrt(num), int(num**0.5))
+        # Test perfect square
+        perfect_square = 36
+        self.assertEqual(self.sl.mySqrt(perfect_square), int(perfect_square**0.5))
 
     def test_climbStairs(self):
         # 70.Climbing Stairs
@@ -250,6 +254,7 @@ class TestP0001To0200(unittest.TestCase):
         matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]
         self.assertTrue(self.sl.searchMatrix(matrix, 3))
         self.assertFalse(self.sl.searchMatrix(matrix, 13))
+        self.assertFalse(self.sl.searchMatrix([[]], 1))
 
     def test_combine(self):
         # 77.Combinations
@@ -292,18 +297,21 @@ class TestP0001To0200(unittest.TestCase):
     def test_isValidBST(self):
         # 98.Validate Binary Search Tree
         self.assertTrue(self.sl.isValidBST(create_binary_tree([2, 1, 3])))
+        self.assertTrue(self.sl.isValidBST(create_binary_tree([])))
         self.assertFalse(self.sl.isValidBST(create_binary_tree([5, 1, 4, None, None, 3, 6])))
 
     def test_isSameTree(self):
         # 100.Same Tree
         self.assertTrue(self.sl.isSameTree(create_binary_tree([1, 2, 3]), create_binary_tree([1, 2, 3])))
         self.assertFalse(self.sl.isSameTree(create_binary_tree([1, 2]), create_binary_tree([1, None, 2])))
+        self.assertFalse(self.sl.isSameTree(create_binary_tree([]), create_binary_tree([1, None, 2])))
         self.assertFalse(self.sl.isSameTree(create_binary_tree([1, 2, 1]), create_binary_tree([1, 1, 2])))
 
     def test_isSymmetric(self):
         # 101.Symmetric Tree
         self.assertTrue(self.sl.isSymmetric(create_binary_tree([1, 2, 2, 3, 4, 4, 3])))
         self.assertFalse(self.sl.isSymmetric(create_binary_tree([1, 2, 2, None, 3, None, 3])))
+        self.assertFalse(self.sl.isSymmetric(create_binary_tree([2, 3, 3, 4, None, 5, 4])))
 
     def test_levelOrder(self):
         # 102.Binary Tree level Order Traversal
@@ -315,6 +323,7 @@ class TestP0001To0200(unittest.TestCase):
         # 104.Maximum Depth of Binary Tree
         self.assertEqual(self.sl.maxDepth(create_binary_tree([3, 9, 20, None, None, 15, 7])), 3)
         self.assertEqual(self.sl.maxDepth(create_binary_tree([1, None, 2])), 2)
+        self.assertEqual(self.sl.maxDepth(create_binary_tree([])), 0)
 
     def test_buildTree(self):
         # 106.Construct Binary Tree from Inorder and Postorder Traversal
@@ -344,6 +353,32 @@ class TestP0001To0200(unittest.TestCase):
         expected = create_binary_tree([1, 2, None, None, 3])
         self.assertTrue(eq_binary_tree(ans, expected))
 
+    def is_valid_bst(self, root: Optional[TreeNode], lower: float = float("-inf"), upper: float = float("inf")) -> bool:
+        if not root:
+            return True
+        val = root.val
+        if val <= lower or val >= upper:
+            return False
+        return self.is_valid_bst(root.left, lower, val) and self.is_valid_bst(root.right, val, upper)
+
+    def test_sortedArrayToBST(self):
+        # 108.Convert Sorted Array to Binary Search Tree
+        nums = [-10, -3, 0, 5, 9]
+        bst = self.sl.sortedArrayToBST(nums)
+        self.assertTrue(self.is_valid_bst(bst))
+
+        nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        bst = self.sl.sortedArrayToBST(nums)
+        self.assertTrue(self.is_valid_bst(bst))
+
+        nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        bst = self.sl.sortedArrayToBST(nums)
+        self.assertTrue(self.is_valid_bst(bst))
+
+        nums = []
+        bst = self.sl.sortedArrayToBST(nums)
+        self.assertIsNone(bst)
+
     def test_sortedListToBST(self):
         # 109.Convert Sorted List to Binary Search Tree
         head = create_linked_list([-10, -3, 0, 5, 9])
@@ -366,12 +401,14 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.minDepth(create_binary_tree([3, 9, 20, None, None, 15, 7])), 2)
         input = TreeNode(2, right=TreeNode(3, right=TreeNode(4, right=TreeNode(5, right=TreeNode(6)))))
         self.assertEqual(self.sl.minDepth(input), 5)
+        self.assertEqual(self.sl.minDepth(None), 0)
 
     def test_hasPathSum(self):
         # 112.Path Sum
         root = create_binary_tree([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, 1])
         self.assertTrue(self.sl.hasPathSum(root, 22))
         self.assertFalse(self.sl.hasPathSum(create_binary_tree([1, 2, 3]), 5))
+        self.assertFalse(self.sl.hasPathSum(create_binary_tree([]), 5))
 
     def test_connect(self):
         # 116.Populating Next Right Pointers in Each Node
@@ -382,6 +419,7 @@ class TestP0001To0200(unittest.TestCase):
         # 118.Pascal's Triangle
         self.assertListEqual(self.sl.generate(5), [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]])
         self.assertListEqual(self.sl.generate(1), [[1]])
+        self.assertListEqual(self.sl.generate(2), [[1], [1, 1]])
 
     def test_maxProfit(self):
         # 121.Best Time to Buy and Sell Stock
@@ -392,6 +430,7 @@ class TestP0001To0200(unittest.TestCase):
         # 129.Sum Root to Leaf Numbers
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([1, 2, 3])), 25)
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([4, 9, 0, 5, 1])), 1026)
+        self.assertEqual(self.sl.sumNumbers(create_binary_tree([])), 0)
 
     def test_hasCycle(self):
         # 141.Linked List Cycle
@@ -407,19 +446,10 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_detectCycle(self):
         # 142.Linked List Cycle II
-        input = ListNode()
-        curr = input
-        curr.next = ListNode(3)
-        curr = curr.next
-        curr.next = ListNode(2)
-        curr = curr.next
-        cycle = curr
-        curr.next = ListNode(0)
-        curr = curr.next
-        curr.next = ListNode(-4)
-        curr = curr.next
-        curr.next = cycle
-        self.assertEqual(self.sl.detectCycle(input.next).val, 2)
+        head = create_linked_list([3, 2, 0, -4])
+        head.next.next.next.next = head.next
+        self.assertEqual(self.sl.detectCycle(head).val, 2)
+        self.assertEqual(self.sl.detectCycle(create_linked_list([])), None)
 
     def test_reverseWords(self):
         # 151.Reverse Words in a String
@@ -435,10 +465,12 @@ class TestP0001To0200(unittest.TestCase):
 
     def test_twoSum(self):
         # 167.Two Sum 2 - Input Array Is Sorted
+        self.assertEqual(self.sl.twoSum([1, 2, 3, 4, 6], 6), [2, 4])
         self.assertEqual(self.sl.twoSum([2, 7, 11, 15], 9), [1, 2])
         self.assertEqual(self.sl.twoSum([2, 3, 4], 6), [1, 3])
         self.assertEqual(self.sl.twoSum([-1, 0], -1), [1, 2])
         self.assertEqual(self.sl.twoSum([0, 0, 3, 4], 0), [1, 2])
+        self.assertEqual(self.sl.twoSum([], 5), [])  # Empty input
 
     def test_hammingWeight(self):
         # 191.Number of 1 Bits

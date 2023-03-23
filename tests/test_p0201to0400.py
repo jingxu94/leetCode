@@ -132,11 +132,13 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.firstUniqChar("loveleetcode"), 2)
         self.assertEqual(self.sl.firstUniqChar("aabb"), -1)
         self.assertEqual(self.sl.firstUniqChar(""), -1)
+        self.assertEqual(self.sl.firstUniqChar("abcdef"), 0)
 
     def test_findTheDifference(self):
         # 389.Find the Different
         self.assertEqual(self.sl.findTheDifference("abcd", "abcde"), "e")
         self.assertEqual(self.sl.findTheDifference("", "y"), "y")
+        self.assertEqual(self.sl.findTheDifference("yyyww", "yyyww"), "")
 
     def test_isSubsequence(self):
         # 392.Is Subsequence

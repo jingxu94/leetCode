@@ -351,12 +351,14 @@ class Pro0001To0200:
         left, right = 1, x
         while left <= right:
             mid = (left + right) // 2
-            if mid**2 <= x < (mid + 1) ** 2:
+            squared = mid * mid
+            if squared == x:
                 return mid
-            elif x < mid**2:
-                right = mid - 1
-            else:
+            elif squared < x:
                 left = mid + 1
+            else:
+                right = mid - 1
+        return right
 
     def climbStairs(self, n: int) -> int:
         # 70.Climbing Stairs
@@ -527,52 +529,28 @@ class Pro0001To0200:
 
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         # 104.Maximum Depth of Binary Tree
-        def tree_depth(root: Optional[TreeNode], depth: int):
-            if root is None:
-                self._depths.append(0)
-                return 0
-            if root.left is None and root.right is None:
-                self._depths.append(depth)
-                return
-            else:
-                if root.left:
-                    tree_depth(root.left, depth + 1)
-                if root.right:
-                    tree_depth(root.right, depth + 1)
-
-        self._depths = []
-        tree_depth(root, 1)
-        return max(self._depths)
+        if root is None:
+            return 0
+        left_depth = self.maxDepth(root.left)
+        right_depth = self.maxDepth(root.right)
+        return max(left_depth, right_depth) + 1
 
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
         # 106.Construct Binary Tree from Inorder and Postorder Traversal
-        def build_tree(inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-            if postorder:
+        def build_tree(stop):
+            if inorder and inorder[-1] != stop:
                 root = TreeNode(postorder.pop())
-                iind = inorder.index(root.val)
-                if iind > 0:
-                    if inorder[iind - 1] in postorder:
-                        root.left = build_tree(inorder[:iind], postorder[:iind])
-                if iind < len(inorder) - 1:
-                    root.right = build_tree(inorder[iind + 1 :], postorder[-len(inorder) + iind + 1 :])
-
+                root.right = build_tree(root.val)
+                inorder.pop()
+                root.left = build_tree(stop)
                 return root
 
-        return build_tree(inorder, postorder)
-
-        # def build_tree(stop):
-        #     if inorder and inorder[-1] != stop:
-        #         root = TreeNode(postorder.pop())
-        #         root.right = build_tree(root.val)
-        #         inorder.pop()
-        #         root.left = build_tree(stop)
-        #         return root
-        # return build_tree(None)
+        return build_tree(None)
 
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         # 108.Convert Sorted Array to Binary Search Tree
         if len(nums) == 0:
-            return
+            return None
         else:
             indmid = len(nums) // 2
             return TreeNode(
@@ -631,69 +609,35 @@ class Pro0001To0200:
 
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         # 110.Balanced Binary Tree
-        def tree_depth(root: Optional[TreeNode], depth: int):
-            if root is None:
-                self._depths.append(0)
+        def height(node: Optional[TreeNode]) -> int:
+            if not node:
                 return 0
-            if root.left is None and root.right is None:
-                self._depths.append(depth)
-                return
-            else:
-                if root.left:
-                    tree_depth(root.left, depth + 1)
-                if root.right:
-                    tree_depth(root.right, depth + 1)
+            left_height = height(node.left)
+            right_height = height(node.right)
+            if left_height == -1 or right_height == -1 or abs(left_height - right_height) > 1:
+                return -1
+            return max(left_height, right_height) + 1
 
-        if root is None:
-            return True
-        self._depths = []
-        tree_depth(root.left, 1)
-        ld = self._depths
-        self._depths = []
-        tree_depth(root.right, 1)
-        if max(ld) - max(self._depths) > 1 or max(ld) - max(self._depths) < -1:
-            return False
-        else:
-            return self.isBalanced(root.left) and self.isBalanced(root.right)
+        return height(root) != -1
 
     def minDepth(self, root: Optional[TreeNode]) -> int:
         # 111.Minimum Depth of Binary Tree
-        def tree_depth(root: Optional[TreeNode], depth: int):
-            if root is None:
-                self._depths.append(0)
-                return 0
-            if root.left is None and root.right is None:
-                self._depths.append(depth)
-                return
-            else:
-                if root.left:
-                    tree_depth(root.left, depth + 1)
-                if root.right:
-                    tree_depth(root.right, depth + 1)
-
-        self._depths = []
-        tree_depth(root, 1)
-        return min(self._depths)
+        if not root:
+            return 0
+        if not root.left and not root.right:
+            return 1
+        left_depth = math.inf if not root.left else self.minDepth(root.left)
+        right_depth = math.inf if not root.right else self.minDepth(root.right)
+        return int(min(left_depth, right_depth)) + 1
 
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         # 112.Path Sum
-        def tree_path_sum(curr: Optional[TreeNode], pathsum: int):
-            if curr.left is None and curr.right is None:
-                self._sumlist.append(pathsum + curr.val)
-            elif curr.left is None and curr.right:
-                tree_path_sum(curr.right, pathsum + curr.val)
-            elif curr.right is None and curr.left:
-                tree_path_sum(curr.left, pathsum + curr.val)
-            else:
-                tree_path_sum(curr.left, pathsum + curr.val)
-                tree_path_sum(curr.right, pathsum + curr.val)
-
-        self._sumlist = []
-        if root is None:
+        if not root:
             return False
-        else:
-            tree_path_sum(root, 0)
-        return targetSum in self._sumlist
+        if not root.left and not root.right:
+            return targetSum == root.val
+        remaining_sum = targetSum - root.val
+        return self.hasPathSum(root.left, remaining_sum) or self.hasPathSum(root.right, remaining_sum)
 
     def connect(self, root: Optional[Node]) -> Optional[Node]:  # pragma: no cover
         # 116.Populating Next Right Pointers in Each Node
@@ -739,24 +683,15 @@ class Pro0001To0200:
 
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         # 129.Sum Root to Leaf Numbers
-        ans = 0
-        self.ans_list = []
+        def helper(node: Optional[TreeNode], current_sum: int) -> int:
+            if not node:
+                return 0
+            current_sum = current_sum * 10 + node.val
+            if not node.left and not node.right:
+                return current_sum
+            return helper(node.left, current_sum) + helper(node.right, current_sum)
 
-        def tree_sum_node(ans, node: Optional[TreeNode]):
-            if node is None:
-                self.ans_list.append(0)
-                return
-            ans = ans * 10 + node.val
-            if node.left is None and node.right is None:
-                self.ans_list.append(ans)
-                return
-            if node.left:
-                tree_sum_node(ans, node.left)
-            if node.right:
-                tree_sum_node(ans, node.right)
-
-        tree_sum_node(ans, root)
-        return sum(self.ans_list)
+        return helper(root, 0)
 
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # 141.Linked List Cycle
@@ -790,16 +725,27 @@ class Pro0001To0200:
         words.reverse()
         return " ".join(words)
 
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+    def twoSum(self, numbers: List[int], target: int) -> Optional[List[int]]:
         # 167.Two Sum 2 - Input Array Is Sorted
+        # left, right = 0, len(numbers) - 1
+        # while left < right:
+        #     current_sum = numbers[left] + numbers[right]
+        #     if current_sum == target:
+        #         return [left + 1, right + 1]
+        #     elif current_sum < target:
+        #         left += 1
+        #     else:
+        #         right -= 1
+        # return []  # This line is not necessary as the problem states there is exactly one solution.
         cont = Counter(numbers)
         for i in cont:
             if target - i in cont:
                 ind1 = numbers.index(i)
                 ind2 = numbers[ind1 + 1 :].index(target - i) + ind1 + 1
                 return [ind1 + 1, ind2 + 1]
+        return []
 
-    def rotate(self, nums: List[int], k: int) -> None:
+    def rotate(self, nums: List[int], k: int) -> None:  # pragma: no cover
         """189.Rotate Array
         Do not return anything, modify nums in-place instead.
         """
