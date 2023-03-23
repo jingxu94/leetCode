@@ -51,3 +51,4 @@ class TestP1601To1800(unittest.TestCase):
         self.assertTrue(self.sl.areAlmostEqual("kelb", "kelb"))
         self.assertFalse(self.sl.areAlmostEqual("attack", "defend"))
         self.assertFalse(self.sl.areAlmostEqual("yhy", "hyc"))
+        self.assertFalse(self.sl.areAlmostEqual("aa", "ac"))

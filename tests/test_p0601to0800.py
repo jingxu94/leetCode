@@ -24,6 +24,13 @@ class TestP0601To0800(unittest.TestCase):
         root2 = create_binary_tree([1, 2])
         expected = create_binary_tree([2, 2])
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(root1, root2), expected))
+        root1 = create_binary_tree([3, 4, 5, 1, 2])
+        root2 = create_binary_tree([4, 1, 2])
+        expected = create_binary_tree([7, 5, 7, 1, 2])
+        self.assertTrue(eq_binary_tree(self.sl.mergeTrees(root1, root2), expected))
+        self.assertTrue(eq_binary_tree(self.sl.mergeTrees(root1, None), root1))
+        self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, root1), root1))
+        self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, None), None))
 
     def test_maxAreaOfIsland(self):
         # 695.Max Area of Island
@@ -71,3 +78,12 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.nextGreatestLetter(["c", "f", "j"], "a"), "c")
         self.assertEqual(self.sl.nextGreatestLetter(["c", "f", "j"], "c"), "f")
         self.assertEqual(self.sl.nextGreatestLetter(["x", "x", "y", "y"], "z"), "x")
+
+    def test_letterCasePermutation(self):
+        # 784.Letter Case Permutation
+        self.assertEqual(set(self.sl.letterCasePermutation("a1b2")), set(["a1b2", "a1B2", "A1b2", "A1B2"]))
+        self.assertEqual(set(self.sl.letterCasePermutation("3z4")), set(["3z4", "3Z4"]))
+        self.assertCountEqual(self.sl.letterCasePermutation("a1b2"), ["a1b2", "a1B2", "A1b2", "A1B2"])
+        self.assertCountEqual(self.sl.letterCasePermutation("3z4"), ["3z4", "3Z4"])
+        self.assertCountEqual(self.sl.letterCasePermutation_v2("a1b2"), ["a1b2", "a1B2", "A1b2", "A1B2"])
+        self.assertCountEqual(self.sl.letterCasePermutation_v2("3z4"), ["3z4", "3Z4"])

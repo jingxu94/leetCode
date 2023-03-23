@@ -272,6 +272,22 @@ class Pro0001To0200:
                     res += [(i, element), (element, j), (i // 3, j // 3, element)]
         return len(res) == len(set(res))
 
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        # 46.Permutations
+        def backtrack(path):
+            if len(path) == len(nums):
+                result.append(path[:])
+                return
+            for num in nums:
+                if num not in path:
+                    path.append(num)
+                    backtrack(path)
+                    path.pop()
+
+        result = []
+        backtrack([])
+        return result
+
     def maxSubArray(self, nums: List[int]) -> int:
         # 53.Maximum Subarray
         dp = nums
@@ -330,8 +346,8 @@ class Pro0001To0200:
 
     def mySqrt(self, x: int) -> int:
         # 69.Sqrt(x)
-        if x == 0:
-            return 0
+        if x == 0 or x == 1:
+            return x
         left, right = 1, x
         while left <= right:
             mid = (left + right) // 2
@@ -367,6 +383,21 @@ class Pro0001To0200:
             else:
                 high = mid - 1
         return False
+
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        # 77.Combinations
+        def backtrack(start, path):
+            if len(path) == k:
+                result.append(path[:])
+                return
+            for i in range(start, n + 1):
+                path.append(i)
+                backtrack(i + 1, path)
+                path.pop()
+
+        result = []
+        backtrack(1, [])
+        return result
 
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 83.Remove Duplicates from Sorted List

@@ -68,8 +68,8 @@ class Pro1201To1400:
         def union(x: int, y: int) -> None:
             root_x = find(x)
             root_y = find(y)
-            if root_x != root_y:
-                parent[root_x] = root_y
+            # root_x != root_y:
+            parent[root_x] = root_y
 
         # Initialize the parent array
         parent = [i for i in range(n)]

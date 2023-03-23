@@ -144,6 +144,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.removeDuplicates(nums1), expected1)
         self.assertEqual(self.sl.removeDuplicates(nums2), expected2)
 
+    def test_removeElement(self):
+        # 27.Remove Element
+        self.assertEqual(self.sl.removeElement([3, 2, 2, 3], 3), 2)
+        self.assertEqual(self.sl.removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2), 5)
+
     def test_strStr(self):
         # 28.Find the Index of the First Occurrence in a String
         haystack1, needle1 = "sadbutsad", "sad"
@@ -165,6 +170,7 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.searchInsert(nums, 5), 2)
         self.assertEqual(self.sl.searchInsert(nums, 2), 1)
         self.assertEqual(self.sl.searchInsert(nums, 7), 4)
+        self.assertEqual(self.sl.searchInsert(nums, 0), 0)
 
     def test_isValidSudoku(self):
         # 36.Valid Sudoku
@@ -193,11 +199,25 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.isValidSudoku(board1))
         self.assertFalse(self.sl.isValidSudoku(board2))
 
+    def test_permute(self):
+        # 46.Permutations
+        self.assertListEqual(
+            self.sl.permute([1, 2, 3]), [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+        )
+        self.assertListEqual(self.sl.permute([0, 1]), [[0, 1], [1, 0]])
+        self.assertListEqual(self.sl.permute([1]), [[1]])
+
     def test_maxSubArray(self):
         # 53.Maximum Subarray
         self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)
         self.assertEqual(self.sl.maxSubArray([1]), 1)
         self.assertEqual(self.sl.maxSubArray([5, 4, -1, 7, 8]), 23)
+
+    def test_lengthOfLastWord(self):
+        # 58.Length of Last Word
+        self.assertEqual(self.sl.lengthOfLastWord("Hello World"), 5)
+        self.assertEqual(self.sl.lengthOfLastWord("   fly me   to   the moon  "), 4)
+        self.assertEqual(self.sl.lengthOfLastWord("luffy is still joyboy"), 6)
 
     def test_plusOne(self):
         # 66.Plus One
@@ -209,9 +229,11 @@ class TestP0001To0200(unittest.TestCase):
         # 67.Add Binary
         self.assertEqual(self.sl.addBinary("11", "1"), "100")
         self.assertEqual(self.sl.addBinary("1010", "1011"), "10101")
+        self.assertEqual(self.sl.addBinary("0", "0"), "0")
 
     def test_mySqrt(self):
         # 69.Sqrt(x)
+        self.assertEqual(self.sl.mySqrt(0), 0)
         for _ in range(10):
             num = random.randint(0, 2**31 - 1)
             self.assertEqual(self.sl.mySqrt(num), int(num**0.5))
@@ -228,6 +250,11 @@ class TestP0001To0200(unittest.TestCase):
         matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]
         self.assertTrue(self.sl.searchMatrix(matrix, 3))
         self.assertFalse(self.sl.searchMatrix(matrix, 13))
+
+    def test_combine(self):
+        # 77.Combinations
+        self.assertListEqual(self.sl.combine(4, 2), [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]])
+        self.assertListEqual(self.sl.combine(1, 1), [[1]])
 
     def test_deleteDuplicates(self):
         # 83.Remove Duplicates from Sorted List

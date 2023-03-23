@@ -18,7 +18,7 @@ class Pro0401To0600:
             else:
                 flag = 1
                 single += count[key] - 1
-        if flag:
+        if flag == 1:
             single += 1
         return single + double
 

@@ -51,12 +51,14 @@ class TestP0801To1000(unittest.TestCase):
         words = ["hello", "leetcode"]
         order = "hlabcdefgijkmnopqrstuvwxyz"
         self.assertTrue(self.sl.isAlienSorted(words, order))
+        self.assertTrue(self.sl.isAlienSorted(["hello"], order))
         words = ["word", "world", "row"]
         order = "worldabcefghijkmnpqstuvxyz"
         self.assertFalse(self.sl.isAlienSorted(words, order))
         words = ["apple", "app"]
         order = "abcdefghijklmnopqrstuvwxyz"
         self.assertFalse(self.sl.isAlienSorted(words, order))
+        self.assertTrue(self.sl.isAlienSorted(["app", "apple"], order))
 
     def test_isCompleteTree(self):
         # 958.Check Completeness of a Binary Tree

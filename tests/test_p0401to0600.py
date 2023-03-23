@@ -12,6 +12,7 @@ class TestP0401To0600(unittest.TestCase):
         # 409.Longest Palindrome
         self.assertEqual(self.sl.longestPalindrome("abccccdd"), 7)
         self.assertEqual(self.sl.longestPalindrome("a"), 1)
+        self.assertEqual(self.sl.longestPalindrome("aa"), 2)
 
     def test_fizzBuzz(self):
         # 412.Fizz Buzz
@@ -26,6 +27,7 @@ class TestP0401To0600(unittest.TestCase):
         # 441.Arranging Coins
         self.assertEqual(self.sl.arrangeCoins(5), 2)
         self.assertEqual(self.sl.arrangeCoins(8), 3)
+        self.assertEqual(self.sl.arrangeCoins(1), 1)
 
     def test_nextGreaterElement(self):
         # 496.Next Greater Element1
@@ -60,7 +62,9 @@ class TestP0401To0600(unittest.TestCase):
     def test_checkInclusion(self):
         # 567.Permutation in String
         self.assertTrue(self.sl.checkInclusion("ab", "eidbaooo"))
+        self.assertTrue(self.sl.checkInclusion("ab", "abcdefg"))
         self.assertFalse(self.sl.checkInclusion("ab", "eidboaoo"))
+        self.assertFalse(self.sl.checkInclusion("ab", "a"))
 
     def test_preorder(self):
         # 589.N-ary Tree Preorder Traversal

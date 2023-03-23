@@ -83,7 +83,7 @@ class Pro0201To0400:
             fd_end, fd_mid = fd_end.next, fd_mid.next
         return True
 
-    def lowestCommonAncestor(self, root: "TreeNode", p: "TreeNode", q: "TreeNode") -> "TreeNode":
+    def lowestCommonAncestor(self, root: Optional[TreeNode], p: Optional[TreeNode], q: Optional[TreeNode]):
         # 235.Lowest Common Ancestor of a Binary Search Tree
         while root:
             if p.val < root.val and q.val < root.val:
@@ -92,6 +92,8 @@ class Pro0201To0400:
                 root = root.right
             else:
                 return root
+        else:
+            return None
 
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         # 239.Sliding Window Maximum
@@ -144,11 +146,12 @@ class Pro0201To0400:
 
         return nums
 
-    def reverseString(self, s: List[str]) -> None:
+    def reverseString(self, s: List[str]) -> List[str]:
         """344.Reverse String
         Do not return anything, modify s in-place instead.
         """
         s.reverse()
+        return s
 
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # 350.Intersection of Two Arrays 2
@@ -206,6 +209,8 @@ class Pro0201To0400:
 
     def firstUniqChar(self, s: str) -> int:
         # 387.First Unique Character in a String
+        if s == "":
+            return -1
         count = Counter(s)
         if all(count[key] > 1 for key in count.keys()):
             return -1

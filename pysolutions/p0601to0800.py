@@ -1,3 +1,4 @@
+from collections import Counter
 from typing import List, Optional
 
 from .utils import TreeNode
@@ -134,6 +135,54 @@ class Pro0601To0800:
             mid = (left + right) // 2
             if letters[mid] > target:
                 right = mid
-            elif letters[mid] <= target:
+            else:
                 left = mid + 1
         return letters[left]
+
+    def letterCasePermutation(self, s: str) -> List[str]:
+        # 784.Letter Case Permutation
+        result = [""]
+        for char in s:
+            n = len(result)
+            if char.isalpha():
+                for i in range(n):
+                    result.append(result[i] + char.lower())
+                    result[i] += char.upper()
+            else:
+                for i in range(n):
+                    result[i] += char
+        return result
+
+    def letterCasePermutation_v2(self, s: str) -> List[str]:
+        # 784.Letter Case Permutation
+        count = Counter(s)
+        nalpha = 0
+        for key in count.keys():
+            if key.isalpha():
+                nalpha += count[key]
+
+        def backtrack(path):
+            if len(path) == nalpha:
+                up_or_low.append(path[:])
+                return
+            for i in [0, 1]:
+                path.append(i)
+                backtrack(path)
+                path.pop()
+
+        up_or_low = []
+        backtrack([])
+        ans = []
+        for up_low in up_or_low:
+            snew, index = "", 0
+            for alpha in s:
+                if alpha.isalpha():
+                    if up_low[index]:
+                        snew += alpha.upper()
+                    else:
+                        snew += alpha.lower()
+                    index += 1
+                else:
+                    snew += alpha
+            ans.append(snew)
+        return ans

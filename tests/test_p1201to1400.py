@@ -13,6 +13,7 @@ class TestP1201To1400(unittest.TestCase):
         self.assertTrue(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]))
         self.assertFalse(self.sl.checkStraightLine([[1, 1], [2, 2], [3, 4], [4, 5], [5, 6], [7, 7]]))
         self.assertFalse(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 5]]))
+        self.assertTrue(self.sl.checkStraightLine([[1, 1], [2, 2]]))
 
     def test_subtractProductAndSum(self):
         # 1281.Subtract the Product and Sum of Digits of an Integer
@@ -23,6 +24,7 @@ class TestP1201To1400(unittest.TestCase):
         # 1309.Decrypt String from Alphabet to Integer Mapping
         self.assertEqual(self.sl.freqAlphabets("10#11#12"), "jkab")
         self.assertEqual(self.sl.freqAlphabets("1326#"), "acz")
+        self.assertEqual(self.sl.freqAlphabets("123"), "abc")
 
     def test_makeConnected(self):
         # 1319.Number of Operations to Make Network Connected

@@ -30,6 +30,7 @@ class TestP0201To0400(unittest.TestCase):
         # 205.Isomorphic Strings
         self.assertTrue(self.sl.isIsomorphic("egg", "add"))
         self.assertFalse(self.sl.isIsomorphic("foo", "bar"))
+        self.assertFalse(self.sl.isIsomorphic("foo", "bbar"))
         self.assertTrue(self.sl.isIsomorphic("paper", "title"))
         self.assertFalse(self.sl.isIsomorphic("badc", "baba"))
 
@@ -68,6 +69,15 @@ class TestP0201To0400(unittest.TestCase):
         p, q = root, root.left
         expected = root
         self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
+        root = create_binary_tree([2, None, 1])
+        p, q = root, root.right
+        expected = root
+        self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
+        self.assertEqual(self.sl.lowestCommonAncestor(None, p, q), None)
+        root = create_binary_tree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
+        p, q = root.left.right.left, root.left.right.right
+        expected = root.left.right
+        self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
 
     def test_maxSlidingWindow(self):
         # 239.Sliding Window Maximum
@@ -76,6 +86,7 @@ class TestP0201To0400(unittest.TestCase):
         ans = self.sl.maxSlidingWindow(nums, k)
         expected = [3, 3, 5, 5, 6, 7]
         self.assertListEqual(ans, expected)
+        self.assertListEqual(self.sl.maxSlidingWindow([], k), [])
 
     def test_isAnagram(self):
         # 242.Valid Anagram
@@ -93,6 +104,10 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.moveZeroes([0, 1, 0, 3, 12]), [1, 3, 12, 0, 0])
         self.assertListEqual(self.sl.moveZeroes([0]), [0])
         self.assertEqual(self.sl.moveZeroes([0]), [0])
+
+    def test_reverseString(self):
+        # 344.Reverse String
+        self.assertEqual(self.sl.reverseString(["a", "b"]), ["b", "a"])
 
     def test_intersect(self):
         # 350.Intersection of Two Arrays 2
@@ -113,8 +128,10 @@ class TestP0201To0400(unittest.TestCase):
     def test_firstUniqChar(self):
         # 387.First Unique Character in a String
         self.assertEqual(self.sl.firstUniqChar("leetcode"), 0)
+        self.assertEqual(self.sl.firstUniqChar("aabbc"), 4)
         self.assertEqual(self.sl.firstUniqChar("loveleetcode"), 2)
         self.assertEqual(self.sl.firstUniqChar("aabb"), -1)
+        self.assertEqual(self.sl.firstUniqChar(""), -1)
 
     def test_findTheDifference(self):
         # 389.Find the Different
