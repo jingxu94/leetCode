@@ -5,4 +5,3 @@ branch = True
 
 [report]
 omit = pysolutions/utils.py
-show_missing = True

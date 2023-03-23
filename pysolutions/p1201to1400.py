@@ -41,6 +41,36 @@ class Pro1201To1400:
             sm += int(digits[i])
         return pd - sm
 
+    def makeConnected(self, n: int, connections: List[List[int]]) -> int:
+        # 1319.Number of Operations to Make Network Connected
+        def find(x: int) -> int:
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
+
+        def union(x: int, y: int) -> None:
+            root_x = find(x)
+            root_y = find(y)
+            if root_x != root_y:
+                parent[root_x] = root_y
+
+        # Initialize the parent array
+        parent = [i for i in range(n)]
+        # Count redundant connections
+        redundant = 0
+        for x, y in connections:
+            if find(x) == find(y):
+                redundant += 1
+            else:
+                union(x, y)
+        # Count the number of connected components
+        components = sum([1 for i in range(n) if parent[i] == i])
+        # Check if there are enough connections to form a connected
+        if redundant < components - 1:
+            return -1
+        else:
+            return components - 1
+
     def maximum69Number(self, num: int) -> int:
         """1323.Maximum 69 Number
         Change the first 6 in the given number to 9 and return the resulting number.
