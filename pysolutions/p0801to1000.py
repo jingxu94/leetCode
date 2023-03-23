@@ -57,6 +57,31 @@ class Pro0801To1000:
             nums_sorted.extend([num] * nums_dict[num])
         return nums_sorted
 
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        # 953.Verifying an Alien Dictionary
+        if len(words) == 1:
+            return True
+        aldict = dict()
+        for i, alpha in enumerate(order):
+            aldict[alpha] = i
+
+        def is_words_sorted(word1: str, word2: str) -> bool:
+            for i in range(len(word1)):
+                if i == len(word2):
+                    return False
+                elif aldict[word1[i]] == aldict[word2[i]]:
+                    continue
+                elif aldict[word1[i]] < aldict[word2[i]]:
+                    return True
+                else:
+                    return False
+            return True
+
+        for i in range(len(words) - 1):
+            if not is_words_sorted(words[i], words[i + 1]):
+                return False
+        return True
+
     def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
         # 958.Check Completeness of a Binary Tree
         queue = deque([root])

@@ -19,6 +19,11 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(self.sl.subtractProductAndSum(234), 15)
         self.assertEqual(self.sl.subtractProductAndSum(4421), 21)
 
+    def test_freqAlphabets(self):
+        # 1309.Decrypt String from Alphabet to Integer Mapping
+        self.assertEqual(self.sl.freqAlphabets("10#11#12"), "jkab")
+        self.assertEqual(self.sl.freqAlphabets("1326#"), "acz")
+
     def test_makeConnected(self):
         # 1319.Number of Operations to Make Network Connected
         self.assertEqual(self.sl.makeConnected(4, [[0, 1], [0, 2], [1, 2]]), 1)

@@ -45,6 +45,12 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.search([-1, 0, 3, 5, 9, 12], 9), 4)
         self.assertEqual(self.sl.search([-1, 0, 3, 5, 9, 12], 2), -1)
 
+    def test_toLowerCase(self):
+        # 709.To Lower Case
+        self.assertEqual(self.sl.toLowerCase("Hello"), "hello")
+        self.assertEqual(self.sl.toLowerCase("here"), "here")
+        self.assertEqual(self.sl.toLowerCase("LOVELY"), "lovely")
+
     def test_pivotIndex(self):
         # 724.Find Pivot Index
         self.assertEqual(self.sl.pivotIndex([1, 7, 3, 6, 5, 6]), 3)

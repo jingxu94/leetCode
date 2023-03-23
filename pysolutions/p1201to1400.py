@@ -1,4 +1,5 @@
 from bisect import bisect_left
+from string import ascii_lowercase
 from typing import List
 
 
@@ -40,6 +41,22 @@ class Pro1201To1400:
             pd *= int(digits[i])
             sm += int(digits[i])
         return pd - sm
+
+    def freqAlphabets(self, s: str) -> str:
+        # 1309.Decrypt String from Alphabet to Integer Mapping
+        ans = ""
+        if "#" not in s:
+            for num in s:
+                ans += ascii_lowercase[int(num) - 1]
+            return ans
+        nums_list = s.split("#")
+        for nums in nums_list[:-1]:
+            for num in nums[:-2]:
+                ans += ascii_lowercase[int(num) - 1]
+            ans += ascii_lowercase[int(nums[-2:]) - 1]
+        for num in nums_list[-1]:
+            ans += ascii_lowercase[int(num) - 1]
+        return ans
 
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
         # 1319.Number of Operations to Make Network Connected

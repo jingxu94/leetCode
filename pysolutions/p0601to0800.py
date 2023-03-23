@@ -84,6 +84,13 @@ class Pro0601To0800:
 
         return bin_search(nums, target, 0)
 
+    def toLowerCase(self, s: str) -> str:
+        # 709.To Lower Case
+        ans = ""
+        for alpha in s:
+            ans += alpha.lower()
+        return ans
+
     def pivotIndex(self, nums: List[int]) -> int:
         # 724.Find Pivot Index
         total = sum(nums)

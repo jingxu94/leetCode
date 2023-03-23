@@ -1,8 +1,7 @@
 import unittest
 
 from pysolutions import Pro0801To1000
-
-from pysolutions.utils import create_binary_tree
+from pysolutions.utils import create_binary_tree, create_linked_list, eq_linked_list
 
 
 class TestP0801To1000(unittest.TestCase):
@@ -27,6 +26,17 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.minEatingSpeed(piles2, h2), expres2)
         self.assertEqual(self.sl.minEatingSpeed(piles3, h3), expres3)
 
+    def test_middleNode(self):
+        # 876.Middle of the Linked List
+        head = create_linked_list([1, 2, 3, 4, 5])
+        expected = create_linked_list([3, 4, 5])
+        ans = self.sl.middleNode(head)
+        self.assertTrue(eq_linked_list(ans, expected))
+        head = create_linked_list([1, 2, 3, 4, 5, 6])
+        expected = create_linked_list([4, 5, 6])
+        ans = self.sl.middleNode(head)
+        self.assertTrue(eq_linked_list(ans, expected))
+
     def test_sortArray(self):
         # 912.Sort an Array
         nums1 = [5, 2, 3, 1]
@@ -35,6 +45,18 @@ class TestP0801To1000(unittest.TestCase):
         expres2 = [0, 0, 1, 1, 2, 5]
         self.assertEqual(self.sl.sortArray(nums1), expres1)
         self.assertEqual(self.sl.sortArray(nums2), expres2)
+
+    def test_isAlienSorted(self):
+        # 953.Verifying an Alien Dictionary
+        words = ["hello", "leetcode"]
+        order = "hlabcdefgijkmnopqrstuvwxyz"
+        self.assertTrue(self.sl.isAlienSorted(words, order))
+        words = ["word", "world", "row"]
+        order = "worldabcefghijkmnpqstuvxyz"
+        self.assertFalse(self.sl.isAlienSorted(words, order))
+        words = ["apple", "app"]
+        order = "abcdefghijklmnopqrstuvwxyz"
+        self.assertFalse(self.sl.isAlienSorted(words, order))
 
     def test_isCompleteTree(self):
         # 958.Check Completeness of a Binary Tree
@@ -47,6 +69,11 @@ class TestP0801To1000(unittest.TestCase):
         # 976.Largest Perimeter Triangle
         self.assertEqual(self.sl.largestPerimeter([2, 1, 2]), 5)
         self.assertEqual(self.sl.largestPerimeter([1, 2, 1, 10]), 0)
+
+    def test_sortedSquares(self):
+        # 977.Squares of a Sorted Array
+        self.assertListEqual(self.sl.sortedSquares([-4, -1, 0, 3, 10]), [0, 1, 9, 16, 100])
+        self.assertListEqual(self.sl.sortedSquares([-7, -3, 2, 3, 11]), [4, 9, 9, 49, 121])
 
     def test_orangesRotting(self):
         # 994.Rotting Oranges
