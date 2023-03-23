@@ -783,3 +783,24 @@ class Pro0001To0200:
                 count += 1
             n = n // 2
         return count
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+        # 200.Number of Islands
+        m, n = len(grid), len(grid[0])
+
+        def dfs(grid, row, col):
+            if row < 0 or row >= m or col < 0 or col >= n or grid[row][col] == "0":
+                return
+            grid[row][col] = "0"
+            dfs(grid, row - 1, col)
+            dfs(grid, row + 1, col)
+            dfs(grid, row, col - 1)
+            dfs(grid, row, col + 1)
+
+        num_islands = 0
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] == "1":
+                    num_islands += 1
+                    dfs(grid, row, col)
+        return num_islands

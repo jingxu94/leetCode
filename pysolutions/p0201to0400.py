@@ -271,7 +271,6 @@ class WordDictionaryS1:  # pragma: no cover
 
 class WordDictionaryS2:  # pragma: no cover
     # 211.Design Add and Search Words Data Structure
-
     def __init__(self):
         self.wdict = dict()
 
@@ -291,3 +290,28 @@ class WordDictionaryS2:  # pragma: no cover
                     return True
             return False
         return word in nword_list
+
+
+class MyQueue:  # pragma: no cover
+    # 232.Implement Queue using Stacks
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+
+    def push(self, x: int) -> None:
+        self.stack1.append(x)
+
+    def pop(self) -> int:
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2.pop()
+
+    def peek(self) -> int:
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2[-1]
+
+    def empty(self) -> bool:
+        return not self.stack1 and not self.stack2

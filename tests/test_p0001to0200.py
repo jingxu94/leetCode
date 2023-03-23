@@ -421,3 +421,20 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.hammingWeight(input1), 3)
         self.assertEqual(self.sl.hammingWeight(input2), 1)
         self.assertEqual(self.sl.hammingWeight(input3), 31)
+
+    def test_numIslands(self):
+        # 200.Number of Islands
+        grid1 = [
+            ["1", "1", "1", "1", "0"],
+            ["1", "1", "0", "1", "0"],
+            ["1", "1", "0", "0", "0"],
+            ["0", "0", "0", "0", "0"],
+        ]
+        grid2 = [
+            ["1", "1", "0", "0", "0"],
+            ["1", "1", "0", "0", "0"],
+            ["0", "0", "1", "0", "0"],
+            ["0", "0", "0", "1", "1"],
+        ]
+        self.assertEqual(self.sl.numIslands(grid1), 1)
+        self.assertEqual(self.sl.numIslands(grid2), 3)
