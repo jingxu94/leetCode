@@ -186,6 +186,11 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(res2, self.sl.numberOfSteps(num2))
         self.assertEqual(res3, self.sl.numberOfSteps(num3))
 
+    def test_checkIfExist(self):
+        # 1346.Check If N and Its Double Exist
+        self.assertTrue(self.sl.checkIfExist([10, 2, 5, 3]))
+        self.assertFalse(self.sl.checkIfExist([3, 1, 7, 11]))
+
     def test_countNegatives(self):
         # 1351.Count Negative Numbers in a Sorted Matrix
         self.assertEqual(self.sl.countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]), 8)

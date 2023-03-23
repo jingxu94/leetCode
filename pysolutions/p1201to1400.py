@@ -139,6 +139,15 @@ class Pro1201To1400:
             steps += 1
         return steps
 
+    def checkIfExist(self, arr: List[int]) -> bool:
+        # 1346.Check If N and Its Double Exist
+        seen = set()
+        for num in arr:
+            if num * 2 in seen or (num % 2 == 0 and num // 2 in seen):
+                return True
+            seen.add(num)
+        return False
+
     def countNegatives(self, grid: List[List[int]]) -> int:
         # 1351.Count Negative Numbers in a Sorted Matrix
         def binary_search(row: List[int]) -> int:
