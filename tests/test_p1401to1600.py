@@ -8,6 +8,12 @@ class TestP1401To1600(unittest.TestCase):
     def sl(self):
         return Pro1401To1600()
 
+    def test_minReorder(self):
+        # 1466.Reorder Routes to Make All Paths Lead to the City Zero
+        self.assertEqual(self.sl.minReorder(6, [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]), 3)
+        self.assertEqual(self.sl.minReorder(5, [[1, 0], [1, 2], [3, 2], [3, 4]]), 2)
+        self.assertEqual(self.sl.minReorder(3, [[1, 0], [2, 0]]), 0)
+
     def test_runningSum(self):
         # 1480.Running Sum of 1d Array
         self.assertEqual(self.sl.runningSum([1, 2, 3, 4]), [1, 3, 6, 10])

@@ -1,9 +1,28 @@
+from collections import defaultdict
 from typing import List
 
 
 class Pro1401To1600:
     def __init__(self):
         pass
+
+    def minReorder(self, n: int, connections: List[List[int]]) -> int:
+        # 1466.Reorder Routes to Make All Paths Lead to the City Zero
+        def dfs(node):
+            checked.add(node)
+            ans = 0
+            for neighbor, need_reversed in roads[node]:
+                if neighbor not in checked:
+                    ans += need_reversed
+                    ans += dfs(neighbor)
+            return ans
+
+        roads = defaultdict(list)
+        for a, b in connections:
+            roads[a].append((b, 1))  # Edge from a to b needs to be reversed
+            roads[b].append((a, 0))  # Edge from b to a is already in the correct direction
+        checked = set()
+        return dfs(0)
 
     def runningSum(self, nums: List[int]) -> List[int]:
         # 1480.Running Sum of 1d Array

@@ -719,6 +719,33 @@ class Pro0001To0200:
             pos2 = pos2.next
         return pos1
 
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # 144.Binary Tree Preorder Traversal
+        ans = []
+
+        def preorder_helper(node):
+            if node is not None:
+                ans.append(node.val)
+                preorder_helper(node.left)
+                preorder_helper(node.right)
+
+        preorder_helper(root)
+        return ans
+
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # 145.Binary Tree Postorder Traversal
+        ans = []
+
+        def preorder_helper(node):
+            if node is not None:
+                ans.append(node.val)
+                preorder_helper(node.right)
+                preorder_helper(node.left)
+
+        preorder_helper(root)
+        ans.reverse()
+        return ans
+
     def reverseWords(self, s: str) -> str:
         # 151.Reverse Words in a String
         words = re.findall(r"\w+", s)

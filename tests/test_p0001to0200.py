@@ -451,6 +451,18 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.detectCycle(head).val, 2)
         self.assertEqual(self.sl.detectCycle(create_linked_list([])), None)
 
+    def test_preorderTraversal(self):
+        # 144.Binary Tree Preorder Traversal
+        self.assertEqual(self.sl.preorderTraversal(create_binary_tree([1, None, 2, None, None, 3])), [1, 2, 3])
+        self.assertEqual(self.sl.preorderTraversal(create_binary_tree([])), [])
+        self.assertEqual(self.sl.preorderTraversal(create_binary_tree([1])), [1])
+
+    def test_postorderTraversal(self):
+        # 144.Binary Tree Postorder Traversal
+        self.assertEqual(self.sl.postorderTraversal(create_binary_tree([1, None, 2, None, None, 3])), [3, 2, 1])
+        self.assertEqual(self.sl.postorderTraversal(create_binary_tree([])), [])
+        self.assertEqual(self.sl.postorderTraversal(create_binary_tree([1])), [1])
+
     def test_reverseWords(self):
         # 151.Reverse Words in a String
         s1 = "the sky is blue"
