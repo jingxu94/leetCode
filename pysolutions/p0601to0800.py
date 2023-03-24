@@ -50,6 +50,19 @@ class Pro0601To0800:
             merge_bin_tree(curr1, curr2)
             return root1
 
+    def judgeSquareSum(self, c: int) -> bool:
+        # 633.Sum of Square Numbers
+        a, b = 0, int(c**0.5)
+        while a <= b:
+            curr_sum = a**2 + b**2
+            if curr_sum == c:
+                return True
+            elif curr_sum < c:
+                a += 1
+            else:
+                b -= 1
+        return False
+
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         # 695.Max Area of Island
         def dfs(grid, row, col):

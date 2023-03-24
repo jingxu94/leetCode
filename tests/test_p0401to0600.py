@@ -1,12 +1,19 @@
 import unittest
 
 from pysolutions import Pro0401To0600
+from pysolutions.utils import create_binary_tree
 
 
 class TestP0401To0600(unittest.TestCase):
     @property
     def sl(self):
         return Pro0401To0600()
+
+    def test_sumOfLeftLeaves(self):
+        # 404.Sum of Left Leaves
+        self.assertEqual(self.sl.sumOfLeftLeaves(create_binary_tree([])), 0)
+        self.assertEqual(self.sl.sumOfLeftLeaves(create_binary_tree([3, 9, 20, None, None, 15, 7])), 24)
+        self.assertEqual(self.sl.sumOfLeftLeaves(create_binary_tree([1])), 0)
 
     def test_longestPalindrom(self):
         # 409.Longest Palindrome
@@ -33,6 +40,14 @@ class TestP0401To0600(unittest.TestCase):
         # 496.Next Greater Element1
         self.assertListEqual(self.sl.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertListEqual(self.sl.nextGreaterElement([2, 4], [1, 2, 3, 4]), [3, -1])
+
+    def test_fib(self):
+        # 509.Fibonacci Number
+        self.assertEqual(self.sl.fib(0), 0)
+        self.assertEqual(self.sl.fib(1), 1)
+        self.assertEqual(self.sl.fib(2), 1)
+        self.assertEqual(self.sl.fib(3), 2)
+        self.assertEqual(self.sl.fib(4), 3)
 
     def test_updateMatrix(self):
         # 542.0 1 Matrix

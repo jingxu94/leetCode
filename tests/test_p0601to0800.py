@@ -32,6 +32,14 @@ class TestP0601To0800(unittest.TestCase):
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, root1), root1))
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, None), None))
 
+    def test_judgeSquareSum(self):
+        # 633.Sum of Square Numbers
+        self.assertTrue(self.sl.judgeSquareSum(5))
+        self.assertTrue(self.sl.judgeSquareSum(25))
+        self.assertTrue(self.sl.judgeSquareSum(26))
+        self.assertFalse(self.sl.judgeSquareSum(3))
+        self.assertFalse(self.sl.judgeSquareSum(24))
+
     def test_maxAreaOfIsland(self):
         # 695.Max Area of Island
         grid = [

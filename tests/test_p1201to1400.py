@@ -1,6 +1,7 @@
 import unittest
 
 from pysolutions import Pro1201To1400
+from pysolutions.utils import create_linked_list
 
 
 class TestP1201To1400(unittest.TestCase):
@@ -19,6 +20,12 @@ class TestP1201To1400(unittest.TestCase):
         # 1281.Subtract the Product and Sum of Digits of an Integer
         self.assertEqual(self.sl.subtractProductAndSum(234), 15)
         self.assertEqual(self.sl.subtractProductAndSum(4421), 21)
+
+    def test_getDecimalValue(self):
+        # 1290.Convert Binary Number in a Linked List to Integer
+        self.assertEqual(self.sl.getDecimalValue(create_linked_list([1, 0, 1])), 5)
+        self.assertEqual(self.sl.getDecimalValue(create_linked_list([1, 1, 1])), 7)
+        self.assertEqual(self.sl.getDecimalValue(create_linked_list([0])), 0)
 
     def test_freqAlphabets(self):
         # 1309.Decrypt String from Alphabet to Integer Mapping

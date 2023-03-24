@@ -1,12 +1,32 @@
 from collections import Counter, deque
-from typing import List
+from typing import List, Optional
 
-from .utils import Node
+from .utils import Node, TreeNode
 
 
 class Pro0401To0600:
     def __init__(self):
         pass
+
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        # 404.Sum of Left Leaves
+        left_leaf = [0]
+
+        def helper(node, flag):
+            if node.left is not None:
+                helper(node.left, 1)
+            if node.right is not None:
+                helper(node.right, 0)
+            if node.left is None and node.right is None:
+                if flag:
+                    left_leaf.append(node.val)
+                return
+
+        if root is None:
+            return 0
+        else:
+            helper(root, 0)
+            return sum(left_leaf)
 
     def longestPalindrome(self, s: str) -> int:
         # 409.Longest Palindrome
@@ -61,6 +81,16 @@ class Pro0401To0600:
                         ans[i] = check
                         break
         return ans
+
+    def fib(self, n: int) -> int:
+        # 509.Fibonacci Number
+        if n == 0 or n == 1:
+            return n
+        else:
+            prev, ans = 0, 1
+            for _ in range(n - 1):
+                prev, ans = ans, ans + prev
+            return ans
 
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
         # 542.0 1 Matrix

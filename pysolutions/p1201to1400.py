@@ -2,6 +2,8 @@ from bisect import bisect_left
 from string import ascii_lowercase
 from typing import List
 
+from .utils import ListNode
+
 
 class Pro1201To1400:
     def __init__(self):
@@ -41,6 +43,14 @@ class Pro1201To1400:
             pd *= int(digits[i])
             sm += int(digits[i])
         return pd - sm
+
+    def getDecimalValue(self, head: ListNode) -> int:
+        # 1290.Convert Binary Number in a Linked List to Integer
+        curr, ans = head, 0
+        while curr:
+            ans = 2 * ans + curr.val
+            curr = curr.next
+        return ans
 
     def freqAlphabets(self, s: str) -> str:
         # 1309.Decrypt String from Alphabet to Integer Mapping
