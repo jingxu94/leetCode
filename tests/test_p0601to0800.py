@@ -87,6 +87,12 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.nextGreatestLetter(["c", "f", "j"], "c"), "f")
         self.assertEqual(self.sl.nextGreatestLetter(["x", "x", "y", "y"], "z"), "x")
 
+    def test_minCostClimbingStairs(self):
+        # 746.Min Cost Climbing Stairs
+        self.assertEqual(self.sl.minCostClimbingStairs([10, 15, 20]), 15)
+        self.assertEqual(self.sl.minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]), 6)
+        self.assertEqual(self.sl.minCostClimbingStairs([10]), 0)
+
     def test_letterCasePermutation(self):
         # 784.Letter Case Permutation
         self.assertEqual(set(self.sl.letterCasePermutation("a1b2")), set(["a1b2", "a1B2", "A1b2", "A1B2"]))

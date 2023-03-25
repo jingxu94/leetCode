@@ -299,6 +299,20 @@ class Pro0001To0200:
         # 58.Length of Last Word
         return len(s.split()[-1])
 
+    def uniquePaths(self, m: int, n: int) -> int:
+        # 62.Unique Paths
+        total_steps = m + n - 2
+        if total_steps < 2:
+            return 1
+        decay = min(m - 1, n - 1)
+        up, down = 1, 1
+        for _ in range(min(m - 1, n - 1)):
+            up *= total_steps
+            down *= decay
+            total_steps -= 1
+            decay -= 1
+        return int(up / down)
+
     def plusOne(self, digits: List[int]) -> List[int]:
         # 66.Plus One
         # === Solution 1 ===

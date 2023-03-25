@@ -220,6 +220,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.lengthOfLastWord("   fly me   to   the moon  "), 4)
         self.assertEqual(self.sl.lengthOfLastWord("luffy is still joyboy"), 6)
 
+    def test_uniquePaths(self):
+        # 62.Unique Paths
+        self.assertEqual(self.sl.uniquePaths(3, 7), 28)
+        self.assertEqual(self.sl.uniquePaths(3, 2), 3)
+        self.assertEqual(self.sl.uniquePaths(1, 1), 1)
+
     def test_plusOne(self):
         # 66.Plus One
         self.assertEqual(self.sl.plusOne([1, 2, 3]), [1, 2, 4])
