@@ -1,4 +1,5 @@
 from bisect import bisect_left
+from collections import defaultdict
 from string import ascii_lowercase
 from typing import List
 
@@ -174,6 +175,24 @@ class Pro1201To1400:
         for row in grid:
             count += binary_search(row)
         return count
+
+    def sortByBits(self, arr: List[int]) -> List[int]:
+        # 1356.Sort Integers by The Number of 1 Bits
+        nbits = defaultdict(list)
+        arr.sort()
+        for i, num in enumerate(arr):
+            num_ones = 0
+            while num > 0:
+                if num % 2 == 1:
+                    num_ones += 1
+                num = num // 2
+            nbits[num_ones].append(arr[i])
+        ans = []
+        keys = list(nbits.keys())
+        keys.sort()
+        for key in keys:
+            ans.extend(nbits[key])
+        return ans
 
     def findTheDistanceValue1(self, arr1: List[int], arr2: List[int], d: int) -> int:
         """1385.Find the Distance Value Between Two Arrays

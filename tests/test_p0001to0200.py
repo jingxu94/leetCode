@@ -159,6 +159,15 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.strStr(haystack1, needle1), expected1)
         self.assertEqual(self.sl.strStr(haystack2, needle2), expected2)
 
+    def test_search(self):
+        # 33.Search in Rotated Sorted Array
+        self.assertEqual(self.sl.search([4, 5, 6, 7, 0, 1, 2], 0), 4)
+        self.assertEqual(self.sl.search([4, 5, 6, 7, 0, 1, 2], 3), -1)
+        self.assertEqual(self.sl.search([6, 7, 1, 2, 3, 4, 5], 3), 4)
+        self.assertEqual(self.sl.search([6, 7, 8, 1, 2, 3, 4, 5], 8), 2)
+        self.assertEqual(self.sl.search([1], 0), -1)
+        self.assertEqual(self.sl.search([], 0), -1)
+
     def test_searchRange(self):
         # 34.Find First and Last Position of Element in Sorted Array
         self.assertListEqual(self.sl.searchRange([5, 7, 7, 8, 8, 10], 8), [3, 4])

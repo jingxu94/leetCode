@@ -205,6 +205,15 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(self.sl.countNegatives([[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]), 8)
         self.assertEqual(self.sl.countNegatives([[3, 2], [1, 0]]), 0)
 
+    def test_sortByBits(self):
+        # 1356.Sort Integers by The Number of 1 Bits
+        arr = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        expected = [0, 1, 2, 4, 8, 3, 5, 6, 7]
+        self.assertEqual(self.sl.sortByBits(arr), expected)
+        arr = [1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
+        expected = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+        self.assertEqual(self.sl.sortByBits(arr), expected)
+
     def test_findTheDistanceValue(self):
         # 1385.Find the Distance Value Between Two Arrays
         arr1, arr2, d, ans = [4, 5, 8], [10, 9, 1, 8], 2, 2
