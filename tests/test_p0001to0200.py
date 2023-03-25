@@ -421,6 +421,15 @@ class TestP0001To0200(unittest.TestCase):
         self.assertListEqual(self.sl.generate(1), [[1]])
         self.assertListEqual(self.sl.generate(2), [[1], [1, 1]])
 
+    def test_minimumTotal(self):
+        # 120.Triangle
+        triangle = [[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]
+        self.assertEqual(self.sl.minimumTotal(triangle), 11)
+        triangle = [[1], [2, 3], [4, 5, 6], [7, 8, 9, 10]]
+        self.assertEqual(self.sl.minimumTotal(triangle), 14)
+        self.assertEqual(self.sl.minimumTotal([[-10]]), -10)
+        self.assertEqual(self.sl.minimumTotal([]), 0)
+
     def test_maxProfit(self):
         # 121.Best Time to Buy and Sell Stock
         self.assertEqual(self.sl.maxProfit([7, 1, 5, 3, 6, 4]), 5)
@@ -492,6 +501,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.hammingWeight(input1), 3)
         self.assertEqual(self.sl.hammingWeight(input2), 1)
         self.assertEqual(self.sl.hammingWeight(input3), 31)
+
+    def test_rob(self):
+        # 198.House Robber
+        self.assertEqual(self.sl.rob([1, 2, 3, 1]), 4)
+        self.assertEqual(self.sl.rob([2, 7, 9, 3, 1]), 12)
+        self.assertEqual(self.sl.rob([10]), 10)
+        self.assertEqual(self.sl.rob([]), 0)
 
     def test_numIslands(self):
         # 200.Number of Islands

@@ -669,6 +669,17 @@ class Pro0001To0200:
                 pascal_tri.append(curr)
             return pascal_tri
 
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        # 120.Triangle
+        if not triangle:
+            return 0
+        # Iterate through the triangle from the second to last row to the top
+        for row in range(len(triangle) - 2, -1, -1):
+            for col in range(len(triangle[row])):
+                # Add the minimum of the adjacent elements in the row below
+                triangle[row][col] += min(triangle[row + 1][col], triangle[row + 1][col + 1])
+        return triangle[0][0]
+
     def maxProfit(self, prices: List[int]) -> int:
         # 121.Best Time to Buy and Sell Stock
         left, right, bestsell = 0, 1, 0
@@ -787,6 +798,20 @@ class Pro0001To0200:
                 count += 1
             n = n // 2
         return count
+
+    def rob(self, nums: List[int]) -> int:
+        # 198.House Robber
+        if not nums:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        # Initialize two variables to track the maximum money robbed with and without robbing the current house
+        rob_curr, dont_rob_curr = 0, 0
+        for num in nums:
+            rob_next = dont_rob_curr + num
+            dont_rob_next = max(rob_curr, dont_rob_curr)
+            rob_curr, dont_rob_curr = rob_next, dont_rob_next
+        return max(rob_curr, dont_rob_curr)
 
     def numIslands(self, grid: List[List[str]]) -> int:
         # 200.Number of Islands
