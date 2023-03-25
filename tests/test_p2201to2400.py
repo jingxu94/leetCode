@@ -8,6 +8,11 @@ class TestP2201To2400(unittest.TestCase):
     def sl(self):
         return Pro2201To2400()
 
+    def test_countPairs(self):
+        # 2316.Count Unreachable Pairs of Nodes in an Undirected Graph
+        self.assertEqual(self.sl.countPairs(3, [[0, 1], [0, 2], [1, 2]]), 0)
+        self.assertEqual(self.sl.countPairs(7, [[0, 2], [0, 5], [2, 4], [1, 6], [5, 4]]), 14)
+
     def test_zeroFilledSubarray(self):
         # 2348.Number of Zero-Filled Subarrays
         self.assertEqual(self.sl.zeroFilledSubarray([1, 3, 0, 0, 2, 0, 0, 4]), 6)
