@@ -1,6 +1,6 @@
 import math
 import re
-from collections import Counter, deque
+from collections import Counter, deque, defaultdict
 from typing import List, Optional
 
 from .utils import ListNode, Node, TreeNode
@@ -39,7 +39,7 @@ class Pro0001To0200:
 
     def lengthOfLongestSubstring(self, s: str) -> int:
         # 3.Longest Subtring Without Repeating Characters
-        chars = Counter()
+        chars: Counter = Counter()
         left = right = 0
         ans = 0
         while right < len(s):
@@ -99,7 +99,7 @@ class Pro0001To0200:
 
     def longestCommonPrefix(self, strs: List[str]) -> str:
         # 14.Longest Common Prefix
-        prefix = []
+        prefix: list = []
         for i in range(len(strs[0])):
             for alpha in strs[1:]:
                 try:
@@ -112,6 +112,8 @@ class Pro0001To0200:
 
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         # 19.Remove Nth Node From End of List
+        if head is None:
+            return None
         length, curr = 0, head
         while curr:
             length, curr = length + 1, curr.next
@@ -129,7 +131,7 @@ class Pro0001To0200:
 
     def isValid(self, s: str) -> bool:
         # 20.Valid Parentheses
-        stack = []
+        stack: List[str] = []
         for i in range(len(s)):
             if stack == [] and s[i] in (")", "]", "}"):
                 return False
@@ -305,7 +307,7 @@ class Pro0001To0200:
                     backtrack(path)
                     path.pop()
 
-        result = []
+        result: List[List[int]] = []
         backtrack([])
         return result
 
@@ -432,7 +434,7 @@ class Pro0001To0200:
                 backtrack(i + 1, path)
                 path.pop()
 
-        result = []
+        result: List[List[int]] = []
         backtrack(1, [])
         return result
 
@@ -504,7 +506,7 @@ class Pro0001To0200:
         # ==============================================
         if not root:
             return True
-        stack = []
+        stack: list = []
         node = root
         prev_value = -math.inf
         while stack or node:
@@ -547,7 +549,7 @@ class Pro0001To0200:
         # 102.Binary Tree Level Order Traversal
         if root is None:
             return []
-        tree_levels = []
+        tree_levels: list = []
 
         def tree_level(node, level):
             if node is None:
@@ -597,50 +599,47 @@ class Pro0001To0200:
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
         # 109.Convert Sorted List to Binary Search Tree
         # Find the length of the linked list
-        def find_length(node: Optional[ListNode]) -> int:
-            length = 0
-            while node:
-                node = node.next
-                length += 1
-            return length
+        # def find_length(node: Optional[ListNode]) -> int:
+        #     length = 0
+        #     while node:
+        #         node = node.next
+        #         length += 1
+        #     return length
 
-        # Convert the linked list to a BST using a helper function
-        def convert_to_bst(left: int, right: int) -> Optional[TreeNode]:
-            nonlocal head
-            if left > right:
-                return None
-            mid = (left + right) // 2
-            # Recursively build the left subtree
-            left_child = convert_to_bst(left, mid - 1)
-            # Create the current node with the value from the linked list
-            current = TreeNode(head.val)
-            current.left = left_child
-            # Move to the next value in the linked list
-            head = head.next
-            # Recursively build the right subtree
-            current.right = convert_to_bst(mid + 1, right)
-            return current
-
-        length = find_length(head)
-        return convert_to_bst(0, length - 1)
-        # def constructBST(leftHead: Optional[ListNode], rightHead: Optional[ListNode]) -> Optional[TreeNode]:
-        #     if leftHead == rightHead:
+        # # Convert the linked list to a BST using a helper function
+        # def convert_to_bst(left: int, right: int) -> Optional[TreeNode]:
+        #     nonlocal head
+        #     if left > right:
         #         return None
-        #     slow, fast = leftHead, leftHead
-        #     while fast != rightHead and fast.next != rightHead:
-        #         slow = slow.next
-        #         fast = fast.next.next
-        #     root = TreeNode(slow.val)
-        #     root.left = constructBST(leftHead, slow)
-        #     root.right = constructBST(slow.next, rightHead)
-        #     return root
-        #
-        # if not head:
-        #     return None
-        # if not head.next:
-        #     root = TreeNode(head.val)
-        #     return root
-        # return constructBST(head, None)
+        #     mid = (left + right) // 2
+        #     # Recursively build the left subtree
+        #     left_child = convert_to_bst(left, mid - 1)
+        #     # Create the current node with the value from the linked list
+        #     current = TreeNode(head.val)
+        #     current.left = left_child
+        #     # Move to the next value in the linked list
+        #     head = head.next
+        #     # Recursively build the right subtree
+        #     current.right = convert_to_bst(mid + 1, right)
+        #     return current
+
+        # length = find_length(head)
+        # return convert_to_bst(0, length - 1)
+        def constructBST(leftHead: Optional[ListNode], rightHead: Optional[ListNode]) -> Optional[TreeNode]:
+            if leftHead == rightHead or leftHead is None:
+                return None
+            slow, fast = leftHead, leftHead
+            while fast != rightHead and fast.next != rightHead:
+                slow = slow.next
+                fast = fast.next.next
+            root = TreeNode(slow.val)
+            root.left = constructBST(leftHead, slow)
+            root.right = constructBST(slow.next, rightHead)
+            return root
+
+        if not head:
+            return None
+        return constructBST(head, None)
 
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         # 110.Balanced Binary Tree
@@ -741,6 +740,8 @@ class Pro0001To0200:
 
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # 141.Linked List Cycle
+        if head is None:
+            return False
         fast, slow = head, head
         while fast and fast.next:
             slow = slow.next
@@ -751,6 +752,8 @@ class Pro0001To0200:
 
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 142.Linked List Cycle II
+        if head is None:
+            return None
         fast, slow = head, head
         while fast and fast.next:
             slow = slow.next

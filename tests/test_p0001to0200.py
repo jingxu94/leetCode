@@ -93,6 +93,7 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(
             eq_linked_list(self.sl.removeNthFromEnd(create_linked_list([1, 2]), 2), create_linked_list([2]))
         )
+        self.assertEqual(self.sl.removeNthFromEnd(None, 1), None)
 
     def test_isValid(self):
         # 20.Valid Parentheses
@@ -467,6 +468,7 @@ class TestP0001To0200(unittest.TestCase):
         fast.next = pos
         self.assertTrue(self.sl.hasCycle(head))
         self.assertFalse(self.sl.hasCycle(create_linked_list([1])))
+        self.assertFalse(self.sl.hasCycle(None))
 
     def test_detectCycle(self):
         # 142.Linked List Cycle II
@@ -474,6 +476,7 @@ class TestP0001To0200(unittest.TestCase):
         head.next.next.next.next = head.next
         self.assertEqual(self.sl.detectCycle(head).val, 2)
         self.assertEqual(self.sl.detectCycle(create_linked_list([])), None)
+        self.assertEqual(self.sl.detectCycle(create_linked_list([1])), None)
 
     def test_preorderTraversal(self):
         # 144.Binary Tree Preorder Traversal
