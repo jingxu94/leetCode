@@ -18,3 +18,8 @@ class TestP2201To2400(unittest.TestCase):
         self.assertEqual(self.sl.zeroFilledSubarray([1, 3, 0, 0, 2, 0, 0, 4]), 6)
         self.assertEqual(self.sl.zeroFilledSubarray([0, 0, 0, 2, 0, 0]), 9)
         self.assertEqual(self.sl.zeroFilledSubarray([2, 10, 2019]), 0)
+
+    def test_longestCycle(self):
+        # 2360.Longest Cycle in a Graph
+        self.assertEqual(self.sl.longestCycle([3, 3, 4, 2, 3]), 3)
+        self.assertEqual(self.sl.longestCycle([2, -1, 3, 1]), -1)

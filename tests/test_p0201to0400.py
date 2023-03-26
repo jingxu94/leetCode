@@ -54,6 +54,7 @@ class TestP0201To0400(unittest.TestCase):
         # 234.Palindrome Linked List
         self.assertTrue(self.sl.isPalindrome(create_linked_list([1, 2, 2, 1])))
         self.assertFalse(self.sl.isPalindrome(create_linked_list([1, 2])))
+        self.assertFalse(self.sl.isPalindrome(create_linked_list([])))
 
     def test_lowestCommonAncestor(self):
         # 235.Lowest Common Ancestor of a Binary Search Tree
@@ -78,6 +79,11 @@ class TestP0201To0400(unittest.TestCase):
         p, q = root.left.right.left, root.left.right.right
         expected = root.left.right
         self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
+        root = create_binary_tree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
+        p, q = root.left.right.left, None
+        expected = p
+        self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
+        self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, q, p), expected))
 
     def test_maxSlidingWindow(self):
         # 239.Sliding Window Maximum

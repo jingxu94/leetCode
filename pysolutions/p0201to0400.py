@@ -1,6 +1,6 @@
 import random
 from collections import Counter, defaultdict, deque
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from .utils import ListNode, TreeNode
 
@@ -40,7 +40,8 @@ class Pro0201To0400:
         # 205.Isomoriphic Strings
         if len(s) != len(t):
             return False
-        mapping_st, mapping_ts = dict(), dict()
+        mapping_st: Dict[str, str] = dict()
+        mapping_ts: Dict[str, str] = dict()
         for i in range(len(s)):
             if mapping_ts.get(t[i]) is None:
                 mapping_ts[t[i]] = s[i]
@@ -68,6 +69,8 @@ class Pro0201To0400:
 
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         # 234.Palindrome Linked List
+        if head is None:
+            return False
         fd_mid, fd_end = head, head
         tmp_reverse = None
         while fd_end and fd_end.next:
@@ -85,6 +88,10 @@ class Pro0201To0400:
 
     def lowestCommonAncestor(self, root: Optional[TreeNode], p: Optional[TreeNode], q: Optional[TreeNode]):
         # 235.Lowest Common Ancestor of a Binary Search Tree
+        if p is None:
+            return q
+        if q is None:
+            return p
         while root:
             if p.val < root.val and q.val < root.val:
                 root = root.left
@@ -100,7 +107,7 @@ class Pro0201To0400:
         if not nums:
             return []
         # Initialize deque and result list
-        window = deque()
+        window: deque = deque()
         result = []
 
         for i, num in enumerate(nums):
@@ -123,6 +130,9 @@ class Pro0201To0400:
 
     def firstBadVersion(self, n: int) -> int:  # pragma: no cover
         # 278.First Bad Version
+        def isBadVersion(version: int) -> bool:
+            return random.choice([True, False])
+
         left, right = 1, n
         while left < right:
             mid = left + (right - left) // 2
@@ -178,6 +188,9 @@ class Pro0201To0400:
 
     def guessNumber(self, n: int) -> int:  # pragma: no cover
         # 374.Guess Number Higher or Lower
+        def guess(num: int) -> int:
+            return random.choice([-1, 0, 1])
+
         left, right = 1, n
         while left <= right:
             mid = (left + right) // 2
