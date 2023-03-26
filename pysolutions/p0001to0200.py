@@ -801,6 +801,17 @@ class Pro0001To0200:
         words.reverse()
         return " ".join(words)
 
+    def findMin(self, nums: List[int]) -> int:
+        # 153.Find Minimum in Rotated Sorted Array
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] < nums[right]:
+                right = mid
+            else:
+                left = mid + 1
+        return nums[left]
+
     def twoSum(self, numbers: List[int], target: int) -> Optional[List[int]]:
         # 167.Two Sum 2 - Input Array Is Sorted
         # left, right = 0, len(numbers) - 1

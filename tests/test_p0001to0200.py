@@ -502,6 +502,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.reverseWords(s2), expected2)
         self.assertEqual(self.sl.reverseWords(s3), expected3)
 
+    def test_findMin(self):
+        # 153.Find Minimum in Rotated Sorted Array
+        self.assertEqual(self.sl.findMin([3, 4, 5, 1, 2]), 1)
+        self.assertEqual(self.sl.findMin([4, 5, 6, 7, 0, 1, 2]), 0)
+        self.assertEqual(self.sl.findMin([11, 13, 15, 17]), 11)
+
     def test_twoSum(self):
         # 167.Two Sum 2 - Input Array Is Sorted
         self.assertEqual(self.sl.twoSum([1, 2, 3, 4, 6], 6), [2, 4])
