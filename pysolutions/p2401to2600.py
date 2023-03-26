@@ -10,12 +10,12 @@ class Pro2401To2600:
     def minScore(self, n: int, roads: List[List[int]]) -> int:
         # 2492.Minimum Score of a Path Between Two Cities
         ans = math.inf
-        gr = [[] for _ in range(n + 1)]
+        gr: List[List[tuple]] = [[] for _ in range(n + 1)]
         for edge in roads:
             gr[edge[0]].append((edge[1], edge[2]))  # u-> {v, dis}
             gr[edge[1]].append((edge[0], edge[2]))  # v-> {u, dis}
         vis = [0] * (n + 1)
-        q = Queue()
+        q: Queue = Queue()
         q.put(1)
         vis[1] = 1
         while not q.empty():

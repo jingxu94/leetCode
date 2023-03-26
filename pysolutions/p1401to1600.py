@@ -21,7 +21,7 @@ class Pro1401To1600:
         for a, b in connections:
             roads[a].append((b, 1))  # Edge from a to b needs to be reversed
             roads[b].append((a, 0))  # Edge from b to a is already in the correct direction
-        checked = set()
+        checked: set[int] = set()
         return dfs(0)
 
     def runningSum(self, nums: List[int]) -> List[int]:
@@ -109,7 +109,8 @@ class Pro1401To1600:
 class BrowserHistory:  # pragma: no cover
     # 1472.Design Browser History
     def __init__(self, homepage: str):
-        self._history, self._future = [], []
+        self._history: List[str] = []
+        self._future: List[str] = []
         self._curr = homepage
 
     def visit(self, url: str) -> None:

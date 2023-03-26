@@ -39,16 +39,17 @@ class Pro0601To0800:
             elif curr1.right is None:
                 curr1.right = curr2.right
 
-        if root1 is not None and root2 is None:
+        if root1 is not None and root2 is not None:
+            curr1: TreeNode = root1
+            curr2: TreeNode = root2
+            merge_bin_tree(curr1, curr2)
+            return root1
+        elif root1 is not None and root2 is None:
             return root1
         elif root1 is None and root2 is not None:
             return root2
-        elif root1 is None and root2 is None:
-            return None
         else:
-            curr1, curr2 = root1, root2
-            merge_bin_tree(curr1, curr2)
-            return root1
+            return None
 
     def judgeSquareSum(self, c: int) -> bool:
         # 633.Sum of Square Numbers
@@ -193,7 +194,7 @@ class Pro0601To0800:
                 backtrack(path)
                 path.pop()
 
-        up_or_low = []
+        up_or_low: List[List[str]] = []
         backtrack([])
         ans = []
         for up_low in up_or_low:

@@ -36,6 +36,7 @@ class TestP0801To1000(unittest.TestCase):
         expected = create_linked_list([4, 5, 6])
         ans = self.sl.middleNode(head)
         self.assertTrue(eq_linked_list(ans, expected))
+        self.assertIsNone(self.sl.middleNode(None))
 
     def test_sortArray(self):
         # 912.Sort an Array
@@ -66,6 +67,7 @@ class TestP0801To1000(unittest.TestCase):
         root2 = create_binary_tree([1, 2, 3, 4, 5, None, 7])
         self.assertTrue(self.sl.isCompleteTree(root1))
         self.assertFalse(self.sl.isCompleteTree(root2))
+        self.assertTrue(self.sl.isCompleteTree(None))
 
     def test_largestPerimeter(self):
         # 976.Largest Perimeter Triangle

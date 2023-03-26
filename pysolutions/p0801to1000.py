@@ -43,6 +43,8 @@ class Pro0801To1000:
 
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 876.Middle of the Linked List
+        if not head:
+            return None
         slow, fast = head, head
         while fast and fast.next:
             slow = slow.next
@@ -84,6 +86,8 @@ class Pro0801To1000:
 
     def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
         # 958.Check Completeness of a Binary Tree
+        if not root:
+            return True
         queue = deque([root])
         while queue[0]:
             node = queue.popleft()
@@ -116,8 +120,8 @@ class Pro0801To1000:
             return 0
         time = 0
         dx = [0, 1, 0, -1, 0]
-        queue = deque([])
-        queue_next = deque([])
+        queue: deque = deque([])
+        queue_next: deque = deque([])
         for row in range(m):
             for col in range(n):
                 if grid[row][col] == 2:

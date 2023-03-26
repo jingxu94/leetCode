@@ -206,7 +206,7 @@ class Pro1201To1400:
         Returns:
         int: The distance value between two arrays.
         """
-        check = []
+        check: List[int] = []
         for i in range(-d, d + 1):
             check.extend(map(lambda x: x + i, arr2))
         ans = 0
