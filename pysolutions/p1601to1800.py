@@ -98,3 +98,15 @@ class Pro1601To1800:
         if ndiff == 1:
             return False
         return True
+
+
+class ParkingSystem:  # pragma: no cover
+    # 1603.Design Parking System
+    def __init__(self, big: int, medium: int, small: int):
+        self.parking = [big, medium, small]
+
+    def addCar(self, carType: int) -> bool:
+        if self.parking[carType - 1] > 0:
+            self.parking[carType - 1] -= 1
+            return True
+        return False
