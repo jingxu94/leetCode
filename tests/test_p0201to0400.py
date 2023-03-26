@@ -50,6 +50,28 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
         self.assertFalse(self.sl.containsDuplicate([1, 2, 3, 4]))
 
+    def test_invertTree(self):
+        # 226.Invert Binary Tree
+        root = create_binary_tree([4, 2, 7, 1, 3, 6, 9])
+        expected = create_binary_tree([4, 7, 2, 9, 6, 3, 1])
+        self.assertTrue(eq_binary_tree(self.sl.invertTree(root), expected))
+        root = create_binary_tree([2, 1, 3])
+        expected = create_binary_tree([2, 3, 1])
+        self.assertTrue(eq_binary_tree(self.sl.invertTree(root), expected))
+        root = create_binary_tree([1])
+        expected = create_binary_tree([1])
+        self.assertTrue(eq_binary_tree(self.sl.invertTree(root), expected))
+        root = create_binary_tree([])
+        expected = create_binary_tree([])
+        self.assertTrue(eq_binary_tree(self.sl.invertTree(root), expected))
+
+    def test_isPowerOfTwo(self):
+        # 231.Power of Two
+        self.assertFalse(self.sl.isPowerOfTwo(0))
+        self.assertTrue(self.sl.isPowerOfTwo(1))
+        self.assertTrue(self.sl.isPowerOfTwo(16))
+        self.assertFalse(self.sl.isPowerOfTwo(218))
+
     def test_isPalindrome(self):
         # 234.Palindrome Linked List
         self.assertTrue(self.sl.isPalindrome(create_linked_list([1, 2, 2, 1])))

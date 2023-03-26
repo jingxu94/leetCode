@@ -51,6 +51,21 @@ class Pro0201To0400:
                 return False
         return True
 
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        # 226.Invert Binary Tree
+        if root is None:
+            return None
+        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        return root
+
+    def isPowerOfTwo(self, n: int) -> bool:
+        # 231.Power of Two
+        if n <= 0:
+            return False
+        while n % 2 == 0:
+            n = n // 2
+        return n == 1
+
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 206.Reverse Linked List
         curr, ans = head, None
