@@ -35,7 +35,7 @@ def create_linked_list(nums: List[int]) -> Optional[ListNode]:
 
 def create_binary_tree(nums: List[Optional[int]]) -> Optional[TreeNode]:
     def create_tree(index: int) -> Optional[TreeNode]:
-        if index >= len(nums) or nums[index] is None:
+        if index >= len(nums):
             return None
         val = nums[index]
         if val is not None:
@@ -43,6 +43,8 @@ def create_binary_tree(nums: List[Optional[int]]) -> Optional[TreeNode]:
             node.left = create_tree(2 * index + 1)
             node.right = create_tree(2 * index + 2)
             return node
+        else:
+            return None
 
     return create_tree(0)
 

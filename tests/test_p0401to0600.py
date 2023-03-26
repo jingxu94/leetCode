@@ -30,6 +30,19 @@ class TestP0401To0600(unittest.TestCase):
             ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"],
         )
 
+    def test_characterReplacement(self):
+        # 424.Longest Repeating Character Replacement
+        self.assertEqual(self.sl.characterReplacement("ABAB", 2), 4)
+        self.assertEqual(self.sl.characterReplacement("AABABBA", 1), 4)
+        self.assertEqual(self.sl.characterReplacement("AABABBA", 2), 5)
+
+    def test_findAnagrams(self):
+        # 438.Find All Anagrams in a String
+        self.assertListEqual(self.sl.findAnagrams("cbaebabacd", "abc"), [0, 6])
+        self.assertListEqual(self.sl.findAnagrams("abab", "ab"), [0, 1, 2])
+        self.assertListEqual(self.sl.findAnagrams("aab", "ab"), [1])
+        self.assertListEqual(self.sl.findAnagrams("abab", "baddfd"), [])
+
     def test_arrangeCoins(self):
         # 441.Arranging Coins
         self.assertEqual(self.sl.arrangeCoins(5), 2)

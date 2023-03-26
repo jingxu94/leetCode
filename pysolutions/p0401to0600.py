@@ -1,7 +1,13 @@
 from collections import Counter, deque
 from typing import List, Optional
 
-from .utils import Node, TreeNode
+from .utils import TreeNode
+
+
+class Node:  # pragma: no cover
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
 
 
 class Pro0401To0600:
@@ -70,6 +76,38 @@ class Pro0401To0600:
                 left = mid + 1
         return right
 
+    def characterReplacement(self, s: str, k: int) -> int:
+        # 424.Longest Repeating Character Replacement
+        left, right = 0, 0
+        max_count = 0
+        count = [0] * 26
+        while right < len(s):
+            count[ord(s[right]) - ord("A")] += 1
+            max_count = max(max_count, count[ord(s[right]) - ord("A")])
+            if right - left + 1 - max_count > k:
+                count[ord(s[left]) - ord("A")] -= 1
+                left += 1
+            right += 1
+        return right - left
+
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        # 438.Find All Anagrams in a String
+        if len(s) < len(p):
+            return []
+        ct_p = Counter(p)
+        ct_s = Counter(s[: len(p)])
+        ans = []
+        if ct_p == ct_s:
+            ans.append(0)
+        for i in range(len(p), len(s)):
+            ct_s[s[i - len(p)]] -= 1
+            if ct_s[s[i - len(p)]] == 0:
+                del ct_s[s[i - len(p)]]
+            ct_s[s[i]] += 1
+            if ct_p == ct_s:
+                ans.append(i - len(p) + 1)
+        return ans
+
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # 496.Next Greater Element1
         ans = list([-1 for _ in range(len(nums1))])
@@ -96,7 +134,7 @@ class Pro0401To0600:
         # 542.0 1 Matrix
         m, n = len(mat), len(mat[0])
         dx = [0, 1, 0, -1, 0]
-        queue = deque([])
+        queue: deque = deque([])
         for row in range(m):
             for col in range(n):
                 if mat[row][col] == 0:
