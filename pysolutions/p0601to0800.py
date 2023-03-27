@@ -84,6 +84,27 @@ class Pro0601To0800:
                     max_area = max(max_area, dfs(grid, row, col))
         return max_area
 
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        # 700.Search in a Binary Search Tree
+        if not root:
+            return None
+        elif root.val == val:
+            return root
+        elif root.val < val:
+            return self.searchBST(root.right, val)
+        else:
+            return self.searchBST(root.left, val)
+
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        # 701.Insert into a Binary Search Tree
+        if not root:
+            return TreeNode(val)
+        elif root.val > val:
+            root.left = self.insertIntoBST(root.left, val)
+        else:
+            root.right = self.insertIntoBST(root.right, val)
+        return root
+
     def search(self, nums: List[int], target: int) -> int:
         # 704.Binary Search
         def bin_search(nums: List[int], target: int, base: int):

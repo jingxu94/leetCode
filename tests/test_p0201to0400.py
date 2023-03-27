@@ -133,6 +133,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertListEqual(self.sl.moveZeroes([0]), [0])
         self.assertEqual(self.sl.moveZeroes([0]), [0])
 
+    def test_getHint(self):
+        # 299.Bulls and Cows
+        self.assertEqual(self.sl.getHint("1807", "7810"), "1A3B")
+        self.assertEqual(self.sl.getHint("1123", "0111"), "1A1B")
+
     def test_reverseString(self):
         # 344.Reverse String
         self.assertEqual(self.sl.reverseString(["a", "b"]), ["b", "a"])

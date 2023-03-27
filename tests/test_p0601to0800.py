@@ -55,6 +55,27 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.maxAreaOfIsland(grid), 6)
         self.assertEqual(self.sl.maxAreaOfIsland([[0, 0, 0, 0, 0, 0, 0, 0]]), 0)
 
+    def test_searchBST(self):
+        # 700.Search in a Binary Tree
+        example1 = eq_binary_tree(
+            create_binary_tree([2, 1, 3]), self.sl.searchBST(create_binary_tree([4, 2, 7, 1, 3]), 2)
+        )
+        self.assertTrue(example1)
+        example2 = eq_binary_tree(create_binary_tree([]), self.sl.searchBST(create_binary_tree([4, 2, 7, 1, 3]), 5))
+        self.assertTrue(example2)
+
+    def test_insertIntoBST(self):
+        # 701.Insert into a Binary Search Tree
+        root = create_binary_tree([4, 2, 7, 1, 3])
+        expected = create_binary_tree([4, 2, 7, 1, 3, 5])
+        self.assertTrue(eq_binary_tree(expected, self.sl.insertIntoBST(root, 5)))
+        root = create_binary_tree([40, 20, 60, 10, 30, 50, 70])
+        expected = create_binary_tree([40, 20, 60, 10, 30, 50, 70, None, None, 25])
+        self.assertTrue(eq_binary_tree(expected, self.sl.insertIntoBST(root, 25)))
+        root = create_binary_tree([4, 2, 7, 1, 3, None, None, None, None, None, None])
+        expected = create_binary_tree([4, 2, 7, 1, 3, 5])
+        self.assertTrue(eq_binary_tree(expected, self.sl.insertIntoBST(root, 5)))
+
     def test_search(self):
         # 704.Binary Search
         self.assertEqual(self.sl.search([-1, 0, 3, 5, 9, 12], 9), 4)

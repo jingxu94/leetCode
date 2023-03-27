@@ -171,6 +171,23 @@ class Pro0201To0400:
 
         return nums
 
+    def getHint(self, secret: str, guess: str) -> str:
+        # 299.Bulls and Cows
+        newsct = newgus = ""
+        bulls = cows = 0
+        for i in range(len(secret)):
+            if secret[i] == guess[i]:
+                bulls += 1
+            else:
+                newsct += secret[i]
+                newgus += guess[i]
+        cts = Counter(newsct)
+        ctg = Counter(newgus)
+        for key in ctg.keys():
+            if key in cts.keys():
+                cows += min(ctg[key], cts[key])
+        return "".join([str(bulls), "A", str(cows), "B"])
+
     def reverseString(self, s: List[str]) -> List[str]:
         """344.Reverse String
         Do not return anything, modify s in-place instead.
