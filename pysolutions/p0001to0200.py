@@ -1,6 +1,6 @@
 import math
 import re
-from collections import Counter, deque, defaultdict
+from collections import Counter, deque
 from typing import List, Optional
 
 from .utils import ListNode, Node, TreeNode
@@ -335,6 +335,18 @@ class Pro0001To0200:
             total_steps -= 1
             decay -= 1
         return int(up / down)
+
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        # 64.Minimum Path Sum
+        m, n = len(grid), len(grid[0])
+        for i in range(1, m):
+            grid[i][0] += grid[i - 1][0]
+        for j in range(1, n):
+            grid[0][j] += grid[0][j - 1]
+        for i in range(1, m):
+            for j in range(1, n):
+                grid[i][j] += min(grid[i - 1][j], grid[i][j - 1])
+        return grid[m - 1][n - 1]
 
     def plusOne(self, digits: List[int]) -> List[int]:
         # 66.Plus One
@@ -738,6 +750,14 @@ class Pro0001To0200:
 
         return helper(root, 0)
 
+    def singleNumber(self, nums: List[int]) -> int:
+        # 136.Single Number
+        count = Counter(nums)
+        for key in count.keys():
+            if count[key] == 1:
+                return int(key)
+        return -1
+
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # 141.Linked List Cycle
         if head is None:
@@ -838,6 +858,15 @@ class Pro0001To0200:
         """
         k = k % len(nums)
         nums[k:], nums[:k] = nums[:-k], nums[-k:]
+
+    def reverseBits(self, n: int) -> int:  # pragma: no cover
+        # 190.Reverse Bits
+        ans = 0
+        for _ in range(32):
+            ans <<= 1
+            ans |= n & 1
+            n >>= 1
+        return ans
 
     def hammingWeight(self, n: int) -> int:
         # 191.Number of 1 Bits

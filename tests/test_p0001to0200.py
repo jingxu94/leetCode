@@ -236,6 +236,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.uniquePaths(3, 2), 3)
         self.assertEqual(self.sl.uniquePaths(1, 1), 1)
 
+    def test_minPathSum(self):
+        # 64.Minimum Path Sum
+        self.assertEqual(self.sl.minPathSum([[1, 3, 1], [1, 5, 1], [4, 2, 1]]), 7)
+        self.assertEqual(self.sl.minPathSum([[1, 2, 3], [4, 5, 6]]), 12)
+
     def test_plusOne(self):
         # 66.Plus One
         self.assertEqual(self.sl.plusOne([1, 2, 3]), [1, 2, 4])
@@ -456,6 +461,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([1, 2, 3])), 25)
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([4, 9, 0, 5, 1])), 1026)
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([])), 0)
+
+    def test_singleNumber(self):
+        # 136.Single Number
+        self.assertEqual(self.sl.singleNumber([2, 2, 1]), 1)
+        self.assertEqual(self.sl.singleNumber([4, 1, 2, 1, 2]), 4)
+        self.assertEqual(self.sl.singleNumber([1]), 1)
+        self.assertEqual(self.sl.singleNumber([1, 1]), -1)
 
     def test_hasCycle(self):
         # 141.Linked List Cycle
