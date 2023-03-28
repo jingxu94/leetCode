@@ -1,5 +1,4 @@
 import random
-import re
 from collections import Counter, defaultdict, deque
 from typing import Dict, List, Optional
 
@@ -290,7 +289,7 @@ class Pro0201To0400:
         # return s
         # ========================
         # S2: Using stack
-        stack = []
+        stack: List[str] = []
         for ch in s:
             if ch == "]":
                 repeat_str = ""
@@ -301,8 +300,8 @@ class Pro0201To0400:
                 k = ""
                 while stack and stack[-1].isdigit():
                     k = stack.pop() + k
-                k = int(k)
-                stack.append(repeat_str * k)
+                nk = int(k)
+                stack.append(repeat_str * nk)
             else:
                 stack.append(ch)
         return "".join(stack)
