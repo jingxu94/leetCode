@@ -1,4 +1,5 @@
 import random
+import re
 from collections import Counter, defaultdict, deque
 from typing import Dict, List, Optional
 
@@ -280,6 +281,31 @@ class Pro0201To0400:
             if s[0] == t[i]:
                 return self.isSubsequence(s[1:], t[i + 1 :])
         return False
+
+    def decodeString(self, s: str) -> str:
+        # 394.Decode String
+        # S1: Using re
+        # while '[' in s:
+        #     s = re.sub(r'(\d+)\[([a-zA-Z]*)\]', lambda m: int(m.group(1)) * m.group(2), s)
+        # return s
+        # ========================
+        # S2: Using stack
+        stack = []
+        for ch in s:
+            if ch == "]":
+                repeat_str = ""
+                while stack and stack[-1] != "[":
+                    repeat_str = stack.pop() + repeat_str
+                stack.pop()  # remove '[' from stack
+                # Get the number of repetitions
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                k = int(k)
+                stack.append(repeat_str * k)
+            else:
+                stack.append(ch)
+        return "".join(stack)
 
 
 class Trie:  # pragma: no cover

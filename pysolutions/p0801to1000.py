@@ -8,6 +8,21 @@ class Pro0801To1000:
     def __init__(self):
         pass
 
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        # 844.Backspace String Compare
+        stack_s, stack_t = "", ""
+        for i in range(len(s)):
+            if s[i] == "#":
+                stack_s = stack_s[:-1]
+            else:
+                stack_s += s[i]
+        for i in range(len(t)):
+            if t[i] == "#":
+                stack_t = stack_t[:-1]
+            else:
+                stack_t += t[i]
+        return stack_s == stack_t
+
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
         # 852.Peak Index in a Mountain Array
         left, right = 0, len(arr) - 1

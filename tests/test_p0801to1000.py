@@ -9,6 +9,12 @@ class TestP0801To1000(unittest.TestCase):
     def sl(self):
         return Pro0801To1000()
 
+    def test_backspaceCompare(self):
+        # 844.Backspace String Compare
+        self.assertTrue(self.sl.backspaceCompare("ab#c", "ad#c"))
+        self.assertTrue(self.sl.backspaceCompare("ab##", "c#d#"))
+        self.assertFalse(self.sl.backspaceCompare("a#c", "b"))
+
     def test_peakIndexInMountainArray(self):
         # 852.Peak index in a Mountain Array
         self.assertEqual(self.sl.peakIndexInMountainArray([0, 1, 0]), 1)

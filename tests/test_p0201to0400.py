@@ -177,3 +177,9 @@ class TestP0201To0400(unittest.TestCase):
         # 392.Is Subsequence
         self.assertTrue(self.sl.isSubsequence("abc", "ahbgdc"))
         self.assertFalse(self.sl.isSubsequence("axc", "ahbgdc"))
+
+    def test_decodeString(self):
+        # 394.Decode String
+        self.assertEqual(self.sl.decodeString("3[a]2[bc]"), "aaabcbc")
+        self.assertEqual(self.sl.decodeString("3[a2[c]]"), "accaccacc")
+        self.assertEqual(self.sl.decodeString("2[abc]3[cd]ef"), "abcabccdcdcdef")
