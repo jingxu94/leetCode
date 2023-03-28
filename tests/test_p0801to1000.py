@@ -79,6 +79,11 @@ class TestP0801To1000(unittest.TestCase):
         self.assertListEqual(self.sl.sortedSquares([-4, -1, 0, 3, 10]), [0, 1, 9, 16, 100])
         self.assertListEqual(self.sl.sortedSquares([-7, -3, 2, 3, 11]), [4, 9, 9, 49, 121])
 
+    def test_mincostTickets(self):
+        # 983.Minimum Cost For Tickets
+        self.assertEqual(self.sl.mincostTickets([1, 4, 6, 7, 8, 20], [2, 7, 15]), 11)
+        self.assertEqual(self.sl.mincostTickets([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], [2, 7, 15]), 17)
+
     def test_orangesRotting(self):
         # 994.Rotting Oranges
         self.assertEqual(self.sl.orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), 4)

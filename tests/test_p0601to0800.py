@@ -32,6 +32,14 @@ class TestP0601To0800(unittest.TestCase):
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, root1), root1))
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, None), None))
 
+    def test_findTarget(self):
+        # 653.Two Sum IV - Input is a BST
+        root = create_binary_tree([5, 3, 6, 2, 4, None, 7])
+        self.assertTrue(self.sl.findTarget(root, 9))
+        root = create_binary_tree([5, 3, 6, 2, 4, None, 7])
+        self.assertFalse(self.sl.findTarget(root, 28))
+        self.assertFalse(self.sl.findTarget(create_binary_tree([]), 28))
+
     def test_judgeSquareSum(self):
         # 633.Sum of Square Numbers
         self.assertTrue(self.sl.judgeSquareSum(5))

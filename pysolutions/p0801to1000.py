@@ -113,6 +113,19 @@ class Pro0801To1000:
             ans.append(num**2)
         return sorted(ans)
 
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        # 983.Minimum Cost For Tickets
+        dp = [0] * 366
+        day_set = set(days)
+        for day in range(1, 366):
+            if day not in day_set:
+                dp[day] = dp[day - 1]
+                continue
+            dp[day] = min(
+                dp[max(day - 1, 0)] + costs[0], dp[max(day - 7, 0)] + costs[1], dp[max(day - 30, 0)] + costs[2]
+            )
+        return dp[-1]
+
     def orangesRotting(self, grid: List[List[int]]) -> int:
         # 994.Rotting Oranges
         m, n = len(grid), len(grid[0])

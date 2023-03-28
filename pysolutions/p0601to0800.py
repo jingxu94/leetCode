@@ -64,6 +64,31 @@ class Pro0601To0800:
                 b -= 1
         return False
 
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        # 653.Two Sum IV - Input is a BST
+        if not root:
+            return False
+        tree_list = []
+        queue: List[Optional[TreeNode]] = [root]
+        while queue:
+            node = queue.pop(0)
+            if node:
+                tree_list.append(node.val)
+                queue.extend([node.left, node.right] if node else [])
+            else:
+                tree_list.append(None)
+        while tree_list[-1] is None:
+            tree_list.pop()
+        checked = set()
+        for num in tree_list:
+            if num is None:
+                continue
+            elif k - num in checked:
+                return True
+            else:
+                checked.add(num)
+        return False
+
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         # 695.Max Area of Island
         def dfs(grid, row, col):
