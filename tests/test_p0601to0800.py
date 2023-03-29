@@ -48,6 +48,13 @@ class TestP0601To0800(unittest.TestCase):
         self.assertFalse(self.sl.judgeSquareSum(3))
         self.assertFalse(self.sl.judgeSquareSum(24))
 
+    def test_topKFrequent(self):
+        # 692.Top K Frequent Words
+        words = ["i", "love", "leetcode", "i", "love", "coding"]
+        self.assertEqual(self.sl.topKFrequent(words, 2), ["i", "love"])
+        words = ["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"]
+        self.assertEqual(self.sl.topKFrequent(words, 4), ["the", "is", "sunny", "day"])
+
     def test_maxAreaOfIsland(self):
         # 695.Max Area of Island
         grid = [

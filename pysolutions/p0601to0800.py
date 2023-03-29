@@ -89,6 +89,12 @@ class Pro0601To0800:
                 checked.add(num)
         return False
 
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        # 692.Top K Frequent Words
+        ct_words = Counter(sorted(words))
+        freq_words = ct_words.most_common(k)
+        return list(key for key, _ in freq_words)
+
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         # 695.Max Area of Island
         def dfs(grid, row, col):
