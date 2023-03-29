@@ -21,3 +21,10 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.lastStoneWeight([2, 7, 4, 1, 8, 1]), 1)
         self.assertEqual(self.sl.lastStoneWeight([1]), 1)
         self.assertEqual(self.sl.lastStoneWeight([1, 1, 2, 2]), 0)
+
+    def test_tribonacci(self):
+        # 1137.N-th Tribonacci Number
+        self.assertEqual(self.sl.tribonacci(1), 1)
+        self.assertEqual(self.sl.tribonacci(2), 1)
+        self.assertEqual(self.sl.tribonacci(4), 4)
+        self.assertEqual(self.sl.tribonacci(25), 1389537)

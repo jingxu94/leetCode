@@ -192,6 +192,17 @@ class Pro0601To0800:
         dfs(image, sr, sc, starting_color, color)
         return image
 
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        # 740.Delete and Earn
+        max_val = max(nums)
+        points = [0] * (max_val + 1)
+        for num in nums:
+            points[num] += num
+        prev, curr = 0, 0
+        for point in points:
+            prev, curr = curr, max(prev + point, curr)
+        return curr
+
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
         # 744.Find Smallest Letter Greater Than Target
         if letters[-1] <= target:

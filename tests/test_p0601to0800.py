@@ -117,6 +117,11 @@ class TestP0601To0800(unittest.TestCase):
         expected = [[0, 0, 0], [0, 0, 0]]
         self.assertListEqual(self.sl.floodFill(image, sr, sc, color), expected)
 
+    def test_deleteAndEarn(self):
+        # 740.Delete and Earn
+        self.assertEqual(self.sl.deleteAndEarn([3, 4, 2]), 6)
+        self.assertEqual(self.sl.deleteAndEarn([2, 2, 3, 3, 3, 4]), 9)
+
     def test_nextGreatestLetter(self):
         # 744.Find Smallest Letter Greater Than Target
         self.assertEqual(self.sl.nextGreatestLetter(["c", "f", "j"], "a"), "c")

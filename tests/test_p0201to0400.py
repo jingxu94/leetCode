@@ -44,6 +44,14 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([1, 2])), create_linked_list([2, 1])))
         self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([])), create_linked_list([])))
 
+    def test_rob(self):
+        # 213.House Robber II
+        self.assertEqual(self.sl.rob([2, 3, 2]), 3)
+        self.assertEqual(self.sl.rob([1, 2, 3, 1]), 4)
+        self.assertEqual(self.sl.rob([1, 2, 3]), 3)
+        self.assertEqual(self.sl.rob([3]), 3)
+        self.assertEqual(self.sl.rob([]), 0)
+
     def test_containDuplicate(self):
         # 217.Contains Duplicate
         self.assertTrue(self.sl.containsDuplicate([1, 2, 3, 1]))

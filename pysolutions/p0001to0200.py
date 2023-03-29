@@ -327,6 +327,33 @@ class Pro0001To0200:
                     res += [(i, element), (element, j), (i // 3, j // 3, element)]
         return len(res) == len(set(res))
 
+    def jump(self, nums: List[int]) -> int:
+        # 45.Jump Game II
+        # n = len(nums)
+        # if n == 1:
+        #     return 0
+        # min_steps = [math.inf] * n
+        # min_steps[0] = 0
+        # for i, num in enumerate(nums[:-1]):
+        #     for j in range(i + 1, i + num + 1):
+        #         if j < n:
+        #             min_steps[j] = min(min_steps[j], min_steps[i] + 1)
+        # return int(min_steps[-1])
+        # ================================
+        n = len(nums)
+        if n == 1:
+            return 0
+        jumps = 0
+        curr_end = curr_farthest = 0
+        for i in range(n - 1):
+            curr_farthest = max(curr_farthest, i + nums[i])
+            if i == curr_end:
+                jumps += 1
+                curr_end = curr_farthest
+                if curr_end >= n - 1:
+                    return jumps
+        return -1
+
     def permute(self, nums: List[int]) -> List[List[int]]:
         # 46.Permutations
         def backtrack(path):
@@ -349,6 +376,19 @@ class Pro0001To0200:
         for i in range(1, len(nums)):
             dp[i] = max(nums[i], nums[i] + dp[i - 1])
         return max(dp)
+
+    def canJump(self, nums: List[int]) -> bool:
+        # 55.Jump Game
+        if len(nums) == 1:
+            return True
+        can_touch = nums[0]
+        index = 0
+        while can_touch > index:
+            if can_touch >= len(nums) - 1:
+                return True
+            index += 1
+            can_touch = max(can_touch, index + nums[index])
+        return False
 
     def lengthOfLastWord(self, s: str) -> int:
         # 58.Length of Last Word

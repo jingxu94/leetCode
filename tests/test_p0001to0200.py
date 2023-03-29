@@ -220,6 +220,14 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.isValidSudoku(board1))
         self.assertFalse(self.sl.isValidSudoku(board2))
 
+    def test_jump(self):
+        # 45.Jump Game II
+        self.assertEqual(self.sl.jump([2, 3, 1, 1, 4]), 2)
+        self.assertEqual(self.sl.jump([2, 3, 0, 1, 4]), 2)
+        self.assertEqual(self.sl.jump([1, 1, 1, 1, 1]), 4)
+        self.assertEqual(self.sl.jump([0, 2]), -1)
+        self.assertEqual(self.sl.jump([1]), 0)
+
     def test_permute(self):
         # 46.Permutations
         self.assertListEqual(
@@ -233,6 +241,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)
         self.assertEqual(self.sl.maxSubArray([1]), 1)
         self.assertEqual(self.sl.maxSubArray([5, 4, -1, 7, 8]), 23)
+
+    def test_canJump(self):
+        # 55.Jump Game
+        self.assertTrue(self.sl.canJump([2, 3, 1, 1, 4]))
+        self.assertTrue(self.sl.canJump([0]))
+        self.assertFalse(self.sl.canJump([3, 2, 1, 0, 4]))
 
     def test_lengthOfLastWord(self):
         # 58.Length of Last Word

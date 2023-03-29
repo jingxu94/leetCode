@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, defaultdict
 from typing import List
 
 
@@ -27,3 +27,15 @@ class Pro1001To1200:
             if y != x:
                 stones.append(y - x)
         return stones[0] if stones else 0
+
+    def tribonacci(self, n: int) -> int:
+        # 1137.N-th Tribonacci Number
+        if n == 0 or n == 1:
+            return n
+        elif n == 2:
+            return 1
+        else:
+            fst, sec, trd = 0, 1, 1
+            for _ in range(n - 2):
+                fst, sec, trd = sec, trd, fst + sec + trd
+            return trd

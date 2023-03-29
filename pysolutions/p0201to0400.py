@@ -51,6 +51,20 @@ class Pro0201To0400:
                 return False
         return True
 
+    def rob(self, nums: List[int]) -> int:
+        # 213.House Robber II
+        def rob_helper(nums: List[int]) -> int:
+            prev, curr = 0, 0
+            for num in nums:
+                prev, curr = curr, max(prev + num, curr)
+            return curr
+
+        if len(nums) == 0:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        return max(rob_helper(nums[:-1]), rob_helper(nums[1:]))
+
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         # 226.Invert Binary Tree
         if root is None:
