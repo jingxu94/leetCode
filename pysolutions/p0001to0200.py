@@ -110,6 +110,38 @@ class Pro0001To0200:
             prefix.append(strs[0][i])
         return strs[0]
 
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # 15.3Sum
+        # permutation = (
+        #     [nums[i], nums[j], nums[k]]
+        #     for i in range(len(nums) - 2)
+        #     for j in range(i + 1, len(nums) - 1)
+        #     for k in range(j + 1, len(nums))
+        #     if nums[i] + nums[j] + nums[k] == 0
+        # )
+        # unique_tuples = set(tuple(lst) for lst in permutation)
+        # return [list(t) for t in unique_tuples]
+        # =====================================
+        ans: List[List[int]] = []
+        nums.sort()
+        for i in range(len(nums) - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                if total < 0:
+                    left += 1
+                elif total > 0:
+                    right -= 1
+                else:
+                    ans.append([nums[i], nums[left], nums[right]])
+                    left += 1
+                    right -= 1
+                    while left < right and nums[right] == nums[right + 1]:
+                        right -= 1
+        return ans
+
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         # 19.Remove Nth Node From End of List
         if head is None:
@@ -752,11 +784,14 @@ class Pro0001To0200:
 
     def singleNumber(self, nums: List[int]) -> int:
         # 136.Single Number
+        # count = Counter(nums)
+        # for key in count.keys():
+        #     if count[key] == 1:
+        #         return int(key)
+        # return -1
+        # ========================
         count = Counter(nums)
-        for key in count.keys():
-            if count[key] == 1:
-                return int(key)
-        return -1
+        return count.most_common()[-1][0]
 
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # 141.Linked List Cycle
@@ -851,6 +886,13 @@ class Pro0001To0200:
                 ind2 = numbers[ind1 + 1 :].index(target - i) + ind1 + 1
                 return [ind1 + 1, ind2 + 1]
         return []
+
+    def majorityElement(self, nums: List[int]) -> int:
+        # 169.Majority Element
+        # return Counter(nums).most_common(1)[0][0]
+        # ====================================
+        nums.sort()
+        return nums[len(nums) // 2]
 
     def rotate(self, nums: List[int], k: int) -> None:  # pragma: no cover
         """189.Rotate Array

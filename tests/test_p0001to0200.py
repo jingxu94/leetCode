@@ -79,6 +79,16 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(res3, expected3)
         self.assertEqual(res4, expected4)
 
+    def test_threeSum(self):
+        # 15.3Sum
+        self.assertEqual(self.sl.threeSum([-1, 0, 1, 2, -1, -4]), [[-1, -1, 2], [-1, 0, 1]])
+        self.assertEqual(self.sl.threeSum([0, 1, 1]), [])
+        self.assertEqual(self.sl.threeSum([0, 0, 0]), [[0, 0, 0]])
+        nums = [-1, 0, 1, 2, -1, -2, 2]
+        self.assertEqual(self.sl.threeSum(nums), [[-2, 0, 2], [-1, -1, 2], [-1, 0, 1]])
+        nums = [-3, -2, -1, 0, 1, 2, 3]
+        self.assertEqual(self.sl.threeSum(nums), [[-3, 0, 3], [-3, 1, 2], [-2, -1, 3], [-2, 0, 2], [-1, 0, 1]])
+
     def test_removeNthFromEnd(self):
         # 19.Remove Nth Node From of List
         self.assertTrue(
@@ -467,7 +477,6 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.singleNumber([2, 2, 1]), 1)
         self.assertEqual(self.sl.singleNumber([4, 1, 2, 1, 2]), 4)
         self.assertEqual(self.sl.singleNumber([1]), 1)
-        self.assertEqual(self.sl.singleNumber([1, 1]), -1)
 
     def test_hasCycle(self):
         # 141.Linked List Cycle
@@ -528,6 +537,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.twoSum([-1, 0], -1), [1, 2])
         self.assertEqual(self.sl.twoSum([0, 0, 3, 4], 0), [1, 2])
         self.assertEqual(self.sl.twoSum([], 5), [])  # Empty input
+
+    def test_majorityElement(self):
+        # 169.Majority Element
+        self.assertEqual(self.sl.majorityElement([3, 2, 3]), 3)
+        self.assertEqual(self.sl.majorityElement([2, 2, 1, 1, 1, 2, 2]), 2)
 
     def test_hammingWeight(self):
         # 191.Number of 1 Bits

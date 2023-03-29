@@ -44,6 +44,12 @@ class TestP0801To1000(unittest.TestCase):
         self.assertTrue(eq_linked_list(ans, expected))
         self.assertIsNone(self.sl.middleNode(None))
 
+    def test_isMonotonic(self):
+        # 896.Monotonic Array
+        self.assertTrue(self.sl.isMonotonic([1, 2, 2, 3]))
+        self.assertTrue(self.sl.isMonotonic([6, 5, 4, 4]))
+        self.assertFalse(self.sl.isMonotonic([1, 3, 2]))
+
     def test_sortArray(self):
         # 912.Sort an Array
         nums1 = [5, 2, 3, 1]

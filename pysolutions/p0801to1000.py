@@ -66,6 +66,14 @@ class Pro0801To1000:
             fast = fast.next.next
         return slow
 
+    def isMonotonic(self, nums: List[int]) -> bool:
+        # 896.Monotonic Array
+        if nums == sorted(nums):
+            return True
+        else:
+            nums.reverse()
+            return True if nums == sorted(nums) else False
+
     def sortArray(self, nums: List[int]) -> List[int]:
         # 912.Sort an Array
         nums_dict = Counter(nums)
