@@ -553,6 +553,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.reverseWords(s2), expected2)
         self.assertEqual(self.sl.reverseWords(s3), expected3)
 
+    def test_maxProduct(self):
+        # 152.Maximum Product Subarray
+        self.assertEqual(self.sl.maxProduct([2, 3, -2, 4]), 6)
+        self.assertEqual(self.sl.maxProduct([-2, 0, -1]), 0)
+
     def test_findMin(self):
         # 153.Find Minimum in Rotated Sorted Array
         self.assertEqual(self.sl.findMin([3, 4, 5, 1, 2]), 1)

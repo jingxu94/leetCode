@@ -59,6 +59,12 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.sortArray(nums1), expres1)
         self.assertEqual(self.sl.sortArray(nums2), expres2)
 
+    def test_maxSubarraySumCircular(self):
+        # 918.Maximum Sum Circular Subarray
+        self.assertEqual(self.sl.maxSubarraySumCircular([1, -2, 3, -2]), 3)
+        self.assertEqual(self.sl.maxSubarraySumCircular([5, -3, 5]), 10)
+        self.assertEqual(self.sl.maxSubarraySumCircular([-3, -2, -3]), -2)
+
     def test_isAlienSorted(self):
         # 953.Verifying an Alien Dictionary
         words = ["hello", "leetcode"]

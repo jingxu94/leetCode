@@ -957,6 +957,24 @@ class Pro0001To0200:
         words.reverse()
         return " ".join(words)
 
+    def maxProduct(self, nums: List[int]) -> int:
+        # 152.Maximum Product Subarray
+        # Initialize variables to keep track of maximum and minimum product
+        max_product = nums[0]
+        min_product = nums[0]
+        result = max_product
+        # Iterate through the given array
+        for i in range(1, len(nums)):
+            # Keep track of the maximum and minimum product seen so far
+            temp_max = max_product
+            temp_min = min_product
+            # Update the maximum and minimum product using the current element
+            max_product = max(nums[i], temp_max * nums[i], temp_min * nums[i])
+            min_product = min(nums[i], temp_max * nums[i], temp_min * nums[i])
+            # Update the result with the maximum product seen so far
+            result = max(result, max_product)
+        return result
+
     def findMin(self, nums: List[int]) -> int:
         # 153.Find Minimum in Rotated Sorted Array
         left, right = 0, len(nums) - 1

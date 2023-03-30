@@ -1,3 +1,4 @@
+import math
 from collections import Counter, deque
 from typing import List, Optional
 
@@ -81,6 +82,29 @@ class Pro0801To1000:
         for num in range(min(nums), max(nums) + 1):
             nums_sorted.extend([num] * nums_dict[num])
         return nums_sorted
+
+    def maxSubarraySumCircular(self, nums: List[int]) -> int:
+        # 918.Maximum Sum Circular Subarray
+        n = len(nums)
+        # Find the max subarray sum without circular property
+        max_sum = float("-inf")
+        cur_sum = 0
+        for i in range(n):
+            cur_sum = max(nums[i], cur_sum + nums[i])
+            max_sum = max(max_sum, cur_sum)
+        # If all elements are negative, return the highest negative number
+        if max_sum < 0:
+            return int(max_sum)
+        # Find the max subarray sum with circular property
+        total_sum = sum(nums)
+        cur_sum = 0
+        # Invert the signs of the array elements
+        for i in range(n):
+            nums[i] = -nums[i]
+        for i in range(n):
+            cur_sum = max(nums[i], cur_sum + nums[i])
+            max_sum = max(max_sum, total_sum + cur_sum)
+        return int(max_sum)
 
     def isAlienSorted(self, words: List[str], order: str) -> bool:
         # 953.Verifying an Alien Dictionary
