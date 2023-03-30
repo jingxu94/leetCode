@@ -248,6 +248,14 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.canJump([0]))
         self.assertFalse(self.sl.canJump([3, 2, 1, 0, 4]))
 
+    def test_merge_v2(self):
+        # 56.Merge Intervals
+        self.assertEqual(self.sl.merge_v2([[1, 3], [2, 6], [8, 10], [15, 18]]), [[1, 6], [8, 10], [15, 18]])
+        self.assertEqual(self.sl.merge_v2([[1, 4], [4, 5]]), [[1, 5]])
+        self.assertEqual(self.sl.merge_v2([[1, 4], [0, 4]]), [[0, 4]])
+        self.assertEqual(self.sl.merge_v2([[1, 4], [2, 3]]), [[1, 4]])
+        self.assertEqual(self.sl.merge_v2([[1, 4]]), [[1, 4]])
+
     def test_lengthOfLastWord(self):
         # 58.Length of Last Word
         self.assertEqual(self.sl.lengthOfLastWord("Hello World"), 5)
@@ -320,6 +328,14 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(eq_linked_list(ans1, expected1))
         self.assertTrue(eq_linked_list(ans2, expected2))
         self.assertTrue(eq_linked_list(ans3, expected3))
+
+    def test_isScramble(self):
+        # 87.Scramble String
+        self.assertTrue(self.sl.isScramble("great", "rgeat"))
+        self.assertFalse(self.sl.isScramble("abcde", "caebd"))
+        self.assertTrue(self.sl.isScramble("a", "a"))
+        self.assertFalse(self.sl.isScramble("a", "b"))
+        self.assertTrue(self.sl.isScramble("abcdbdacbdac", "bdacabcdbdac"))
 
     def test_merge(self):
         # 88.Merge Sorted Array
@@ -542,6 +558,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.findMin([3, 4, 5, 1, 2]), 1)
         self.assertEqual(self.sl.findMin([4, 5, 6, 7, 0, 1, 2]), 0)
         self.assertEqual(self.sl.findMin([11, 13, 15, 17]), 11)
+
+    def test_findPeakElement(self):
+        # 162.Find Peak Element
+        self.assertEqual(self.sl.findPeakElement([1, 2, 3, 1]), 2)
+        self.assertEqual(self.sl.findPeakElement([1, 2, 1, 3, 5, 6, 4]), 5)
 
     def test_twoSum(self):
         # 167.Two Sum 2 - Input Array Is Sorted

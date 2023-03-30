@@ -49,6 +49,13 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.arrangeCoins(8), 3)
         self.assertEqual(self.sl.arrangeCoins(1), 1)
 
+    def test_repeatedSubstringPattern(self):
+        # 459.Repeated Substring Pattern
+        self.assertTrue(self.sl.repeatedSubstringPattern("abab"))
+        self.assertFalse(self.sl.repeatedSubstringPattern("aba"))
+        self.assertFalse(self.sl.repeatedSubstringPattern("abababb"))
+        self.assertTrue(self.sl.repeatedSubstringPattern("abcabcabcabc"))
+
     def test_nextGreaterElement(self):
         # 496.Next Greater Element1
         self.assertListEqual(self.sl.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])

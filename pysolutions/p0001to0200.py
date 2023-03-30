@@ -390,6 +390,24 @@ class Pro0001To0200:
             can_touch = max(can_touch, index + nums[index])
         return False
 
+    def merge_v2(self, intervals: List[List[int]]) -> List[List[int]]:
+        # 56.Merge Intervals
+        nitvals = len(intervals)
+        if nitvals == 1:
+            return intervals
+        intervals.sort()
+        ans: List[List[int]] = []
+        curr = intervals[0]
+        for i in range(1, nitvals):
+            next = intervals[i]
+            if curr[1] < next[0]:
+                ans.append(curr)
+                curr = next
+            elif next[1] >= curr[1]:
+                curr = [curr[0], next[1]]
+        ans.append(curr)
+        return ans
+
     def lengthOfLastWord(self, s: str) -> int:
         # 58.Length of Last Word
         return len(s.split()[-1])
@@ -507,6 +525,15 @@ class Pro0001To0200:
                 high = mid - 1
         return False
 
+    def sortColors(self, nums: List[int]) -> None:  # pragma: no cover
+        # 75.Sort Colors
+        ct_nums = Counter(nums)
+        ans: List[int] = []
+        for color in [0, 1, 2]:
+            if color in ct_nums.keys():
+                ans.extend([color] * ct_nums[color])
+        nums[:] = ans[:]
+
     def combine(self, n: int, k: int) -> List[List[int]]:
         # 77.Combinations
         def backtrack(start, path):
@@ -534,6 +561,40 @@ class Pro0001To0200:
             curr = curr.next
         res.next = None
         return head
+
+    def isScramble(self, s1: str, s2: str) -> bool:
+        # 87.Scramble String
+        # n = len(s1)
+        # if n == 1 and s1 == s2:
+        #     return True
+        # for i in range(n - 1):
+        #     if Counter(s1[: i + 1]) == Counter(s2[-i - 1 :]):
+        #         return self.isScramble(s1[: i + 1], s2[-i - 1 :]) and self.isScramble(s1[i + 1 :], s2[: -i - 1])
+        #     elif Counter(s1[: i + 1]) == Counter(s2[: i + 1]):
+        #         return self.isScramble(s1[: i + 1], s2[: i + 1]) and self.isScramble(s1[i + 1 :], s2[i + 1 :])
+        # return False
+        # ==========================================
+        memo = {}
+
+        def _isScramble(s1: str, s2: str, memo: dict) -> bool:
+            if (s1, s2) in memo:
+                return memo[(s1, s2)]
+            if s1 == s2:
+                memo[(s1, s2)] = True
+                return True
+            if sorted(s1) != sorted(s2):
+                memo[(s1, s2)] = False
+                return False
+            for i in range(1, len(s1)):
+                if (_isScramble(s1[:i], s2[:i], memo) and _isScramble(s1[i:], s2[i:], memo)) or (
+                    _isScramble(s1[:i], s2[-i:], memo) and _isScramble(s1[i:], s2[:-i], memo)
+                ):
+                    memo[(s1, s2)] = True
+                    return True
+            memo[(s1, s2)] = False
+            return False
+
+        return _isScramble(s1, s2, memo)
 
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """88.Merge Sorted Array
@@ -906,6 +967,17 @@ class Pro0001To0200:
             else:
                 left = mid + 1
         return nums[left]
+
+    def findPeakElement(self, nums: List[int]) -> int:
+        # 162.Find Peak Element
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[mid + 1]:
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
     def twoSum(self, numbers: List[int], target: int) -> Optional[List[int]]:
         # 167.Two Sum 2 - Input Array Is Sorted

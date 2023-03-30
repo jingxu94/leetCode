@@ -1,3 +1,4 @@
+import math
 from collections import Counter, deque
 from typing import List, Optional
 
@@ -107,6 +108,22 @@ class Pro0401To0600:
             if ct_p == ct_s:
                 ans.append(i - len(p) + 1)
         return ans
+
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        # 459.Repeated Substring Pattern
+        # half = len(s) // 2 + 1
+        # for i in range(1, half):
+        #     elements = s.split(s[:i])
+        #     if all(ele == "" for ele in elements):
+        #         return True
+        # return False
+        # ==============================
+        n = len(s)
+        for i in range(1, n // 2 + 1):
+            if n % i == 0:
+                if s[:i] * (n // i) == s:
+                    return True
+        return False
 
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # 496.Next Greater Element1
