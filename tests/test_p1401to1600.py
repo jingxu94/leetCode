@@ -8,6 +8,12 @@ class TestP1401To1600(unittest.TestCase):
     def sl(self):
         return Pro1401To1600()
 
+    def test_ways(self):
+        # 1444.Number of Ways of Cutting a Pizza
+        self.assertEqual(self.sl.ways(["A..", "AAA", "..."], 3), 3)
+        self.assertEqual(self.sl.ways(["A..", "AA.", "..."], 3), 1)
+        self.assertEqual(self.sl.ways(["A..", "A..", "..."], 1), 1)
+
     def test_minReorder(self):
         # 1466.Reorder Routes to Make All Paths Lead to the City Zero
         self.assertEqual(self.sl.minReorder(6, [[0, 1], [1, 3], [2, 3], [4, 0], [4, 5]]), 3)

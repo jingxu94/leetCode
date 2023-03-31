@@ -370,6 +370,16 @@ class Pro0001To0200:
         backtrack([])
         return result
 
+    def rotate_v2(self, matrix: List[List[int]]) -> None:  # pragma: no cover
+        # 48.Rotate Image
+        n = len(matrix)
+        for i in range(n):
+            for j in range(i):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        for i in range(n):
+            for j in range(n // 2):
+                matrix[i][j], matrix[i][n - 1 - j] = matrix[i][n - 1 - j], matrix[i][j]
+
     def maxSubArray(self, nums: List[int]) -> int:
         # 53.Maximum Subarray
         dp = nums
@@ -411,6 +421,29 @@ class Pro0001To0200:
     def lengthOfLastWord(self, s: str) -> int:
         # 58.Length of Last Word
         return len(s.split()[-1])
+
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        # 59.Spiral Matrix II
+        matrix = [[0] * n for _ in range(n)]
+        num = 1
+        for layer in range((n + 1) // 2):
+            # Traverse right
+            for col in range(layer, n - layer):
+                matrix[layer][col] = num
+                num += 1
+            # Traverse down
+            for row in range(layer + 1, n - layer):
+                matrix[row][n - layer - 1] = num
+                num += 1
+            # Traverse left
+            for col in range(layer + 1, n - layer):
+                matrix[n - layer - 1][n - col - 1] = num
+                num += 1
+            # Traverse up
+            for row in range(layer + 1, n - layer - 1):
+                matrix[n - row - 1][layer] = num
+                num += 1
+        return matrix
 
     def uniquePaths(self, m: int, n: int) -> int:
         # 62.Unique Paths
@@ -548,6 +581,48 @@ class Pro0001To0200:
         result: List[List[int]] = []
         backtrack(1, [])
         return result
+
+    def deleteDuplicates_v2(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 82.Remove Duplicates from Sorted List II
+        # if head is None:
+        #     return None
+        # elif head.next is None:
+        #     return head
+        # duplicates: List[int] = []
+        # ans = ListNode(0)
+        # prev = ans
+        # curr = head
+        # while curr:
+        #     fast = curr.next
+        #     if fast is None:
+        #         if curr.val not in duplicates:
+        #             prev.next = ListNode(curr.val)
+        #             prev = prev.next
+        #         curr = fast
+        #     elif curr.val != fast.val:
+        #         if curr.val not in duplicates:
+        #             prev.next = ListNode(curr.val)
+        #             prev = prev.next
+        #         curr = fast
+        #     else:
+        #         if curr.val not in duplicates:
+        #             duplicates.append(curr.val)
+        #         curr = fast.next
+        # return ans.next
+        # ==========================================
+        if head is None:
+            return None
+        ans = ListNode(0)
+        ans_curr = ans
+        prev, curr = ListNode(-200, next=head), head
+        while curr and curr.next:
+            if prev.val < curr.val < curr.next.val:
+                ans_curr.next = ListNode(curr.val)
+                ans_curr = ans_curr.next
+            prev, curr = curr, curr.next
+        if prev.val < curr.val:
+            ans_curr.next = ListNode(curr.val)
+        return ans.next
 
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 83.Remove Duplicates from Sorted List
@@ -848,6 +923,16 @@ class Pro0001To0200:
                 pascal_tri.append(curr)
             return pascal_tri
 
+    def getRow(self, rowIndex: int) -> List[int]:
+        # 119.Pascal's Triangle II
+        ptri: List[List[int]] = [[1] * (row + 1) for row in range(rowIndex + 1)]
+        if rowIndex < 2:
+            return ptri[rowIndex]
+        for row in range(2, rowIndex + 1):
+            for index in range(row - 1):
+                ptri[row][index + 1] = ptri[row - 1][index] + ptri[row - 1][index + 1]
+        return ptri[rowIndex]
+
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         # 120.Triangle
         if not triangle:
@@ -950,6 +1035,27 @@ class Pro0001To0200:
         preorder_helper(root)
         ans.reverse()
         return ans
+
+    def evalRPN(self, tokens: List[str]) -> int:
+        # 150.Evaluate Reverse Polish Notation
+        operators = ("+", "-", "*", "/")
+        queue: deque = deque()
+        for token in tokens:
+            if token not in operators:
+                queue.append(token)
+            else:
+                num1 = int(queue.pop())
+                num2 = int(queue.pop())
+                if token == "+":
+                    num = num2 + num1
+                elif token == "-":
+                    num = num2 - num1
+                elif token == "*":
+                    num = num2 * num1
+                else:
+                    num = int(num2 / num1)
+                queue.append(str(num))
+        return int(queue.pop())
 
     def reverseWords(self, s: str) -> str:
         # 151.Reverse Words in a String

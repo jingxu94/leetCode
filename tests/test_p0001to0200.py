@@ -262,6 +262,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.lengthOfLastWord("   fly me   to   the moon  "), 4)
         self.assertEqual(self.sl.lengthOfLastWord("luffy is still joyboy"), 6)
 
+    def test_generateMatrix(self):
+        # 59.Spiral Matrix II
+        matrix = [[1, 2, 3], [8, 9, 4], [7, 6, 5]]
+        self.assertEqual(self.sl.generateMatrix(3), matrix)
+        matrix = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
+        self.assertEqual(self.sl.generateMatrix(4), matrix)
+
     def test_uniquePaths(self):
         # 62.Unique Paths
         self.assertEqual(self.sl.uniquePaths(3, 7), 28)
@@ -313,6 +320,21 @@ class TestP0001To0200(unittest.TestCase):
         # 77.Combinations
         self.assertListEqual(self.sl.combine(4, 2), [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]])
         self.assertListEqual(self.sl.combine(1, 1), [[1]])
+
+    def test_deleteDuplicates_v2(self):
+        # 82.Remove Duplicates from Sorted List II
+        head = create_linked_list([1, 2, 3, 3, 4, 4, 5])
+        expected = create_linked_list([1, 2, 5])
+        self.assertTrue(eq_linked_list(self.sl.deleteDuplicates_v2(head), expected))
+        head = create_linked_list([1, 1, 1, 2, 3])
+        expected = create_linked_list([2, 3])
+        self.assertTrue(eq_linked_list(self.sl.deleteDuplicates_v2(head), expected))
+        head = create_linked_list([1, 1, 1, 2, 3, 3])
+        expected = create_linked_list([2])
+        self.assertTrue(eq_linked_list(self.sl.deleteDuplicates_v2(head), expected))
+        head = create_linked_list([])
+        expected = create_linked_list([])
+        self.assertTrue(eq_linked_list(self.sl.deleteDuplicates_v2(head), expected))
 
     def test_deleteDuplicates(self):
         # 83.Remove Duplicates from Sorted List
@@ -482,6 +504,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertListEqual(self.sl.generate(1), [[1]])
         self.assertListEqual(self.sl.generate(2), [[1], [1, 1]])
 
+    def test_getRow(self):
+        # 119.Pascal's Triangle II
+        self.assertEqual(self.sl.getRow(3), [1, 3, 3, 1])
+        self.assertEqual(self.sl.getRow(0), [1])
+        self.assertEqual(self.sl.getRow(1), [1, 1])
+
     def test_minimumTotal(self):
         # 120.Triangle
         triangle = [[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]
@@ -540,6 +568,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([1, None, 2, None, None, 3])), [3, 2, 1])
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([])), [])
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([1])), [1])
+
+    def test_evalRPN(self):
+        # 150.Evaluate Reverse Polish Notation
+        self.assertEqual(self.sl.evalRPN(["2", "1", "+", "3", "*"]), 9)
+        self.assertEqual(self.sl.evalRPN(["4", "13", "5", "/", "+"]), 6)
+        self.assertEqual(self.sl.evalRPN(["4", "13", "5", "/", "-"]), 2)
+        self.assertEqual(self.sl.evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]), 22)
 
     def test_reverseWords(self):
         # 151.Reverse Words in a String
