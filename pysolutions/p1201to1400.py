@@ -1,9 +1,9 @@
 from bisect import bisect_left
 from collections import defaultdict
 from string import ascii_lowercase
-from typing import List
+from typing import List, Optional
 
-from .utils import ListNode
+from .utils import ListNode, TreeNode
 
 
 class Pro1201To1400:
@@ -193,6 +193,20 @@ class Pro1201To1400:
         for key in keys:
             ans.extend(nbits[key])
         return ans
+
+    def isSubPath(self, head: Optional[ListNode], root: Optional[TreeNode]) -> bool:  # pragma: no cover
+        # 1367.Linked List in Binary Tree
+        if not root:
+            return False
+
+        def check_path(head: Optional[ListNode], node: Optional[TreeNode]) -> bool:
+            if not head:
+                return True
+            if not node or node.val != head.val:
+                return False
+            return check_path(head.next, node.left) or check_path(head.next, node.right)
+
+        return check_path(head, root) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
 
     def findTheDistanceValue1(self, arr1: List[int], arr2: List[int], d: int) -> int:
         """1385.Find the Distance Value Between Two Arrays

@@ -173,6 +173,26 @@ class Pro0801To1000:
             )
         return dp[-1]
 
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        # 986.Interval List Intersections
+        i, j = 0, 0
+        result = []
+        while i < len(firstList) and j < len(secondList):
+            start1, end1 = firstList[i]
+            start2, end2 = secondList[j]
+            # Calculate the intersection
+            start = max(start1, start2)
+            end = min(end1, end2)
+            # Check if there is an intersection and add it to the result list
+            if start <= end:
+                result.append([start, end])
+            # Move the pointer of the list with the smaller endpoint
+            if end1 < end2:
+                i += 1
+            else:
+                j += 1
+        return result
+
     def orangesRotting(self, grid: List[List[int]]) -> int:
         # 994.Rotting Oranges
         m, n = len(grid), len(grid[0])

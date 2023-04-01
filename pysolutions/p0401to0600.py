@@ -91,6 +91,18 @@ class Pro0401To0600:
             right += 1
         return right - left
 
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        # 435.Non-overlapping Intervals
+        intervals.sort(key=lambda x: x[1])
+        count = 0
+        end = intervals[0][1]
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < end:
+                count += 1
+            else:
+                end = intervals[i][1]
+        return count
+
     def findAnagrams(self, s: str, p: str) -> List[int]:
         # 438.Find All Anagrams in a String
         if len(s) < len(p):

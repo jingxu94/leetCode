@@ -54,6 +54,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertFalse(self.sl.isPalindrome(-121))
         self.assertFalse(self.sl.isPalindrome(10))
 
+    def test_maxArea(self):
+        # 11.Container With Most Water
+        self.assertEqual(self.sl.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]), 49)
+        self.assertEqual(self.sl.maxArea([1, 1]), 1)
+
     def test_romanToInt(self):
         # 13.Roman to Integer
         self.assertEqual(self.sl.romanToInt("III"), 3)
@@ -219,6 +224,11 @@ class TestP0001To0200(unittest.TestCase):
         ]
         self.assertTrue(self.sl.isValidSudoku(board1))
         self.assertFalse(self.sl.isValidSudoku(board2))
+
+    def test_multiply(self):
+        # 43.Multiply Strings
+        self.assertEqual(self.sl.multiply("2", "3"), "6")
+        self.assertEqual(self.sl.multiply("123", "456"), "56088")
 
     def test_jump(self):
         # 45.Jump Game II

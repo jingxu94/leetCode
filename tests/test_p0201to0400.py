@@ -124,6 +124,12 @@ class TestP0201To0400(unittest.TestCase):
         self.assertListEqual(ans, expected)
         self.assertListEqual(self.sl.maxSlidingWindow([], k), [])
 
+    def test_searchMatrix(self):
+        # 240.Search a 2D Matrix II
+        matrix = [[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]]
+        self.assertTrue(self.sl.searchMatrix(matrix, 5))
+        self.assertFalse(self.sl.searchMatrix(matrix, 20))
+
     def test_isAnagram(self):
         # 242.Valid Anagram
         self.assertTrue(self.sl.isAnagram("anagram", "nagaram"))

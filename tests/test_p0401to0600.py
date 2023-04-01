@@ -36,6 +36,12 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.characterReplacement("AABABBA", 1), 4)
         self.assertEqual(self.sl.characterReplacement("AABABBA", 2), 5)
 
+    def test_eraseOverlapIntervals(self):
+        # 435.Non-overlapping Intervals
+        self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [2, 3], [3, 4], [1, 3]]), 1)
+        self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [1, 2], [1, 2]]), 2)
+        self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [2, 3]]), 0)
+
     def test_findAnagrams(self):
         # 438.Find All Anagrams in a String
         self.assertListEqual(self.sl.findAnagrams("cbaebabacd", "abc"), [0, 6])

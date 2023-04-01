@@ -153,6 +153,19 @@ class Pro0201To0400:
                 result.append(nums[window[0]])
         return result
 
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        # 240.Search a 2D Matrix II
+        rows, cols = len(matrix), len(matrix[0])
+        row, col = 0, cols - 1
+        while row < rows and col >= 0:
+            if matrix[row][col] == target:
+                return True
+            elif matrix[row][col] > target:
+                col -= 1
+            else:
+                row += 1
+        return False
+
     def isAnagram(self, s: str, t: str) -> bool:
         # 242.Valid Anagram
         return Counter(s) == Counter(t)

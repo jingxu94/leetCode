@@ -65,6 +65,26 @@ class Pro0001To0200:
         x_flip = x_flip * 10 + (x % 10)
         return x_raw == x_flip
 
+    def maxArea(self, height: List[int]) -> int:
+        # 11.Container With Most Water
+        # n = len(height)
+        # max_areas: List[int] = [0] * (n - 1)
+        # for i in range(n - 1):
+        #     for j in range(i + 1, n):
+        #         max_areas[i] = max(max_areas[i], min(height[i], height[j]) * (j - i))
+        # return max(max_areas)
+        # ============================
+        left, right = 0, len(height) - 1
+        max_area = 0
+        while left < right:
+            area = min(height[left], height[right]) * (right - left)
+            max_area = max(max_area, area)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_area
+
     def romanToInt(self, s: str) -> int:
         """13.Roman to Integer
         Roman numerals are represented by seven different symbols:
@@ -326,6 +346,10 @@ class Pro0001To0200:
                 if element != ".":
                     res += [(i, element), (element, j), (i // 3, j // 3, element)]
         return len(res) == len(set(res))
+
+    def multiply(self, num1: str, num2: str) -> str:
+        # 43.Multiply Strings
+        return str(eval(num1 + "*" + num2))
 
     def jump(self, nums: List[int]) -> int:
         # 45.Jump Game II

@@ -102,6 +102,13 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.mincostTickets([1, 4, 6, 7, 8, 20], [2, 7, 15]), 11)
         self.assertEqual(self.sl.mincostTickets([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], [2, 7, 15]), 17)
 
+    def test_intervalIntersection(self):
+        # 986.Interval List Intersections
+        firstList = [[0, 2], [5, 10], [13, 23], [24, 25]]
+        secondList = [[1, 5], [8, 12], [15, 24], [25, 26]]
+        ans = [[1, 2], [5, 5], [8, 10], [15, 23], [24, 24], [25, 25]]
+        self.assertEqual(self.sl.intervalIntersection(firstList, secondList), ans)
+
     def test_orangesRotting(self):
         # 994.Rotting Oranges
         self.assertEqual(self.sl.orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), 4)
