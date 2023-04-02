@@ -69,7 +69,10 @@ class Pro0201To0400:
                 ans = min(ans or float("inf"), right - left + 1)
                 total -= nums[left]
                 left += 1
-        return ans or 0
+        if ans:
+            return int(ans)
+        else:
+            return 0
 
     def rob(self, nums: List[int]) -> int:
         # 213.House Robber II

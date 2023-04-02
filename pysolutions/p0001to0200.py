@@ -1,7 +1,7 @@
 import math
 import re
 from collections import Counter, deque
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from .utils import ListNode, Node, TreeNode
 
@@ -673,7 +673,7 @@ class Pro0001To0200:
         #         return self.isScramble(s1[: i + 1], s2[: i + 1]) and self.isScramble(s1[i + 1 :], s2[i + 1 :])
         # return False
         # ==========================================
-        memo = {}
+        memo: Dict[tuple, bool] = {}
 
         def _isScramble(s1: str, s2: str, memo: dict) -> bool:
             if (s1, s2) in memo:
