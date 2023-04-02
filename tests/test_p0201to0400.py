@@ -44,6 +44,12 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([1, 2])), create_linked_list([2, 1])))
         self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([])), create_linked_list([])))
 
+    def test_minSubArrayLen(self):
+        # 209.Minimum Size Subarray Sum
+        self.assertEqual(self.sl.minSubArrayLen(7, [2, 3, 1, 2, 4, 3]), 2)
+        self.assertEqual(self.sl.minSubArrayLen(4, [1, 4, 4]), 1)
+        self.assertEqual(self.sl.minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1, 1]), 0)
+
     def test_rob(self):
         # 213.House Robber II
         self.assertEqual(self.sl.rob([2, 3, 2]), 3)
@@ -115,6 +121,12 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, p, q), expected))
         self.assertTrue(eq_binary_tree(self.sl.lowestCommonAncestor(root, q, p), expected))
 
+    def test_productExceptSelf(self):
+        # 238.Product of Array Except Self
+        self.assertEqual(self.sl.productExceptSelf([1, 2, 3, 4]), [24, 12, 8, 6])
+        self.assertEqual(self.sl.productExceptSelf([-1, 1, 0, -3, 3]), [0, 0, 9, 0, 0])
+        self.assertEqual(self.sl.productExceptSelf([1, 2, 0, 0]), [0, 0, 0, 0])
+
     def test_maxSlidingWindow(self):
         # 239.Sliding Window Maximum
         nums = [1, 3, -1, -3, 5, 3, 6, 7]
@@ -151,6 +163,13 @@ class TestP0201To0400(unittest.TestCase):
         # 299.Bulls and Cows
         self.assertEqual(self.sl.getHint("1807", "7810"), "1A3B")
         self.assertEqual(self.sl.getHint("1123", "0111"), "1A1B")
+
+    def test_increasingTriplet(self):
+        # 334.Increasing Triplet Subsequence
+        self.assertTrue(self.sl.increasingTriplet([1, 2, 3, 4, 5]))
+        self.assertFalse(self.sl.increasingTriplet([5, 4, 3, 2, 1]))
+        self.assertTrue(self.sl.increasingTriplet([2, 1, 5, 0, 4, 6]))
+        self.assertTrue(self.sl.increasingTriplet([20, 100, 10, 12, 5, 13]))
 
     def test_reverseString(self):
         # 344.Reverse String

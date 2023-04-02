@@ -193,6 +193,19 @@ class Pro0801To1000:
                 j += 1
         return result
 
+    def addToArrayForm(self, num: List[int], k: int) -> List[int]:
+        # 989.Add to Array-Form of Integer
+        ans: List[int] = []
+        addone = 0
+        while k or num or addone:
+            number = num.pop() if num else 0
+            knum, k = k % 10, k // 10
+            numans = number + knum + addone
+            ans.append(numans % 10)
+            addone = numans // 10
+        ans.reverse()
+        return ans
+
     def orangesRotting(self, grid: List[List[int]]) -> int:
         # 994.Rotting Oranges
         m, n = len(grid), len(grid[0])

@@ -93,6 +93,12 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.reverseWords(s1), expected1)
         self.assertEqual(self.sl.reverseWords(s2), expected2)
 
+    def test_subarraySum(self):
+        # 560.Subarray Sum Equals K
+        self.assertEqual(self.sl.subarraySum([1, 1, 1], 2), 2)
+        self.assertEqual(self.sl.subarraySum([1, 2, 3], 3), 2)
+        self.assertEqual(self.sl.subarraySum([1, -1, 3, 4, 5, 6, 7, 8, 9], 9), 2)
+
     def test_matrixReshape(self):
         # 566.Reshape the Matrix
         mat, r, c = [[1, 2], [3, 4]], 1, 4

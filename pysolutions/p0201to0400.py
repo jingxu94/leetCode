@@ -51,6 +51,26 @@ class Pro0201To0400:
                 return False
         return True
 
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 206.Reverse Linked List
+        curr, ans = head, None
+        while curr:
+            ans = ListNode(val=curr.val, next=ans)
+            curr = curr.next
+        return ans
+
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        # 209.Minimum Size Subarray Sum
+        left = total = 0
+        ans = None
+        for right, num in enumerate(nums):
+            total += num
+            while total >= target:
+                ans = min(ans or float("inf"), right - left + 1)
+                total -= nums[left]
+                left += 1
+        return ans or 0
+
     def rob(self, nums: List[int]) -> int:
         # 213.House Robber II
         def rob_helper(nums: List[int]) -> int:
@@ -64,6 +84,14 @@ class Pro0201To0400:
         if len(nums) == 1:
             return nums[0]
         return max(rob_helper(nums[:-1]), rob_helper(nums[1:]))
+
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        # 217.Contains Duplicate
+        cont = Counter(nums)
+        for key in cont.elements():
+            if cont[key] > 1:
+                return True
+        return False
 
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         # 226.Invert Binary Tree
@@ -79,22 +107,6 @@ class Pro0201To0400:
         while n % 2 == 0:
             n = n // 2
         return n == 1
-
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 206.Reverse Linked List
-        curr, ans = head, None
-        while curr:
-            ans = ListNode(val=curr.val, next=ans)
-            curr = curr.next
-        return ans
-
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        # 217.Contains Duplicate
-        cont = Counter(nums)
-        for key in cont.elements():
-            if cont[key] > 1:
-                return True
-        return False
 
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         # 234.Palindrome Linked List
@@ -130,6 +142,26 @@ class Pro0201To0400:
                 return root
         else:
             return None
+
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        # 238.Product of Array Except Self
+        tprod = 1
+        for num in nums:
+            tprod *= num
+        if tprod != 0:
+            return list(tprod // num for num in nums)
+        ct = Counter(nums)
+        ans = [0] * len(nums)
+        if ct[0] > 1:
+            return ans
+        else:
+            index = nums.index(0)
+            tprod = 1
+            for i, num in enumerate(nums):
+                if i != index:
+                    tprod *= num
+            ans[index] = tprod
+            return ans
 
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         # 239.Sliding Window Maximum
@@ -214,6 +246,18 @@ class Pro0201To0400:
             if key in cts.keys():
                 cows += min(ctg[key], cts[key])
         return "".join([str(bulls), "A", str(cows), "B"])
+
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        # 334.Increasing Triplet Subsequence
+        first = second = float("inf")
+        for num in nums:
+            if num <= first:
+                first = num
+            elif num <= second:
+                second = num
+            else:
+                return True
+        return False
 
     def reverseString(self, s: List[str]) -> List[str]:
         """344.Reverse String

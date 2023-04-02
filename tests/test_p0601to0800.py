@@ -102,6 +102,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.toLowerCase("here"), "here")
         self.assertEqual(self.sl.toLowerCase("LOVELY"), "lovely")
 
+    def test_numSubarrayProductLessThanK(self):
+        # 713.Subarray Product Less Than K
+        self.assertEqual(self.sl.numSubarrayProductLessThanK([10, 5, 2, 6], 100), 8)
+        self.assertEqual(self.sl.numSubarrayProductLessThanK([1, 2, 3], 0), 0)
+
     def test_pivotIndex(self):
         # 724.Find Pivot Index
         self.assertEqual(self.sl.pivotIndex([1, 7, 3, 6, 5, 6]), 3)

@@ -8,6 +8,11 @@ class TestP2201To2400(unittest.TestCase):
     def sl(self):
         return Pro2201To2400()
 
+    def test_successfulPairs(self):
+        # 2300.Successful Pairs of Spells and Potions
+        self.assertEqual(self.sl.successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7), [4, 0, 3])
+        self.assertEqual(self.sl.successfulPairs([3, 1, 2], [8, 5, 8], 16), [2, 0, 2])
+
     def test_countPairs(self):
         # 2316.Count Unreachable Pairs of Nodes in an Undirected Graph
         self.assertEqual(self.sl.countPairs(3, [[0, 1], [0, 2], [1, 2]]), 0)

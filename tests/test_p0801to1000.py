@@ -109,6 +109,12 @@ class TestP0801To1000(unittest.TestCase):
         ans = [[1, 2], [5, 5], [8, 10], [15, 23], [24, 24], [25, 25]]
         self.assertEqual(self.sl.intervalIntersection(firstList, secondList), ans)
 
+    def test_addToArrayForm(self):
+        # 989.Add to Array-Form of Integer
+        self.assertEqual(self.sl.addToArrayForm([1, 2, 0, 0], 34), [1, 2, 3, 4])
+        self.assertEqual(self.sl.addToArrayForm([2, 7, 4], 181), [4, 5, 5])
+        self.assertEqual(self.sl.addToArrayForm([2, 1, 5], 806), [1, 0, 2, 1])
+
     def test_orangesRotting(self):
         # 994.Rotting Oranges
         self.assertEqual(self.sl.orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), 4)

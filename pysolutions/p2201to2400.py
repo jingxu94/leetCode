@@ -6,6 +6,22 @@ class Pro2201To2400:
     def __init__(self) -> None:
         pass
 
+    def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+        # 2300.Successful Pairs of Spells and Potions
+        sorted_spells = [(spell, index) for index, spell in enumerate(spells)]
+        # Sort the 'spells with index' and 'potions' array in increasing order.
+        sorted_spells.sort()
+        potions.sort()
+        answer = [0] * len(spells)
+        m = len(potions)
+        potion_index = m - 1
+        # For each 'spell' find the respective 'minPotion' index.
+        for spell, index in sorted_spells:
+            while potion_index >= 0 and (spell * potions[potion_index]) >= success:
+                potion_index -= 1
+            answer[index] = m - (potion_index + 1)
+        return answer
+
     def countPairs(self, n: int, edges: List[List[int]]) -> int:
         # 2316.Count Unreachable Pairs of Nodes in an Undirected Graph
         adj_list = defaultdict(set)

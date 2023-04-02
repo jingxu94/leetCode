@@ -180,6 +180,21 @@ class Pro0401To0600:
                 queue.append((nr, nc))
         return mat
 
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        # 560.Subarray Sum Equals K
+        count = 0
+        cumulative_sum = 0
+        sum_count = {0: 1}
+        for num in nums:
+            cumulative_sum += num
+            if cumulative_sum - k in sum_count:
+                count += sum_count[cumulative_sum - k]
+            if cumulative_sum in sum_count:
+                sum_count[cumulative_sum] += 1
+            else:
+                sum_count[cumulative_sum] = 1
+        return count
+
     def matrixReshape(self, mat: List[List[int]], r: int, c: int) -> List[List[int]]:
         # 566.Reshape the Matrix
         m, n = len(mat), len(mat[0])
