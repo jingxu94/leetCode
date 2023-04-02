@@ -252,6 +252,20 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.maxSubArray([1]), 1)
         self.assertEqual(self.sl.maxSubArray([5, 4, -1, 7, 8]), 23)
 
+    def test_spiralOrder(self):
+        # 54.Spiral Matrix
+        self.assertEqual(
+            self.sl.spiralOrder(
+                [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]
+            ),
+            [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6, 7, 8, 9, 14, 19, 18, 17, 12, 13],
+        )
+        self.assertEqual(self.sl.spiralOrder([[1]]), [1])
+        self.assertEqual(self.sl.spiralOrder([[1], [9], [6]]), [1, 9, 6])
+        self.assertEqual(
+            self.sl.spiralOrder([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        )
+
     def test_canJump(self):
         # 55.Jump Game
         self.assertTrue(self.sl.canJump([2, 3, 1, 1, 4]))

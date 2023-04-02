@@ -122,6 +122,12 @@ class TestP0601To0800(unittest.TestCase):
         expected = [[0, 0, 0], [0, 0, 0]]
         self.assertListEqual(self.sl.floodFill(image, sr, sc, color), expected)
 
+    def test_dailyTemperatures(self):
+        # 739.Daily Temperatures
+        self.assertEqual(self.sl.dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]), [1, 1, 4, 2, 1, 1, 0, 0])
+        self.assertEqual(self.sl.dailyTemperatures([30, 40, 50, 60]), [1, 1, 1, 0])
+        self.assertEqual(self.sl.dailyTemperatures([30, 60, 90]), [1, 1, 0])
+
     def test_deleteAndEarn(self):
         # 740.Delete and Earn
         self.assertEqual(self.sl.deleteAndEarn([3, 4, 2]), 6)

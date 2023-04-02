@@ -31,3 +31,17 @@ class Pro1801To2000:
                 i += 1
                 j = max(j, i)
         return max_dist
+
+    def findRotation(self, mat: List[List[int]], target: List[List[int]]) -> bool:
+        # 1886.Determine Whether Matrix Can Be Obtained By Rotation
+        if mat == target:
+            return True
+
+        def rotate(mat: List[List[int]]):
+            return [list(x) for x in zip(*mat)][::-1]
+
+        for _ in range(3):
+            mat = rotate(mat)
+            if mat == target:
+                return True
+        return False

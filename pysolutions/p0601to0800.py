@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, defaultdict
 from typing import List, Optional
 
 from .utils import TreeNode
@@ -205,6 +205,17 @@ class Pro0601To0800:
             return image
         dfs(image, sr, sc, starting_color, color)
         return image
+
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        # 739.Daily Temperatures
+        ans = [0] * len(temperatures)
+        stack: List[int] = []
+        for i, temp in enumerate(temperatures):
+            while stack and temperatures[stack[-1]] < temp:
+                curr = stack.pop()
+                ans[curr] = i - curr
+            stack.append(i)
+        return ans
 
     def deleteAndEarn(self, nums: List[int]) -> int:
         # 740.Delete and Earn

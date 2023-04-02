@@ -411,6 +411,25 @@ class Pro0001To0200:
             dp[i] = max(nums[i], nums[i] + dp[i - 1])
         return max(dp)
 
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        # 54.Spiral Matrix
+        result = []
+        while matrix:
+            # Add the first row
+            result += matrix.pop(0)
+            # Add the rightmost element of each remaining row and remove it
+            for row in matrix:
+                if row:
+                    result.append(row.pop())
+            # Add the last row in reverse order and remove it
+            if matrix:
+                result += matrix.pop()[::-1]
+            # Add the leftmost element of each remaining row and remove it
+            for row in matrix[::-1]:
+                if row:
+                    result.append(row.pop(0))
+        return result
+
     def canJump(self, nums: List[int]) -> bool:
         # 55.Jump Game
         if len(nums) == 1:
