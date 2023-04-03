@@ -44,6 +44,12 @@ class TestP0801To1000(unittest.TestCase):
         self.assertTrue(eq_linked_list(ans, expected))
         self.assertIsNone(self.sl.middleNode(None))
 
+    def test_numRescueBoats(self):
+        # 881.Boats to Save People
+        self.assertEqual(self.sl.numRescueBoats([1, 2], 3), 1)
+        self.assertEqual(self.sl.numRescueBoats([3, 2, 2, 1], 3), 3)
+        self.assertEqual(self.sl.numRescueBoats([3, 5, 3, 4], 5), 4)
+
     def test_isMonotonic(self):
         # 896.Monotonic Array
         self.assertTrue(self.sl.isMonotonic([1, 2, 2, 3]))

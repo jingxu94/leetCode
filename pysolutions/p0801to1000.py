@@ -67,6 +67,19 @@ class Pro0801To1000:
             fast = fast.next.next
         return slow
 
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        # 881.Boats to Save People
+        people.sort()
+        queue = deque(people)
+        count: int = 0
+        while queue:
+            max_people = queue.pop()
+            count += 1
+            if queue:
+                if queue[0] + max_people <= limit:
+                    queue.popleft()
+        return count
+
     def isMonotonic(self, nums: List[int]) -> bool:
         # 896.Monotonic Array
         if nums == sorted(nums):

@@ -105,6 +105,19 @@ class Pro1401To1600:
             seen.add(curr)
         return ans
 
+    def getMaxLen(self, nums: List[int]) -> int:
+        # 1567.Maximum Length of Subarray With Positive Product
+        ans = pos = neg = 0
+        for x in nums:
+            if x > 0:
+                pos, neg = 1 + pos, 1 + neg if neg else 0
+            elif x < 0:
+                pos, neg = 1 + neg if neg else 0, 1 + pos
+            else:
+                pos = neg = 0
+            ans = max(ans, pos)
+        return ans
+
     def diagonalSum(self, mat: List[List[int]]) -> int:
         # 1572.Matrix Diagonal Sum
         rcs = len(mat)

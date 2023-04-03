@@ -30,6 +30,12 @@ class TestP0401To0600(unittest.TestCase):
             ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"],
         )
 
+    def test_addString(self):
+        # 415.Add Strings
+        self.assertEqual(self.sl.addStrings("11", "123"), "134")
+        self.assertEqual(self.sl.addStrings("456", "77"), "533")
+        self.assertEqual(self.sl.addStrings("0", "0"), "0")
+
     def test_characterReplacement(self):
         # 424.Longest Repeating Character Replacement
         self.assertEqual(self.sl.characterReplacement("ABAB", 2), 4)
@@ -83,6 +89,11 @@ class TestP0401To0600(unittest.TestCase):
         mat = [[0, 0, 0], [0, 1, 0], [1, 1, 1]]
         expected = [[0, 0, 0], [0, 1, 0], [1, 2, 1]]
         self.assertEqual(self.sl.updateMatrix(mat), expected)
+
+    def test_findCircleNum(self):
+        # 547.Number of Provinces
+        self.assertEqual(self.sl.findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]]), 2)
+        self.assertEqual(self.sl.findCircleNum([[1, 0, 0], [0, 1, 0], [0, 0, 1]]), 3)
 
     def test_reverseWords(self):
         # 557.Reverse Words in a String 3

@@ -52,6 +52,12 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.maxNonOverlapping([1, 1, 1, 1, 1], 2), 2)
         self.assertEqual(self.sl.maxNonOverlapping([-1, 3, 5, 1, 4, 2, -9], 6), 2)
 
+    def test_getMaxLen(self):
+        # 1567.Maximum Length of Subarray With Positive Product
+        self.assertEqual(self.sl.getMaxLen([1, -2, -3, 4]), 4)
+        self.assertEqual(self.sl.getMaxLen([0, 1, -2, -3, -4]), 3)
+        self.assertEqual(self.sl.getMaxLen([-1, -2, -3, 0, 1]), 2)
+
     def test_diagonalSum(self):
         # 1572.Matrix Diagonal Sum
         self.assertEqual(self.sl.diagonalSum([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), 25)

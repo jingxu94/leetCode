@@ -63,6 +63,10 @@ class Pro0401To0600:
                 answer.append(str(num))
         return answer
 
+    def addStrings(self, num1: str, num2: str) -> str:
+        # 415.Add String
+        return str(eval(num1 + "+" + num2))
+
     def arrangeCoins(self, n: int) -> int:
         # 441.Arranging Coins
         left, right = 0, n
@@ -179,6 +183,24 @@ class Pro0401To0600:
                 mat[nr][nc] = mat[row][col] + 1
                 queue.append((nr, nc))
         return mat
+
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        # 547.Number of Provinces
+        checked = set()
+
+        def dfs(isConnected, checked, i):
+            if i in checked:
+                return 0
+            checked.add(i)
+            for j in range(len(isConnected[i])):
+                if isConnected[i][j] == 1:
+                    dfs(isConnected, checked, j)
+            return 1
+
+        provinces = 0
+        for i in range(len(isConnected)):
+            provinces += dfs(isConnected, checked, i)
+        return provinces
 
     def subarraySum(self, nums: List[int], k: int) -> int:
         # 560.Subarray Sum Equals K
