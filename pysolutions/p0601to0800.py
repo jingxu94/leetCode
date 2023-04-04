@@ -1,4 +1,4 @@
-from collections import Counter, defaultdict
+from collections import Counter
 from typing import List, Optional
 
 from .utils import TreeNode
@@ -167,7 +167,7 @@ class Pro0601To0800:
         for right, val in enumerate(nums):
             prod *= val
             while prod >= k:
-                prod /= nums[left]
+                prod = int(prod / nums[left])
                 left += 1
             ans += right - left + 1
         return ans

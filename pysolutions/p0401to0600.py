@@ -1,6 +1,5 @@
-import math
 from collections import Counter, deque
-from typing import List, Optional
+from typing import List, Optional, Set
 
 from .utils import TreeNode
 
@@ -186,7 +185,7 @@ class Pro0401To0600:
 
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         # 547.Number of Provinces
-        checked = set()
+        checked: Set[int] = set()
 
         def dfs(isConnected, checked, i):
             if i in checked:
