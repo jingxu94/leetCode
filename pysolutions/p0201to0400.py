@@ -233,6 +233,23 @@ class Pro0201To0400:
 
         return nums
 
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        # 290.Word Pattern
+        dict_f: defaultdict[str, str] = defaultdict()
+        s_list = s.split(" ")
+        if len(s_list) != len(pattern):
+            return False
+        for i, word in enumerate(s_list):
+            word = word + "#"
+            if pattern[i] not in dict_f.keys() and word not in dict_f.keys():
+                dict_f[pattern[i]] = word
+                dict_f[word] = pattern[i]
+            elif pattern[i] not in dict_f.keys() or word not in dict_f.keys():
+                return False
+            elif dict_f[pattern[i]] != word or dict_f[word] != pattern[i]:
+                return False
+        return True
+
     def getHint(self, secret: str, guess: str) -> str:
         # 299.Bulls and Cows
         newsct = newgus = ""

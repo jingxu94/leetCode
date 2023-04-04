@@ -251,6 +251,18 @@ class Pro0601To0800:
             dp[i] = cost[i] + min(dp[i - 1], dp[i - 2])
         return min(dp[-1], dp[-2])
 
+    def partitionLabels(self, s: str) -> List[int]:
+        # 763.Partition Labels
+        last = {alpha: i for i, alpha in enumerate(s)}
+        index = anchor = 0
+        ans: List[int] = []
+        for i, alpha in enumerate(s):
+            index = max(index, last[alpha])
+            if i == index:
+                ans.append(i - anchor + 1)
+                anchor = i + 1
+        return ans
+
     def letterCasePermutation(self, s: str) -> List[str]:
         # 784.Letter Case Permutation
         result = [""]

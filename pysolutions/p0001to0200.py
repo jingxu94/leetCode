@@ -950,6 +950,30 @@ class Pro0001To0200:
                     q.extend([curr.right, curr.left])
         return root
 
+    def connect_v2(self, root: "Node") -> "Node":  # pragma: no cover
+        # 117.Populating Next Right Pointers in Each Node II
+        if not root:
+            return None
+        q = deque()
+        q.append(root)
+        dummy = Node(-999)  # to initialize with a not null prev
+        while q:
+            length = len(q)  # find level length
+
+            prev = dummy
+            for _ in range(length):  # iterate through all nodes in the same level
+                popped = q.popleft()
+                if popped.left:
+                    q.append(popped.left)
+                    prev.next = popped.left
+                    prev = prev.next
+                if popped.right:
+                    q.append(popped.right)
+                    prev.next = popped.right
+                    prev = prev.next
+
+        return root
+
     def generate(self, numRows: int) -> List[List[int]]:
         # 118.Pascal's Triangle
         if numRows == 1:
@@ -998,6 +1022,14 @@ class Pro0001To0200:
                 left = right
             right += 1
         return bestsell
+
+    def maxProfit_v2(self, prices: List[int]) -> int:
+        # 122.Best Time to Buy and Sell Stock II
+        ans = 0
+        for i in range(len(prices) - 1):
+            if prices[i] < prices[i + 1]:
+                ans += prices[i + 1] - prices[i]
+        return ans
 
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         # 129.Sum Root to Leaf Numbers

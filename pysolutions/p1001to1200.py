@@ -18,6 +18,14 @@ class Pro1001To1200:
                     flag[key] = check[key]
         return [i for i in flag.elements()]
 
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
+        # 1014.Best Sightseeing Pair
+        ans = imax = 0
+        for i, val in enumerate(values):
+            ans = max(ans, imax + val - i)
+            imax = max(imax, val + i)
+        return ans
+
     def lastStoneWeight(self, stones: List[int]) -> int:
         # 1046.Last Stone Weight
         while len(stones) > 1:

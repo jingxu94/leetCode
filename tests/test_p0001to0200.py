@@ -548,6 +548,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.maxProfit([7, 1, 5, 3, 6, 4]), 5)
         self.assertEqual(self.sl.maxProfit([7, 6, 4, 3, 1]), 0)
 
+    def test_maxProfit_v2(self):
+        # 122.Best Time to Buy and Sell Stock II
+        self.assertEqual(self.sl.maxProfit_v2([7, 1, 5, 3, 6, 4]), 7)
+        self.assertEqual(self.sl.maxProfit_v2([1, 2, 3, 4, 5]), 4)
+        self.assertEqual(self.sl.maxProfit_v2([7, 6, 4, 3, 1]), 0)
+
     def test_sumNumbers(self):
         # 129.Sum Root to Leaf Numbers
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([1, 2, 3])), 25)

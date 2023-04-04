@@ -16,6 +16,11 @@ class TestP1001To1200(unittest.TestCase):
         self.assertListEqual(self.sl.commonChars(words2), ["c", "o"])
         self.assertListEqual(self.sl.commonChars(["words"]), ["w", "o", "r", "d", "s"])
 
+    def test_maxScoreSightseeingPair(self):
+        # 1014.Best Sightseeing Pair
+        self.assertEqual(self.sl.maxScoreSightseeingPair([8, 1, 5, 2, 6]), 11)
+        self.assertEqual(self.sl.maxScoreSightseeingPair([1, 2]), 2)
+
     def test_lastStoneWeight(self):
         # 1046.Last Stone Weight
         self.assertEqual(self.sl.lastStoneWeight([2, 7, 4, 1, 8, 1]), 1)

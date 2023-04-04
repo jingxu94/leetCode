@@ -159,6 +159,15 @@ class TestP0201To0400(unittest.TestCase):
         self.assertListEqual(self.sl.moveZeroes([0]), [0])
         self.assertEqual(self.sl.moveZeroes([0]), [0])
 
+    def test_wordPattern(self):
+        # 290.Word Pattern
+        self.assertTrue(self.sl.wordPattern("abba", "dog cat cat dog"))
+        self.assertFalse(self.sl.wordPattern("abba", "dog cat cat fish"))
+        self.assertFalse(self.sl.wordPattern("aaaa", "dog cat cat dog"))
+        self.assertFalse(self.sl.wordPattern("aba", "dog cat cat"))
+        self.assertFalse(self.sl.wordPattern("abab", "dog cat cat"))
+        self.assertTrue(self.sl.wordPattern("abc", "b c a"))
+
     def test_getHint(self):
         # 299.Bulls and Cows
         self.assertEqual(self.sl.getHint("1807", "7810"), "1A3B")

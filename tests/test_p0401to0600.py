@@ -124,6 +124,16 @@ class TestP0401To0600(unittest.TestCase):
         self.assertFalse(self.sl.checkInclusion("ab", "eidboaoo"))
         self.assertFalse(self.sl.checkInclusion("ab", "a"))
 
+    def test_isSubtree(self):
+        # 572.Subtree of Another Tree
+        self.assertTrue(self.sl.isSubtree(create_binary_tree([3, 4, 5, 1, 2]), create_binary_tree([4, 1, 2])))
+        self.assertFalse(self.sl.isSubtree(create_binary_tree([3, 4, 5, 1, 2]), create_binary_tree([4, 1, 2, 3, 4, 5])))
+        self.assertFalse(
+            self.sl.isSubtree(
+                create_binary_tree([3, 4, 5, 1, 2, None, None, None, None, 0]), create_binary_tree([4, 1, 2])
+            )
+        )
+
     def test_preorder(self):
         # 589.N-ary Tree Preorder Traversal
         pass

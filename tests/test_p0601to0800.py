@@ -145,6 +145,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]), 6)
         self.assertEqual(self.sl.minCostClimbingStairs([10]), 0)
 
+    def test_partitionLabels(self):
+        # 763.Partition Labels
+        self.assertEqual(self.sl.partitionLabels("ababcbacadefegdehijhklij"), [9, 7, 8])
+        self.assertEqual(self.sl.partitionLabels("eccbbbbdec"), [10])
+
     def test_letterCasePermutation(self):
         # 784.Letter Case Permutation
         self.assertEqual(set(self.sl.letterCasePermutation("a1b2")), set(["a1b2", "a1B2", "A1b2", "A1B2"]))
