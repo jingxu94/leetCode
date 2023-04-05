@@ -57,13 +57,15 @@ class Pro0001To0200:
         # 9.Palindrome Number
         if x < 0:
             return False
-        x_raw = x
-        x_flip = 0
-        while x // 10 > 0:
-            x_flip = x_flip * 10 + (x % 10)
-            x = x // 10
-        x_flip = x_flip * 10 + (x % 10)
-        return x_raw == x_flip
+        div = 10 ** (len(str(x)) - 1)
+        while x > 0:
+            left = x // div
+            right = x % 10
+            if left != right:
+                return False
+            x = (x % div) // 10
+            div = div // 100
+        return True
 
     def maxArea(self, height: List[int]) -> int:
         # 11.Container With Most Water
