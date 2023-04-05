@@ -297,10 +297,10 @@ class Pro0401To0600:
                         needle_pointer = lps[needle_pointer - 1]
             return False
 
-        root_list = []
+        root_list: List[str] = []
         serialize(root, root_list)
         r = "".join(root_list)
-        subroot_list = []
+        subroot_list: List[str] = []
         serialize(subRoot, subroot_list)
         s = "".join(subroot_list)
         return kmp(s, r)

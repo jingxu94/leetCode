@@ -406,7 +406,7 @@ class Pro0001To0200:
 
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         # 49.Group Anagrams
-        strs_table = {}
+        strs_table: Dict[str, List[str]] = {}
         for word in strs:
             sorted_word = "".join(sorted(word))
             if sorted_word not in strs_table:
@@ -962,9 +962,9 @@ class Pro0001To0200:
 
     def connect_v2(self, root: "Node") -> "Node":  # pragma: no cover
         # 117.Populating Next Right Pointers in Each Node II
-        if not root:
-            return None
-        q = deque()
+        # if not root:
+        #     return None
+        q: deque = deque()
         q.append(root)
         dummy = Node(-999)  # to initialize with a not null prev
         while q:
