@@ -157,6 +157,15 @@ class Pro0801To1000:
             return False
         return True
 
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        # 973.K Closest Points to Origin
+        distances = list((point[0] ** 2 + point[1] ** 2, i) for i, point in enumerate(points))
+        distances.sort()
+        ans: List[List[int]] = []
+        for i in range(k):
+            ans.append(points[distances[i][1]])
+        return ans
+
     def largestPerimeter(self, nums: List[int]) -> int:
         # 976.Largest Perimeter Triangle
         nums.sort()

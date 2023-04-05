@@ -13,6 +13,11 @@ class TestP2401To2600(unittest.TestCase):
         self.assertEqual(self.sl.partitionString("abacaba"), 4)
         self.assertEqual(self.sl.partitionString("ssssss"), 6)
 
+    def test_minimizeArrayValue(self):
+        # 2439.Minimize Maximum of Array
+        self.assertEqual(self.sl.minimizeArrayValue([3, 7, 1, 6]), 5)
+        self.assertEqual(self.sl.minimizeArrayValue([10, 1]), 10)
+
     def test_minScore(self):
         # 2492.Minimum Score of a Path Between Two Cities
         self.assertEqual(self.sl.minScore(4, [[1, 2, 9], [2, 3, 6], [2, 4, 5], [1, 4, 7]]), 5)

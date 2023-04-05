@@ -246,6 +246,14 @@ class TestP0001To0200(unittest.TestCase):
         self.assertListEqual(self.sl.permute([0, 1]), [[0, 1], [1, 0]])
         self.assertListEqual(self.sl.permute([1]), [[1]])
 
+    def test_groupAnagrams(self):
+        # 49.Group Anagrams
+        self.assertSequenceEqual(
+            self.sl.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]),
+            [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]],
+        )
+        self.assertEqual(self.sl.groupAnagrams([""]), [[""]])
+
     def test_maxSubArray(self):
         # 53.Maximum Subarray
         self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)

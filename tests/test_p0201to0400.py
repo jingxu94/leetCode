@@ -173,6 +173,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.getHint("1807", "7810"), "1A3B")
         self.assertEqual(self.sl.getHint("1123", "0111"), "1A1B")
 
+    def test_maxProfit(self):
+        # 309.Best Time to Buy and Sell Stock with Cooldown
+        self.assertEqual(self.sl.maxProfit([1, 2, 3, 0, 2]), 3)
+        self.assertEqual(self.sl.maxProfit([1]), 0)
+
     def test_increasingTriplet(self):
         # 334.Increasing Triplet Subsequence
         self.assertTrue(self.sl.increasingTriplet([1, 2, 3, 4, 5]))

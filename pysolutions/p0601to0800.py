@@ -172,6 +172,14 @@ class Pro0601To0800:
             ans += right - left + 1
         return ans
 
+    def maxProfit(self, prices: List[int], fee: int) -> int:
+        # 714.Best Time to Buy ans Sell Stock with Transaction Fee
+        cash, hold = 0, -prices[0]
+        for i in range(1, len(prices)):
+            cash = max(cash, hold + prices[i] - fee)
+            hold = max(hold, cash - prices[i])
+        return cash
+
     def pivotIndex(self, nums: List[int]) -> int:
         # 724.Find Pivot Index
         total = sum(nums)
@@ -310,6 +318,20 @@ class Pro0601To0800:
                     snew += alpha
             ans.append(snew)
         return ans
+
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        # 797. All Path From Source to Target
+        target = len(graph) - 1
+        paths, targets = [[0]], []
+        while paths:
+            path = paths.pop(0)
+            edges = graph[path[-1]]
+            for edge in edges:
+                if edge == target:
+                    targets.append(path + [edge])
+                else:
+                    paths = [path + [edge]] + paths
+        return targets
 
 
 class MyHashMap:  # pragma: no cover

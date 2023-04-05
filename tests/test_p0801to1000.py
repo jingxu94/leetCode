@@ -93,6 +93,11 @@ class TestP0801To1000(unittest.TestCase):
         self.assertFalse(self.sl.isCompleteTree(root2))
         self.assertTrue(self.sl.isCompleteTree(None))
 
+    def test_kClosest(self):
+        # 973.K Closest Points to Origin
+        self.assertEqual(self.sl.kClosest([[1, 3], [-2, 2]], 1), [[-2, 2]])
+        self.assertEqual(self.sl.kClosest([[3, 3], [5, -1], [-2, 4]], 2), [[3, 3], [-2, 4]])
+
     def test_largestPerimeter(self):
         # 976.Largest Perimeter Triangle
         self.assertEqual(self.sl.largestPerimeter([2, 1, 2]), 5)

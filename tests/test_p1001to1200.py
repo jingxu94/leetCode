@@ -27,6 +27,13 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.lastStoneWeight([1]), 1)
         self.assertEqual(self.sl.lastStoneWeight([1, 1, 2, 2]), 0)
 
+    def test_shortestPathBinaryMatrix(self):
+        # 1091.Shortest Path in Binary Matrix
+        self.assertEqual(self.sl.shortestPathBinaryMatrix([[0, 1], [1, 0]]), 2)
+        self.assertEqual(self.sl.shortestPathBinaryMatrix([[0, 0, 0], [1, 1, 0], [1, 1, 0]]), 4)
+        self.assertEqual(self.sl.shortestPathBinaryMatrix([[1, 1], [1, 0]]), -1)
+        self.assertEqual(self.sl.shortestPathBinaryMatrix([[0, 1], [1, 1]]), -1)
+
     def test_tribonacci(self):
         # 1137.N-th Tribonacci Number
         self.assertEqual(self.sl.tribonacci(1), 1)

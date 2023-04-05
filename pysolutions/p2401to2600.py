@@ -19,6 +19,15 @@ class Pro2401To2600:
             last_seen[ord(s[i]) - ord("a")] = i
         return count
 
+    def minimizeArrayValue(self, nums: List[int]) -> int:
+        # 2439.Minimize Maximum of Array
+        ans = 0
+        prefix_sum = 0
+        for i in range(len(nums)):
+            prefix_sum += nums[i]
+            ans = max(ans, math.ceil(prefix_sum / (i + 1)))
+        return ans
+
     def minScore(self, n: int, roads: List[List[int]]) -> int:
         # 2492.Minimum Score of a Path Between Two Cities
         ans = math.inf

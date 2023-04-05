@@ -107,6 +107,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.numSubarrayProductLessThanK([10, 5, 2, 6], 100), 8)
         self.assertEqual(self.sl.numSubarrayProductLessThanK([1, 2, 3], 0), 0)
 
+    def test_maxProfit(self):
+        # 714.Best Time to Buy ans Sell Stock with Transaction Fee
+        self.assertEqual(self.sl.maxProfit([1, 3, 2, 8, 4, 9], 2), 8)
+        self.assertEqual(self.sl.maxProfit([1, 3, 7, 5, 10, 3], 3), 6)
+
     def test_pivotIndex(self):
         # 724.Find Pivot Index
         self.assertEqual(self.sl.pivotIndex([1, 7, 3, 6, 5, 6]), 3)
@@ -158,3 +163,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertCountEqual(self.sl.letterCasePermutation("3z4"), ["3z4", "3Z4"])
         self.assertCountEqual(self.sl.letterCasePermutation_v2("a1b2"), ["a1b2", "a1B2", "A1b2", "A1B2"])
         self.assertCountEqual(self.sl.letterCasePermutation_v2("3z4"), ["3z4", "3Z4"])
+
+    def test_allPathsSourceTarget(self):
+        # 797. All Path From Source to Target
+        self.assertEqual(self.sl.allPathsSourceTarget([[1, 2], [3], [3], []]), [[0, 2, 3], [0, 1, 3]])
+        # self.assertEqual(
+        #     self.sl.allPathsSourceTarget([[4, 3, 1], [3, 2, 4], [3], [4], []]),
+        #     [[0, 4], [0, 3, 4], [0, 1, 3, 4], [0, 1, 2, 3, 4], [0, 1, 4]],
+        # )

@@ -1,7 +1,7 @@
 import math
 import re
 from collections import Counter, deque
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set
 
 from .utils import ListNode, Node, TreeNode
 
@@ -403,6 +403,16 @@ class Pro0001To0200:
         for i in range(n):
             for j in range(n // 2):
                 matrix[i][j], matrix[i][n - 1 - j] = matrix[i][n - 1 - j], matrix[i][j]
+
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # 49.Group Anagrams
+        strs_table = {}
+        for word in strs:
+            sorted_word = "".join(sorted(word))
+            if sorted_word not in strs_table:
+                strs_table[sorted_word] = []
+            strs_table[sorted_word].append(word)
+        return list(strs_table.values())
 
     def maxSubArray(self, nums: List[int]) -> int:
         # 53.Maximum Subarray
@@ -1042,6 +1052,42 @@ class Pro0001To0200:
             return helper(node.left, current_sum) + helper(node.right, current_sum)
 
         return helper(root, 0)
+
+    def solve(self, board: List[List[str]]) -> None:  # pragma: no cover
+        # 130.Surrounded Regions
+        m, n = len(board), len(board[0])
+        directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        seen = set()
+
+        # checks if (row, col) is in bounds
+        def valid(row, col):
+            return 0 <= row < m and 0 <= col < n and board[row][col] == "O"
+
+        # adds (row, col) and all of its valid neighbors to set
+        def dfs(row, col):
+            seen.add((row, col))
+            for dx, dy in directions:
+                new_row, new_col = row + dx, col + dy
+                if valid(new_row, new_col) and (new_row, new_col) not in seen:
+                    dfs(new_row, new_col)
+
+        # process all border 'O' cells and their neighbors
+        for row in range(m):
+            if board[row][0] == "O":
+                dfs(row, 0)
+            if board[row][-1] == "O":
+                dfs(row, n - 1)
+        for col in range(n):
+            if board[0][col] == "O":
+                dfs(0, col)
+            if board[-1][col] == "O":
+                dfs(m - 1, col)
+        # flip all unconnected 'O' cells to 'X'
+        for i in range(1, m - 1):
+            for j in range(1, n - 1):
+                if board[i][j] == "O" and (i, j) not in seen:
+                    board[i][j] = "X"
+        return
 
     def singleNumber(self, nums: List[int]) -> int:
         # 136.Single Number
