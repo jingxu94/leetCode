@@ -30,6 +30,22 @@ class Pro1601To1800:
                 right = mid - 1
         return -1
 
+    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
+        # 1630.Arithmetic Subarrays
+        ans: List[bool] = []
+        for li, ri in zip(l, r):
+            flag = True
+            subarray = list(nums[i] for i in range(li, ri + 1))
+            if len(subarray) > 2:
+                subarray.sort()
+                gap = subarray[1] - subarray[0]
+                for i in range(1, len(subarray) - 1):
+                    if subarray[i + 1] - subarray[i] != gap:
+                        flag = False
+                        break
+            ans.append(flag)
+        return ans
+
     def maximumWealth(self, accounts: List[List[int]]) -> int:
         # 1672.Richest Customer Wealth
         rich = []

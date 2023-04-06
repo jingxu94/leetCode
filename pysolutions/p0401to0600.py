@@ -94,6 +94,22 @@ class Pro0401To0600:
             right += 1
         return right - left
 
+    def levelOrder(self, root: "Node") -> List[List[int]]:  # pragma: no cover
+        # 429.N-ary Tree Level Order Traversal
+        ans: List[List[int]] = []
+        if not root:
+            return ans
+        level = [root]
+        while level:
+            curr_level: List[int] = []
+            next_level: List["Node"] = []
+            for node in level:
+                curr_level.append(node.val)
+                next_level.extend(node.children)
+            ans.append(curr_level)
+            level = next_level
+        return ans
+
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         # 435.Non-overlapping Intervals
         intervals.sort(key=lambda x: x[1])

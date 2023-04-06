@@ -1,7 +1,7 @@
 import unittest
 
 from pysolutions import Pro1201To1400
-from pysolutions.utils import create_binary_tree, create_linked_list
+from pysolutions.utils import create_linked_list
 
 
 class TestP1201To1400(unittest.TestCase):
@@ -15,6 +15,19 @@ class TestP1201To1400(unittest.TestCase):
         self.assertFalse(self.sl.checkStraightLine([[1, 1], [2, 2], [3, 4], [4, 5], [5, 6], [7, 7]]))
         self.assertFalse(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 5]]))
         self.assertTrue(self.sl.checkStraightLine([[1, 1], [2, 2]]))
+
+    def test_closedIsland(self):
+        # 1254.Number of Closed Island
+        grid = [
+            [1, 1, 1, 1, 1, 1, 1, 0],
+            [1, 0, 0, 0, 0, 1, 1, 0],
+            [1, 0, 1, 0, 1, 1, 1, 0],
+            [1, 0, 0, 0, 0, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 0],
+        ]
+        self.assertEqual(self.sl.closedIsland(grid), 2)
+        grid = [[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]]
+        self.assertEqual(self.sl.closedIsland(grid), 1)
 
     def test_subtractProductAndSum(self):
         # 1281.Subtract the Product and Sum of Digits of an Integer

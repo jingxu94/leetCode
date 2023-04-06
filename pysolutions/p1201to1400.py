@@ -28,6 +28,31 @@ class Pro1201To1400:
                 return False
         return True
 
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        # 1254.Number of Closed Islands
+        m, n = len(grid), len(grid[0])
+
+        def dfs(grid, row, col):
+            if row < 0 or row >= m or col < 0 or col >= n or grid[row][col] != 0:
+                return
+            grid[row][col] = 1
+            dfs(grid, row - 1, col)
+            dfs(grid, row + 1, col)
+            dfs(grid, row, col - 1)
+            dfs(grid, row, col + 1)
+
+        for row in range(m):
+            for col in range(n):
+                if (row * col == 0 or row == m - 1 or col == n - 1) and grid[row][col] == 0:
+                    dfs(grid, row, col)
+        num_closed_islands = 0
+        for row in range(1, m - 1):
+            for col in range(1, n - 1):
+                if grid[row][col] == 0:
+                    num_closed_islands += 1
+                    dfs(grid, row, col)
+        return num_closed_islands
+
     def subtractProductAndSum(self, n: int) -> int:
         """1281.Subtract the Product and Sum of Digits of an Integer
         Subtract the product of digits and the sum of digits of an integer.

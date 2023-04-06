@@ -48,6 +48,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.lengthOfLongestSubstring("bbbbb"), 1)
         self.assertEqual(self.sl.lengthOfLongestSubstring("pwwkew"), 3)
 
+    def test_longestPalindrome(self):
+        # 5.Longest Palindromic Substring
+        self.assertEqual(self.sl.longestPalindrome("babad"), "bab")
+        self.assertEqual(self.sl.longestPalindrome("abced"), "a")
+
     def test_isPalindrome(self):
         # 9.Palindrome Number
         self.assertTrue(self.sl.isPalindrome(121))
@@ -224,6 +229,11 @@ class TestP0001To0200(unittest.TestCase):
         ]
         self.assertTrue(self.sl.isValidSudoku(board1))
         self.assertFalse(self.sl.isValidSudoku(board2))
+
+    def test_trap(self):
+        # 42.Trapping Rain Water
+        self.assertEqual(self.sl.trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]), 6)
+        self.assertEqual(self.sl.trap([4, 2, 0, 3, 2, 5]), 9)
 
     def test_multiply(self):
         # 43.Multiply Strings
@@ -574,6 +584,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.singleNumber([4, 1, 2, 1, 2]), 4)
         self.assertEqual(self.sl.singleNumber([1]), 1)
 
+    def test_wordBreak(self):
+        # 139.Word Break
+        self.assertTrue(self.sl.wordBreak("leetcode", ["leet", "code"]))
+        self.assertTrue(self.sl.wordBreak("applepenapple", ["apple", "pen"]))
+        self.assertFalse(self.sl.wordBreak("catsandog", ["cats", "dog", "sand", "and", "cat"]))
+
     def test_hasCycle(self):
         # 141.Linked List Cycle
         head = create_linked_list([3, 2, 0, -4])
@@ -655,6 +671,15 @@ class TestP0001To0200(unittest.TestCase):
         # 169.Majority Element
         self.assertEqual(self.sl.majorityElement([3, 2, 3]), 3)
         self.assertEqual(self.sl.majorityElement([2, 2, 1, 1, 1, 2, 2]), 2)
+
+    def test_findRepeatedDnaSequences(self):
+        # 187.Repeated DNA Sequences
+        self.assertEqual(
+            self.sl.findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"), ["AAAAACCCCC", "CCCCCAAAAA"]
+        )
+        self.assertEqual(self.sl.findRepeatedDnaSequences("AAAAAAAAAAAAA"), ["AAAAAAAAAA"])
+        self.assertEqual(self.sl.findRepeatedDnaSequences("AAAAAAAAAAA"), ["AAAAAAAAAA"])
+        self.assertEqual(self.sl.findRepeatedDnaSequences("AAAAAAA"), [])
 
     def test_hammingWeight(self):
         # 191.Number of 1 Bits

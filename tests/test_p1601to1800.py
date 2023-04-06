@@ -14,6 +14,14 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(self.sl.specialArray([0, 0]), -1)
         self.assertEqual(self.sl.specialArray([0, 4, 3, 0, 4]), 3)
 
+    def test_checkArithmeticSubarrays(self):
+        # 1630.Arithmetic Subarrays
+        nums = [-12, -9, -3, -12, -6, 15, 20, -25, -20, -15, -10]
+        l = [0, 1, 6, 4, 8, 7]
+        r = [4, 4, 9, 7, 9, 10]
+        ans = [False, True, False, False, True, True]
+        self.assertEqual(self.sl.checkArithmeticSubarrays(nums, l, r), ans)
+
     def test_maximumWealth(self):
         # 1672.Richest Customer Wealth
         accounts1, accounts2, accounts3 = (

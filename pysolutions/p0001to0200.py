@@ -1,6 +1,7 @@
 import math
 import re
 from collections import Counter, deque
+from itertools import chain, combinations
 from typing import Dict, List, Optional, Set
 
 from .utils import ListNode, Node, TreeNode
@@ -52,6 +53,17 @@ class Pro0001To0200:
             ans = max(ans, right - left + 1)
             right += 1
         return ans
+
+    def longestPalindrome(self, s: str) -> str:
+        # 5.Longest Palindromic Substring
+        m = n = len(s)
+        while m > 1:
+            mstrs = (s[i : i + m] for i in range(n - m + 1))
+            for mstr in mstrs:
+                if mstr == mstr[::-1]:
+                    return mstr
+            m -= 1
+        return s[0]
 
     def isPalindrome(self, x: int) -> bool:
         # 9.Palindrome Number
@@ -349,6 +361,19 @@ class Pro0001To0200:
                     res += [(i, element), (element, j), (i // 3, j // 3, element)]
         return len(res) == len(set(res))
 
+    def trap(self, height: List[int]) -> int:
+        # 42.Trapping Rain Water
+        left, right, up, ans = 0, len(height) - 1, 0, 0
+        while left < right:
+            low = min(height[left], height[right])
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+            up = max(up, low)
+            ans += up - low
+        return ans
+
     def multiply(self, num1: str, num2: str) -> str:
         # 43.Multiply Strings
         return str(eval(num1 + "*" + num2))
@@ -637,6 +662,10 @@ class Pro0001To0200:
         backtrack(1, [])
         return result
 
+    def subsets(self, nums: List[int]) -> List[List[int]]:  # pragma: no cover
+        # 78.Subsets
+        return list(chain.from_iterable(list(combinations(nums, k) for k in range(len(nums) + 1))))
+
     def deleteDuplicates_v2(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 82.Remove Duplicates from Sorted List II
         # if head is None:
@@ -741,6 +770,12 @@ class Pro0001To0200:
                 b -= 1
 
             write_index -= 1
+
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:  # pragma: no cover
+        # 90.Subsets II
+        nums.sort()
+        subsets = chain.from_iterable(combinations(nums, k) for k in range(len(nums) + 1))
+        return set(subsets)
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         # 94.Binary Tree Inorder Traversal
@@ -1102,6 +1137,17 @@ class Pro0001To0200:
         count = Counter(nums)
         return count.most_common()[-1][0]
 
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        # 139.Word Break
+        dp = [False] * (len(s) + 1)
+        dp[0] = True
+        for i in range(1, len(s) + 1):
+            for j in range(i):
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i] = True
+                    break
+        return dp[-1]
+
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # 141.Linked List Cycle
         if head is None:
@@ -1252,6 +1298,18 @@ class Pro0001To0200:
         # ====================================
         nums.sort()
         return nums[len(nums) // 2]
+
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        # 187.Repeated DNA Sequences
+        n = len(s)
+        ans: List[str] = []
+        if n <= 10:
+            return ans
+        dna_sequence = Counter(s[i : i + 10] for i in range(n - 9))
+        for key in dna_sequence.keys():
+            if dna_sequence[key] > 1:
+                ans.append(key)
+        return ans
 
     def rotate(self, nums: List[int], k: int) -> None:  # pragma: no cover
         """189.Rotate Array
