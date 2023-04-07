@@ -230,6 +230,17 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.isValidSudoku(board1))
         self.assertFalse(self.sl.isValidSudoku(board2))
 
+    def test_combinationSum(self):
+        # 39.Combination Sum
+        self.assertEqual(self.sl.combinationSum([2, 3, 6, 7], 7), [[2, 2, 3], [7]])
+        self.assertEqual(self.sl.combinationSum([2, 3, 5], 8), [[2, 2, 2, 2], [2, 3, 3], [3, 5]])
+        self.assertEqual(self.sl.combinationSum([2], 1), [])
+
+    def test_combinationSum2(self):
+        # 40.Combination Sum II
+        self.assertEqual(self.sl.combinationSum2([10, 1, 2, 7, 6, 1, 5], 8), [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]])
+        self.assertEqual(self.sl.combinationSum2([2, 5, 2, 1, 2], 5), [[1, 2, 2], [5]])
+
     def test_trap(self):
         # 42.Trapping Rain Water
         self.assertEqual(self.sl.trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]), 6)
@@ -412,6 +423,13 @@ class TestP0001To0200(unittest.TestCase):
         nums1, m, nums2, n = [0], 0, [1], 1
         self.sl.merge(nums1, m, nums2, n)
         self.assertEqual(nums1, [1])
+
+    def test_numDecodings(self):
+        # 91.Decode Ways
+        self.assertEqual(self.sl.numDecodings("12"), 2)
+        self.assertEqual(self.sl.numDecodings("226"), 3)
+        self.assertEqual(self.sl.numDecodings("06"), 0)
+        self.assertEqual(self.sl.numDecodings("200"), 0)
 
     def test_inorderTraversal(self):
         # 94.Binary Tree Inorder Traversal

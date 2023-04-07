@@ -30,6 +30,12 @@ class TestP0401To0600(unittest.TestCase):
             ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"],
         )
 
+    def test_numberOfArithmeticSlices(self):
+        # 413.Arthmetic Slices
+        self.assertEqual(self.sl.numberOfArithmeticSlices([1, 2, 3, 4]), 3)
+        self.assertEqual(self.sl.numberOfArithmeticSlices([1]), 0)
+        self.assertEqual(self.sl.numberOfArithmeticSlices([1, 2, 4, 9]), 0)
+
     def test_addString(self):
         # 415.Add Strings
         self.assertEqual(self.sl.addStrings("11", "123"), "134")
@@ -73,6 +79,11 @@ class TestP0401To0600(unittest.TestCase):
         self.assertListEqual(self.sl.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])
         self.assertListEqual(self.sl.nextGreaterElement([2, 4], [1, 2, 3, 4]), [3, -1])
 
+    def test_nextGreaterElements(self):
+        # 503.Next Greater Element II
+        self.assertEqual(self.sl.nextGreaterElements([1, 2, 1]), [2, -1, 2])
+        self.assertEqual(self.sl.nextGreaterElements([1, 2, 3, 4, 3]), [2, 3, 4, -1, 4])
+
     def test_fib(self):
         # 509.Fibonacci Number
         self.assertEqual(self.sl.fib(0), 0)
@@ -94,6 +105,15 @@ class TestP0401To0600(unittest.TestCase):
         # 547.Number of Provinces
         self.assertEqual(self.sl.findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]]), 2)
         self.assertEqual(self.sl.findCircleNum([[1, 0, 0], [0, 1, 0], [0, 0, 1]]), 3)
+
+    def test_nextGreaterElement_v2(self):
+        # 556.Next Greater Element III
+        self.assertEqual(self.sl.nextGreaterElement_v2(12), 21)
+        self.assertEqual(self.sl.nextGreaterElement_v2(21), -1)
+        self.assertEqual(self.sl.nextGreaterElement_v2(1234), 1243)
+        self.assertEqual(self.sl.nextGreaterElement_v2(230241), 230412)
+        self.assertEqual(self.sl.nextGreaterElement_v2(11), -1)
+        self.assertEqual(self.sl.nextGreaterElement_v2(2147483486), -1)
 
     def test_reverseWords(self):
         # 557.Reverse Words in a String 3

@@ -62,6 +62,19 @@ class Pro0401To0600:
                 answer.append(str(num))
         return answer
 
+    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
+        # 413.Arithmetic Slices
+        n = len(nums)
+        if n < 3:
+            return 0
+        dp = [0] * n
+        total_arithmetic_slices = 0
+        for i in range(2, n):
+            if nums[i] - nums[i - 1] == nums[i - 1] - nums[i - 2]:
+                dp[i] = dp[i - 1] + 1
+                total_arithmetic_slices += dp[i]
+        return total_arithmetic_slices
+
     def addStrings(self, num1: str, num2: str) -> str:
         # 415.Add String
         return str(eval(num1 + "+" + num2))
@@ -168,6 +181,19 @@ class Pro0401To0600:
                         break
         return ans
 
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        # 503.Next Greater Element II
+        n = len(nums)
+        ans: List[int] = [-1] * n
+        stack: List[int] = []
+        for i in range(2 * n):
+            while stack and nums[stack[-1]] < nums[i % n]:
+                index = stack.pop()
+                ans[index] = nums[i % n]
+            if i < n:
+                stack.append(i)
+        return ans
+
     def fib(self, n: int) -> int:
         # 509.Fibonacci Number
         if n == 0 or n == 1:
@@ -216,6 +242,25 @@ class Pro0401To0600:
         for i in range(len(isConnected)):
             provinces += dfs(isConnected, checked, i)
         return provinces
+
+    def nextGreaterElement_v2(self, n: int) -> int:
+        # 556.Next Greater Element III
+        digits = list(str(n))
+        length = len(digits)
+        i = length - 2
+        while i >= 0 and digits[i] >= digits[i + 1]:
+            i -= 1
+        if i == -1:
+            return -1
+        j = length - 1
+        while j > i and digits[j] <= digits[i]:
+            j -= 1
+        digits[i], digits[j] = digits[j], digits[i]
+        digits[i + 1 :] = sorted(digits[i + 1 :])
+        result = int("".join(digits))
+        if result > 2**31 - 1:
+            return -1
+        return result
 
     def subarraySum(self, nums: List[int], k: int) -> int:
         # 560.Subarray Sum Equals K

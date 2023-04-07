@@ -26,6 +26,27 @@ class Pro1001To1200:
             imax = max(imax, val + i)
         return ans
 
+    def numEnclaves(self, grid: List[List[int]]) -> int:
+        # 1020.Number of Enclaves
+        m, n = len(grid), len(grid[0])
+
+        def dfs(grid, row, col):
+            if row < 0 or row >= m or col < 0 or col >= n or grid[row][col] == 0:
+                return
+            grid[row][col] = 0
+            dfs(grid, row - 1, col)
+            dfs(grid, row + 1, col)
+            dfs(grid, row, col - 1)
+            dfs(grid, row, col + 1)
+
+        for i in range(m):
+            dfs(grid, i, 0)
+            dfs(grid, i, n - 1)
+        for j in range(n):
+            dfs(grid, 0, j)
+            dfs(grid, m - 1, j)
+        return len(list(1 for i in range(m) for j in range(n) if grid[i][j] == 1))
+
     def lastStoneWeight(self, stones: List[int]) -> int:
         # 1046.Last Stone Weight
         while len(stones) > 1:

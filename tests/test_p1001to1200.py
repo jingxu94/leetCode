@@ -21,6 +21,10 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.maxScoreSightseeingPair([8, 1, 5, 2, 6]), 11)
         self.assertEqual(self.sl.maxScoreSightseeingPair([1, 2]), 2)
 
+    def test_numEnclaves(self):
+        # 1020.Number of Enclaves
+        self.assertEqual(self.sl.numEnclaves([[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]), 3)
+
     def test_lastStoneWeight(self):
         # 1046.Last Stone Weight
         self.assertEqual(self.sl.lastStoneWeight([2, 7, 4, 1, 8, 1]), 1)

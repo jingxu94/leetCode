@@ -1,8 +1,8 @@
 import math
 import re
 from collections import Counter, deque
-from itertools import chain, combinations
-from typing import Dict, List, Optional, Set
+from itertools import chain, combinations, permutations
+from typing import Dict, List, Optional
 
 from .utils import ListNode, Node, TreeNode
 
@@ -361,6 +361,44 @@ class Pro0001To0200:
                     res += [(i, element), (element, j), (i // 3, j // 3, element)]
         return len(res) == len(set(res))
 
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        # 39.Combination Sum
+        def backtrack(start, target, comb, ans):
+            if target == 0:
+                ans.append(list(comb))
+                return
+            elif target < 0:
+                return
+            for i in range(start, len(candidates)):
+                comb.append(candidates[i])
+                backtrack(i, target - candidates[i], comb, ans)
+                comb.pop()
+
+        ans: List[List[int]] = []
+        backtrack(0, target, [], ans)
+        return ans
+
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        # 40.Combination Sum II
+        def backtrack(start, target, comb, ans):
+            if target == 0:
+                ans.append(list(comb))
+                return
+            elif target < 0:
+                return
+            for i in range(start, len(candidates)):
+                # Skip duplicates
+                if i > start and candidates[i] == candidates[i - 1]:
+                    continue
+                comb.append(candidates[i])
+                backtrack(i + 1, target - candidates[i], comb, ans)
+                comb.pop()
+
+        ans: List[List[int]] = []
+        candidates.sort()
+        backtrack(0, target, [], ans)
+        return ans
+
     def trap(self, height: List[int]) -> int:
         # 42.Trapping Rain Water
         left, right, up, ans = 0, len(height) - 1, 0, 0
@@ -420,6 +458,10 @@ class Pro0001To0200:
         result: List[List[int]] = []
         backtrack([])
         return result
+
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:  # pragma: no cover
+        # 47.Permutations II
+        return list(set(permutations(nums, len(nums))))
 
     def rotate_v2(self, matrix: List[List[int]]) -> None:  # pragma: no cover
         # 48.Rotate Image
@@ -776,6 +818,23 @@ class Pro0001To0200:
         nums.sort()
         subsets = chain.from_iterable(combinations(nums, k) for k in range(len(nums) + 1))
         return set(subsets)
+
+    def numDecodings(self, s: str) -> int:
+        # 91.Decode Ways
+        if s[0] == "0":
+            return 0
+        n = len(s)
+        dp = [0] * (n + 1)
+        dp[0] = dp[1] = 1
+        for i in range(2, n + 1):
+            # If the current digit is not 0, it can be decoded as a single digit
+            if s[i - 1] != "0":
+                dp[i] += dp[i - 1]
+            # If the last two digits form a number between 10 and 26, they can be decoded as a double-digit
+            two_digit = int(s[i - 2 : i])
+            if 10 <= two_digit <= 26:
+                dp[i] += dp[i - 2]
+        return dp[n]
 
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         # 94.Binary Tree Inorder Traversal
