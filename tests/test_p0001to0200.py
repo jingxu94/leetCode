@@ -99,6 +99,11 @@ class TestP0001To0200(unittest.TestCase):
         nums = [-3, -2, -1, 0, 1, 2, 3]
         self.assertEqual(self.sl.threeSum(nums), [[-3, 0, 3], [-3, 1, 2], [-2, -1, 3], [-2, 0, 2], [-1, 0, 1]])
 
+    def test_letterCombinations(self):
+        # 17.Letter Combinations of a Phone Number
+        self.assertEqual(self.sl.letterCombinations("23"), ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"])
+        self.assertEqual(self.sl.letterCombinations(""), [])
+
     def test_removeNthFromEnd(self):
         # 19.Remove Nth Node From of List
         self.assertTrue(
@@ -140,6 +145,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(eq_linked_list(ans1, expected1))
         self.assertTrue(eq_linked_list(ans2, expected2))
         self.assertTrue(eq_linked_list(ans3, expected3))
+
+    def test_generateParenthesis(self):
+        # 22.Generate Parentheses
+        self.assertEqual(self.sl.generateParenthesis(3), ["((()))", "(()())", "(())()", "()(())", "()()()"])
+        self.assertEqual(self.sl.generateParenthesis(1), ["()"])
 
     def test_mergeKLists(self):
         # 23.Merge k Sorted Lists
@@ -374,6 +384,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertListEqual(self.sl.combine(4, 2), [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]])
         self.assertListEqual(self.sl.combine(1, 1), [[1]])
 
+    def test_exist(self):
+        # 79.Word Search
+        self.assertTrue(self.sl.exist([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCCED"))
+        self.assertTrue(self.sl.exist([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "SEE"))
+        self.assertFalse(self.sl.exist([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCB"))
+
     def test_deleteDuplicates_v2(self):
         # 82.Remove Duplicates from Sorted List II
         head = create_linked_list([1, 2, 3, 3, 4, 4, 5])
@@ -436,6 +452,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.inorderTraversal(TreeNode(1, right=TreeNode(2, left=TreeNode(3)))), [1, 3, 2])
         self.assertEqual(self.sl.inorderTraversal(create_binary_tree([])), [])
         self.assertEqual(self.sl.inorderTraversal(create_binary_tree([1])), [1])
+
+    def test_numTrees(self):
+        # 96.Unique Binary Search Trees
+        self.assertEqual(self.sl.numTrees(3), 5)
+        self.assertEqual(self.sl.numTrees(1), 1)
 
     def test_isValidBST(self):
         # 98.Validate Binary Search Tree

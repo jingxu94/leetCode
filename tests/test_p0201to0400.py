@@ -147,6 +147,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.isAnagram("anagram", "nagaram"))
         self.assertFalse(self.sl.isAnagram("rat", "car"))
 
+    def test_nthUglyNumber(self):
+        # 264.Ugly Number II
+        self.assertEqual(self.sl.nthUglyNumber(10), 12)
+        self.assertEqual(self.sl.nthUglyNumber(1), 1)
+
     def test_firstBadVersion(self):
         # 278.First Bad Version
         # There's no inner function isBadVersion()

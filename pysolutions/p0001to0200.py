@@ -176,6 +176,22 @@ class Pro0001To0200:
                         right -= 1
         return ans
 
+    def letterCombinations(self, digits: str) -> List[str]:
+        # 17.Letter Combinations of a Phone Number
+        def dfs(digits, mapping, path, res):
+            if not digits:
+                res.append(path)
+                return
+            for char in mapping[digits[0]]:
+                dfs(digits[1:], mapping, path + char, res)
+
+        if not digits:
+            return []
+        mapping = {"2": "abc", "3": "def", "4": "ghi", "5": "jkl", "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"}
+        res = []
+        dfs(digits, mapping, "", res)
+        return res
+
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         # 19.Remove Nth Node From End of List
         if head is None:
@@ -229,6 +245,21 @@ class Pro0001To0200:
         if list2:
             curr.next = list2
         return result.next
+
+    def generateParenthesis(self, n: int) -> List[str]:
+        # 22.Generate Parentheses
+        def backtrack(ans, cur, open_count, close_count, max_count):
+            if len(cur) == max_count * 2:
+                ans.append(cur)
+                return
+            if open_count < max_count:
+                backtrack(ans, cur + "(", open_count + 1, close_count, max_count)
+            if close_count < open_count:
+                backtrack(ans, cur + ")", open_count, close_count + 1, max_count)
+
+        ans = []
+        backtrack(ans, "", 0, 0, n)
+        return ans
 
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         # 23.Merge k Sorted Lists
@@ -708,6 +739,24 @@ class Pro0001To0200:
         # 78.Subsets
         return list(chain.from_iterable(list(combinations(nums, k) for k in range(len(nums) + 1))))
 
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        # 79.Word Search
+        def dfs(i, j, k):
+            if not 0 <= i < len(board) or not 0 <= j < len(board[0]) or board[i][j] != word[k]:
+                return False
+            if k == len(word) - 1:
+                return True
+            tmp, board[i][j] = board[i][j], "/"
+            res = dfs(i - 1, j, k + 1) or dfs(i + 1, j, k + 1) or dfs(i, j - 1, k + 1) or dfs(i, j + 1, k + 1)
+            board[i][j] = tmp
+            return res
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if dfs(i, j, 0):
+                    return True
+        return False
+
     def deleteDuplicates_v2(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 82.Remove Duplicates from Sorted List II
         # if head is None:
@@ -850,6 +899,19 @@ class Pro0001To0200:
         # self.ans = []
         # _treenode_traver(root, self.ans)
         # return self.ans
+
+    def numTrees(self, n: int) -> int:
+        # 96.Unique Binary Search Trees
+        # Initialize the dp list with 1
+        dp = [1] * (n + 1)
+        # Calculate number of unique BSTs for each i from 2 to n
+        for i in range(2, n + 1):
+            total = 0
+            # Calculate number of unique BSTs for each j from 1 to i
+            for j in range(1, i + 1):
+                total += dp[j - 1] * dp[i - j]
+            dp[i] = total
+        return dp[n]
 
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         # 98.Validate Binary Search Tree
@@ -1185,6 +1247,22 @@ class Pro0001To0200:
                     board[i][j] = "X"
         return
 
+    def cloneGraph(self, node: "Node") -> "Node":  # pragma: no cover
+        # 133.Clone Graph
+        def dfs(node):
+            if node in visited:
+                return visited[node]
+            cloned_node = Node(node.val)
+            visited[node] = cloned_node
+            for neighbor in node.neighbors:
+                cloned_node.neighbors.append(dfs(neighbor))
+            return cloned_node
+
+        if not node:
+            return None
+        visited = {}
+        return dfs(node)
+
     def singleNumber(self, nums: List[int]) -> int:
         # 136.Single Number
         # count = Counter(nums)
@@ -1319,6 +1397,34 @@ class Pro0001To0200:
             else:
                 left = mid + 1
         return nums[left]
+
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:  # pragma: no cover
+        # 160.Intersection of Two Linked Lists
+        # find the length of the linked lists
+        lenA, lenB = 0, 0
+        currA, currB = headA, headB
+        while currA:
+            lenA += 1
+            currA = currA.next
+        while currB:
+            lenB += 1
+            currB = currB.next
+        # set pointers to the same distance from the end of each linked list
+        currA, currB = headA, headB
+        if lenA > lenB:
+            for _ in range(lenA - lenB):
+                currA = currA.next
+        else:
+            for _ in range(lenB - lenA):
+                currB = currB.next
+        # traverse both linked lists together until a common node is found
+        while currA and currB:
+            if currA == currB:
+                return currA
+            currA = currA.next
+            currB = currB.next
+        # no common node found
+        return None
 
     def findPeakElement(self, nums: List[int]) -> int:
         # 162.Find Peak Element

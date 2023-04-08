@@ -1,5 +1,5 @@
 from bisect import bisect_left
-from collections import defaultdict
+from collections import defaultdict, deque
 from string import ascii_lowercase
 from typing import List, Optional
 
@@ -232,6 +232,23 @@ class Pro1201To1400:
             return check_path(head.next, node.left) or check_path(head.next, node.right)
 
         return check_path(head, root) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
+
+    def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
+        # 1376.Time Needed to Inform All Employees
+        hierarchy = {}
+        for i, m in enumerate(manager):
+            if m not in hierarchy:
+                hierarchy[m] = []
+            hierarchy[m].append(i)
+        queue = deque([(headID, 0)])
+        max_time = 0
+        while queue:
+            curr, time = queue.popleft()
+            max_time = max(max_time, time)
+            if curr in hierarchy:
+                for emp in hierarchy[curr]:
+                    queue.append((emp, time + informTime[curr]))
+        return max_time
 
     def findTheDistanceValue1(self, arr1: List[int], arr2: List[int], d: int) -> int:
         """1385.Find the Distance Value Between Two Arrays

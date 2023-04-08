@@ -1,3 +1,4 @@
+import heapq
 import random
 from collections import Counter, defaultdict, deque
 from typing import Dict, List, Optional
@@ -204,6 +205,21 @@ class Pro0201To0400:
     def isAnagram(self, s: str, t: str) -> bool:
         # 242.Valid Anagram
         return Counter(s) == Counter(t)
+
+    def nthUglyNumber(self, n: int) -> int:
+        # 264.Ugly Number II
+        ugly_numbers = [1]
+        seen = {1}
+        factors = [2, 3, 5]
+        heap = [(f, 0, f) for f in factors]
+        heapq.heapify(heap)
+        while len(ugly_numbers) < n:
+            val, idx, factor = heapq.heappop(heap)
+            if val not in seen:
+                seen.add(val)
+                ugly_numbers.append(val)
+            heapq.heappush(heap, (factor * ugly_numbers[idx + 1], idx + 1, factor))
+        return ugly_numbers[-1]
 
     def firstBadVersion(self, n: int) -> int:  # pragma: no cover
         # 278.First Bad Version

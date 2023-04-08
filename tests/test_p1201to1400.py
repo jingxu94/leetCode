@@ -244,6 +244,11 @@ class TestP1201To1400(unittest.TestCase):
     #         )
     #     )
 
+    def test_numOfMinutes(self):
+        # 1376.Time Needed to Inform All Employees
+        self.assertEqual(self.sl.numOfMinutes(1, 0, [-1], [0]), 0)
+        self.assertEqual(self.sl.numOfMinutes(6, 2, [2, 2, -1, 2, 2, 2], [0, 0, 1, 0, 0, 0]), 1)
+
     def test_findTheDistanceValue(self):
         # 1385.Find the Distance Value Between Two Arrays
         arr1, arr2, d, ans = [4, 5, 8], [10, 9, 1, 8], 2, 2
