@@ -2,7 +2,7 @@ import math
 import re
 from collections import Counter, deque
 from itertools import chain, combinations, permutations
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from .utils import ListNode, Node, TreeNode
 
@@ -188,7 +188,7 @@ class Pro0001To0200:
         if not digits:
             return []
         mapping = {"2": "abc", "3": "def", "4": "ghi", "5": "jkl", "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"}
-        res = []
+        res: List[str] = []
         dfs(digits, mapping, "", res)
         return res
 
@@ -257,7 +257,7 @@ class Pro0001To0200:
             if close_count < open_count:
                 backtrack(ans, cur + ")", open_count, close_count + 1, max_count)
 
-        ans = []
+        ans: List[str] = []
         backtrack(ans, "", 0, 0, n)
         return ans
 
@@ -298,6 +298,16 @@ class Pro0001To0200:
         for i in v:
             ans = ListNode(i, ans)
         return ans
+
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 24.Swap Nodes in Pairs
+        if not head or not head.next:
+            return head
+        first = head
+        second = head.next
+        first.next = self.swapPairs(second.next)
+        second.next = first
+        return second
 
     def removeDuplicates(self, nums: List[int]) -> List[int]:
         # 26.Remove Duplicates from Sorted Array
@@ -490,7 +500,7 @@ class Pro0001To0200:
         backtrack([])
         return result
 
-    def permuteUnique(self, nums: List[int]) -> List[List[int]]:  # pragma: no cover
+    def permuteUnique(self, nums: List[int]) -> Any:  # pragma: no cover
         # 47.Permutations II
         return list(set(permutations(nums, len(nums))))
 
@@ -735,7 +745,7 @@ class Pro0001To0200:
         backtrack(1, [])
         return result
 
-    def subsets(self, nums: List[int]) -> List[List[int]]:  # pragma: no cover
+    def subsets(self, nums: List[int]) -> Any:  # pragma: no cover
         # 78.Subsets
         return list(chain.from_iterable(list(combinations(nums, k) for k in range(len(nums) + 1))))
 
@@ -862,7 +872,7 @@ class Pro0001To0200:
 
             write_index -= 1
 
-    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:  # pragma: no cover
+    def subsetsWithDup(self, nums: List[int]) -> Any:  # pragma: no cover
         # 90.Subsets II
         nums.sort()
         subsets = chain.from_iterable(combinations(nums, k) for k in range(len(nums) + 1))
@@ -1258,9 +1268,7 @@ class Pro0001To0200:
                 cloned_node.neighbors.append(dfs(neighbor))
             return cloned_node
 
-        if not node:
-            return None
-        visited = {}
+        visited: Dict["Node", "Node"] = {}
         return dfs(node)
 
     def singleNumber(self, nums: List[int]) -> int:

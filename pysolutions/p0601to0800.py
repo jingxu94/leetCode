@@ -1,7 +1,7 @@
 from collections import Counter
 from typing import List, Optional
 
-from .utils import TreeNode
+from .utils import ListNode, TreeNode
 
 
 class Pro0601To0800:
@@ -363,3 +363,56 @@ class MyHashMap:  # pragma: no cover
             if k == key:
                 self.buckets[index].pop(i)
                 return
+
+
+class MyLinkedList:  # pragma: no cover
+    # 707.Design Linked List
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+    def get(self, index: int) -> int:
+        if index < 0 or index >= self.size:
+            return -1
+        current = self.head
+        for _ in range(index):
+            current = current.next
+        return current.val
+
+    def addAtHead(self, val: int) -> None:
+        self.head = ListNode(val, self.head)
+        self.size += 1
+
+    def addAtTail(self, val: int) -> None:
+        if not self.head:
+            self.head = ListNode(val)
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = ListNode(val)
+        self.size += 1
+
+    def addAtIndex(self, index: int, val: int) -> None:
+        if index > self.size:
+            return
+        if index <= 0:
+            self.addAtHead(val)
+        else:
+            current = self.head
+            for _ in range(index - 1):
+                current = current.next
+            current.next = ListNode(val, current.next)
+            self.size += 1
+
+    def deleteAtIndex(self, index: int) -> None:
+        if index < 0 or index >= self.size:
+            return
+        if index == 0:
+            self.head = self.head.next
+        else:
+            current = self.head
+            for _ in range(index - 1):
+                current = current.next
+            current.next = current.next.next
+        self.size -= 1

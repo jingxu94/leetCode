@@ -20,6 +20,33 @@ class TestP1801To2000(unittest.TestCase):
         self.assertEqual(self.sl.maxDistance([2, 2, 2], [10, 10, 1]), 1)
         self.assertEqual(self.sl.maxDistance([30, 29, 19, 5], [25, 25, 25, 25, 25]), 2)
 
+    def test_largestPathValue(self):
+        # 1857.Largest Color Value in a Directed Graph
+        self.assertEqual(self.sl.largestPathValue("abaca", [[0, 1], [0, 2], [2, 3], [3, 4]]), 3)
+        self.assertEqual(
+            self.sl.largestPathValue(
+                "hhqhuqhqff",
+                [
+                    [0, 1],
+                    [0, 2],
+                    [2, 3],
+                    [3, 4],
+                    [3, 5],
+                    [5, 6],
+                    [2, 7],
+                    [6, 7],
+                    [7, 8],
+                    [3, 8],
+                    [5, 8],
+                    [8, 9],
+                    [3, 9],
+                    [6, 9],
+                ],
+            ),
+            3,
+        )
+        self.assertEqual(self.sl.largestPathValue("a", [[0, 0]]), -1)
+
     def test_findRotation(self):
         self.assertTrue(self.sl.findRotation([[0, 1], [1, 0]], [[0, 1], [1, 0]]))
         self.assertTrue(self.sl.findRotation([[0, 1], [1, 0]], [[1, 0], [0, 1]]))

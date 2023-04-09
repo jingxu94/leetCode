@@ -1,7 +1,7 @@
 from bisect import bisect_left
 from collections import defaultdict, deque
 from string import ascii_lowercase
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from .utils import ListNode, TreeNode
 
@@ -235,7 +235,7 @@ class Pro1201To1400:
 
     def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
         # 1376.Time Needed to Inform All Employees
-        hierarchy = {}
+        hierarchy: Dict[int, List[int]] = {}
         for i, m in enumerate(manager):
             if m not in hierarchy:
                 hierarchy[m] = []

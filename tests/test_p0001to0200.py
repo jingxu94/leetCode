@@ -158,6 +158,13 @@ class TestP0001To0200(unittest.TestCase):
         ans = self.sl.mergeKLists(lists)
         self.assertTrue(eq_linked_list(ans, expected))
 
+    def test_swapPairs(self):
+        # 24.Swap Nodes in Pairs
+        self.assertTrue(
+            eq_linked_list(self.sl.swapPairs(create_linked_list([1, 2, 3, 4])), create_linked_list([2, 1, 4, 3]))
+        )
+        self.assertTrue(eq_linked_list(self.sl.swapPairs(create_linked_list([1])), create_linked_list([1])))
+
     def test_removeDuplicates(self):
         # 26.Remove Duplicates from Sorted Array
         # === Custom Judege ===
