@@ -358,6 +358,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.uniquePaths(3, 2), 3)
         self.assertEqual(self.sl.uniquePaths(1, 1), 1)
 
+    def test_uniquePathsWithObstacles(self):
+        # 63.Unique Paths II
+        self.assertEqual(self.sl.uniquePathsWithObstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]), 2)
+        self.assertEqual(self.sl.uniquePathsWithObstacles([[0, 1], [0, 0]]), 1)
+        self.assertEqual(self.sl.uniquePathsWithObstacles([[0, 0], [1, 1], [0, 0]]), 0)
+        self.assertEqual(self.sl.uniquePathsWithObstacles([[1, 0], [1, 1], [0, 0]]), 0)
+
     def test_minPathSum(self):
         # 64.Minimum Path Sum
         self.assertEqual(self.sl.minPathSum([[1, 3, 1], [1, 5, 1], [4, 2, 1]]), 7)
@@ -391,6 +398,11 @@ class TestP0001To0200(unittest.TestCase):
         outputs = [1, 2, 3, 5, 8, 13, 21, 34, 55]
         for input, output in zip(inputs, outputs):
             self.assertEqual(self.sl.climbStairs(input), output)
+
+    def test_minDistance(self):
+        # 72.Edit Distance
+        self.assertEqual(self.sl.minDistance("horse", "ros"), 3)
+        self.assertEqual(self.sl.minDistance("intention", "execution"), 5)
 
     def test_searchMatrix(self):
         # 74.Search a 2D Matrix

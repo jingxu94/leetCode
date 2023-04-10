@@ -94,6 +94,23 @@ class Pro1201To1400:
             ans += ascii_lowercase[int(num) - 1]
         return ans
 
+    def matrixBlockSum(self, mat: List[List[int]], k: int) -> List[List[int]]:
+        # 1314.Matrix Block Sum
+        m, n = len(mat), len(mat[0])
+        # Calculate the prefix sum matrix
+        prefix_sum = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                prefix_sum[i + 1][j + 1] = mat[i][j] + prefix_sum[i + 1][j] + prefix_sum[i][j + 1] - prefix_sum[i][j]
+        # Calculate the block sums
+        result = [[0] * n for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                r1, c1 = max(0, i - k), max(0, j - k)
+                r2, c2 = min(m, i + k + 1), min(n, j + k + 1)
+                result[i][j] = prefix_sum[r2][c2] - prefix_sum[r1][c2] - prefix_sum[r2][c1] + prefix_sum[r1][c1]
+        return result
+
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
         # 1319.Number of Operations to Make Network Connected
         def find(x: int) -> int:

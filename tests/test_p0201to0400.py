@@ -64,6 +64,22 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]))
         self.assertFalse(self.sl.containsDuplicate([1, 2, 3, 4]))
 
+    def test_maximalSquare(self):
+        # 221.Maximal Square
+        self.assertEqual(
+            self.sl.maximalSquare(
+                [
+                    ["1", "0", "1", "0", "0"],
+                    ["1", "0", "1", "1", "1"],
+                    ["1", "1", "1", "1", "1"],
+                    ["1", "0", "0", "1", "0"],
+                ]
+            ),
+            4,
+        )
+        self.assertEqual(self.sl.maximalSquare([["0", "1"], ["1", "0"]]), 1)
+        self.assertEqual(self.sl.maximalSquare([["0"]]), 0)
+
     def test_invertTree(self):
         # 226.Invert Binary Tree
         root = create_binary_tree([4, 2, 7, 1, 3, 6, 9])
@@ -178,10 +194,22 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.getHint("1807", "7810"), "1A3B")
         self.assertEqual(self.sl.getHint("1123", "0111"), "1A1B")
 
+    def test_lengthOfLIS(self):
+        # 300.Longest Increasing Subsequence
+        self.assertEqual(self.sl.lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]), 4)
+        self.assertEqual(self.sl.lengthOfLIS([0, 1, 0, 3, 2, 3]), 4)
+        self.assertEqual(self.sl.lengthOfLIS([7, 7, 7, 7, 7, 7, 7]), 1)
+
     def test_maxProfit(self):
         # 309.Best Time to Buy and Sell Stock with Cooldown
         self.assertEqual(self.sl.maxProfit([1, 2, 3, 0, 2]), 3)
         self.assertEqual(self.sl.maxProfit([1]), 0)
+
+    def test_coinChange(self):
+        # 322.Coin Change
+        self.assertEqual(self.sl.coinChange([1, 2, 5], 11), 3)
+        self.assertEqual(self.sl.coinChange([2], 3), -1)
+        self.assertEqual(self.sl.coinChange([1], 0), 0)
 
     def test_increasingTriplet(self):
         # 334.Increasing Triplet Subsequence
@@ -203,6 +231,14 @@ class TestP0201To0400(unittest.TestCase):
         # 367.Valid Perfect Square
         self.assertTrue(self.sl.isPerfectSquare(16))
         self.assertFalse(self.sl.isPerfectSquare(14))
+
+    def test_wiggleMaxLength(self):
+        # 376.Wiggle Subsequence
+        self.assertEqual(self.sl.wiggleMaxLength([1, 7, 4, 9, 2, 5]), 6)
+        self.assertEqual(self.sl.wiggleMaxLength([2]), 1)
+        self.assertEqual(self.sl.wiggleMaxLength([0, 0]), 1)
+        self.assertEqual(self.sl.wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8]), 7)
+        self.assertEqual(self.sl.wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9]), 2)
 
     def test_canConstruct(self):
         # 383.Ransom Note

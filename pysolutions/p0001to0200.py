@@ -640,6 +640,24 @@ class Pro0001To0200:
             decay -= 1
         return int(up / down)
 
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        # 63.Unique Paths II
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+        if obstacleGrid[0][0] == 1:
+            return 0
+        obstacleGrid[0][0] = 1
+        for i in range(1, m):
+            obstacleGrid[i][0] = 0 if obstacleGrid[i][0] == 1 or obstacleGrid[i - 1][0] == 0 else 1
+        for j in range(1, n):
+            obstacleGrid[0][j] = 0 if obstacleGrid[0][j] == 1 or obstacleGrid[0][j - 1] == 0 else 1
+        for i in range(1, m):
+            for j in range(1, n):
+                if obstacleGrid[i][j] == 1:
+                    obstacleGrid[i][j] = 0
+                else:
+                    obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
+        return obstacleGrid[m - 1][n - 1]
+
     def minPathSum(self, grid: List[List[int]]) -> int:
         # 64.Minimum Path Sum
         m, n = len(grid), len(grid[0])
@@ -721,6 +739,22 @@ class Pro0001To0200:
             two = one
             one = ways
         return ways
+
+    def minDistance(self, word1: str, word2: str) -> int:
+        # 72.Edit Distance
+        m, n = len(word1), len(word2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m + 1):
+            dp[i][0] = i
+        for j in range(n + 1):
+            dp[0][j] = j
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
+        return dp[m][n]
 
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         # 74.Search a 2D Matrix

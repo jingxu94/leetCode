@@ -46,6 +46,15 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(self.sl.freqAlphabets("1326#"), "acz")
         self.assertEqual(self.sl.freqAlphabets("123"), "abc")
 
+    def test_matrixBlockSum(self):
+        # 1314.Matrix Block Sum
+        mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        k = 1
+        self.assertEqual(self.sl.matrixBlockSum(mat, k), [[12, 21, 16], [27, 45, 33], [24, 39, 28]])
+        mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        k = 2
+        self.assertEqual(self.sl.matrixBlockSum(mat, k), [[45, 45, 45], [45, 45, 45], [45, 45, 45]])
+
     def test_makeConnected(self):
         # 1319.Number of Operations to Make Network Connected
         self.assertEqual(self.sl.makeConnected(4, [[0, 1], [0, 2], [1, 2]]), 1)

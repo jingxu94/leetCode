@@ -92,6 +92,17 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.fib(3), 2)
         self.assertEqual(self.sl.fib(4), 3)
 
+    def test_longestPalindromeSubseq(self):
+        # 516.Longest Palindromic Subsequence
+        self.assertEqual(self.sl.longestPalindromeSubseq("bbbab"), 4)
+        self.assertEqual(self.sl.longestPalindromeSubseq("cbbd"), 2)
+
+    def test_change(self):
+        # 518.Coin Change II
+        self.assertEqual(self.sl.change(5, [1, 2, 5]), 4)
+        self.assertEqual(self.sl.change(3, [2]), 0)
+        self.assertEqual(self.sl.change(10, [10]), 1)
+
     def test_updateMatrix(self):
         # 542.0 1 Matrix
         mat = [[0, 0, 0], [0, 1, 0], [0, 0, 0]]

@@ -44,3 +44,9 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.tribonacci(2), 1)
         self.assertEqual(self.sl.tribonacci(4), 4)
         self.assertEqual(self.sl.tribonacci(25), 1389537)
+
+    def test_longestCommonSubsequence(self):
+        # 1143.Longest Common Subsequence
+        self.assertEqual(self.sl.longestCommonSubsequence("abcde", "ace"), 3)
+        self.assertEqual(self.sl.longestCommonSubsequence("abc", "abc"), 3)
+        self.assertEqual(self.sl.longestCommonSubsequence("abc", "def"), 0)

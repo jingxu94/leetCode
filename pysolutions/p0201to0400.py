@@ -97,6 +97,18 @@ class Pro0201To0400:
                 return True
         return False
 
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        # 221.Maximal Square
+        m, n = len(matrix), len(matrix[0])
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        ans = 0
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if matrix[i - 1][j - 1] == "1":
+                    dp[i][j] = min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
+                    ans = max(ans, dp[i][j])
+        return ans**2
+
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         # 226.Invert Binary Tree
         if root is None:
@@ -283,6 +295,15 @@ class Pro0201To0400:
                 cows += min(ctg[key], cts[key])
         return "".join([str(bulls), "A", str(cows), "B"])
 
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        # 300.Longest Increasing Subsequence
+        dp = [1] * len(nums)
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)
+
     def maxProfit(self, prices: List[int]) -> int:
         # 309.Best Time to Buy and Sell Stock with Cooldown
         if len(prices) == 1:
@@ -296,6 +317,15 @@ class Pro0201To0400:
             dp[k][1] = max(dp[k - 1][1], dp[k - 2][0] - prices[k])
             dp[k][0] = max(dp[k - 1][0], dp[k - 1][1] + prices[k])
         return dp[-1][0]
+
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # 322.Coin Change
+        dp = [float("inf")] * (amount + 1)
+        dp[0] = 0
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+        return int(dp[-1]) if dp[-1] != float("inf") else -1
 
     def increasingTriplet(self, nums: List[int]) -> bool:
         # 334.Increasing Triplet Subsequence
@@ -355,6 +385,18 @@ class Pro0201To0400:
             else:
                 left = mid + 1
         return -1
+
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        # 376.Wiggle Subsequence
+        if len(nums) < 2:
+            return len(nums)
+        up = down = 1
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i - 1]:
+                up = down + 1
+            elif nums[i] < nums[i - 1]:
+                down = up + 1
+        return max(up, down)
 
     def getRandom(self, head: Optional[ListNode]) -> int:  # pragma: no cover
         # 382.Linked List Random Node
