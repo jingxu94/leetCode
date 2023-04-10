@@ -165,6 +165,19 @@ class TestP0001To0200(unittest.TestCase):
         )
         self.assertTrue(eq_linked_list(self.sl.swapPairs(create_linked_list([1])), create_linked_list([1])))
 
+    def test_reverseKGroup(self):
+        # 25.Reverse Nodes in k-Group
+        self.assertTrue(
+            eq_linked_list(
+                self.sl.reverseKGroup(create_linked_list([1, 2, 3, 4, 5]), 2), create_linked_list([2, 1, 4, 3, 5])
+            )
+        )
+        self.assertTrue(
+            eq_linked_list(
+                self.sl.reverseKGroup(create_linked_list([1, 2, 3, 4, 5]), 3), create_linked_list([3, 2, 1, 4, 5])
+            )
+        )
+
     def test_removeDuplicates(self):
         # 26.Remove Duplicates from Sorted Array
         # === Custom Judege ===

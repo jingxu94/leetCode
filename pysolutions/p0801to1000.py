@@ -87,6 +87,16 @@ class Pro0801To1000:
             nums.reverse()
             return True if nums == sorted(nums) else False
 
+    def smallestRangeII(self, nums: List[int], k: int) -> int:
+        # 910.Smallest Range II
+        nums.sort()
+        result = nums[-1] - nums[0]
+        for i in range(len(nums) - 1):
+            max_num = max(nums[-1], nums[i] + 2 * k)
+            min_num = min(nums[i + 1], nums[0] + 2 * k)
+            result = min(result, max_num - min_num)
+        return result
+
     def sortArray(self, nums: List[int]) -> List[int]:
         # 912.Sort an Array
         nums_dict = Counter(nums)
@@ -117,6 +127,19 @@ class Pro0801To1000:
             cur_sum = max(nums[i], cur_sum + nums[i])
             max_sum = max(max_sum, total_sum + cur_sum)
         return int(max_sum)
+
+    def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+        # 931.Minimum Falling Path Sum
+        n = len(matrix)
+        for i in range(1, n):
+            for j in range(n):
+                if j == 0:
+                    matrix[i][j] += min(matrix[i - 1][j], matrix[i - 1][j + 1])
+                elif j == n - 1:
+                    matrix[i][j] += min(matrix[i - 1][j], matrix[i - 1][j - 1])
+                else:
+                    matrix[i][j] += min(matrix[i - 1][j - 1], matrix[i - 1][j], matrix[i - 1][j + 1])
+        return min(matrix[-1])
 
     def isAlienSorted(self, words: List[str], order: str) -> bool:
         # 953.Verifying an Alien Dictionary

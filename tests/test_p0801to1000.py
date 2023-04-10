@@ -56,6 +56,12 @@ class TestP0801To1000(unittest.TestCase):
         self.assertTrue(self.sl.isMonotonic([6, 5, 4, 4]))
         self.assertFalse(self.sl.isMonotonic([1, 3, 2]))
 
+    def test_smallestRangeII(self):
+        # 910.Smallest Range II
+        self.assertEqual(self.sl.smallestRangeII([1], 0), 0)
+        self.assertEqual(self.sl.smallestRangeII([0, 10], 2), 6)
+        self.assertEqual(self.sl.smallestRangeII([1, 3, 6], 3), 3)
+
     def test_sortArray(self):
         # 912.Sort an Array
         nums1 = [5, 2, 3, 1]
@@ -70,6 +76,13 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.maxSubarraySumCircular([1, -2, 3, -2]), 3)
         self.assertEqual(self.sl.maxSubarraySumCircular([5, -3, 5]), 10)
         self.assertEqual(self.sl.maxSubarraySumCircular([-3, -2, -3]), -2)
+
+    def test_minFallingPathSum(self):
+        # 931.Minimum Falling Path Sum
+        A1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        A2 = [[-19, 57], [-40, -5]]
+        self.assertEqual(self.sl.minFallingPathSum(A1), 12)
+        self.assertEqual(self.sl.minFallingPathSum(A2), -59)
 
     def test_isAlienSorted(self):
         # 953.Verifying an Alien Dictionary

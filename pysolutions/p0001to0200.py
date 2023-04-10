@@ -309,6 +309,24 @@ class Pro0001To0200:
         second.next = first
         return second
 
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        # 25.Reverse Nodes in k-Group
+        if not head or not head.next:
+            return head
+        curr = head
+        for _ in range(k):
+            if not curr:
+                return head
+            curr = curr.next
+        prev, curr = None, head
+        for _ in range(k):
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        head.next = self.reverseKGroup(curr, k)
+        return prev
+
     def removeDuplicates(self, nums: List[int]) -> List[int]:
         # 26.Remove Duplicates from Sorted Array
         nums[:] = sorted(frozenset(nums))
@@ -1322,6 +1340,29 @@ class Pro0001To0200:
             pos1 = pos1.next
             pos2 = pos2.next
         return pos1
+
+    def reorderList(self, head: Optional[ListNode]) -> None:  # pragma: no cover
+        # 143.Reorder List
+        if not head:
+            return
+        # Find the middle of linked list [Problem 876]
+        # in 1->2->3->4->5->6 find 4
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        # Reverse the second half [Problem 206]
+        # convert 1->2->3->4->5->6 into 1->2->3->4 and 6->5->4
+        # reverse the second half in-place
+        prev, curr = None, slow
+        while curr:
+            curr.next, prev, curr = prev, curr, curr.next
+        # Merge two sorted linked lists [Problem 21]
+        # merge 1->2->3->4 and 6->5->4 into 1->6->2->5->3->4
+        first, second = head, prev
+        while second.next:
+            first.next, first = second, first.next
+            second.next, second = first, second.next
 
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         # 144.Binary Tree Preorder Traversal

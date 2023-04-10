@@ -525,3 +525,23 @@ class NumArray:  # pragma: no cover
 
     def sumRange(self, left: int, right: int) -> int:
         return self.sums[right + 1] - self.sums[left]
+
+
+class NumMatrix:  # pragma: no cover
+    # 304.Range Sum Query 2D - Immutable
+    def __init__(self, matrix: List[List[int]]):
+        if not matrix or not matrix[0]:
+            return
+        m, n = len(matrix), len(matrix[0])
+        self.sums = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                self.sums[i + 1][j + 1] = self.sums[i][j + 1] + self.sums[i + 1][j] - self.sums[i][j] + matrix[i][j]
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        return (
+            self.sums[row2 + 1][col2 + 1]
+            - self.sums[row2 + 1][col1]
+            - self.sums[row1][col2 + 1]
+            + self.sums[row1][col1]
+        )
