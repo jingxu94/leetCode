@@ -19,6 +19,15 @@ class Pro1801To2000:
             return -1
         return 1
 
+    def findTheWinner(self, n: int, k: int) -> int:
+        # 1823.Find the Winner of the Circular Game
+        def findWinner(n: int, k: int) -> int:
+            if n == 1:
+                return 1
+            return (findWinner(n - 1, k) + k - 1) % n + 1
+
+        return findWinner(n, k)
+
     def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
         # 1855.Maximum Distance Between a Pair of Values
         i, j = 0, 0

@@ -1334,6 +1334,33 @@ class Pro0001To0200:
         count = Counter(nums)
         return count.most_common()[-1][0]
 
+    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":  # pragma: no cover
+        # 138.Copy List with Random Pointer
+        if not head:
+            return None
+        # create a new linked list with the same value
+        # and insert it between the original node and the next node
+        node = head
+        while node:
+            new_node = Node(node.val)
+            new_node.next = node.next
+            node.next = new_node
+            node = new_node.next
+        # copy the random pointer for each new node
+        node = head
+        while node:
+            if node.random:
+                node.next.random = node.random.next
+            node = node.next.next
+        # extract the new list
+        new_head = head.next
+        node = head
+        while node.next:
+            temp = node.next
+            node.next = temp.next
+            node = temp
+        return new_head
+
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         # 139.Word Break
         dp = [False] * (len(s) + 1)
@@ -1618,3 +1645,26 @@ class Pro0001To0200:
                     num_islands += 1
                     dfs(grid, row, col)
         return num_islands
+
+
+class MinStack:  # pragma: no cover
+    # 155.Min Stack
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        if not self.min_stack or x <= self.min_stack[-1]:
+            self.min_stack.append(x)
+
+    def pop(self) -> None:
+        if self.stack[-1] == self.min_stack[-1]:
+            self.min_stack.pop()
+        self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]

@@ -28,6 +28,21 @@ class Pro1201To1400:
                 return False
         return True
 
+    def minRemoveToMakeValid(self, s: str) -> str:
+        # 1249.Minimum Remove to Make Valid Parentheses
+        stack: List[int] = []
+        for i, c in enumerate(s):
+            if c == "(":
+                stack.append(i)
+            elif c == ")":
+                if stack:
+                    stack.pop()
+                else:
+                    s = s[:i] + "*" + s[i + 1 :]
+        for i in stack:
+            s = s[:i] + "*" + s[i + 1 :]
+        return s.replace("*", "")
+
     def closedIsland(self, grid: List[List[int]]) -> int:
         # 1254.Number of Closed Islands
         m, n = len(grid), len(grid[0])

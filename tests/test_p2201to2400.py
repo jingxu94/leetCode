@@ -28,3 +28,8 @@ class TestP2201To2400(unittest.TestCase):
         # 2360.Longest Cycle in a Graph
         self.assertEqual(self.sl.longestCycle([3, 3, 4, 2, 3]), 3)
         self.assertEqual(self.sl.longestCycle([2, -1, 3, 1]), -1)
+
+    def test_removeStars(self):
+        # 2390.Removing Stars From a String
+        self.assertEqual(self.sl.removeStars("leet**cod*e"), "lecoe")
+        self.assertEqual(self.sl.removeStars("erase*****"), "")

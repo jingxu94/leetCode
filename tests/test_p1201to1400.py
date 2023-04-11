@@ -16,6 +16,13 @@ class TestP1201To1400(unittest.TestCase):
         self.assertFalse(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 5]]))
         self.assertTrue(self.sl.checkStraightLine([[1, 1], [2, 2]]))
 
+    def test_minRemoveToMakeValid(self):
+        # 1249.Minimum Remove to Make Valid Parentheses
+        self.assertEqual(self.sl.minRemoveToMakeValid("lee(t(c)o)de)"), "lee(t(c)o)de")
+        self.assertEqual(self.sl.minRemoveToMakeValid("a)b(c)d"), "ab(c)d")
+        self.assertEqual(self.sl.minRemoveToMakeValid("))(("), "")
+        self.assertEqual(self.sl.minRemoveToMakeValid("(a(b(c)d)"), "a(b(c)d)")
+
     def test_closedIsland(self):
         # 1254.Number of Closed Island
         grid = [

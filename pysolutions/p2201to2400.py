@@ -111,3 +111,13 @@ class Pro2201To2400:
             if u != -1 and node_visited_at_time[u] >= start_time:
                 longest_cycle_len = max(longest_cycle_len, time_step - node_visited_at_time[u])
         return longest_cycle_len
+
+    def removeStars(self, s: str) -> str:
+        # 2390.Removing Stars From a String
+        stack: List[str] = []
+        for c in s:
+            if c == "*":
+                stack.pop()
+            else:
+                stack.append(c)
+        return "".join(stack)
