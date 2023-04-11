@@ -247,6 +247,13 @@ class Pro0201To0400:
                 left = mid + 1
         return left
 
+    def numSquares(self, n: int) -> int:
+        # 279.Perfect Squares
+        dp = [0] * (n + 1)
+        for i in range(1, n + 1):
+            dp[i] = min(dp[i - j * j] for j in range(1, int(i**0.5) + 1)) + 1
+        return dp[-1]
+
     def moveZeroes(self, nums: List[int]) -> List[int]:
         """283.Move Zeroes
         Do not return anything, modify nums in-place instead.
@@ -339,6 +346,24 @@ class Pro0201To0400:
                 return True
         return False
 
+    def integerBreak(self, n: int) -> int:
+        # 343.Integer Break
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        for i in range(2, n + 1):
+            for j in range(1, i):
+                dp[i] = max(dp[i], j * (i - j), j * dp[i - j])
+        return dp[-1]
+        # ================================
+        # if n < 4:
+        #     return n - 1
+        # elif n % 3 == 0:
+        #     return 3 ** (n // 3)
+        # elif n % 3 == 1:
+        #     return 3 ** (n // 3 - 1) * 4
+        # else:
+        #     return 3 ** (n // 3) * 2
+
     def reverseString(self, s: List[str]) -> List[str]:
         """344.Reverse String
         Do not return anything, modify s in-place instead.
@@ -397,6 +422,16 @@ class Pro0201To0400:
             elif nums[i] < nums[i - 1]:
                 down = up + 1
         return max(up, down)
+
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        # 377.Combination Sum IV
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        for i in range(1, target + 1):
+            for num in nums:
+                if i >= num:
+                    dp[i] += dp[i - num]
+        return dp[-1]
 
     def getRandom(self, head: Optional[ListNode]) -> int:  # pragma: no cover
         # 382.Linked List Random Node

@@ -173,6 +173,11 @@ class TestP0201To0400(unittest.TestCase):
         # There's no inner function isBadVersion()
         pass
 
+    def test_numSquares(self):
+        # 279.Perfect Squares
+        self.assertEqual(self.sl.numSquares(12), 3)
+        self.assertEqual(self.sl.numSquares(13), 2)
+
     def test_moveZeroes(self):
         # 283.Move Zeroes
         self.assertListEqual(self.sl.moveZeroes([0, 1, 0, 3, 12]), [1, 3, 12, 0, 0])
@@ -218,6 +223,14 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.increasingTriplet([2, 1, 5, 0, 4, 6]))
         self.assertTrue(self.sl.increasingTriplet([20, 100, 10, 12, 5, 13]))
 
+    def test_integerBreak(self):
+        # 343.Integer Break
+        self.assertEqual(self.sl.integerBreak(2), 1)
+        self.assertEqual(self.sl.integerBreak(3), 2)
+        self.assertEqual(self.sl.integerBreak(5), 6)
+        self.assertEqual(self.sl.integerBreak(9), 27)
+        self.assertEqual(self.sl.integerBreak(10), 36)
+
     def test_reverseString(self):
         # 344.Reverse String
         self.assertEqual(self.sl.reverseString(["a", "b"]), ["b", "a"])
@@ -239,6 +252,12 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.wiggleMaxLength([0, 0]), 1)
         self.assertEqual(self.sl.wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8]), 7)
         self.assertEqual(self.sl.wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9]), 2)
+
+    def test_combinationSum4(self):
+        # 377.Combination Sum IV
+        self.assertEqual(self.sl.combinationSum4([1, 2, 3], 4), 7)
+        self.assertEqual(self.sl.combinationSum4([1, 2, 3], 32), 181997601)
+        self.assertEqual(self.sl.combinationSum4([9], 3), 0)
 
     def test_canConstruct(self):
         # 383.Ransom Note
