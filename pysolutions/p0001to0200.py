@@ -7,6 +7,13 @@ from typing import Any, Dict, List, Optional
 from .utils import ListNode, Node, TreeNode
 
 
+class NodeTwo:
+    def __init__(self, x: int, next=None, random=None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+
 class Pro0001To0200:
     def __init__(self):
         pass
@@ -740,6 +747,17 @@ class Pro0001To0200:
             one = ways
         return ways
 
+    def simplifyPath(self, path: str) -> str:
+        # 71.Simplify Path
+        stack: List[str] = []
+        for p in path.split("/"):
+            if p == "..":
+                if stack:
+                    stack.pop()
+            elif p and p != ".":
+                stack.append(p)
+        return "/" + "/".join(stack)
+
     def minDistance(self, word1: str, word2: str) -> int:
         # 72.Edit Distance
         m, n = len(word1), len(word2)
@@ -1057,6 +1075,28 @@ class Pro0001To0200:
         tree_level(root, 1)
         return tree_levels
 
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        # 103.Binary Tree Zigzag Level Order Traversal
+        if root is None:
+            return []
+        tree_levels: List[List[int]] = []
+
+        def tree_level(node, level):
+            if node is None:
+                return
+            if level > len(tree_levels):
+                tree_levels.append([node.val])
+            else:
+                if level % 2 == 0:
+                    tree_levels[level - 1].insert(0, node.val)
+                else:
+                    tree_levels[level - 1].append(node.val)
+            tree_level(node.left, level + 1)
+            tree_level(node.right, level + 1)
+
+        tree_level(root, 1)
+        return tree_levels
+
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         # 104.Maximum Depth of Binary Tree
         if root is None:
@@ -1064,6 +1104,20 @@ class Pro0001To0200:
         left_depth = self.maxDepth(root.left)
         right_depth = self.maxDepth(root.right)
         return max(left_depth, right_depth) + 1
+
+    def buildTree_v2(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        # 105.Construct Binary Tree from Preorder and Inorder Traversal
+        def build_tree(stop):
+            if inorder and inorder[-1] != stop:
+                root = TreeNode(preorder.pop())
+                root.left = build_tree(root.val)
+                inorder.pop()
+                root.right = build_tree(stop)
+                return root
+
+        preorder.reverse()
+        inorder.reverse()
+        return build_tree(None)
 
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
         # 106.Construct Binary Tree from Inorder and Postorder Traversal
@@ -1334,7 +1388,7 @@ class Pro0001To0200:
         count = Counter(nums)
         return count.most_common()[-1][0]
 
-    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":  # pragma: no cover
+    def copyRandomList(self, head: "Optional[NodeTwo]") -> "Optional[NodeTwo]":  # pragma: no cover
         # 138.Copy List with Random Pointer
         if not head:
             return None
@@ -1342,7 +1396,7 @@ class Pro0001To0200:
         # and insert it between the original node and the next node
         node = head
         while node:
-            new_node = Node(node.val)
+            new_node = NodeTwo(node.val)
             new_node.next = node.next
             node.next = new_node
             node = new_node.next
@@ -1416,12 +1470,12 @@ class Pro0001To0200:
         # convert 1->2->3->4->5->6 into 1->2->3->4 and 6->5->4
         # reverse the second half in-place
         prev, curr = None, slow
-        while curr:
+        while curr and curr.next:
             curr.next, prev, curr = prev, curr, curr.next
         # Merge two sorted linked lists [Problem 21]
         # merge 1->2->3->4 and 6->5->4 into 1->6->2->5->3->4
         first, second = head, prev
-        while second.next:
+        while second and second.next:
             first.next, first = second, first.next
             second.next, second = first, second.next
 

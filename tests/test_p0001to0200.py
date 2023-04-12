@@ -399,6 +399,13 @@ class TestP0001To0200(unittest.TestCase):
         for input, output in zip(inputs, outputs):
             self.assertEqual(self.sl.climbStairs(input), output)
 
+    def test_simplifyPath(self):
+        # 71.Simplify Path
+        self.assertEqual(self.sl.simplifyPath("/home/"), "/home")
+        self.assertEqual(self.sl.simplifyPath("/../"), "/")
+        self.assertEqual(self.sl.simplifyPath("/home//foo/"), "/home/foo")
+        self.assertEqual(self.sl.simplifyPath("/a/./b/../../c/"), "/c")
+
     def test_minDistance(self):
         # 72.Edit Distance
         self.assertEqual(self.sl.minDistance("horse", "ros"), 3)
@@ -515,11 +522,32 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.levelOrder(create_binary_tree([1])), [[1]])
         self.assertEqual(self.sl.levelOrder(create_binary_tree([])), [])
 
+    def test_zigzagLevelOrder(self):
+        # 103.Binary Tree Zigzag Level Order Traversal
+        self.assertEqual(
+            self.sl.zigzagLevelOrder(create_binary_tree([3, 9, 20, None, None, 15, 7])), [[3], [20, 9], [15, 7]]
+        )
+        self.assertEqual(self.sl.zigzagLevelOrder(create_binary_tree([1])), [[1]])
+        self.assertEqual(self.sl.zigzagLevelOrder(create_binary_tree([])), [])
+
     def test_maxDepth(self):
         # 104.Maximum Depth of Binary Tree
         self.assertEqual(self.sl.maxDepth(create_binary_tree([3, 9, 20, None, None, 15, 7])), 3)
         self.assertEqual(self.sl.maxDepth(create_binary_tree([1, None, 2])), 2)
         self.assertEqual(self.sl.maxDepth(create_binary_tree([])), 0)
+
+    def test_buildTree_v2(self):
+        # 105.Construct Binary Tree from Preorder and Inorder Traversal
+        preorder = [3, 9, 20, 15, 7]
+        inorder = [9, 3, 15, 20, 7]
+        ans = self.sl.buildTree_v2(preorder, inorder)
+        expected = create_binary_tree([3, 9, 20, None, None, 15, 7])
+        self.assertTrue(eq_binary_tree(ans, expected))
+        preorder = [-1]
+        inorder = [-1]
+        ans = self.sl.buildTree_v2(preorder, inorder)
+        expected = create_binary_tree([-1])
+        self.assertTrue(eq_binary_tree(ans, expected))
 
     def test_buildTree(self):
         # 106.Construct Binary Tree from Inorder and Postorder Traversal

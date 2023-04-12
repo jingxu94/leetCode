@@ -1,7 +1,7 @@
 import unittest
 
 from pysolutions import Pro0401To0600
-from pysolutions.utils import create_binary_tree
+from pysolutions.utils import create_binary_tree, create_linked_list, eq_linked_list
 
 
 class TestP0401To0600(unittest.TestCase):
@@ -66,6 +66,25 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.arrangeCoins(5), 2)
         self.assertEqual(self.sl.arrangeCoins(8), 3)
         self.assertEqual(self.sl.arrangeCoins(1), 1)
+
+    def test_addTwoNumbers(self):
+        # 445.Add Two Numbers II
+        l1 = create_linked_list([7, 2, 4, 3])
+        l2 = create_linked_list([5, 6, 4])
+        ans = create_linked_list([7, 8, 0, 7])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers(l1, l2), ans))
+        l1 = create_linked_list([7, 2, 4, 3])
+        l2 = create_linked_list([5, 6, 4])
+        ans = create_linked_list([7, 8, 0, 7])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers(l2, l1), ans))
+        l1 = create_linked_list([2, 4, 3])
+        l2 = create_linked_list([5, 6, 4])
+        ans = create_linked_list([8, 0, 7])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers(l1, l2), ans))
+        l1 = create_linked_list([0])
+        l2 = create_linked_list([0])
+        ans = create_linked_list([0])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers(l1, l2), ans))
 
     def test_repeatedSubstringPattern(self):
         # 459.Repeated Substring Pattern

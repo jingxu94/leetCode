@@ -1,7 +1,7 @@
 from collections import Counter, deque
 from typing import List, Optional, Set
 
-from .utils import TreeNode
+from .utils import ListNode, TreeNode
 
 
 class Node:  # pragma: no cover
@@ -152,6 +152,34 @@ class Pro0401To0600:
             if ct_p == ct_s:
                 ans.append(i - len(p) + 1)
         return ans
+
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # 445.Add Two Numbers II
+        def reverse(head):
+            prev = None
+            while head:
+                next = head.next
+                head.next = prev
+                prev = head
+                head = next
+            return prev
+
+        l1 = reverse(l1)
+        l2 = reverse(l2)
+        dummy = ListNode(0)
+        curr = dummy
+        carry = 0
+        while l1 or l2 or carry:
+            if l1:
+                carry += l1.val
+                l1 = l1.next
+            if l2:
+                carry += l2.val
+                l2 = l2.next
+            curr.next = ListNode(carry % 10)
+            curr = curr.next
+            carry //= 10
+        return reverse(dummy.next)
 
     def repeatedSubstringPattern(self, s: str) -> bool:
         # 459.Repeated Substring Pattern
