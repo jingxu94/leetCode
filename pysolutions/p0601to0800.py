@@ -89,6 +89,22 @@ class Pro0601To0800:
                 checked.add(num)
         return False
 
+    def findNumberOfLIS(self, nums: List[int]) -> int:
+        # 673.Number of Longest Increasing Subsequence
+        if not nums:
+            return 0
+        dp = [[1, 1] for _ in range(len(nums))]
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    if dp[i][0] < dp[j][0] + 1:
+                        dp[i][0] = dp[j][0] + 1
+                        dp[i][1] = dp[j][1]
+                    elif dp[i][0] == dp[j][0] + 1:
+                        dp[i][1] += dp[j][1]
+        max_len = max(dp, key=lambda x: x[0])[0]
+        return sum([x[1] for x in dp if x[0] == max_len])
+
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         # 692.Top K Frequent Words
         ct_words = Counter(sorted(words))

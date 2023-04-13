@@ -181,6 +181,26 @@ class Pro0401To0600:
             carry //= 10
         return reverse(dummy.next)
 
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        # 450.Delete Node in a BST
+        if not root:
+            return None
+        if root.val == key:
+            if not root.left:
+                return root.right
+            if not root.right:
+                return root.left
+            curr = root.right
+            while curr.left:
+                curr = curr.left
+            root.val = curr.val
+            root.right = self.deleteNode(root.right, curr.val)
+        elif root.val > key:
+            root.left = self.deleteNode(root.left, key)
+        else:
+            root.right = self.deleteNode(root.right, key)
+        return root
+
     def repeatedSubstringPattern(self, s: str) -> bool:
         # 459.Repeated Substring Pattern
         # half = len(s) // 2 + 1

@@ -1,7 +1,7 @@
 import unittest
 
 from pysolutions import Pro0401To0600
-from pysolutions.utils import create_binary_tree, create_linked_list, eq_linked_list
+from pysolutions.utils import create_binary_tree, create_linked_list, eq_binary_tree, eq_linked_list
 
 
 class TestP0401To0600(unittest.TestCase):
@@ -85,6 +85,28 @@ class TestP0401To0600(unittest.TestCase):
         l2 = create_linked_list([0])
         ans = create_linked_list([0])
         self.assertTrue(eq_linked_list(self.sl.addTwoNumbers(l1, l2), ans))
+
+    def test_deleteNode(self):
+        # 450.Delete Node in a BST
+        root = create_binary_tree([5, 3, 6, 2, 4, None, 7])
+        ans = create_binary_tree([5, 4, 6, 2, None, None, 7])
+        self.assertTrue(eq_binary_tree(self.sl.deleteNode(root, 3), ans))
+        root = create_binary_tree([5, 3, 6, 2, 4, None, 7])
+        ans = create_binary_tree([5, 3, 6, None, 4, None, 7])
+        self.assertTrue(eq_binary_tree(self.sl.deleteNode(root, 2), ans))
+        root = create_binary_tree([5, 3, 6, 2, 4, None, 7])
+        ans = create_binary_tree([5, 3, 6, 2, 4, None, 7])
+        self.assertTrue(eq_binary_tree(self.sl.deleteNode(root, 0), ans))
+        self.assertIsNone(self.sl.deleteNode(None, 0))
+        root = create_binary_tree([2, 1])
+        ans = create_binary_tree([1])
+        self.assertTrue(eq_binary_tree(self.sl.deleteNode(root, 2), ans))
+        root = create_binary_tree([50, 30, 70, None, 40, 60, 80])
+        ans = create_binary_tree([60, 30, 70, None, 40, None, 80])
+        self.assertTrue(eq_binary_tree(self.sl.deleteNode(root, 50), ans))
+        root = create_binary_tree([5, 3, 6, 2, 4, None, 7])
+        ans = create_binary_tree([5, 3, 6, 2, 4])
+        self.assertTrue(eq_binary_tree(self.sl.deleteNode(root, 7), ans))
 
     def test_repeatedSubstringPattern(self):
         # 459.Repeated Substring Pattern

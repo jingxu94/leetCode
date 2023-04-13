@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 from .utils import ListNode, Node, TreeNode
 
 
-class NodeTwo:
+class NodeTwo:  # pragma: no cover
     def __init__(self, x: int, next=None, random=None):
         self.val = int(x)
         self.next = next
@@ -633,6 +633,28 @@ class Pro0001To0200:
                 num += 1
         return matrix
 
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        # 61.Rotate List
+        if not head or not head.next:
+            return head
+        # Get the length of the list
+        length = 1
+        curr = head
+        while curr.next:
+            curr = curr.next
+            length += 1
+        # Connect the tail to the head
+        curr.next = head
+        # Find the new tail
+        new_tail = head
+        for _ in range(length - k % length - 1):
+            new_tail = new_tail.next
+        # Find the new head
+        new_head = new_tail.next
+        # Break the cycle
+        new_tail.next = None
+        return new_head
+
     def uniquePaths(self, m: int, n: int) -> int:
         # 62.Unique Paths
         total_steps = m + n - 2
@@ -1220,6 +1242,20 @@ class Pro0001To0200:
         remaining_sum = targetSum - root.val
         return self.hasPathSum(root.left, remaining_sum) or self.hasPathSum(root.right, remaining_sum)
 
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        # 113.Path Sum II
+        def dfs(node: Optional[TreeNode], remaining_sum: int, path: List[int]):
+            if not node:
+                return
+            if not node.left and not node.right and remaining_sum == node.val:
+                paths.append(path + [node.val])
+            dfs(node.left, remaining_sum - node.val, path + [node.val])
+            dfs(node.right, remaining_sum - node.val, path + [node.val])
+
+        paths: List[List[int]] = []
+        dfs(root, targetSum, [])
+        return paths
+
     def connect(self, root: Optional[Node]) -> Optional[Node]:  # pragma: no cover
         # 116.Populating Next Right Pointers in Each Node
         if not root:
@@ -1679,6 +1715,22 @@ class Pro0001To0200:
             rob_curr, dont_rob_curr = rob_next, dont_rob_next
         return max(rob_curr, dont_rob_curr)
 
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        # 199.Binary Tree Right Side View
+        if not root:
+            return []
+        ans: List[int] = []
+        queue = deque([root])
+        while queue:
+            ans.append(queue[-1].val)
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return ans
+
     def numIslands(self, grid: List[List[str]]) -> int:
         # 200.Number of Islands
         m, n = len(grid), len(grid[0])
@@ -1722,3 +1774,24 @@ class MinStack:  # pragma: no cover
 
     def getMin(self) -> int:
         return self.min_stack[-1]
+
+
+class BSTIterator:  # pragma: no cover
+    # 173.Binary Search Tree Iterator
+    def __init__(self, root: Optional[TreeNode]):
+        self.stack: List[TreeNode] = []
+        self._leftmost_inorder(root)
+
+    def _leftmost_inorder(self, root: Optional[TreeNode]) -> None:
+        while root:
+            self.stack.append(root)
+            root = root.left
+
+    def next(self) -> int:
+        topmost_node = self.stack.pop()
+        if topmost_node.right:
+            self._leftmost_inorder(topmost_node.right)
+        return topmost_node.val
+
+    def hasNext(self) -> bool:
+        return len(self.stack) > 0

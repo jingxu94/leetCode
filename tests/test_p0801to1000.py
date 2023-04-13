@@ -84,6 +84,15 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.minFallingPathSum(A1), 12)
         self.assertEqual(self.sl.minFallingPathSum(A2), -59)
 
+    def test_validateStackSequences(self):
+        # 946.Validate Stack Sequences
+        pushed1 = [1, 2, 3, 4, 5]
+        popped1 = [4, 5, 3, 2, 1]
+        pushed2 = [1, 2, 3, 4, 5]
+        popped2 = [4, 3, 5, 1, 2]
+        self.assertTrue(self.sl.validateStackSequences(pushed1, popped1))
+        self.assertFalse(self.sl.validateStackSequences(pushed2, popped2))
+
     def test_isAlienSorted(self):
         # 953.Verifying an Alien Dictionary
         words = ["hello", "leetcode"]

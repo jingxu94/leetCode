@@ -48,6 +48,13 @@ class TestP0601To0800(unittest.TestCase):
         self.assertFalse(self.sl.judgeSquareSum(3))
         self.assertFalse(self.sl.judgeSquareSum(24))
 
+    def test_findNumberOfLIS(self):
+        # 673.Number of Longest Increasing Subsequence
+        self.assertEqual(self.sl.findNumberOfLIS([1, 3, 5, 4, 7]), 2)
+        self.assertEqual(self.sl.findNumberOfLIS([2, 2, 2, 2, 2]), 5)
+        self.assertEqual(self.sl.findNumberOfLIS([1, 2, 3, 1, 2, 3, 1, 2, 3]), 10)
+        self.assertEqual(self.sl.findNumberOfLIS([]), 0)
+
     def test_topKFrequent(self):
         # 692.Top K Frequent Words
         words = ["i", "love", "leetcode", "i", "love", "coding"]

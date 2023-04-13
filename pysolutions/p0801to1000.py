@@ -141,6 +141,17 @@ class Pro0801To1000:
                     matrix[i][j] += min(matrix[i - 1][j - 1], matrix[i - 1][j], matrix[i - 1][j + 1])
         return min(matrix[-1])
 
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        # 946.Validate Stack Sequences
+        stack: List[int] = []
+        i = 0
+        for num in pushed:
+            stack.append(num)
+            while stack and stack[-1] == popped[i]:
+                stack.pop()
+                i += 1
+        return not stack
+
     def isAlienSorted(self, words: List[str], order: str) -> bool:
         # 953.Verifying an Alien Dictionary
         if len(words) == 1:

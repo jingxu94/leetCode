@@ -352,6 +352,15 @@ class TestP0001To0200(unittest.TestCase):
         matrix = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
         self.assertEqual(self.sl.generateMatrix(4), matrix)
 
+    def test_rotateRight(self):
+        # 61.Rotate List
+        self.assertTrue(
+            eq_linked_list(
+                self.sl.rotateRight(create_linked_list([1, 2, 3, 4, 5]), 2), create_linked_list([4, 5, 1, 2, 3])
+            )
+        )
+        self.assertTrue(eq_linked_list(self.sl.rotateRight(create_linked_list([1]), 4), create_linked_list([1])))
+
     def test_uniquePaths(self):
         # 62.Unique Paths
         self.assertEqual(self.sl.uniquePaths(3, 7), 28)
@@ -634,6 +643,17 @@ class TestP0001To0200(unittest.TestCase):
         self.assertFalse(self.sl.hasPathSum(create_binary_tree([1, 2, 3]), 5))
         self.assertFalse(self.sl.hasPathSum(create_binary_tree([]), 5))
 
+    def test_pathSum(self):
+        # 113.Path Sum II
+        root = TreeNode(
+            5,
+            left=TreeNode(4, left=TreeNode(11, left=TreeNode(7), right=TreeNode(2))),
+            right=TreeNode(8, left=TreeNode(13), right=TreeNode(4, left=TreeNode(5), right=TreeNode(1))),
+        )
+        self.assertListEqual(self.sl.pathSum(root, 22), [[5, 4, 11, 2], [5, 8, 4, 5]])
+        self.assertListEqual(self.sl.pathSum(create_binary_tree([1, 2, 3]), 5), [])
+        self.assertListEqual(self.sl.pathSum(create_binary_tree([]), 5), [])
+
     def test_connect(self):
         # 116.Populating Next Right Pointers in Each Node
         # TODO: Test function for Class Node
@@ -795,6 +815,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.rob([2, 7, 9, 3, 1]), 12)
         self.assertEqual(self.sl.rob([10]), 10)
         self.assertEqual(self.sl.rob([]), 0)
+
+    def test_rightSideView(self):
+        # 199.Binary Tree Right Side View
+        self.assertEqual(self.sl.rightSideView(create_binary_tree([1, 2, 3, None, 5, None, 4])), [1, 3, 4])
+        self.assertEqual(self.sl.rightSideView(create_binary_tree([1, None, 3])), [1, 3])
+        self.assertEqual(self.sl.rightSideView(create_binary_tree([])), [])
 
     def test_numIslands(self):
         # 200.Number of Islands
