@@ -95,6 +95,20 @@ class TestP0201To0400(unittest.TestCase):
         expected = create_binary_tree([])
         self.assertTrue(eq_binary_tree(self.sl.invertTree(root), expected))
 
+    def test_kthSmallest(self):
+        # 230.Kth Smallest Element in a BST
+        root = create_binary_tree([3, 1, 4, None, 2])
+        self.assertEqual(self.sl.kthSmallest(root, 1), 1)
+        self.assertEqual(self.sl.kthSmallest(root, 2), 2)
+        self.assertEqual(self.sl.kthSmallest(root, 3), 3)
+        self.assertEqual(self.sl.kthSmallest(root, 4), 4)
+        root = create_binary_tree([5, 3, 6, 2, 4, None, None, 1])
+        self.assertEqual(self.sl.kthSmallest(root, 1), 1)
+        self.assertEqual(self.sl.kthSmallest(root, 2), 2)
+        self.assertEqual(self.sl.kthSmallest(root, 3), 3)
+        self.assertEqual(self.sl.kthSmallest(root, 4), 4)
+        self.assertEqual(self.sl.kthSmallest(root, 5), 5)
+
     def test_isPowerOfTwo(self):
         # 231.Power of Two
         self.assertFalse(self.sl.isPowerOfTwo(0))

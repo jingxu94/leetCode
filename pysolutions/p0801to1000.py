@@ -34,6 +34,24 @@ class Pro0801To1000:
                 right = mid
         return left
 
+    def lemonadeChange(self, bills: List[int]) -> bool:
+        # 860.Lemonade Change
+        five, ten = 0, 0
+        for bill in bills:
+            if bill == 5:
+                five += 1
+            elif bill == 10:
+                five -= 1
+                ten += 1
+            elif ten > 0:
+                ten -= 1
+                five -= 1
+            else:
+                five -= 3
+            if five < 0:
+                return False
+        return True
+
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         # 875.Koko Eating Bananas
         def eat(piles: List[int], h: int, speed: int):

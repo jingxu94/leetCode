@@ -206,6 +206,11 @@ class TestP0401To0600(unittest.TestCase):
             )
         )
 
+    def test_minDistance(self):
+        # 583.Delete Operation for Two Strings
+        self.assertEqual(self.sl.minDistance("sea", "eat"), 2)
+        self.assertEqual(self.sl.minDistance("leetcode", "etco"), 4)
+
     def test_preorder(self):
         # 589.N-ary Tree Preorder Traversal
         pass

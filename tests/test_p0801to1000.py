@@ -21,6 +21,13 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.peakIndexInMountainArray([0, 2, 1, 0]), 1)
         self.assertEqual(self.sl.peakIndexInMountainArray([0, 10, 5, 2]), 1)
 
+    def test_lemonadeChange(self):
+        # 860.Lemonade Change
+        self.assertTrue(self.sl.lemonadeChange([5, 5, 5, 10, 20]))
+        self.assertTrue(self.sl.lemonadeChange([5, 5, 10]))
+        self.assertFalse(self.sl.lemonadeChange([10, 10]))
+        self.assertFalse(self.sl.lemonadeChange([5, 20, 20, 20, 20]))
+
     def test_minEatingSpeed(self):
         # 875.Koko Eating Bananas
         piles1 = [3, 6, 7, 11]

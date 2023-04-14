@@ -1,3 +1,5 @@
+import heapq
+
 from collections import Counter, defaultdict
 from typing import List
 
@@ -86,3 +88,15 @@ class Pro1801To2000:
             if mat == target:
                 return True
         return False
+
+
+class SeatManager:  # pragma: no cover
+    # 1845.Seat Reservation Manager
+    def __init__(self, n: int):
+        self.heap = list(range(1, n + 1))
+
+    def reserve(self) -> int:
+        return heapq.heappop(self.heap)
+
+    def unreserve(self, seatNumber: int) -> None:
+        heapq.heappush(self.heap, seatNumber)

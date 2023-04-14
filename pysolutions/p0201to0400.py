@@ -116,6 +116,15 @@ class Pro0201To0400:
         root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root
 
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        # 230.Kth Smallest Element in a BST
+        def inorder(root: Optional[TreeNode]) -> List[int]:
+            if root is None:
+                return []
+            return inorder(root.left) + [root.val] + inorder(root.right)
+
+        return inorder(root)[k - 1]
+
     def isPowerOfTwo(self, n: int) -> bool:
         # 231.Power of Two
         if n <= 0:
