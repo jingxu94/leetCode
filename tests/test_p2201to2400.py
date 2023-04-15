@@ -8,6 +8,13 @@ class TestP2201To2400(unittest.TestCase):
     def sl(self):
         return Pro2201To2400()
 
+    def test_maxValueOfCoins(self):
+        # 2218.Maximum Value of K Coins From Piles
+        self.assertEqual(self.sl.maxValueOfCoins([[1, 100, 3], [7, 8, 9]], 2), 101)
+        self.assertEqual(
+            self.sl.maxValueOfCoins([[100], [100], [100], [100], [100], [100], [1, 1, 1, 1, 1, 1, 700]], 7), 706
+        )
+
     def test_successfulPairs(self):
         # 2300.Successful Pairs of Spells and Potions
         self.assertEqual(self.sl.successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7), [4, 0, 3])

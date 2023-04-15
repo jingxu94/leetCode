@@ -6,6 +6,18 @@ class Pro2201To2400:
     def __init__(self) -> None:
         pass
 
+    def maxValueOfCoins(self, piles: List[List[int]], k: int) -> int:
+        # 2218.Maximum Value of K Coins From Piles
+        dp = [[0] * (k + 1) for _ in range(len(piles) + 1)]
+        for i in range(1, len(piles) + 1):
+            for j in range(1, k + 1):
+                curr = 0
+                for x in range(min(len(piles[i - 1]), j)):
+                    curr += piles[i - 1][x]
+                    dp[i][j] = max(dp[i][j], curr + dp[i - 1][j - x - 1])
+                dp[i][j] = max(dp[i][j], dp[i - 1][j])
+        return dp[len(piles)][k]
+
     def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
         # 2300.Successful Pairs of Spells and Potions
         sorted_spells = [(spell, index) for index, spell in enumerate(spells)]

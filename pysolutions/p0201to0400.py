@@ -601,6 +601,57 @@ class MyQueue:  # pragma: no cover
         return not self.stack1 and not self.stack2
 
 
+class Solution:  # pragma: no cover
+    # 236.Lowest Common Ancestor of a Binary Tree
+    def lowestCommonAncestor(self, root: "TreeNode", p: "TreeNode", q: "TreeNode") -> "TreeNode":
+        if not root or root == p or root == q:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        return left or right
+
+
+class Codec:  # pragma: no cover
+    # 297.Serialize and Deserialize Binary Tree
+    def serialize(self, root: TreeNode) -> str:
+        """Encodes a tree to a single string."""
+        if not root:
+            return ""
+        queue = deque([root])
+        res = []
+        while queue:
+            node = queue.popleft()
+            if node:
+                res.append(str(node.val))
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                res.append("null")
+        return ",".join(res)
+
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        """Decodes your encoded data to tree."""
+        if not data:
+            return None
+        lsdata = data.split(",")
+        root = TreeNode(int(lsdata[0]))
+        queue = deque([root])
+        i = 1
+        while queue:
+            node = queue.popleft()
+            if lsdata[i] != "null":
+                node.left = TreeNode(int(lsdata[i]))
+                queue.append(node.left)
+            i += 1
+            if lsdata[i] != "null":
+                node.right = TreeNode(int(lsdata[i]))
+                queue.append(node.right)
+            i += 1
+        return root
+
+
 class NumArray:  # pragma: no cover
     # 303.Range Sum Query - Immutable
     def __init__(self, nums: List[int]):
@@ -631,3 +682,20 @@ class NumMatrix:  # pragma: no cover
             - self.sums[row1][col2 + 1]
             + self.sums[row1][col1]
         )
+
+
+class NestedIterator:  # pragma: no cover
+    # 341.Flatten Nested List Iterator
+    def __init__(self, nestedList):
+        self.stack = nestedList[::-1]
+
+    def next(self):
+        return self.stack.pop().getInteger()
+
+    def hasNext(self):
+        while self.stack:
+            top = self.stack[-1]
+            if top.isInteger():
+                return True
+            self.stack = self.stack[:-1] + top.getList()[::-1]
+        return False
