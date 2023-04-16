@@ -9,6 +9,13 @@ class TestP0801To1000(unittest.TestCase):
     def sl(self):
         return Pro0801To1000()
 
+    def test_canVisitAllRooms(self):
+        # 841.Keys and Rooms
+        rooms1 = [[1], [2], [3], []]
+        rooms2 = [[1, 3], [3, 0, 1], [2], [0]]
+        self.assertTrue(self.sl.canVisitAllRooms(rooms1))
+        self.assertFalse(self.sl.canVisitAllRooms(rooms2))
+
     def test_backspaceCompare(self):
         # 844.Backspace String Compare
         self.assertTrue(self.sl.backspaceCompare("ab#c", "ad#c"))
@@ -160,3 +167,10 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]), 4)
         self.assertEqual(self.sl.orangesRotting([[2, 1, 1], [0, 1, 1], [1, 0, 1]]), -1)
         self.assertEqual(self.sl.orangesRotting([[0, 2]]), 0)
+
+    def test_findJudge(self):
+        # 997.Find the Town Judge
+        self.assertEqual(self.sl.findJudge(2, [[1, 2]]), 2)
+        self.assertEqual(self.sl.findJudge(1, [[1, 2]]), 1)
+        self.assertEqual(self.sl.findJudge(3, [[1, 3], [2, 3]]), 3)
+        self.assertEqual(self.sl.findJudge(3, [[1, 3], [2, 3], [3, 1]]), -1)

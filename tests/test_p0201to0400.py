@@ -9,6 +9,12 @@ class TestP0201To0400(unittest.TestCase):
     def sl(self):
         return Pro0201To0400()
 
+    def test_rangeBitwiseAnd(self):
+        # 201.Bitwise AND of Numbers Range
+        self.assertEqual(self.sl.rangeBitwiseAnd(5, 7), 4)
+        self.assertEqual(self.sl.rangeBitwiseAnd(0, 0), 0)
+        self.assertEqual(self.sl.rangeBitwiseAnd(1, 2147483647), 0)
+
     def test_isHappy(self):
         # 202.Happy Number
         self.assertTrue(self.sl.isHappy(19))

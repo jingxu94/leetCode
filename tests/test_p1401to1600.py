@@ -52,6 +52,11 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.maxNonOverlapping([1, 1, 1, 1, 1], 2), 2)
         self.assertEqual(self.sl.maxNonOverlapping([-1, 3, 5, 1, 4, 2, -9], 6), 2)
 
+    def test_findSmallestSetOfVertices(self):
+        # 1557.Minimum Number of Vertices to Reach All Nodes
+        self.assertEqual(self.sl.findSmallestSetOfVertices(6, [[0, 1], [0, 2], [2, 5], [3, 4], [4, 2]]), [0, 3])
+        self.assertEqual(self.sl.findSmallestSetOfVertices(5, [[0, 1], [2, 1], [3, 1], [1, 4], [2, 4]]), [0, 2, 3])
+
     def test_getMaxLen(self):
         # 1567.Maximum Length of Subarray With Positive Product
         self.assertEqual(self.sl.getMaxLen([1, -2, -3, 4]), 4)

@@ -1,6 +1,6 @@
 import math
 from collections import Counter, deque
-from typing import List
+from typing import Dict, List
 
 
 class Pro1601To1800:
@@ -45,6 +45,22 @@ class Pro1601To1800:
                         break
             ans.append(flag)
         return ans
+
+    def numWays(self, words: List[str], target: str) -> int:
+        # 1639.Number of Ways to Form a Target String Given a Dictionary
+        n = len(words[0])
+        m = len(target)
+        mod = 10**9 + 7
+        dp = [0] * (m + 1)
+        dp[0] = 1
+        count = [[0] * 26 for _ in range(n)]
+        for i in range(n):
+            for word in words:
+                count[i][ord(word[i]) - ord("a")] += 1
+        for i in range(n):
+            for j in range(m - 1, -1, -1):
+                dp[j + 1] = (dp[j + 1] + dp[j] * count[i][ord(target[j]) - ord("a")]) % mod
+        return dp[m]
 
     def maximumWealth(self, accounts: List[List[int]]) -> int:
         # 1672.Richest Customer Wealth
@@ -126,3 +142,20 @@ class ParkingSystem:  # pragma: no cover
             self.parking[carType - 1] -= 1
             return True
         return False
+
+
+class AuthenticationManager:  # pragma: no cover
+    # 1797.Design Authentication Manager
+    def __init__(self, timeToLive: int):
+        self.timeToLive = timeToLive
+        self.tokens: Dict[str, int] = {}
+
+    def generate(self, tokenId: str, currentTime: int) -> None:
+        self.tokens[tokenId] = currentTime + self.timeToLive
+
+    def renew(self, tokenId: str, currentTime: int) -> None:
+        if tokenId in self.tokens and self.tokens[tokenId] > currentTime:
+            self.tokens[tokenId] = currentTime + self.timeToLive
+
+    def countUnexpiredTokens(self, currentTime: int) -> int:
+        return sum(1 for token in self.tokens.values() if token > currentTime)

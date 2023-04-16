@@ -10,6 +10,15 @@ class Pro0201To0400:
     def __init__(self):
         pass
 
+    def rangeBitwiseAnd(self, left: int, right: int) -> int:
+        # 201.Bitwise AND of Numbers Range
+        shift = 0
+        while left < right:
+            left >>= 1
+            right >>= 1
+            shift += 1
+        return left << shift
+
     def isHappy(self, n: int) -> bool:
         # 202.Happy Number
         checked = []

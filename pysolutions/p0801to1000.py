@@ -8,6 +8,18 @@ class Pro0801To1000:
     def __init__(self):
         pass
 
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        # 841.Keys and Rooms
+        visited = set()
+        queue = deque([0])
+        while queue:
+            room = queue.popleft()
+            visited.add(room)
+            for key in rooms[room]:
+                if key not in visited:
+                    queue.append(key)
+        return len(visited) == len(rooms)
+
     def backspaceCompare(self, s: str, t: str) -> bool:
         # 844.Backspace String Compare
         stack_s, stack_t = "", ""
@@ -310,3 +322,18 @@ class Pro0801To1000:
             return -1
         else:
             return time
+
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        # 997.Find the Town Judge
+        if n == 1:
+            return 1
+        trust_dict = dict()
+        for i in range(1, n + 1):
+            trust_dict[i] = 0
+        for i in range(len(trust)):
+            trust_dict[trust[i][0]] -= 1
+            trust_dict[trust[i][1]] += 1
+        for i in range(1, n + 1):
+            if trust_dict[i] == n - 1:
+                return i
+        return -1

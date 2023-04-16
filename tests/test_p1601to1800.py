@@ -22,6 +22,12 @@ class TestP1601To1800(unittest.TestCase):
         ans = [False, True, False, False, True, True]
         self.assertEqual(self.sl.checkArithmeticSubarrays(nums, l, r), ans)
 
+    def test_numWays(self):
+        # 1639.Number of Ways to Form a Target String Given a Dictionary
+        words = ["acca", "bbbb", "caca"]
+        target = "aba"
+        self.assertEqual(self.sl.numWays(words, target), 6)
+
     def test_maximumWealth(self):
         # 1672.Richest Customer Wealth
         accounts1, accounts2, accounts3 = (

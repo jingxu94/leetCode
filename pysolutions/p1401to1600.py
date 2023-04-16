@@ -105,6 +105,13 @@ class Pro1401To1600:
             seen.add(curr)
         return ans
 
+    def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
+        # 1557.Minimum Number of Vertices to Reach All Nodes
+        in_degrees = [0] * n
+        for _, to in edges:
+            in_degrees[to] += 1
+        return [i for i in range(n) if in_degrees[i] == 0]
+
     def getMaxLen(self, nums: List[int]) -> int:
         # 1567.Maximum Length of Subarray With Positive Product
         ans = pos = neg = 0
