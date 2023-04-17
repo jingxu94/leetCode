@@ -6,6 +6,11 @@ class Pro1401To1600:
     def __init__(self):
         pass
 
+    def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
+        # 1431.Kids With the Greatest Number of Candies
+        max_candies = max(candies)
+        return [candy + extraCandies >= max_candies for candy in candies]
+
     def ways(self, pizza: List[str], k: int) -> int:
         # 1444.Number of Ways of Cutting a Pizza
         rows = len(pizza)

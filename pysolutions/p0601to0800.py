@@ -350,6 +350,44 @@ class Pro0601To0800:
         return targets
 
 
+class MyCircularQueue:  # pragma: no cover
+    # 622.Design Circular Queue
+    def __init__(self, k: int):
+        self.queue = [0] * k
+        self.head = self.tail = -1
+        self.size = k
+
+    def enQueue(self, value: int) -> bool:
+        if self.isFull():
+            return False
+        if self.isEmpty():
+            self.head = 0
+        self.tail = (self.tail + 1) % self.size
+        self.queue[self.tail] = value
+        return True
+
+    def deQueue(self) -> bool:
+        if self.isEmpty():
+            return False
+        if self.head == self.tail:
+            self.head = self.tail = -1
+        else:
+            self.head = (self.head + 1) % self.size
+        return True
+
+    def Front(self) -> int:
+        return self.queue[self.head] if not self.isEmpty() else -1
+
+    def Rear(self) -> int:
+        return self.queue[self.tail] if not self.isEmpty() else -1
+
+    def isEmpty(self) -> bool:
+        return self.head == -1
+
+    def isFull(self) -> bool:
+        return (self.tail + 1) % self.size == self.head
+
+
 class MyHashMap:  # pragma: no cover
     # 706.Design HashMap
     def __init__(self):
@@ -432,3 +470,16 @@ class MyLinkedList:  # pragma: no cover
                 current = current.next
             current.next = current.next.next
         self.size -= 1
+
+
+class MyCalendar:  # pragma: no cover
+    # 729.My Calendar I
+    def __init__(self):
+        self.calendar = []
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.calendar:
+            if s < end and start < e:
+                return False
+        self.calendar.append((start, end))
+        return True

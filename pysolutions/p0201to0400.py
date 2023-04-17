@@ -98,6 +98,10 @@ class Pro0201To0400:
             return nums[0]
         return max(rob_helper(nums[:-1]), rob_helper(nums[1:]))
 
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        # 215.Kth Largest Element in an Array
+        return heapq.nlargest(k, nums)[-1]
+
     def containsDuplicate(self, nums: List[int]) -> bool:
         # 217.Contains Duplicate
         cont = Counter(nums)
@@ -388,6 +392,10 @@ class Pro0201To0400:
         """
         s.reverse()
         return s
+
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # 347.Top K Frequent Elements
+        return [key for key, _ in Counter(nums).most_common(k)]
 
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # 350.Intersection of Two Arrays 2
@@ -708,3 +716,45 @@ class NestedIterator:  # pragma: no cover
                 return True
             self.stack = self.stack[:-1] + top.getList()[::-1]
         return False
+
+
+class RandomizedSet:  # pragma: no cover
+    # 380.Insert Delete GetRandom O(1)
+    def __init__(self):
+        self.nums = []
+        self.pos = {}
+
+    def insert(self, val: int) -> bool:
+        if val not in self.pos:
+            self.nums.append(val)
+            self.pos[val] = len(self.nums) - 1
+            return True
+        return False
+
+    def remove(self, val: int) -> bool:
+        if val in self.pos:
+            last, idx = self.nums[-1], self.pos[val]
+            self.nums[idx], self.pos[last] = last, idx
+            self.nums.pop()
+            self.pos.pop(val)
+            return True
+        return False
+
+    def getRandom(self) -> int:
+        return random.choice(self.nums)
+
+
+class Solution384:  # pragma: no cover
+    # 384.Shuffle an Array
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+        self.original = list(nums)
+
+    def reset(self) -> List[int]:
+        self.nums = self.original
+        self.original = list(self.original)
+        return self.nums
+
+    def shuffle(self) -> List[int]:
+        random.shuffle(self.nums)
+        return self.nums

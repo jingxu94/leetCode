@@ -64,6 +64,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.rob([3]), 3)
         self.assertEqual(self.sl.rob([]), 0)
 
+    def test_findKthLargest(self):
+        # 215.Kth Largest Element in an Array
+        self.assertEqual(self.sl.findKthLargest([3, 2, 1, 5, 6, 4], 2), 5)
+        self.assertEqual(self.sl.findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4)
+
     def test_containDuplicate(self):
         # 217.Contains Duplicate
         self.assertTrue(self.sl.containsDuplicate([1, 2, 3, 1]))
@@ -254,6 +259,11 @@ class TestP0201To0400(unittest.TestCase):
     def test_reverseString(self):
         # 344.Reverse String
         self.assertEqual(self.sl.reverseString(["a", "b"]), ["b", "a"])
+
+    def test_topKFrequent(self):
+        # 347.Top K Frequent Elements
+        self.assertEqual(self.sl.topKFrequent([1, 1, 1, 2, 2, 3], 2), [1, 2])
+        self.assertEqual(self.sl.topKFrequent([1], 1), [1])
 
     def test_intersect(self):
         # 350.Intersection of Two Arrays 2

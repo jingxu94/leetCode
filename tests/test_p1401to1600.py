@@ -8,6 +8,12 @@ class TestP1401To1600(unittest.TestCase):
     def sl(self):
         return Pro1401To1600()
 
+    def test_kidsWithCandies(self):
+        # 1431.Kids With the Greatest Number of Candies
+        self.assertEqual(self.sl.kidsWithCandies([2, 3, 5, 1, 3], 3), [True, True, True, False, True])
+        self.assertEqual(self.sl.kidsWithCandies([4, 2, 1, 1, 2], 1), [True, False, False, False, False])
+        self.assertEqual(self.sl.kidsWithCandies([12, 1, 12], 10), [True, False, True])
+
     def test_ways(self):
         # 1444.Number of Ways of Cutting a Pizza
         self.assertEqual(self.sl.ways(["A..", "AAA", "..."], 3), 3)
