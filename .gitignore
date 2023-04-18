@@ -10,6 +10,7 @@
 !*.py
 !*.md
 !coverage.xml
+!requirements-dev.txt
 
 # ... even if they are in subdirectories
 !*/
