@@ -1542,6 +1542,27 @@ class Pro0001To0200:
         ans.reverse()
         return ans
 
+    def maxPoints(self, points: List[List[int]]) -> int:
+        # 149.Max Points on a Line
+        if len(points) <= 2:
+            return len(points)
+        max_points = 0
+        for i in range(len(points)):
+            same_points = 1
+            slope_count: Dict[float, int] = {}
+            for j in range(i + 1, len(points)):
+                if points[i] == points[j]:
+                    same_points += 1
+                else:
+                    slope = (
+                        float("inf")
+                        if points[i][0] == points[j][0]
+                        else (points[i][1] - points[j][1]) / (points[i][0] - points[j][0])
+                    )
+                    slope_count[slope] = slope_count.get(slope, 0) + 1
+            max_points = max(max_points, same_points + max(slope_count.values(), default=0))
+        return max_points
+
     def evalRPN(self, tokens: List[str]) -> int:
         # 150.Evaluate Reverse Polish Notation
         operators = ("+", "-", "*", "/")

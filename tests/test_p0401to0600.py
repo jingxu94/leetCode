@@ -108,6 +108,12 @@ class TestP0401To0600(unittest.TestCase):
         ans = create_binary_tree([5, 3, 6, 2, 4])
         self.assertTrue(eq_binary_tree(self.sl.deleteNode(root, 7), ans))
 
+    def test_frequencySort(self):
+        # 451.Sort Characters By Frequency
+        self.assertEqual(self.sl.frequencySort("tree"), "eetr")
+        self.assertEqual(self.sl.frequencySort("cccaaa"), "cccaaa")
+        self.assertEqual(self.sl.frequencySort("Aabb"), "bbAa")
+
     def test_repeatedSubstringPattern(self):
         # 459.Repeated Substring Pattern
         self.assertTrue(self.sl.repeatedSubstringPattern("abab"))

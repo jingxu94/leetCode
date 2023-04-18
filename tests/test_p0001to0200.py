@@ -742,6 +742,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([])), [])
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([1])), [1])
 
+    def test_maxPoints(self):
+        # 149.Max Points on a Line
+        self.assertEqual(self.sl.maxPoints([[1, 1], [2, 2], [3, 3]]), 3)
+        self.assertEqual(self.sl.maxPoints([[1, 1], [2, 2]]), 2)
+        self.assertEqual(self.sl.maxPoints([[1, 1], [2, 2], [2, 2]]), 3)
+        self.assertEqual(self.sl.maxPoints([[1, 1], [3, 2], [5, 3], [4, 1], [2, 3], [1, 4]]), 4)
+
     def test_evalRPN(self):
         # 150.Evaluate Reverse Polish Notation
         self.assertEqual(self.sl.evalRPN(["2", "1", "+", "3", "*"]), 9)

@@ -201,6 +201,11 @@ class Pro0401To0600:
             root.right = self.deleteNode(root.right, key)
         return root
 
+    def frequencySort(self, s: str) -> str:
+        # 451.Sort Characters By Frequency
+        ct = Counter(s)
+        return "".join([char * ct[char] for char in sorted(ct, key=lambda x: ct[x], reverse=True)])
+
     def repeatedSubstringPattern(self, s: str) -> bool:
         # 459.Repeated Substring Pattern
         # half = len(s) // 2 + 1
