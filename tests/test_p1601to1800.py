@@ -46,6 +46,13 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(self.sl.interpret("G()()()()(al)"), "Gooooal")
         self.assertEqual(self.sl.interpret("(al)G(al)()()G"), "alGalooG")
 
+    def test_findBall(self):
+        # 1706.Where Will the Ball Fall
+        grid1 = [[1, 1, 1, -1, -1], [1, 1, 1, -1, -1], [-1, -1, -1, 1, 1], [1, 1, 1, 1, -1], [-1, -1, -1, -1, -1]]
+        grid2 = [[-1]]
+        self.assertEqual(self.sl.findBall(grid1), [1, -1, -1, -1, -1])
+        self.assertEqual(self.sl.findBall(grid2), [-1])
+
     def test_mergeAlternately(self):
         # 1768.Merge Strings Alternately
         self.assertEqual(self.sl.mergeAlternately("abc", "pqr"), "apbqcr")
