@@ -1,0 +1,12 @@
+- name: Generate coverage report
+  run: |
+    coverage run --source pysolutions --parallel-mode -m unittest
+    coverage combine
+    coverage xml -i
+  env:
+    COVERAGE_RUN: True
+
+- name: Upload coverage reports to Codecov
+  uses: codecov/codecov-action@v3
+  with:
+        file: ./coverage.xml
