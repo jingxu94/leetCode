@@ -9,6 +9,7 @@
 !pyproject.toml
 !*.py
 !*.md
+!coverage.xml
 
 # ... even if they are in subdirectories
 !*/
