@@ -48,16 +48,52 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.lengthOfLongestSubstring("bbbbb"), 1)
         self.assertEqual(self.sl.lengthOfLongestSubstring("pwwkew"), 3)
 
+    def test_findMedianSortedArrays(self):
+        # 4.Median of Two Sorted Arrays
+        self.assertEqual(self.sl.findMedianSortedArrays([1, 3], [2]), 2.0)
+        self.assertEqual(self.sl.findMedianSortedArrays([1, 2], [3, 4]), 2.5)
+
     def test_longestPalindrome(self):
         # 5.Longest Palindromic Substring
         self.assertEqual(self.sl.longestPalindrome("babad"), "bab")
         self.assertEqual(self.sl.longestPalindrome("abced"), "a")
+
+    def test_convert(self):
+        # 6.ZigZag Conversion
+        self.assertEqual(self.sl.convert("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR")
+        self.assertEqual(self.sl.convert("PAYPALISHIRING", 4), "PINALSIGYAHRPI")
+        self.assertEqual(self.sl.convert("A", 1), "A")
+
+    def test_reverse(self):
+        # 7.Reverse Integer
+        self.assertEqual(self.sl.reverse(123), 321)
+        self.assertEqual(self.sl.reverse(-123), -321)
+        self.assertEqual(self.sl.reverse(120), 21)
+
+    def test_myAtoi(self):
+        # 8.String to Integer (atoi)
+        self.assertEqual(self.sl.myAtoi("42"), 42)
+        self.assertEqual(self.sl.myAtoi("+42"), 42)
+        self.assertEqual(self.sl.myAtoi(""), 0)
+        self.assertEqual(self.sl.myAtoi("   -42"), -42)
+        self.assertEqual(self.sl.myAtoi("4193 with words"), 4193)
+        self.assertEqual(self.sl.myAtoi("words and 987"), 0)
+        self.assertEqual(self.sl.myAtoi("-91283472332"), -2147483648)
 
     def test_isPalindrome(self):
         # 9.Palindrome Number
         self.assertTrue(self.sl.isPalindrome(121))
         self.assertFalse(self.sl.isPalindrome(-121))
         self.assertFalse(self.sl.isPalindrome(10))
+
+    def test_isMatch(self):
+        # 10.Regular Expression Matching
+        self.assertTrue(self.sl.isMatch("aa", "a*"))
+        self.assertTrue(self.sl.isMatch("ab", ".*"))
+        self.assertTrue(self.sl.isMatch("aab", "c*a*b"))
+        self.assertFalse(self.sl.isMatch("mississippi", "mis*is*p*."))
+        self.assertTrue(self.sl.isMatch("mississippi", "mis*is*ip*."))
+        self.assertTrue(self.sl.isMatch("a", "ab*"))
 
     def test_maxArea(self):
         # 11.Container With Most Water

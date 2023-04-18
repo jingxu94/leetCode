@@ -61,6 +61,15 @@ class Pro0001To0200:
             right += 1
         return ans
 
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        # 4.Median of Two Sorted Arrays
+        nums = sorted(nums1 + nums2)
+        n = len(nums)
+        if n % 2 == 0:
+            return (nums[n // 2 - 1] + nums[n // 2]) / 2
+        else:
+            return nums[n // 2]
+
     def longestPalindrome(self, s: str) -> str:
         # 5.Longest Palindromic Substring
         m = n = len(s)
@@ -71,6 +80,53 @@ class Pro0001To0200:
                     return mstr
             m -= 1
         return s[0]
+
+    def convert(self, s: str, numRows: int) -> str:
+        # 6.ZigZag Conversion
+        if numRows == 1:
+            return s
+        rows = [""] * numRows
+        i = 0
+        while i < len(s):
+            for j in range(numRows):
+                if i < len(s):
+                    rows[j] += s[i]
+                    i += 1
+            for j in range(numRows - 2, 0, -1):
+                if i < len(s):
+                    rows[j] += s[i]
+                    i += 1
+        return "".join(rows)
+
+    def reverse(self, x: int) -> int:
+        # 7.Reverse Integer
+        if x < 0:
+            return -self.reverse(-x)
+        result = 0
+        while x > 0:
+            result = result * 10 + x % 10
+            x = x // 10
+        return result if result < 2 ** 31 else 0
+
+    def myAtoi(self, s: str) -> int:
+        # 8.String to Integer (atoi)
+        s = s.strip()
+        if not s:
+            return 0
+        sign = 1
+        if s[0] == "-":
+            sign = -1
+            s = s[1:]
+        elif s[0] == "+":
+            s = s[1:]
+        result = 0
+        for c in s:
+            if c.isdigit():
+                result = result * 10 + int(c)
+            else:
+                break
+        result = result * sign
+        return max(-2 ** 31, min(result, 2 ** 31 - 1))
 
     def isPalindrome(self, x: int) -> bool:
         # 9.Palindrome Number
@@ -85,6 +141,24 @@ class Pro0001To0200:
             x = (x % div) // 10
             div = div // 100
         return True
+
+    def isMatch(self, s: str, p: str) -> bool:
+        # 10.Regular Expression Matching
+        m, n = len(s), len(p)
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = True
+        for j in range(1, n + 1):
+            if p[j - 1] == '*':
+                dp[0][j] = dp[0][j - 2]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if p[j - 1] == '.' or p[j - 1] == s[i - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
+                elif p[j - 1] == '*':
+                    dp[i][j] = dp[i][j - 2]
+                    if p[j - 2] == '.' or p[j - 2] == s[i - 1]:
+                        dp[i][j] |= dp[i - 1][j]
+        return dp[m][n]
 
     def maxArea(self, height: List[int]) -> int:
         # 11.Container With Most Water
