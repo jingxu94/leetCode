@@ -1,7 +1,7 @@
 import unittest
 
 from pysolutions import Pro1201To1400
-from pysolutions.utils import create_linked_list
+from pysolutions.utils import create_binary_tree, create_linked_list
 
 
 class TestP1201To1400(unittest.TestCase):
@@ -259,6 +259,12 @@ class TestP1201To1400(unittest.TestCase):
     #             create_binary_tree([1, 4, 4, None, 2, 2, None, 1, 6, 8, None, None, None, None, 1, 3]),
     #         )
     #     )
+
+    def test_longestZigZag(self):
+        # 1372.Longest ZigZag Path in a Binary Tree
+        self.assertEqual(self.sl.longestZigZag(create_binary_tree([1, None, 1, 1, 1, None, None, 1, 1, None, 1, None, None, None, 1, 1, None, 1])), 1)
+        self.assertEqual(self.sl.longestZigZag(create_binary_tree([1, 1, 1, None, 1, None, None, 1, 1, None, 1])), 2)
+        self.assertEqual(self.sl.longestZigZag(create_binary_tree([1])), 0)
 
     def test_numOfMinutes(self):
         # 1376.Time Needed to Inform All Employees

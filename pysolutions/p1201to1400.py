@@ -265,6 +265,23 @@ class Pro1201To1400:
 
         return check_path(head, root) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
 
+    def longestZigZag(self, root: Optional[TreeNode]) -> int:
+        # 1372.Longest ZigZag Path in a Binary Tree
+        path_lenght = 0
+        def dfs(node, goleft, steps):
+            if node:
+                nonlocal path_lenght
+                path_lenght = max(path_lenght, steps)
+                if goleft:
+                    dfs(node.left, False, steps + 1)
+                    dfs(node.right, True, 1)
+                else:
+                    dfs(node.left, False, 1)
+                    dfs(node.right, True, steps + 1)
+        dfs(root, False, 0)
+        dfs(root, True, 0)
+        return path_lenght
+
     def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
         # 1376.Time Needed to Inform All Employees
         hierarchy: Dict[int, List[int]] = {}
