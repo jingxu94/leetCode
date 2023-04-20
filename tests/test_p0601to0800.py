@@ -32,6 +32,14 @@ class TestP0601To0800(unittest.TestCase):
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, root1), root1))
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, None), None))
 
+    def test_judgeSquareSum(self):
+        # 633.Sum of Square Numbers
+        self.assertTrue(self.sl.judgeSquareSum(5))
+        self.assertTrue(self.sl.judgeSquareSum(25))
+        self.assertTrue(self.sl.judgeSquareSum(26))
+        self.assertFalse(self.sl.judgeSquareSum(3))
+        self.assertFalse(self.sl.judgeSquareSum(24))
+
     def test_findTarget(self):
         # 653.Two Sum IV - Input is a BST
         root = create_binary_tree([5, 3, 6, 2, 4, None, 7])
@@ -40,13 +48,15 @@ class TestP0601To0800(unittest.TestCase):
         self.assertFalse(self.sl.findTarget(root, 28))
         self.assertFalse(self.sl.findTarget(create_binary_tree([]), 28))
 
-    def test_judgeSquareSum(self):
-        # 633.Sum of Square Numbers
-        self.assertTrue(self.sl.judgeSquareSum(5))
-        self.assertTrue(self.sl.judgeSquareSum(25))
-        self.assertTrue(self.sl.judgeSquareSum(26))
-        self.assertFalse(self.sl.judgeSquareSum(3))
-        self.assertFalse(self.sl.judgeSquareSum(24))
+    def test_widthOfBinaryTree(self):
+        # 662.Maximum Width of Binary Tree
+        root = create_binary_tree([1, 3, 2, 5, 3, None, 9])
+        self.assertEqual(self.sl.widthOfBinaryTree(root), 4)
+        root = create_binary_tree([1, 3, None, 5, 3])
+        self.assertEqual(self.sl.widthOfBinaryTree(root), 2)
+        root = create_binary_tree([1, 3, 2, 5])
+        self.assertEqual(self.sl.widthOfBinaryTree(root), 2)
+        self.assertEqual(self.sl.widthOfBinaryTree(None), 0)
 
     def test_findNumberOfLIS(self):
         # 673.Number of Longest Increasing Subsequence

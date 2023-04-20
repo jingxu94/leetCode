@@ -89,6 +89,22 @@ class Pro0601To0800:
                 checked.add(num)
         return False
 
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        # 662.Maximum Width of Binary Tree
+        if not root:
+            return 0
+        queue = [(root, 0)]
+        max_width = 0
+        while queue:
+            max_width = max(max_width, queue[-1][1] - queue[0][1] + 1)
+            for _ in range(len(queue)):
+                node, index = queue.pop(0)
+                if node.left:
+                    queue.append((node.left, index * 2))
+                if node.right:
+                    queue.append((node.right, index * 2 + 1))
+        return max_width
+
     def findNumberOfLIS(self, nums: List[int]) -> int:
         # 673.Number of Longest Increasing Subsequence
         if not nums:
