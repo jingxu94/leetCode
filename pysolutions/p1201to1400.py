@@ -268,6 +268,7 @@ class Pro1201To1400:
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
         # 1372.Longest ZigZag Path in a Binary Tree
         path_lenght = 0
+
         def dfs(node, goleft, steps):
             if node:
                 nonlocal path_lenght
@@ -278,6 +279,7 @@ class Pro1201To1400:
                 else:
                     dfs(node.left, False, 1)
                     dfs(node.right, True, steps + 1)
+
         dfs(root, False, 0)
         dfs(root, True, 0)
         return path_lenght

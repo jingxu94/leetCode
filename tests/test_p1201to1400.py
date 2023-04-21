@@ -262,7 +262,12 @@ class TestP1201To1400(unittest.TestCase):
 
     def test_longestZigZag(self):
         # 1372.Longest ZigZag Path in a Binary Tree
-        self.assertEqual(self.sl.longestZigZag(create_binary_tree([1, None, 1, 1, 1, None, None, 1, 1, None, 1, None, None, None, 1, 1, None, 1])), 1)
+        self.assertEqual(
+            self.sl.longestZigZag(
+                create_binary_tree([1, None, 1, 1, 1, None, None, 1, 1, None, 1, None, None, None, 1, 1, None, 1])
+            ),
+            1,
+        )
         self.assertEqual(self.sl.longestZigZag(create_binary_tree([1, 1, 1, None, 1, None, None, 1, 1, None, 1])), 2)
         self.assertEqual(self.sl.longestZigZag(create_binary_tree([1])), 0)
 

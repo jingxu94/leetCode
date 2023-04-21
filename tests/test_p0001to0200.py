@@ -773,15 +773,19 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.preorderTraversal(create_binary_tree([1])), [1])
 
     def test_postorderTraversal(self):
-        # 144.Binary Tree Postorder Traversal
+        # 145.Binary Tree Postorder Traversal
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([1, None, 2, None, None, 3])), [3, 2, 1])
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([])), [])
         self.assertEqual(self.sl.postorderTraversal(create_binary_tree([1])), [1])
 
     def test_sortList(self):
         # 148.Sort List
-        self.assertTrue(eq_linked_list(self.sl.sortList(create_linked_list([4, 2, 1, 3])), create_linked_list([1, 2, 3, 4])))
-        self.assertTrue(eq_linked_list(self.sl.sortList(create_linked_list([-1, 5, 3, 4, 0])), create_linked_list([-1, 0, 3, 4, 5])))
+        self.assertTrue(
+            eq_linked_list(self.sl.sortList(create_linked_list([4, 2, 1, 3])), create_linked_list([1, 2, 3, 4]))
+        )
+        self.assertTrue(
+            eq_linked_list(self.sl.sortList(create_linked_list([-1, 5, 3, 4, 0])), create_linked_list([-1, 0, 3, 4, 5]))
+        )
         self.assertTrue(eq_linked_list(self.sl.sortList(create_linked_list([])), None))
 
     def test_maxPoints(self):

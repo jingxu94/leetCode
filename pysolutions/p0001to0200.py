@@ -106,7 +106,7 @@ class Pro0001To0200:
         while x > 0:
             result = result * 10 + x % 10
             x = x // 10
-        return result if result < 2 ** 31 else 0
+        return result if result < 2**31 else 0
 
     def myAtoi(self, s: str) -> int:
         # 8.String to Integer (atoi)
@@ -126,7 +126,7 @@ class Pro0001To0200:
             else:
                 break
         result = result * sign
-        return max(-2 ** 31, min(result, 2 ** 31 - 1))
+        return max(-(2**31), min(result, 2**31 - 1))
 
     def isPalindrome(self, x: int) -> bool:
         # 9.Palindrome Number
@@ -148,15 +148,15 @@ class Pro0001To0200:
         dp = [[False] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = True
         for j in range(1, n + 1):
-            if p[j - 1] == '*':
+            if p[j - 1] == "*":
                 dp[0][j] = dp[0][j - 2]
         for i in range(1, m + 1):
             for j in range(1, n + 1):
-                if p[j - 1] == '.' or p[j - 1] == s[i - 1]:
+                if p[j - 1] == "." or p[j - 1] == s[i - 1]:
                     dp[i][j] = dp[i - 1][j - 1]
-                elif p[j - 1] == '*':
+                elif p[j - 1] == "*":
                     dp[i][j] = dp[i][j - 2]
-                    if p[j - 2] == '.' or p[j - 2] == s[i - 1]:
+                    if p[j - 2] == "." or p[j - 2] == s[i - 1]:
                         dp[i][j] |= dp[i - 1][j]
         return dp[m][n]
 

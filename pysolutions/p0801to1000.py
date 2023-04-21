@@ -98,7 +98,7 @@ class Pro0801To1000:
 
     def profitableSchemes(self, n: int, minProfit: int, group: List[int], profit: List[int]) -> int:
         # 879.Profitable Schemes
-        mod = 10 ** 9 + 7
+        mod = 10**9 + 7
         dp = [[[0 for _ in range(minProfit + 1)] for _ in range(n + 1)] for _ in range(len(group) + 1)]
         for count in range(n + 1):
             dp[len(group)][count][minProfit] = 1
@@ -107,7 +107,10 @@ class Pro0801To1000:
                 for prof in range(minProfit + 1):
                     dp[index][count][prof] = dp[index + 1][count][prof]
                     if count + group[index] <= n:
-                        dp[index][count][prof] = (dp[index][count][prof] + dp[index + 1][count + group[index]][min(minProfit, prof + profit[index])]) % mod
+                        dp[index][count][prof] = (
+                            dp[index][count][prof]
+                            + dp[index + 1][count + group[index]][min(minProfit, prof + profit[index])]
+                        ) % mod
         return dp[0][0][0]
 
     def numRescueBoats(self, people: List[int], limit: int) -> int:
