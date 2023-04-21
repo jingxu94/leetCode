@@ -356,6 +356,21 @@ class Pro0201To0400:
                 dp[i] = min(dp[i], dp[i - coin] + 1)
         return int(dp[-1]) if dp[-1] != float("inf") else -1
 
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 328.Odd Even Linked List
+        if not head:
+            return head
+        odd = head
+        even = head.next
+        even_head = even
+        while even and even.next:
+            odd.next = even.next
+            even.next = even.next.next
+            even = even.next
+            odd = odd.next
+        odd.next = even_head
+        return head
+
     def increasingTriplet(self, nums: List[int]) -> bool:
         # 334.Increasing Triplet Subsequence
         first = second = float("inf")

@@ -58,6 +58,13 @@ class TestP0801To1000(unittest.TestCase):
         self.assertTrue(eq_linked_list(ans, expected))
         self.assertIsNone(self.sl.middleNode(None))
 
+    def test_profitableSchemes(self):
+        # 879.Profitable Schemes
+        n1, minProfit1, group1, profit1 = 5, 3, [2, 2], [2, 3]
+        n2, minProfit2, group2, profit2 = 10, 5, [2, 3, 5], [6, 7, 8]
+        self.assertEqual(self.sl.profitableSchemes(n1, minProfit1, group1, profit1), 2)
+        self.assertEqual(self.sl.profitableSchemes(n2, minProfit2, group2, profit2), 7)
+
     def test_numRescueBoats(self):
         # 881.Boats to Save People
         self.assertEqual(self.sl.numRescueBoats([1, 2], 3), 1)

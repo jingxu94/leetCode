@@ -241,6 +241,18 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.coinChange([2], 3), -1)
         self.assertEqual(self.sl.coinChange([1], 0), 0)
 
+    def test_oddEvenList(self):
+        # 328.Odd Even Linked List
+        head = create_linked_list([1, 2, 3, 4, 5])
+        ans = self.sl.oddEvenList(head)
+        expected = create_linked_list([1, 3, 5, 2, 4])
+        self.assertTrue(eq_linked_list(ans, expected))
+        head = create_linked_list([2, 1, 3, 5, 6, 4, 7])
+        ans = self.sl.oddEvenList(head)
+        expected = create_linked_list([2, 3, 6, 7, 1, 5, 4])
+        self.assertTrue(eq_linked_list(ans, expected))
+        self.assertEqual(self.sl.oddEvenList(None), None)
+
     def test_increasingTriplet(self):
         # 334.Increasing Triplet Subsequence
         self.assertTrue(self.sl.increasingTriplet([1, 2, 3, 4, 5]))
