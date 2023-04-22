@@ -32,6 +32,12 @@ class TestP0601To0800(unittest.TestCase):
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, root1), root1))
         self.assertTrue(eq_binary_tree(self.sl.mergeTrees(None, None), None))
 
+    def test_leastInterval(self):
+        # 621.Task Scheduler
+        self.assertEqual(self.sl.leastInterval(["A", "A", "A", "B", "B", "B"], 2), 8)
+        self.assertEqual(self.sl.leastInterval(["A", "A", "A", "B", "B", "B"], 0), 6)
+        self.assertEqual(self.sl.leastInterval(["A", "A", "A", "A", "A", "A", "B", "C", "D", "E", "F", "G"], 2), 16)
+
     def test_judgeSquareSum(self):
         # 633.Sum of Square Numbers
         self.assertTrue(self.sl.judgeSquareSum(5))

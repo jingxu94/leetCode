@@ -109,6 +109,15 @@ class Pro1201To1400:
             ans += ascii_lowercase[int(num) - 1]
         return ans
 
+    def minInsertions(self, s: str) -> int:
+        # 1312.Minimum Insertion Steps to Make a String Palindrome
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                dp[i][j] = dp[i + 1][j - 1] if s[i] == s[j] else min(dp[i + 1][j], dp[i][j - 1]) + 1
+        return dp[0][n - 1]
+
     def matrixBlockSum(self, mat: List[List[int]], k: int) -> List[List[int]]:
         # 1314.Matrix Block Sum
         m, n = len(mat), len(mat[0])

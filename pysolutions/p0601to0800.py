@@ -51,6 +51,13 @@ class Pro0601To0800:
         else:
             return None
 
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        # 621.Task Scheduler
+        ct_tasks = Counter(tasks)
+        max_freq = max(ct_tasks.values())
+        max_freq_tasks = [key for key, value in ct_tasks.items() if value == max_freq]
+        return max(len(tasks), (max_freq - 1) * (n + 1) + len(max_freq_tasks))
+
     def judgeSquareSum(self, c: int) -> bool:
         # 633.Sum of Square Numbers
         a, b = 0, int(c**0.5)

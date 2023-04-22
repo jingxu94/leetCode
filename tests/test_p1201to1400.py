@@ -53,6 +53,12 @@ class TestP1201To1400(unittest.TestCase):
         self.assertEqual(self.sl.freqAlphabets("1326#"), "acz")
         self.assertEqual(self.sl.freqAlphabets("123"), "abc")
 
+    def test_minInsertions(self):
+        # 1312.Minimum Insertion Steps to Make a String Palindrome
+        self.assertEqual(self.sl.minInsertions("zzazz"), 0)
+        self.assertEqual(self.sl.minInsertions("mbadm"), 2)
+        self.assertEqual(self.sl.minInsertions("leetcode"), 5)
+
     def test_matrixBlockSum(self):
         # 1314.Matrix Block Sum
         mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
