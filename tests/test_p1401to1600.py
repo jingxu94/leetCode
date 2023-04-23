@@ -8,6 +8,12 @@ class TestP1401To1600(unittest.TestCase):
     def sl(self):
         return Pro1401To1600()
 
+    def test_numberOfArray(self):
+        # 1416.Restore The Array
+        self.assertEqual(self.sl.numberOfArrays("1000", 10000), 1)
+        self.assertEqual(self.sl.numberOfArrays("1000", 10), 0)
+        self.assertEqual(self.sl.numberOfArrays("1317", 2000), 8)
+
     def test_kidsWithCandies(self):
         # 1431.Kids With the Greatest Number of Candies
         self.assertEqual(self.sl.kidsWithCandies([2, 3, 5, 1, 3], 3), [True, True, True, False, True])
