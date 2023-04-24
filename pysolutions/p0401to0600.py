@@ -135,6 +135,17 @@ class Pro0401To0600:
                 end = intervals[i][1]
         return count
 
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        # 437.Path Sum III
+        def helper(node, target):
+            if node is None:
+                return 0
+            return int(node.val == target) + helper(node.left, target - node.val) + helper(node.right, target - node.val)
+        
+        if root is None:
+            return 0
+        return helper(root, targetSum) + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
+
     def findAnagrams(self, s: str, p: str) -> List[int]:
         # 438.Find All Anagrams in a String
         if len(s) < len(p):
@@ -300,6 +311,21 @@ class Pro0401To0600:
                 mat[nr][nc] = mat[row][col] + 1
                 queue.append((nr, nc))
         return mat
+
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        # 543.Diameter of Binary Tree
+        ans = 0
+        def dfs(node: Optional[TreeNode]) -> int:
+            nonlocal ans
+            if not node:
+                return 0
+            left = dfs(node.left)
+            right = dfs(node.right)
+            ans = max(ans, left + right)
+            return max(left, right) + 1
+
+        dfs(root)
+        return ans
 
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         # 547.Number of Provinces

@@ -54,6 +54,11 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [1, 2], [1, 2]]), 2)
         self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [2, 3]]), 0)
 
+    def test_pathSum(self):
+        # 437.Path Sum III
+        self.assertEqual(self.sl.pathSum(create_binary_tree([10, 5, -3, 3, 2, None, 11, 3, -2, None, 1]), 8), 3)
+        self.assertEqual(self.sl.pathSum(create_binary_tree([1, -2, -3, 1, 3, -2, None, -1]), -1), 4)
+
     def test_findAnagrams(self):
         # 438.Find All Anagrams in a String
         self.assertListEqual(self.sl.findAnagrams("cbaebabacd", "abc"), [0, 6])
@@ -158,6 +163,13 @@ class TestP0401To0600(unittest.TestCase):
         mat = [[0, 0, 0], [0, 1, 0], [1, 1, 1]]
         expected = [[0, 0, 0], [0, 1, 0], [1, 2, 1]]
         self.assertEqual(self.sl.updateMatrix(mat), expected)
+
+    def test_diameterOfBinaryTree(self):
+        # 543.Diameter of Binary Tree
+        root = create_binary_tree([1, 2, 3, 4, 5])
+        self.assertEqual(self.sl.diameterOfBinaryTree(root), 3)
+        root = create_binary_tree([1, 2])
+        self.assertEqual(self.sl.diameterOfBinaryTree(root), 1)
 
     def test_findCircleNum(self):
         # 547.Number of Provinces
