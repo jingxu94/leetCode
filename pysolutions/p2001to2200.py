@@ -10,7 +10,7 @@ class Pro2001To2200:
         alphabet_size = 26
         count = [[0 for j in range(alphabet_size)] for i in range(alphabet_size)]
         for word in words:
-            count[ord(word[0]) - ord('a')][ord(word[1]) - ord('a')] += 1
+            count[ord(word[0]) - ord("a")][ord(word[1]) - ord("a")] += 1
         answer = 0
         central = False
         for i in range(alphabet_size):

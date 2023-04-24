@@ -17,10 +17,10 @@ class TestP1601To1800(unittest.TestCase):
     def test_checkArithmeticSubarrays(self):
         # 1630.Arithmetic Subarrays
         nums = [-12, -9, -3, -12, -6, 15, 20, -25, -20, -15, -10]
-        l = [0, 1, 6, 4, 8, 7]
-        r = [4, 4, 9, 7, 9, 10]
+        left = [0, 1, 6, 4, 8, 7]
+        right = [4, 4, 9, 7, 9, 10]
         ans = [False, True, False, False, True, True]
-        self.assertEqual(self.sl.checkArithmeticSubarrays(nums, l, r), ans)
+        self.assertEqual(self.sl.checkArithmeticSubarrays(nums, left, right), ans)
 
     def test_numWays(self):
         # 1639.Number of Ways to Form a Target String Given a Dictionary

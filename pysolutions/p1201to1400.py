@@ -199,7 +199,8 @@ class Pro1201To1400:
 
     def numberOfSteps(self, num: int) -> int:
         """1342.Number of Steps to Reduce a Number to Zero
-        Calculate the number of steps to reduce a number to zero by dividing by 2 if it's even or subtracting 1 if it's odd.
+        Calculate the number of steps to reduce a number to zero by dividing by 2
+        if it's even or subtracting 1 if it's odd.
 
         Args:
         num (int): The input number.

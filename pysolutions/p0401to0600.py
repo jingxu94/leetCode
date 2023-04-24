@@ -140,8 +140,10 @@ class Pro0401To0600:
         def helper(node, target):
             if node is None:
                 return 0
-            return int(node.val == target) + helper(node.left, target - node.val) + helper(node.right, target - node.val)
-        
+            return (
+                int(node.val == target) + helper(node.left, target - node.val) + helper(node.right, target - node.val)
+            )
+
         if root is None:
             return 0
         return helper(root, targetSum) + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
@@ -315,6 +317,7 @@ class Pro0401To0600:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         # 543.Diameter of Binary Tree
         ans = 0
+
         def dfs(node: Optional[TreeNode]) -> int:
             nonlocal ans
             if not node:

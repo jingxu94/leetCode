@@ -30,10 +30,10 @@ class Pro1601To1800:
                 right = mid - 1
         return -1
 
-    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
+    def checkArithmeticSubarrays(self, nums: List[int], left: List[int], right: List[int]) -> List[bool]:
         # 1630.Arithmetic Subarrays
         ans: List[bool] = []
-        for li, ri in zip(l, r):
+        for li, ri in zip(left, right):
             flag = True
             subarray = list(nums[i] for i in range(li, ri + 1))
             if len(subarray) > 2:
