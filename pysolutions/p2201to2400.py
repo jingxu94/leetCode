@@ -1,3 +1,4 @@
+import heapq
 from collections import defaultdict
 from typing import List
 
@@ -133,3 +134,26 @@ class Pro2201To2400:
             else:
                 stack.append(c)
         return "".join(stack)
+
+
+class SmallestInfiniteSet:  # pragma: no cover
+    # 2336.Smallest Number in Infinite Set
+    def __init__(self):
+        self.is_present = set()
+        self.added_int = []
+        self.curr_int = 1
+
+    def popSmallest(self) -> int:
+        if len(self.added_int):
+            answer = heapq.heappop(self.added_int)
+            self.is_present.remove(answer)
+        else:
+            answer = self.curr_int
+            self.curr_int += 1
+        return answer
+
+    def addBack(self, num: int) -> None:
+        if self.curr_int <= num or num in self.is_present:
+            return
+        heapq.heappush(self.added_int, num)
+        self.is_present.add(num)
