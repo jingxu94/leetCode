@@ -188,6 +188,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.isAnagram("anagram", "nagaram"))
         self.assertFalse(self.sl.isAnagram("rat", "car"))
 
+    def test_addDigits(self):
+        # 258.Add Digits
+        self.assertEqual(self.sl.addDigits(38), 2)
+        self.assertEqual(self.sl.addDigits(0), 0)
+
     def test_nthUglyNumber(self):
         # 264.Ugly Number II
         self.assertEqual(self.sl.nthUglyNumber(10), 12)

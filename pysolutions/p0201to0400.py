@@ -240,6 +240,12 @@ class Pro0201To0400:
         # 242.Valid Anagram
         return Counter(s) == Counter(t)
 
+    def addDigits(self, num: int) -> int:
+        # 258.Add Digits
+        if num == 0:
+            return 0
+        return (num - 1) % 9 + 1
+
     def nthUglyNumber(self, n: int) -> int:
         # 264.Ugly Number II
         ugly_numbers = [1]
