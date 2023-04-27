@@ -353,6 +353,10 @@ class Pro0201To0400:
             dp[k][0] = max(dp[k - 1][0], dp[k - 1][1] + prices[k])
         return dp[-1][0]
 
+    def bulbSwitch(self, n: int) -> int:
+        # 319.Bulb Switcher
+        return int(n**0.5)
+
     def coinChange(self, coins: List[int], amount: int) -> int:
         # 322.Coin Change
         dp = [float("inf")] * (amount + 1)

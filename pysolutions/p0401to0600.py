@@ -79,6 +79,30 @@ class Pro0401To0600:
         # 415.Add String
         return str(eval(num1 + "+" + num2))
 
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:  # pragma: no cover
+        # 417.Pacific Atlantic Water Flow
+        if not heights:
+            return []
+        m, n = len(heights), len(heights[0])
+        pacific: set = set()
+        atlantic: set = set()
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+        def dfs(i, j, visited):
+            visited.add((i, j))
+            for direction in directions:
+                x, y = i + direction[0], j + direction[1]
+                if 0 <= x < m and 0 <= y < n and (x, y) not in visited and heights[x][y] >= heights[i][j]:
+                    dfs(x, y, visited)
+
+        for i in range(m):
+            dfs(i, 0, pacific)
+            dfs(i, n - 1, atlantic)
+        for j in range(n):
+            dfs(0, j, pacific)
+            dfs(m - 1, j, atlantic)
+        return list(pacific & atlantic)
+
     def arrangeCoins(self, n: int) -> int:
         # 441.Arranging Coins
         left, right = 0, n

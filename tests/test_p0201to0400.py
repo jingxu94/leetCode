@@ -240,6 +240,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.maxProfit([1, 2, 3, 0, 2]), 3)
         self.assertEqual(self.sl.maxProfit([1]), 0)
 
+    def test_bulbSwitch(self):
+        # 319.Bulb Switcher
+        self.assertEqual(self.sl.bulbSwitch(3), 1)
+        self.assertEqual(self.sl.bulbSwitch(9999999), 3162)
+
     def test_coinChange(self):
         # 322.Coin Change
         self.assertEqual(self.sl.coinChange([1, 2, 5], 11), 3)
