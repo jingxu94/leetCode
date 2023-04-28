@@ -9,6 +9,22 @@ class TestP0801To1000(unittest.TestCase):
     def sl(self):
         return Pro0801To1000()
 
+    def test_numBusesToDestination(self):
+        # 815.Bus Routes
+        routes1, source1, target1 = [[1, 2, 7], [3, 6, 7]], 1, 6
+        self.assertEqual(self.sl.numBusesToDestination(routes1, source1, target1), 2)
+        self.assertEqual(self.sl.numBusesToDestination(routes1, 3, 3), 0)
+        routes2 = [[7, 12], [4, 5, 15], [6], [15, 19], [9, 12, 13]]
+        source2, target2 = 15, 12
+        self.assertEqual(self.sl.numBusesToDestination(routes2, source2, target2), -1)
+
+    def test_numSimilarGroups(self):
+        # 839.Similar String Groups
+        strs1 = ["tars", "rats", "arts", "star"]
+        strs2 = ["omv", "ovm"]
+        self.assertEqual(self.sl.numSimilarGroups(strs1), 2)
+        self.assertEqual(self.sl.numSimilarGroups(strs2), 1)
+
     def test_canVisitAllRooms(self):
         # 841.Keys and Rooms
         rooms1 = [[1], [2], [3], []]

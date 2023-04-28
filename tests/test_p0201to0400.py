@@ -56,6 +56,13 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.minSubArrayLen(4, [1, 4, 4]), 1)
         self.assertEqual(self.sl.minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1, 1]), 0)
 
+    def test_findOrder(self):
+        # 210.Course Schedule II
+        self.assertEqual(self.sl.findOrder(2, [[1, 0]]), [0, 1])
+        self.assertEqual(self.sl.findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]]), [0, 1, 2, 3])
+        self.assertEqual(self.sl.findOrder(1, []), [0])
+        self.assertEqual(self.sl.findOrder(3, [[1, 0], [1, 2], [0, 1]]), [])
+
     def test_rob(self):
         # 213.House Robber II
         self.assertEqual(self.sl.rob([2, 3, 2]), 3)

@@ -1,4 +1,4 @@
-from collections import Counter, deque
+from collections import Counter, defaultdict, deque
 from typing import List, Optional
 
 from .utils import ListNode, TreeNode
@@ -7,6 +7,61 @@ from .utils import ListNode, TreeNode
 class Pro0801To1000:
     def __init__(self):
         pass
+
+    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        # 815.Bus Routes
+        if source == target:
+            return 0
+        # Create a dictionary to store bus stops and the buses that stop there
+        stop_to_buses = defaultdict(set)
+        for i, route in enumerate(routes):
+            for stop in route:
+                stop_to_buses[stop].add(i)
+        # Initialize the BFS queue and visited sets
+        queue = deque([(source, 0)])  # (stop, number_of_buses_taken)
+        visited_stops = {source}
+        visited_buses = set()
+        while queue:
+            current_stop, buses_taken = queue.popleft()
+            # Check all buses that stop at the current stop
+            for bus in stop_to_buses[current_stop]:
+                # If the bus has not been visited before
+                if bus not in visited_buses:
+                    visited_buses.add(bus)
+                    # Check all stops on the bus route
+                    for next_stop in routes[bus]:
+                        # If the target stop is found, return the number of buses taken
+                        if next_stop == target:
+                            return buses_taken + 1
+                        # If the next stop has not been visited, add it to the queue
+                        if next_stop not in visited_stops:
+                            visited_stops.add(next_stop)
+                            queue.append((next_stop, buses_taken + 1))
+        # If the target is not reachable, return -1
+        return -1
+
+    def numSimilarGroups(self, strs: List[str]) -> int:
+        # 839.Similar String Groups
+        def is_similar(str1: str, str2: str) -> bool:
+            count = 0
+            for i in range(len(str1)):
+                if str1[i] != str2[i]:
+                    count += 1
+            return count == 2 or count == 0
+
+        def dfs(strs: List[str], visited: List[bool], index: int):
+            visited[index] = True
+            for i in range(len(strs)):
+                if not visited[i] and is_similar(strs[index], strs[i]):
+                    dfs(strs, visited, i)
+
+        visited = [False for _ in range(len(strs))]
+        count = 0
+        for i in range(len(strs)):
+            if not visited[i]:
+                dfs(strs, visited, i)
+                count += 1
+        return count
 
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         # 841.Keys and Rooms
