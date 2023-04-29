@@ -46,6 +46,19 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(self.sl.interpret("G()()()()(al)"), "Gooooal")
         self.assertEqual(self.sl.interpret("(al)G(al)()()G"), "alGalooG")
 
+    def test_distanceLimitedPathsExist(self):
+        # 1697.Checking Existence of Edge Length Limited Paths
+        n = 3
+        edgeList = [[0, 1, 2], [1, 2, 4], [2, 0, 8], [1, 0, 16]]
+        queries = [[0, 1, 2], [0, 2, 5]]
+        ans = [False, True]
+        self.assertEqual(self.sl.distanceLimitedPathsExist(n, edgeList, queries), ans)
+        n = 5
+        edgeList = [[0, 1, 10], [1, 2, 5], [2, 3, 9], [3, 4, 13]]
+        queries = [[0, 4, 14], [1, 4, 13]]
+        ans = [True, False]
+        self.assertEqual(self.sl.distanceLimitedPathsExist(n, edgeList, queries), ans)
+
     def test_findBall(self):
         # 1706.Where Will the Ball Fall
         grid1 = [[1, 1, 1, -1, -1], [1, 1, 1, -1, -1], [-1, -1, -1, 1, 1], [1, 1, 1, 1, -1], [-1, -1, -1, -1, -1]]

@@ -87,6 +87,38 @@ class Pro1601To1800:
                     queue.popleft()
         return ans
 
+    def distanceLimitedPathsExist(self, n: int, edgeList: List[List[int]], queries: List[List[int]]) -> List[bool]:
+        # 1697.Checking Existence of Edge Length Limited Paths
+        class UnionFind:
+            def __init__(self, n):
+                self.parent = list(range(n))
+                self.size = [1] * n
+
+            def find(self, x):
+                if self.parent[x] != x:
+                    self.parent[x] = self.find(self.parent[x])
+                return self.parent[x]
+
+            def union(self, x, y):
+                px, py = self.find(x), self.find(y)
+                if self.size[px] < self.size[py]:
+                    px, py = py, px
+                self.parent[py] = px
+                self.size[px] += self.size[py]
+                return True
+
+        edgeList.sort(key=lambda x: x[2])
+        queries_set = sorted([(i, q[0], q[1], q[2]) for i, q in enumerate(queries)], key=lambda x: x[3])
+        uf = UnionFind(n)
+        ans = [False] * len(queries_set)
+        i = 0
+        for query in queries_set:
+            while i < len(edgeList) and edgeList[i][2] < query[3]:
+                uf.union(edgeList[i][0], edgeList[i][1])
+                i += 1
+            ans[query[0]] = uf.find(query[1]) == uf.find(query[2])
+        return ans
+
     def findBall(self, grid: List[List[int]]) -> List[int]:
         # 1706.Where Will the Ball Fall
         m, n = len(grid), len(grid[0])
