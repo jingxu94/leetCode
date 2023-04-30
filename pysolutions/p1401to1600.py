@@ -166,6 +166,46 @@ class Pro1401To1600:
             sdiag -= mat[mid][mid]
         return pdiag + sdiag
 
+    def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:
+        # 1579.Remove Max Number of Edges to Keep Graph Fully Traversable
+        def find(i, root):
+            if i != root[i]:
+                root[i] = find(root[i], root)
+            return root[i]
+
+        def union(i, j, root, size):
+            root_i = find(i, root)
+            root_j = find(j, root)
+            if root_i != root_j:
+                if size[root_i] < size[root_j]:
+                    root_i, root_j = root_j, root_i
+                root[root_j] = root_i
+                size[root_i] += size[root_j]
+                return True
+            return False
+
+        root_alice = [i for i in range(n + 1)]
+        root_bob = [i for i in range(n + 1)]
+        size_alice = [1] * (n + 1)
+        size_bob = [1] * (n + 1)
+        ans = 0
+        for t, i, j in edges:
+            if t == 3:
+                if not union(i, j, root_alice, size_alice):
+                    ans += 1
+                else:
+                    union(i, j, root_bob, size_bob)
+        for t, i, j in edges:
+            if t == 1:
+                if not union(i, j, root_alice, size_alice):
+                    ans += 1
+            elif t == 2:
+                if not union(i, j, root_bob, size_bob):
+                    ans += 1
+        if size_alice[find(1, root_alice)] != n or size_bob[find(1, root_bob)] != n:
+            return -1
+        return ans
+
     def sumOddLengthSubarrays(self, arr: List[int]) -> int:
         # 1588.Sum of All Odd Length Subarrays
         total_sum = 0

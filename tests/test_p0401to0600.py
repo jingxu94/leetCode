@@ -42,6 +42,11 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.addStrings("456", "77"), "533")
         self.assertEqual(self.sl.addStrings("0", "0"), "0")
 
+    def test_canPartition(self):
+        # 416.Partition Equal Subset Sum
+        self.assertTrue(self.sl.canPartition([1, 5, 11, 5]))
+        self.assertFalse(self.sl.canPartition([1, 2, 3, 5]))
+
     def test_characterReplacement(self):
         # 424.Longest Repeating Character Replacement
         self.assertEqual(self.sl.characterReplacement("ABAB", 2), 4)
