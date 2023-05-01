@@ -2,7 +2,7 @@ import math
 import re
 from collections import Counter, deque
 from itertools import chain, combinations, permutations
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 from .utils import ListNode, Node, TreeNode
 
@@ -255,6 +255,24 @@ class Pro0001To0200:
                     right -= 1
                     while left < right and nums[right] == nums[right + 1]:
                         right -= 1
+        return ans
+
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        # 16.3Sum Closest
+        nums.sort()
+        ans = sum(nums[:3])
+        for i in range(len(nums) - 2):
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                if abs(total - target) < abs(ans - target):
+                    ans = total
+                if total < target:
+                    left += 1
+                elif total > target:
+                    right -= 1
+                else:
+                    return ans
         return ans
 
     def letterCombinations(self, digits: str) -> List[str]:
@@ -895,6 +913,49 @@ class Pro0001To0200:
             if color in ct_nums.keys():
                 ans.extend([color] * ct_nums[color])
         nums[:] = ans[:]
+
+    def minWindow(self, s: str, t: str) -> str:
+        # 76.Minimum Window Substring
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        if not t or not s:
+            return ""
+        dict_t = Counter(t)
+        required = len(dict_t)
+        # Filter all the characters from s into a new list along with their index.
+        # The filtering criteria is that the character should be present in t.
+        filtered_s = []
+        for i, char in enumerate(s):
+            if char in dict_t:
+                filtered_s.append((i, char))
+        left, right = 0, 0
+        formed = 0
+        window_counts: Dict[str, Union[Any, int]] = {}
+        ans: Tuple[int, int, int] = int(1e5), 0, 0
+        # Look for the characters only in the filtered list instead of entire s. This helps to reduce our search.
+        # Hence, we follow the sliding window approach on as small list.
+        while right < len(filtered_s):
+            character = filtered_s[right][1]
+            window_counts[character] = window_counts.get(character, 0) + 1
+            if window_counts[character] == dict_t[character]:
+                formed += 1
+            # If the current window has all the characters in desired frequencies i.e. t is present in the window
+            while left <= right and formed == required:
+                character = filtered_s[left][1]
+                # Save the smallest window until now.
+                end = filtered_s[right][0]
+                start = filtered_s[left][0]
+                if end - start + 1 < ans[0]:
+                    ans = (end - start + 1, start, end)
+                window_counts[character] -= 1
+                if window_counts[character] < dict_t[character]:
+                    formed -= 1
+                left += 1
+            right += 1
+        return "" if ans[0] == int(1e5) else s[ans[1] : ans[2] + 1]
 
     def combine(self, n: int, k: int) -> List[List[int]]:
         # 77.Combinations

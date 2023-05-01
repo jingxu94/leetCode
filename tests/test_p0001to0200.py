@@ -135,6 +135,13 @@ class TestP0001To0200(unittest.TestCase):
         nums = [-3, -2, -1, 0, 1, 2, 3]
         self.assertEqual(self.sl.threeSum(nums), [[-3, 0, 3], [-3, 1, 2], [-2, -1, 3], [-2, 0, 2], [-1, 0, 1]])
 
+    def test_threeSumClosest(self):
+        # 16.3Sum Closest
+        self.assertEqual(self.sl.threeSumClosest([-1, 2, 1, -4], 1), 2)
+        self.assertEqual(self.sl.threeSumClosest([0, 0, 0], 1), 0)
+        self.assertEqual(self.sl.threeSumClosest([1, 1, 1, 0], -100), 2)
+        self.assertEqual(self.sl.threeSumClosest([0, 1, 2], 3), 3)
+
     def test_letterCombinations(self):
         # 17.Letter Combinations of a Phone Number
         self.assertEqual(self.sl.letterCombinations("23"), ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"])
@@ -462,6 +469,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.searchMatrix(matrix, 3))
         self.assertFalse(self.sl.searchMatrix(matrix, 13))
         self.assertFalse(self.sl.searchMatrix([[]], 1))
+
+    def test_minWindow(self):
+        # 76.Minimum Window Substring
+        self.assertEqual(self.sl.minWindow("ADOBECODEBANC", "ABC"), "BANC")
+        self.assertEqual(self.sl.minWindow("a", "a"), "a")
+        self.assertEqual(self.sl.minWindow("a", "aa"), "")
+        self.assertEqual(self.sl.minWindow("a", ""), "")
 
     def test_combine(self):
         # 77.Combinations
