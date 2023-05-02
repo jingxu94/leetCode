@@ -568,12 +568,25 @@ class TestP0001To0200(unittest.TestCase):
         self.assertFalse(self.sl.isSameTree(create_binary_tree([1, 2]), create_binary_tree([1, None, 2])))
         self.assertFalse(self.sl.isSameTree(create_binary_tree([]), create_binary_tree([1, None, 2])))
         self.assertFalse(self.sl.isSameTree(create_binary_tree([1, 2, 1]), create_binary_tree([1, 1, 2])))
+        self.assertTrue(self.sl.isSameTree_v2(create_binary_tree([1, 2, 3]), create_binary_tree([1, 2, 3])))
+        self.assertFalse(self.sl.isSameTree_v2(create_binary_tree([1, 2]), create_binary_tree([1, None, 2])))
+        self.assertFalse(self.sl.isSameTree_v2(create_binary_tree([]), create_binary_tree([1, None, 2])))
+        self.assertFalse(self.sl.isSameTree_v2(create_binary_tree([1, 2, 1]), create_binary_tree([1, 1, 2])))
 
     def test_isSymmetric(self):
         # 101.Symmetric Tree
         self.assertTrue(self.sl.isSymmetric(create_binary_tree([1, 2, 2, 3, 4, 4, 3])))
         self.assertFalse(self.sl.isSymmetric(create_binary_tree([1, 2, 2, None, 3, None, 3])))
         self.assertFalse(self.sl.isSymmetric(create_binary_tree([2, 3, 3, 4, None, 5, 4])))
+        self.assertTrue(self.sl.isSymmetric_v2(create_binary_tree([1, 2, 2, 3, 4, 4, 3])))
+        self.assertFalse(self.sl.isSymmetric_v2(create_binary_tree([1, 2, 2, None, 3, None, 3])))
+        self.assertFalse(self.sl.isSymmetric_v2(create_binary_tree([2, 3, 3, 4, None, 5, 4])))
+        self.assertFalse(self.sl.isSymmetric_v2(create_binary_tree([2, 3, 4])))
+        self.assertTrue(self.sl.isSymmetric_v3(create_binary_tree([1, 2, 2, 3, 4, 4, 3])))
+        self.assertFalse(self.sl.isSymmetric_v3(create_binary_tree([1, 2, 2, None, 3, None, 3])))
+        self.assertFalse(self.sl.isSymmetric_v3(create_binary_tree([2, 3, 3, 4, None, 5, 4])))
+        self.assertTrue(self.sl.isSymmetric_v2(None))
+        self.assertTrue(self.sl.isSymmetric_v3(None))
 
     def test_levelOrder(self):
         # 102.Binary Tree level Order Traversal

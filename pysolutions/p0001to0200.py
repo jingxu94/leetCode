@@ -1199,6 +1199,31 @@ class Pro0001To0200:
         else:
             return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
+    def isSameTree_v2(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # 100.Same Tree
+        def check(p, q):
+            if not p and not q:
+                return True
+            if not p or not q:
+                return False
+            if p.val != q.val:
+                return False
+            return True
+
+        deq = deque(
+            [
+                (p, q),
+            ]
+        )
+        while deq:
+            p, q = deq.popleft()
+            if not check(p, q):
+                return False
+            if p and q:
+                deq.append((p.left, q.left))
+                deq.append((p.right, q.right))
+        return True
+
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         # 101.Symmetric Tree
         def _eq_treenode(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
@@ -1212,6 +1237,41 @@ class Pro0001To0200:
                 return _eq_treenode(p.left, q.right) and _eq_treenode(p.right, q.left)
 
         return _eq_treenode(root, root)
+
+    def isSymmetric_v2(self, root: Optional[TreeNode]) -> bool:
+        # 101.Symmetric Tree
+        if not root:
+            return True
+        deq = deque(
+            [
+                (root.left, root.right),
+            ]
+        )
+        while deq:
+            p, q = deq.popleft()
+            if not p and not q:
+                continue
+            if not p or not q:
+                return False
+            if p.val != q.val:
+                return False
+            deq.append((p.left, q.right))
+            deq.append((p.right, q.left))
+        return True
+
+    def isSymmetric_v3(self, root: Optional[TreeNode]) -> bool:
+        # 101.Symmetric Tree
+        if not root:
+            return True
+
+        def check(left, right):
+            if not left and not right:
+                return True
+            if left and right and left.val == right.val:
+                return check(left.left, right.right) and check(left.right, right.left)
+            return False
+
+        return check(root.left, root.right)
 
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         # 102.Binary Tree Level Order Traversal
