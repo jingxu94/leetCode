@@ -7,6 +7,10 @@ class Pro2201To2400:
     def __init__(self) -> None:
         pass
 
+    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+        # 2215.Find the Difference of Two Arrays
+        return [list(set(nums1) - set(nums2)), list(set(nums2) - set(nums1))]
+
     def maxValueOfCoins(self, piles: List[List[int]], k: int) -> int:
         # 2218.Maximum Value of K Coins From Piles
         dp = [[0] * (k + 1) for _ in range(len(piles) + 1)]

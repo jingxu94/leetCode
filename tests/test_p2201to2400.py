@@ -8,6 +8,11 @@ class TestP2201To2400(unittest.TestCase):
     def sl(self):
         return Pro2201To2400()
 
+    def test_findDifference(self):
+        # 2215.Find the Difference of Two Arrays
+        self.assertEqual(self.sl.findDifference([1, 2, 3], [1, 2, 4]), [[3], [4]])
+        self.assertEqual(self.sl.findDifference([1, 2, 3], [1, 2, 3]), [[], []])
+
     def test_maxValueOfCoins(self):
         # 2218.Maximum Value of K Coins From Piles
         self.assertEqual(self.sl.maxValueOfCoins([[1, 100, 3], [7, 8, 9]], 2), 101)
