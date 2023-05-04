@@ -289,6 +289,11 @@ class TestP0201To0400(unittest.TestCase):
         # 344.Reverse String
         self.assertEqual(self.sl.reverseString(["a", "b"]), ["b", "a"])
 
+    def test_reverseVowels(self):
+        # 345.Reverse Vowels of a String
+        self.assertEqual(self.sl.reverseVowels("hello"), "holle")
+        self.assertEqual(self.sl.reverseVowels("leetcode"), "leotcede")
+
     def test_topKFrequent(self):
         # 347.Top K Frequent Elements
         self.assertEqual(self.sl.topKFrequent([1, 1, 1, 2, 2, 3], 2), [1, 2])

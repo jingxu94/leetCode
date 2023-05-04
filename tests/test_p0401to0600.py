@@ -77,6 +77,12 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.arrangeCoins(8), 3)
         self.assertEqual(self.sl.arrangeCoins(1), 1)
 
+    def test_compress(self):
+        # 443.String Compression
+        self.assertEqual(self.sl.compress(["a", "a", "b", "b", "c", "c", "c"]), 6)
+        self.assertEqual(self.sl.compress(["a"]), 1)
+        self.assertEqual(self.sl.compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]), 4)
+
     def test_addTwoNumbers(self):
         # 445.Add Two Numbers II
         l1 = create_linked_list([7, 2, 4, 3])

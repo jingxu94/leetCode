@@ -46,6 +46,16 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(self.sl.interpret("G()()()()(al)"), "Gooooal")
         self.assertEqual(self.sl.interpret("(al)G(al)()()G"), "alGalooG")
 
+    def test_maxOperations(self):
+        # 1679.Max Number of K-Sum Pairs
+        nums1, k1 = [1, 2, 3, 4], 5
+        nums2, k2 = [3, 1, 3, 4, 3], 6
+        nums3, k3 = [1, 1], 2
+        res1, res2, res3 = 2, 1, 1
+        self.assertEqual(res1, self.sl.maxOperations(nums1, k1))
+        self.assertEqual(res2, self.sl.maxOperations(nums2, k2))
+        self.assertEqual(res3, self.sl.maxOperations(nums3, k3))
+
     def test_distanceLimitedPathsExist(self):
         # 1697.Checking Existence of Edge Length Limited Paths
         n = 3

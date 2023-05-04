@@ -439,6 +439,22 @@ class Pro0201To0400:
         s.reverse()
         return s
 
+    def reverseVowels(self, s: str) -> str:
+        # 345.Reverse Vowels of a String
+        vowels = "aeiouAEIOU"
+        s_list = list(s)
+        left, right = 0, len(s_list) - 1
+        while left < right:
+            if s_list[left] not in vowels:
+                left += 1
+            elif s_list[right] not in vowels:
+                right -= 1
+            else:
+                s_list[left], s_list[right] = s_list[right], s_list[left]
+                left += 1
+                right -= 1
+        return "".join(s_list)
+
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         # 347.Top K Frequent Elements
         return [key for key, _ in Counter(nums).most_common(k)]

@@ -203,6 +203,24 @@ class Pro0401To0600:
                 ans.append(i - len(p) + 1)
         return ans
 
+    def compress(self, chars: List[str]) -> int:
+        # 443.String Compression
+        i = 0
+        ans = 0
+        while i < len(chars):
+            group_length = 1
+            while i + 1 < len(chars) and chars[i] == chars[i + 1]:
+                group_length += 1
+                i += 1
+            chars[ans] = chars[i]
+            ans += 1
+            if group_length > 1:
+                for digit in str(group_length):
+                    chars[ans] = digit
+                    ans += 1
+            i += 1
+        return ans
+
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         # 445.Add Two Numbers II
         def reverse(head):
