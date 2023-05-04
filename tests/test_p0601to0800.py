@@ -46,6 +46,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertFalse(self.sl.judgeSquareSum(3))
         self.assertFalse(self.sl.judgeSquareSum(24))
 
+    def test_predictPartyVictory(self):
+        # 649.Dota2 Senate
+        self.assertEqual(self.sl.predictPartyVictory("RD"), "Radiant")
+        self.assertEqual(self.sl.predictPartyVictory("RDD"), "Dire")
+
     def test_findTarget(self):
         # 653.Two Sum IV - Input is a BST
         root = create_binary_tree([5, 3, 6, 2, 4, None, 7])

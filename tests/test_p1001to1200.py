@@ -31,6 +31,12 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.lastStoneWeight([1]), 1)
         self.assertEqual(self.sl.lastStoneWeight([1, 1, 2, 2]), 0)
 
+    def test_gcdOfStrings(self):
+        # 1071.Greatest Common Divisor of Strings
+        self.assertEqual(self.sl.gcdOfStrings("ABCABC", "ABC"), "ABC")
+        self.assertEqual(self.sl.gcdOfStrings("ABABAB", "ABAB"), "AB")
+        self.assertEqual(self.sl.gcdOfStrings("LEET", "CODE"), "")
+
     def test_shortestPathBinaryMatrix(self):
         # 1091.Shortest Path in Binary Matrix
         self.assertEqual(self.sl.shortestPathBinaryMatrix([[0, 1], [1, 0]]), 2)

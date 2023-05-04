@@ -1,3 +1,4 @@
+import math
 from collections import Counter, deque
 from typing import List
 
@@ -56,6 +57,13 @@ class Pro1001To1200:
             if y != x:
                 stones.append(y - x)
         return stones[0] if stones else 0
+
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        # 1071.Greatest Common Divisor of Strings
+        if str1 + str2 != str2 + str1:
+            return ""
+        else:
+            return str1[: math.gcd(len(str1), len(str2))]
 
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
         # 1091.Shortest Path in Binary Matrix
