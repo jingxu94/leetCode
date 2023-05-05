@@ -16,6 +16,11 @@ class TestP1001To1200(unittest.TestCase):
         self.assertListEqual(self.sl.commonChars(words2), ["c", "o"])
         self.assertListEqual(self.sl.commonChars(["words"]), ["w", "o", "r", "d", "s"])
 
+    def test_longestOnes(self):
+        # 1004.Max Consecutive Ones III
+        self.assertEqual(self.sl.longestOnes([1, 1, 1, 0, 0, 0, 1, 1, 1, 1], 2), 6)
+        self.assertEqual(self.sl.longestOnes([1, 1, 1, 0, 0, 0, 1, 1, 1, 1], 0), 4)
+
     def test_maxScoreSightseeingPair(self):
         # 1014.Best Sightseeing Pair
         self.assertEqual(self.sl.maxScoreSightseeingPair([8, 1, 5, 2, 6]), 11)

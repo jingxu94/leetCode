@@ -61,6 +61,23 @@ class Pro1401To1600:
                     dp[remain][row][col] = val % mod
         return dp[k - 1][0][0]
 
+    def maxVowels(self, s: str, k: int) -> int:
+        # 1456.Maximum Number of Vowels in a Substring of Given Length
+        vowels = set("aeiou")
+        max_vowels = 0
+        cur_vowels = 0
+        for i in range(k):
+            if s[i] in vowels:
+                cur_vowels += 1
+        max_vowels = cur_vowels
+        for i in range(k, len(s)):
+            if s[i] in vowels:
+                cur_vowels += 1
+            if s[i - k] in vowels:
+                cur_vowels -= 1
+            max_vowels = max(max_vowels, cur_vowels)
+        return max_vowels
+
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
         # 1466.Reorder Routes to Make All Paths Lead to the City Zero
         def dfs(node):
@@ -90,6 +107,20 @@ class Pro1401To1600:
     def average(self, salary: List[int]) -> float:
         # 1491.Average Salary Excluding the Minimum and Maximum Salary
         return (sum(salary) - max(salary) - min(salary)) / (len(salary) - 2)
+
+    def longestSubarray(self, nums: List[int]) -> int:
+        # 1493.Longest Subarray of 1's After Deleting One Element
+        ans = left = right = zeros = 0
+        while right < len(nums):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            ans = max(ans, right - left)
+            right += 1
+        return ans
 
     def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
         # 1502.Can Make Arithmetic Progression From Sequence

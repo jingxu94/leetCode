@@ -19,6 +19,21 @@ class Pro1001To1200:
                     flag[key] = check[key]
         return [i for i in flag.elements()]
 
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        # 1004.Max Consecutive Ones III
+        left = right = 0
+        ans = 0
+        while right < len(nums):
+            if nums[right] == 0:
+                k -= 1
+            while k < 0:
+                if nums[left] == 0:
+                    k += 1
+                left += 1
+            ans = max(ans, right - left + 1)
+            right += 1
+        return ans
+
     def maxScoreSightseeingPair(self, values: List[int]) -> int:
         # 1014.Best Sightseeing Pair
         ans = imax = 0

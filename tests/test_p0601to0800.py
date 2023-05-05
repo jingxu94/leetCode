@@ -46,6 +46,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertFalse(self.sl.judgeSquareSum(3))
         self.assertFalse(self.sl.judgeSquareSum(24))
 
+    def test_findMaxAverage(self):
+        # 643.Maximum Average Subarray I
+        self.assertEqual(self.sl.findMaxAverage([1, 12, -5, -6, 50, 3], 4), 12.75)
+        self.assertEqual(self.sl.findMaxAverage([1, 12, -5, -6, 50, 3], 1), 50.0)
+
     def test_predictPartyVictory(self):
         # 649.Dota2 Senate
         self.assertEqual(self.sl.predictPartyVictory("RD"), "Radiant")
