@@ -10,6 +10,13 @@ class Pro1201To1400:
     def __init__(self):
         pass
 
+    def uniqueOccurrences(self, arr: List[int]) -> bool:
+        # 1207.Unique Number of Occurrences
+        counter: defaultdict = defaultdict(int)
+        for num in arr:
+            counter[num] += 1
+        return len(set(counter.values())) == len(counter)
+
     def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
         """1232.Check If It Is a Straight Line
         Check if the given coordinates form a straight line.

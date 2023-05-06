@@ -28,6 +28,14 @@ class TestP1601To1800(unittest.TestCase):
         target = "aba"
         self.assertEqual(self.sl.numWays(words, target), 6)
 
+    def test_closeStrings(self):
+        # 1657.Determine if Two Strings Are Close
+        self.assertTrue(self.sl.closeStrings("abc", "bca"))
+        self.assertFalse(self.sl.closeStrings("a", "aa"))
+        self.assertFalse(self.sl.closeStrings("ab", "aa"))
+        self.assertFalse(self.sl.closeStrings("abbzzca", "babzzcz"))
+        self.assertTrue(self.sl.closeStrings("cabbba", "abbccc"))
+
     def test_maximumWealth(self):
         # 1672.Richest Customer Wealth
         accounts1, accounts2, accounts3 = (
@@ -75,6 +83,12 @@ class TestP1601To1800(unittest.TestCase):
         grid2 = [[-1]]
         self.assertEqual(self.sl.findBall(grid1), [1, -1, -1, -1, -1])
         self.assertEqual(self.sl.findBall(grid2), [-1])
+
+    def test_largestAltitude(self):
+        # 1732.Find the Highest Altitude
+        gain1, gain2 = [-5, 1, 5, 0, -7], [-4, -3, -2, -1, 4, 3, 2]
+        self.assertEqual(self.sl.largestAltitude(gain1), 1)
+        self.assertEqual(self.sl.largestAltitude(gain2), 0)
 
     def test_mergeAlternately(self):
         # 1768.Merge Strings Alternately

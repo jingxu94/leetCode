@@ -9,6 +9,12 @@ class TestP1201To1400(unittest.TestCase):
     def sl(self):
         return Pro1201To1400()
 
+    def test_uniqueOccurrences(self):
+        # 1207.Unique Number of Occurrences
+        self.assertTrue(self.sl.uniqueOccurrences([1, 2, 2, 1, 1, 3]))
+        self.assertFalse(self.sl.uniqueOccurrences([1, 2]))
+        self.assertTrue(self.sl.uniqueOccurrences([-3, 0, 1, -3, 1, 1, 1, -3, 10, 0]))
+
     def test_checkStraightLine(self):
         # 1232.Check If It Is a Straight Line
         self.assertTrue(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]))

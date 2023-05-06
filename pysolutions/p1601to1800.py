@@ -62,6 +62,18 @@ class Pro1601To1800:
                 dp[j + 1] = (dp[j + 1] + dp[j] * count[i][ord(target[j]) - ord("a")]) % mod
         return dp[m]
 
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        # 1657.Determine if Two Strings Are Close
+        if len(word1) != len(word2):
+            return False
+        count1 = Counter(word1)
+        count2 = Counter(word2)
+        if count1.keys() != count2.keys():
+            return False
+        if sorted(count1.values()) != sorted(count2.values()):
+            return False
+        return True
+
     def maximumWealth(self, accounts: List[List[int]]) -> int:
         # 1672.Richest Customer Wealth
         rich = []
@@ -158,6 +170,15 @@ class Pro1601To1800:
                         y -= 1
             else:
                 ans.append(y)
+        return ans
+
+    def largestAltitude(self, gain: List[int]) -> int:
+        # 1732.Find the Highest Altitude
+        ans = 0
+        altitude = 0
+        for val in gain:
+            altitude += val
+            ans = max(ans, altitude)
         return ans
 
     def mergeAlternately(self, word1: str, word2: str) -> str:

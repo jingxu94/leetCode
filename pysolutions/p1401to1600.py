@@ -122,6 +122,21 @@ class Pro1401To1600:
             right += 1
         return ans
 
+    def numSubseq(self, nums: List[int], target: int) -> int:
+        # 1498.Number of Subsequences That Satisfy the Given Sum Condition
+        nums.sort()
+        mod = 1000000007
+        ans = 0
+        left = 0
+        right = len(nums) - 1
+        while left <= right:
+            if nums[left] + nums[right] > target:
+                right -= 1
+            else:
+                ans += pow(2, right - left, mod)
+                left += 1
+        return ans % mod
+
     def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
         # 1502.Can Make Arithmetic Progression From Sequence
         length = len(arr)

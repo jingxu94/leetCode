@@ -36,6 +36,11 @@ class TestP2201To2400(unittest.TestCase):
         self.assertEqual(self.sl.zeroFilledSubarray([0, 0, 0, 2, 0, 0]), 9)
         self.assertEqual(self.sl.zeroFilledSubarray([2, 10, 2019]), 0)
 
+    def test_equalPairs(self):
+        # 2352.Equal Row and Column Pairs
+        self.assertEqual(self.sl.equalPairs([[3, 2, 1], [1, 7, 6], [2, 7, 7]]), 1)
+        self.assertEqual(self.sl.equalPairs([[3, 1, 2, 2], [1, 4, 4, 5], [2, 4, 2, 2], [2, 4, 2, 2]]), 3)
+
     def test_longestCycle(self):
         # 2360.Longest Cycle in a Graph
         self.assertEqual(self.sl.longestCycle([3, 3, 4, 2, 3]), 3)

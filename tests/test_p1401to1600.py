@@ -56,6 +56,12 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.longestSubarray([0, 1, 1, 1, 0, 1, 1, 0, 1]), 5)
         self.assertEqual(self.sl.longestSubarray([1, 1, 1]), 2)
 
+    def test_numSubseq(self):
+        # 1498.Number of Subsequences That Satisfy the Given Sum Condition
+        self.assertEqual(self.sl.numSubseq([3, 5, 6, 7], 9), 4)
+        self.assertEqual(self.sl.numSubseq([3, 3, 6, 8], 10), 6)
+        self.assertEqual(self.sl.numSubseq([2, 3, 3, 4, 6, 7], 12), 61)
+
     def test_canMakeArithmeticProgression(self):
         # 1502.Can Make Arithmetic Progression From Sequence
         self.assertTrue(self.sl.canMakeArithmeticProgression([3, 5, 1]))

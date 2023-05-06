@@ -111,6 +111,16 @@ class Pro2201To2400:
             ans += ((1 + nzero) * nzero) // 2
         return ans
 
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        # 2352.Equal Row and Column Pairs
+        mdict: defaultdict = defaultdict(int)
+        ans = 0
+        for row in grid:
+            mdict[tuple(row)] += 1
+        for col in zip(*grid):
+            ans += mdict[tuple(col)]
+        return ans
+
     def longestCycle(self, edges: List[int]) -> int:
         # 2360.Longest Cycle in a Graph
         longest_cycle_len = -1
