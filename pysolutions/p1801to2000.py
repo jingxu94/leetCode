@@ -89,6 +89,26 @@ class Pro1801To2000:
                 return True
         return False
 
+    def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
+        # 1964.Find the Longest Valid Obstacle Course at Each Position
+        stack: List[int] = []
+        res: List[int] = []
+        for obstacle in obstacles:
+            if not stack or stack[-1] <= obstacle:
+                stack.append(obstacle)
+                res.append(len(stack))
+            else:
+                left, right = 0, len(stack) - 1
+                while left < right:
+                    mid = (left + right) // 2
+                    if stack[mid] <= obstacle:
+                        left = mid + 1
+                    else:
+                        right = mid
+                stack[left] = obstacle
+                res.append(left + 1)
+        return res
+
 
 class SeatManager:  # pragma: no cover
     # 1845.Seat Reservation Manager

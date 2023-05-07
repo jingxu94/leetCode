@@ -53,6 +53,13 @@ class TestP1801To2000(unittest.TestCase):
         self.assertEqual(self.sl.largestPathValue("a", [[0, 0]]), -1)
 
     def test_findRotation(self):
+        # 1886.Determine Whether Matrix Can Be Obtained By Rotation
         self.assertTrue(self.sl.findRotation([[0, 1], [1, 0]], [[0, 1], [1, 0]]))
         self.assertTrue(self.sl.findRotation([[0, 1], [1, 0]], [[1, 0], [0, 1]]))
         self.assertFalse(self.sl.findRotation([[0, 1], [1, 1]], [[1, 0], [0, 1]]))
+
+    def test_longestObstacleCourseAtEachPosition(self):
+        # 1964.Find the Longest Valid Obstacle Course at Each Position
+        self.assertEqual(self.sl.longestObstacleCourseAtEachPosition([1, 2, 3, 2]), [1, 2, 3, 3])
+        self.assertEqual(self.sl.longestObstacleCourseAtEachPosition([2, 2, 1]), [1, 2, 1])
+        self.assertEqual(self.sl.longestObstacleCourseAtEachPosition([3, 1, 5, 6, 4, 2]), [1, 1, 2, 3, 2, 2])

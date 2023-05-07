@@ -160,6 +160,12 @@ class TestP0601To0800(unittest.TestCase):
         expected = [[0, 0, 0], [0, 0, 0]]
         self.assertListEqual(self.sl.floodFill(image, sr, sc, color), expected)
 
+    def test_asteroidCollision(self):
+        # 735.Asteroid Collision
+        self.assertEqual(self.sl.asteroidCollision([5, 10, -5]), [5, 10])
+        self.assertEqual(self.sl.asteroidCollision([8, -8]), [])
+        self.assertEqual(self.sl.asteroidCollision([10, 2, -5]), [10])
+
     def test_dailyTemperatures(self):
         # 739.Daily Temperatures
         self.assertEqual(self.sl.dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]), [1, 1, 4, 2, 1, 1, 0, 0])

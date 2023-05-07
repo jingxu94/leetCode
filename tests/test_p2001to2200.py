@@ -1,12 +1,36 @@
 import unittest
 
 from pysolutions import Pro2001To2200
+from pysolutions.utils import create_linked_list, eq_linked_list
 
 
 class TestP2001To2200(unittest.TestCase):
     @property
     def sl(self):
         return Pro2001To2200()
+
+    def test_deleteMiddle(self):
+        # 2095.Delete the Middle Node of a Linked List
+        self.assertEqual(self.sl.deleteMiddle(None), None)
+        head = create_linked_list([1, 3, 4, 7, 1, 2, 6])
+        expected = create_linked_list([1, 3, 4, 1, 2, 6])
+        self.assertTrue(eq_linked_list(self.sl.deleteMiddle(head), expected))
+        head = create_linked_list([1, 2, 3, 4])
+        expected = create_linked_list([1, 2, 4])
+        self.assertTrue(eq_linked_list(self.sl.deleteMiddle(head), expected))
+        head = create_linked_list([2, 1])
+        expected = create_linked_list([2])
+        self.assertTrue(eq_linked_list(self.sl.deleteMiddle(head), expected))
+
+    def test_pairSum(self):
+        # 2130.Maximum Twin Sum of a Linked List
+        head = create_linked_list([5, 4, 2, 1])
+        self.assertEqual(self.sl.pairSum(head), 6)
+        head = create_linked_list([4, 2, 2, 3])
+        self.assertEqual(self.sl.pairSum(head), 7)
+        head = create_linked_list([1, 100000])
+        self.assertEqual(self.sl.pairSum(head), 100001)
+        self.assertEqual(self.sl.pairSum(None), 0)
 
     def test_longestPalindrome(self):
         # 2131.Longest Palindrome by Concatenating Two Letter Words

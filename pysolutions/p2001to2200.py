@@ -1,9 +1,42 @@
-from typing import List
+from typing import List, Optional
+from .utils import ListNode
 
 
 class Pro2001To2200:
     def __init__(self):
         pass
+
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # 2095.Delete the Middle Node of a Linked List
+        if not head or not head.next:
+            return None
+        slow = head
+        fast = head.next.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        slow.next = slow.next.next
+        return head
+
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        # 2130.Maximum Twin Sum of a Linked List
+        if not head or not head.next:
+            return 0
+        slow, fast = head, head
+        answer = 0
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        curr: Optional[ListNode] = slow
+        prev: Optional[ListNode] = None
+        while curr:
+            curr.next, prev, curr = prev, curr, curr.next
+        start = head
+        while prev:
+            answer = max(answer, start.val + prev.val)
+            start = start.next
+            prev = prev.next
+        return answer
 
     def longestPalindrome(self, words: List[str]) -> int:
         # 2131.Longest Palindrome by Concatenating Two Letter Words

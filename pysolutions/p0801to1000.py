@@ -409,3 +409,15 @@ class Pro0801To1000:
             if trust_dict[i] == n - 1:
                 return i
         return -1
+
+
+class RecentCounter:  # pragma: no cover
+    # 933.Number of Recent Calls
+    def __init__(self):
+        self.queue = deque()
+
+    def ping(self, t: int) -> int:
+        self.queue.append(t)
+        while self.queue[0] < t - 3000:
+            self.queue.popleft()
+        return len(self.queue)

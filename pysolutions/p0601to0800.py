@@ -278,6 +278,21 @@ class Pro0601To0800:
         dfs(image, sr, sc, starting_color, color)
         return image
 
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        # 735.Asteroid Collision
+        stack: List[int] = []
+        for asteroid in asteroids:
+            while stack and asteroid < 0 < stack[-1]:
+                if stack[-1] < -asteroid:
+                    stack.pop()
+                    continue
+                elif stack[-1] == -asteroid:
+                    stack.pop()
+                break
+            else:
+                stack.append(asteroid)
+        return stack
+
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         # 739.Daily Temperatures
         ans = [0] * len(temperatures)
