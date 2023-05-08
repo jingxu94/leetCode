@@ -1,6 +1,7 @@
 import unittest
 
 from pysolutions import Pro1401To1600
+from pysolutions.utils import create_binary_tree
 
 
 class TestP1401To1600(unittest.TestCase):
@@ -25,6 +26,15 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.ways(["A..", "AAA", "..."], 3), 3)
         self.assertEqual(self.sl.ways(["A..", "AA.", "..."], 3), 1)
         self.assertEqual(self.sl.ways(["A..", "A..", "..."], 1), 1)
+
+    def test_goodNodes(self):
+        # 1448.Count Good Nodes in Binary Tree
+        root = create_binary_tree([3, 1, 4, 3, None, 1, 5])
+        self.assertEqual(self.sl.goodNodes(root), 4)
+        root = create_binary_tree([3, 3, None, 4, 2])
+        self.assertEqual(self.sl.goodNodes(root), 3)
+        root = create_binary_tree([1])
+        self.assertEqual(self.sl.goodNodes(root), 1)
 
     def test_maxVowels(self):
         # 1456.Maximum Number of Vowels in a Substring of Given Length

@@ -1,7 +1,7 @@
 import heapq
 import random
 from collections import Counter, defaultdict, deque
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set
 
 from .utils import ListNode, TreeNode
 
@@ -591,6 +591,26 @@ class Pro0201To0400:
             else:
                 stack.append(ch)
         return "".join(stack)
+
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        # 399.Evaluate Division
+        graph: defaultdict = defaultdict(dict)
+        for (x, y), v in zip(equations, values):
+            graph[x][y] = v
+            graph[y][x] = 1 / v
+
+        def dfs(x: str, y: str, visited: Set[str]) -> float:  # pragma: no cover
+            if y in graph[x]:
+                return graph[x][y]
+            for z in graph[x]:
+                if z not in visited:
+                    visited.add(z)
+                    d = dfs(z, y, visited)
+                    if d > 0:
+                        return graph[x][z] * d
+            return -1.0
+
+        return [dfs(x, y, set()) if x in graph and y in graph else -1.0 for x, y in queries]
 
 
 class Trie:  # pragma: no cover

@@ -1,6 +1,7 @@
 import math
 from collections import Counter, deque
-from typing import List
+from typing import List, Optional
+from .utils import TreeNode
 
 
 class Pro1001To1200:
@@ -128,3 +129,24 @@ class Pro1001To1200:
                 else:
                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
         return dp[m][n]
+
+    def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+        # 1161.Maximum Level Sum of a Binary Tree
+        queue: deque = deque([(root, 1)])
+        level = 1
+        ans = 0
+        max_sum = int(-1e5)
+        while queue:
+            level_sum = 0
+            for _ in range(len(queue)):
+                node, _ = queue.popleft()
+                level_sum += node.val
+                if node.left:
+                    queue.append((node.left, level + 1))
+                if node.right:
+                    queue.append((node.right, level + 1))
+            if level_sum > max_sum:
+                max_sum = level_sum
+                ans = level
+            level += 1
+        return ans

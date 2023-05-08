@@ -1,6 +1,7 @@
 import unittest
 
 from pysolutions import Pro1001To1200
+from pysolutions.utils import create_binary_tree
 
 
 class TestP1001To1200(unittest.TestCase):
@@ -61,3 +62,10 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.longestCommonSubsequence("abcde", "ace"), 3)
         self.assertEqual(self.sl.longestCommonSubsequence("abc", "abc"), 3)
         self.assertEqual(self.sl.longestCommonSubsequence("abc", "def"), 0)
+
+    def test_maxLevelSum(self):
+        # 1161.Maximum Level Sum of a Binary Tree
+        root = create_binary_tree([1, 7, 0, 7, -8, None, None])
+        self.assertEqual(self.sl.maxLevelSum(root), 2)
+        root = create_binary_tree([989, None, 10250, 98693, -89388, None, None, None, -32127])
+        self.assertEqual(self.sl.maxLevelSum(root), 2)

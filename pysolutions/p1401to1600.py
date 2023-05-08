@@ -1,5 +1,6 @@
 from collections import defaultdict
 from typing import List
+from .utils import TreeNode
 
 
 class Pro1401To1600:
@@ -60,6 +61,20 @@ class Pro1401To1600:
                             val += dp[remain - 1][row][next_col]
                     dp[remain][row][col] = val % mod
         return dp[k - 1][0][0]
+
+    def goodNodes(self, root: TreeNode) -> int:
+        # 1448.Count Good Nodes in Binary Tree
+        def dfs(node, max_val):
+            if not node:
+                return 0
+            ans = 0
+            if node.val >= max_val:
+                ans += 1
+            ans += dfs(node.left, max(max_val, node.val))
+            ans += dfs(node.right, max(max_val, node.val))
+            return ans
+
+        return dfs(root, root.val)
 
     def maxVowels(self, s: str, k: int) -> int:
         # 1456.Maximum Number of Vowels in a Substring of Given Length

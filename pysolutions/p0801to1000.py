@@ -119,6 +119,17 @@ class Pro0801To1000:
                 return False
         return True
 
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        # 872.Leaf-Similar Trees
+        def get_leaves(root: Optional[TreeNode]) -> List[int]:
+            if not root:
+                return []
+            if not root.left and not root.right:
+                return [root.val]
+            return get_leaves(root.left) + get_leaves(root.right)
+
+        return get_leaves(root1) == get_leaves(root2)
+
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         # 875.Koko Eating Bananas
         def eat(piles: List[int], h: int, speed: int):

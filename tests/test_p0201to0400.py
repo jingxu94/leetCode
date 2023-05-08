@@ -354,3 +354,21 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.decodeString("3[a]2[bc]"), "aaabcbc")
         self.assertEqual(self.sl.decodeString("3[a2[c]]"), "accaccacc")
         self.assertEqual(self.sl.decodeString("2[abc]3[cd]ef"), "abcabccdcdcdef")
+
+    def test_calcEquation(self):
+        # 399.Evaluate Division
+        equations = [["a", "b"], ["b", "c"]]
+        values = [2.0, 3.0]
+        queries = [["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"]]
+        ans = [6.0, 0.5, -1.0, 1.0, -1.0]
+        self.assertEqual(self.sl.calcEquation(equations, values, queries), ans)
+        equations = [["a", "b"], ["b", "c"], ["bc", "cd"]]
+        values = [1.5, 2.5, 5.0]
+        queries = [["a", "c"], ["c", "b"], ["bc", "cd"], ["cd", "bc"]]
+        ans = [3.75, 0.4, 5.0, 0.2]
+        self.assertEqual(self.sl.calcEquation(equations, values, queries), ans)
+        equations = [["a", "b"]]
+        values = [0.5]
+        queries = [["a", "b"], ["b", "a"], ["a", "c"], ["x", "y"]]
+        ans = [0.5, 2.0, -1.0, -1.0]
+        self.assertEqual(self.sl.calcEquation(equations, values, queries), ans)

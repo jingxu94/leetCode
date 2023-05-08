@@ -51,6 +51,16 @@ class TestP0801To1000(unittest.TestCase):
         self.assertFalse(self.sl.lemonadeChange([10, 10]))
         self.assertFalse(self.sl.lemonadeChange([5, 20, 20, 20, 20]))
 
+    def test_leafSimilar(self):
+        # 872.Leaf-Similar Trees
+        root1 = create_binary_tree([3, 5, 1, 6, 2, 9, 8, None, None, 7, 4])
+        root2 = create_binary_tree([3, 5, 1, 6, 7, 4, 2, None, None, None, None, None, None, 9, 8])
+        self.assertTrue(self.sl.leafSimilar(root1, root2))
+        root1 = create_binary_tree([1, 2, 3])
+        root2 = create_binary_tree([1, 3, 2])
+        self.assertFalse(self.sl.leafSimilar(root1, root2))
+        self.assertTrue(self.sl.leafSimilar(None, None))
+
     def test_minEatingSpeed(self):
         # 875.Koko Eating Bananas
         piles1 = [3, 6, 7, 11]
