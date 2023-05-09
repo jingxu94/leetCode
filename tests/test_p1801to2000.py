@@ -58,6 +58,23 @@ class TestP1801To2000(unittest.TestCase):
         self.assertTrue(self.sl.findRotation([[0, 1], [1, 0]], [[1, 0], [0, 1]]))
         self.assertFalse(self.sl.findRotation([[0, 1], [1, 1]], [[1, 0], [0, 1]]))
 
+    def test_nearestExit(self):
+        # 1926.Nearest Exit from Entrance in Maze
+        maze = [["+", "+", ".", "+"], [".", ".", ".", "+"], ["+", "+", "+", "."]]
+        self.assertEqual(self.sl.nearestExit(maze, [1, 2]), 1)
+        maze = [["+", "+", "+"], [".", ".", "."], ["+", "+", "+"]]
+        self.assertEqual(self.sl.nearestExit(maze, [1, 0]), 2)
+        maze = [[".", "+"]]
+        self.assertEqual(self.sl.nearestExit(maze, [0, 0]), -1)
+        maze = [
+            ["+", ".", "+", "+", "+", "+", "+"],
+            ["+", ".", "+", ".", ".", ".", "+"],
+            ["+", ".", "+", ".", "+", ".", "+"],
+            ["+", ".", ".", ".", "+", ".", "+"],
+            ["+", "+", "+", "+", "+", "+", "."],
+        ]
+        self.assertEqual(self.sl.nearestExit(maze, [0, 1]), -1)
+
     def test_longestObstacleCourseAtEachPosition(self):
         # 1964.Find the Longest Valid Obstacle Course at Each Position
         self.assertEqual(self.sl.longestObstacleCourseAtEachPosition([1, 2, 3, 2]), [1, 2, 3, 3])

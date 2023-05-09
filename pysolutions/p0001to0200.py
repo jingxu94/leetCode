@@ -650,7 +650,7 @@ class Pro0001To0200:
 
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         # 54.Spiral Matrix
-        result = []
+        result: List[int] = []
         while matrix:
             # Add the first row
             result += matrix.pop(0)

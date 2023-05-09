@@ -89,6 +89,24 @@ class Pro1801To2000:
                 return True
         return False
 
+    def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
+        # 1926.Nearest Exit from Entrance in Maze
+        m, n = len(maze), len(maze[0])
+        queue = [(entrance[0], entrance[1], 0)]
+        visited = set()
+        while queue:
+            x, y, dist = queue.pop(0)
+            if (x, y) in visited:
+                continue
+            visited.add((x, y))
+            if (x, y) != (entrance[0], entrance[1]) and (x == 0 or x == m - 1 or y == 0 or y == n - 1):
+                return dist
+            for dx, dy in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < m and 0 <= ny < n and maze[nx][ny] == ".":
+                    queue.append((nx, ny, dist + 1))
+        return -1
+
     def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
         # 1964.Find the Longest Valid Obstacle Course at Each Position
         stack: List[int] = []

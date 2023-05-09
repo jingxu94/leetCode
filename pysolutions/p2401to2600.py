@@ -1,3 +1,4 @@
+import heapq
 import math
 from queue import Queue
 from typing import List
@@ -28,6 +29,31 @@ class Pro2401To2600:
             ans = max(ans, math.ceil(prefix_sum / (i + 1)))
         return ans
 
+    def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
+        # 2462.Total Cost to Hire K Workers
+        # Add the first k workers with section id of 0 and
+        # the last k workers with section id of 1 (without duplication) to pq.
+        pq = []
+        for i in range(candidates):
+            pq.append((costs[i], 0))
+        for i in range(max(candidates, len(costs) - candidates), len(costs)):
+            pq.append((costs[i], 1))
+        heapq.heapify(pq)
+        answer = 0
+        next_head, next_tail = candidates, len(costs) - 1 - candidates
+        # Only refill pq if there are workers outside.
+        for _ in range(k):
+            cur_cost, cur_section_id = heapq.heappop(pq)
+            answer += cur_cost
+            if next_head <= next_tail:
+                if cur_section_id == 0:
+                    heapq.heappush(pq, (costs[next_head], 0))
+                    next_head += 1
+                else:
+                    heapq.heappush(pq, (costs[next_tail], 1))
+                    next_tail -= 1
+        return answer
+
     def minScore(self, n: int, roads: List[List[int]]) -> int:
         # 2492.Minimum Score of a Path Between Two Cities
         ans = math.inf
@@ -47,6 +73,28 @@ class Pro2401To2600:
                     vis[v] = 1
                     q.put(v)
         return int(ans)
+
+    def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
+        # 2542.Maximum Subsequence Score
+        # Sort pair (nums1[i], nums2[i]) by nums2[i] in decreasing order.
+        pairs = [(a, b) for a, b in zip(nums1, nums2)]
+        pairs.sort(key=lambda x: -x[1])
+        # Use a min-heap to maintain the top k elements.
+        top_k_heap = [x[0] for x in pairs[:k]]
+        top_k_sum = sum(top_k_heap)
+        heapq.heapify(top_k_heap)
+        # The score of the first k pairs.
+        answer = top_k_sum * pairs[k - 1][1]
+        # Iterate over every nums2[i] as minimum from nums2.
+        for i in range(k, len(nums1)):
+            # Remove the smallest integer from the previous top k elements
+            # then ddd nums1[i] to the top k elements.
+            top_k_sum -= heapq.heappop(top_k_heap)
+            top_k_sum += pairs[i][0]
+            heapq.heappush(top_k_heap, pairs[i][0])
+            # Update answer as the maximum score.
+            answer = max(answer, top_k_sum * pairs[i][1])
+        return answer
 
     def splitNum(self, num: int) -> int:
         # 2578.Split With Minimum Sum
