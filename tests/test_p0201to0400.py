@@ -76,6 +76,12 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.findKthLargest([3, 2, 1, 5, 6, 4], 2), 5)
         self.assertEqual(self.sl.findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4)
 
+    def test_combinationSum3(self):
+        # 216.Combination Sum III
+        self.assertEqual(self.sl.combinationSum3(3, 7), [[1, 2, 4]])
+        self.assertEqual(self.sl.combinationSum3(3, 9), [[1, 2, 6], [1, 3, 5], [2, 3, 4]])
+        self.assertEqual(self.sl.combinationSum3(4, 1), [])
+
     def test_containDuplicate(self):
         # 217.Contains Duplicate
         self.assertTrue(self.sl.containsDuplicate([1, 2, 3, 1]))
@@ -276,6 +282,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertFalse(self.sl.increasingTriplet([5, 4, 3, 2, 1]))
         self.assertTrue(self.sl.increasingTriplet([2, 1, 5, 0, 4, 6]))
         self.assertTrue(self.sl.increasingTriplet([20, 100, 10, 12, 5, 13]))
+
+    def test_countBits(self):
+        # 338.Counting Bits
+        self.assertEqual(self.sl.countBits(2), [0, 1, 1])
+        self.assertEqual(self.sl.countBits(5), [0, 1, 1, 2, 1, 2])
 
     def test_integerBreak(self):
         # 343.Integer Break

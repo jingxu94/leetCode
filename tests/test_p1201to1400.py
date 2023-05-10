@@ -74,6 +74,12 @@ class TestP1201To1400(unittest.TestCase):
         k = 2
         self.assertEqual(self.sl.matrixBlockSum(mat, k), [[45, 45, 45], [45, 45, 45], [45, 45, 45]])
 
+    def test_minFlips(self):
+        # 1318.Minimum Flips to Make a OR b Equal to c
+        self.assertEqual(self.sl.minFlips(2, 6, 5), 3)
+        self.assertEqual(self.sl.minFlips(4, 2, 7), 1)
+        self.assertEqual(self.sl.minFlips(1, 2, 3), 0)
+
     def test_makeConnected(self):
         # 1319.Number of Operations to Make Network Connected
         self.assertEqual(self.sl.makeConnected(4, [[0, 1], [0, 2], [1, 2]]), 1)

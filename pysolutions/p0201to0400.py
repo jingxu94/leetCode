@@ -123,6 +123,20 @@ class Pro0201To0400:
         # 215.Kth Largest Element in an Array
         return heapq.nlargest(k, nums)[-1]
 
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        # 216.Combination Sum III
+        ans: List[List[int]] = []
+
+        def dfs(start: int, path: List[int]):
+            if len(path) == k and sum(path) == n:
+                ans.append(path)
+                return
+            for i in range(start, 10):
+                dfs(i + 1, path + [i])
+
+        dfs(1, [])
+        return ans
+
     def containsDuplicate(self, nums: List[int]) -> bool:
         # 217.Contains Duplicate
         cont = Counter(nums)
@@ -413,6 +427,13 @@ class Pro0201To0400:
             else:
                 return True
         return False
+
+    def countBits(self, n: int) -> List[int]:
+        # 338.Counting Bits
+        dp = [0] * (n + 1)
+        for i in range(1, n + 1):
+            dp[i] = dp[i >> 1] + (i & 1)
+        return dp
 
     def integerBreak(self, n: int) -> int:
         # 343.Integer Break

@@ -142,6 +142,19 @@ class Pro1201To1400:
                 result[i][j] = prefix_sum[r2][c2] - prefix_sum[r1][c2] - prefix_sum[r2][c1] + prefix_sum[r1][c1]
         return result
 
+    def minFlips(self, a: int, b: int, c: int) -> int:
+        # 1318.Minimum Flips to Make a OR b Equal to c
+        ans = 0
+        while a or b or c:
+            if c & 1:
+                ans += (a & 1) + (b & 1) == 0
+            else:
+                ans += (a & 1) + (b & 1)
+            a >>= 1
+            b >>= 1
+            c >>= 1
+        return ans
+
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
         # 1319.Number of Operations to Make Network Connected
         def find(x: int) -> int:

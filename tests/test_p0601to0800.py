@@ -203,6 +203,12 @@ class TestP0601To0800(unittest.TestCase):
         self.assertCountEqual(self.sl.letterCasePermutation_v2("a1b2"), ["a1b2", "a1B2", "A1b2", "A1B2"])
         self.assertCountEqual(self.sl.letterCasePermutation_v2("3z4"), ["3z4", "3Z4"])
 
+    def test_numTilings(self):
+        # 790.Domino and Tromino Tiling
+        self.assertEqual(self.sl.numTilings(2), 2)
+        self.assertEqual(self.sl.numTilings(3), 5)
+        self.assertEqual(self.sl.numTilings(4), 11)
+
     def test_allPathsSourceTarget(self):
         # 797. All Path From Source to Target
         self.assertEqual(self.sl.allPathsSourceTarget([[1, 2], [3], [3], []]), [[0, 2, 3], [0, 1, 3]])
