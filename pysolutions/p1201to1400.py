@@ -75,6 +75,14 @@ class Pro1201To1400:
                     dfs(grid, row, col)
         return num_closed_islands
 
+    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+        # 1268.Search Suggestions System
+        products.sort()
+        result: List[List[str]] = []
+        for i in range(1, len(searchWord) + 1):
+            result.append([product for product in products if product[:i] == searchWord[:i]][:3])
+        return result
+
     def subtractProductAndSum(self, n: int) -> int:
         """1281.Subtract the Product and Sum of Digits of an Integer
         Subtract the product of digits and the sum of digits of an integer.

@@ -422,6 +422,19 @@ class Pro0801To1000:
         return -1
 
 
+class StockSpanner:  # pragma: no cover
+    # 901.Online Stock Span
+    def __init__(self):
+        self.stack = []
+
+    def next(self, price: int) -> int:
+        ans = 1
+        while self.stack and self.stack[-1][0] <= price:
+            ans += self.stack.pop()[1]
+        self.stack.append((price, ans))
+        return ans
+
+
 class RecentCounter:  # pragma: no cover
     # 933.Number of Recent Calls
     def __init__(self):

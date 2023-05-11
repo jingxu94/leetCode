@@ -31,6 +31,12 @@ class TestP1001To1200(unittest.TestCase):
         # 1020.Number of Enclaves
         self.assertEqual(self.sl.numEnclaves([[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]), 3)
 
+    def test_maxUncrossedLines(self):
+        # 1035.Uncrossed Lines
+        self.assertEqual(self.sl.maxUncrossedLines([1, 4, 2], [1, 2, 4]), 2)
+        self.assertEqual(self.sl.maxUncrossedLines([2, 5, 1, 2, 5], [10, 5, 2, 1, 5, 2]), 3)
+        self.assertEqual(self.sl.maxUncrossedLines([1, 3, 7, 1, 7, 5], [1, 9, 2, 5, 1]), 2)
+
     def test_lastStoneWeight(self):
         # 1046.Last Stone Weight
         self.assertEqual(self.sl.lastStoneWeight([2, 7, 4, 1, 8, 1]), 1)

@@ -42,6 +42,33 @@ class TestP1201To1400(unittest.TestCase):
         grid = [[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]]
         self.assertEqual(self.sl.closedIsland(grid), 1)
 
+    def test_suggestedProducts(self):
+        # 1268.Search Suggestions System
+        products = ["mobile", "mouse", "moneypot", "monitor", "mousepad"]
+        searchWord = "mouse"
+        self.assertEqual(
+            self.sl.suggestedProducts(products, searchWord),
+            [
+                ["mobile", "moneypot", "monitor"],
+                ["mobile", "moneypot", "monitor"],
+                ["mouse", "mousepad"],
+                ["mouse", "mousepad"],
+                ["mouse", "mousepad"],
+            ],
+        )
+        products = ["havana"]
+        searchWord = "havana"
+        self.assertEqual(
+            self.sl.suggestedProducts(products, searchWord),
+            [["havana"], ["havana"], ["havana"], ["havana"], ["havana"], ["havana"]],
+        )
+        products = ["bags", "baggage", "banner", "box", "cloths"]
+        searchWord = "bags"
+        self.assertEqual(
+            self.sl.suggestedProducts(products, searchWord),
+            [["baggage", "bags", "banner"], ["baggage", "bags", "banner"], ["baggage", "bags"], ["bags"]],
+        )
+
     def test_subtractProductAndSum(self):
         # 1281.Subtract the Product and Sum of Digits of an Integer
         self.assertEqual(self.sl.subtractProductAndSum(234), 15)

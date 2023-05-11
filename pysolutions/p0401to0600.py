@@ -274,6 +274,19 @@ class Pro0401To0600:
         ct = Counter(s)
         return "".join([char * ct[char] for char in sorted(ct, key=lambda x: ct[x], reverse=True)])
 
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        # 452.Minimum Number of Arrows to Burst Balloons
+        if not points:
+            return 0
+        points.sort(key=lambda x: x[1])
+        ans = 1
+        end = points[0][1]
+        for i in range(1, len(points)):
+            if points[i][0] > end:
+                ans += 1
+                end = points[i][1]
+        return ans
+
     def repeatedSubstringPattern(self, s: str) -> bool:
         # 459.Repeated Substring Pattern
         # half = len(s) // 2 + 1

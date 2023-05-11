@@ -130,6 +130,13 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.frequencySort("cccaaa"), "cccaaa")
         self.assertEqual(self.sl.frequencySort("Aabb"), "bbAa")
 
+    def test_findMinArrowShots(self):
+        # 452.Minimum Number of Arrows to Burst Balloons
+        self.assertEqual(self.sl.findMinArrowShots([[10, 16], [2, 8], [1, 6], [7, 12]]), 2)
+        self.assertEqual(self.sl.findMinArrowShots([[1, 2], [3, 4], [5, 6], [7, 8]]), 4)
+        self.assertEqual(self.sl.findMinArrowShots([[1, 2], [2, 3], [3, 4], [4, 5]]), 2)
+        self.assertEqual(self.sl.findMinArrowShots([]), 0)
+
     def test_repeatedSubstringPattern(self):
         # 459.Repeated Substring Pattern
         self.assertTrue(self.sl.repeatedSubstringPattern("abab"))

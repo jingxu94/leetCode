@@ -74,6 +74,18 @@ class Pro1001To1200:
                 stones.append(y - x)
         return stones[0] if stones else 0
 
+    def maxUncrossedLines(self, nums1: List[int], nums2: List[int]) -> int:
+        # 1035.Uncrossed Lines
+        m, n = len(nums1), len(nums2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for row in range(1, m + 1):
+            for col in range(1, n + 1):
+                if nums1[row - 1] == nums2[col - 1]:
+                    dp[row][col] = dp[row - 1][col - 1] + 1
+                else:
+                    dp[row][col] = max(dp[row - 1][col], dp[row][col - 1])
+        return dp[m][n]
+
     def gcdOfStrings(self, str1: str, str2: str) -> str:
         # 1071.Greatest Common Divisor of Strings
         if str1 + str2 != str2 + str1:
