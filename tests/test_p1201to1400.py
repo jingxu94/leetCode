@@ -69,6 +69,16 @@ class TestP1201To1400(unittest.TestCase):
             [["baggage", "bags", "banner"], ["baggage", "bags", "banner"], ["baggage", "bags"], ["bags"]],
         )
 
+    def test_tictactoe(self):
+        # 1275.Find Winner on a Tic Tac Toe Game
+        self.assertEqual(self.sl.tictactoe([[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]]), "A")
+        self.assertEqual(self.sl.tictactoe([[0, 0], [1, 1], [0, 1], [0, 2], [1, 0], [2, 0]]), "B")
+        self.assertEqual(
+            self.sl.tictactoe([[0, 0], [1, 1], [2, 0], [1, 0], [1, 2], [2, 1], [0, 1], [0, 2], [2, 2]]), "Draw"
+        )
+        self.assertEqual(self.sl.tictactoe([[2, 2], [0, 2], [1, 0], [0, 1], [2, 0], [0, 0]]), "B")
+        self.assertEqual(self.sl.tictactoe([[2, 0], [1, 1], [0, 2], [2, 1], [1, 2], [1, 0], [0, 0], [0, 1]]), "B")
+
     def test_subtractProductAndSum(self):
         # 1281.Subtract the Product and Sum of Digits of an Integer
         self.assertEqual(self.sl.subtractProductAndSum(234), 15)

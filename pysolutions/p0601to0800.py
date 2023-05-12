@@ -121,6 +121,10 @@ class Pro0601To0800:
                 checked.add(num)
         return False
 
+    def judgeCircle(self, moves: str) -> bool:
+        # 657.Robot Return to Origin
+        return moves.count("U") == moves.count("D") and moves.count("L") == moves.count("R")
+
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         # 662.Maximum Width of Binary Tree
         if not root:
@@ -152,6 +156,20 @@ class Pro0601To0800:
                         dp[i][1] += dp[j][1]
         max_len = max(dp, key=lambda x: x[0])[0]
         return sum([x[1] for x in dp if x[0] == max_len])
+
+    def calPoints(self, operations: List[str]) -> int:
+        # 682.Baseball Game
+        stack: List[int] = []
+        for op in operations:
+            if op == "+":
+                stack.append(stack[-1] + stack[-2])
+            elif op == "D":
+                stack.append(stack[-1] * 2)
+            elif op == "C":
+                stack.pop()
+            else:
+                stack.append(int(op))
+        return sum(stack)
 
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         # 692.Top K Frequent Words

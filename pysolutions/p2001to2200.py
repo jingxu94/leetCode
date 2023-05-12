@@ -58,6 +58,23 @@ class Pro2001To2200:
             answer += 1
         return 2 * answer
 
+    def mostPoints(self, questions: List[List[int]]) -> int:
+        # 2140.Solving Questions With Brainpower
+        n = len(questions)
+        dp = [0] * n
+
+        def dfs(i):
+            if i >= n:
+                return 0
+            if dp[i]:
+                return dp[i]
+            points, skip = questions[i]
+            # dp[i] = max(skip it, solve it)
+            dp[i] = max(dfs(i + 1), points + dfs(i + skip + 1))
+            return dp[i]
+
+        return dfs(0)
+
     def minimumTime(self, time: List[int], totalTrips: int) -> int:
         # 2187.Minimum Time to Complete
         def cal_trips(time: List[int], now: int):

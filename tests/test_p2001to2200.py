@@ -38,6 +38,11 @@ class TestP2001To2200(unittest.TestCase):
         self.assertEqual(self.sl.longestPalindrome(["ab", "ty", "yt", "lc", "cl", "ab"]), 8)
         self.assertEqual(self.sl.longestPalindrome(["cc", "ll", "xx"]), 2)
 
+    def test_mostPoints(self):
+        # 2140.Solving Questions With Brainpower
+        self.assertEqual(self.sl.mostPoints([[3, 2], [4, 3], [4, 4], [2, 5]]), 5)
+        self.assertEqual(self.sl.mostPoints([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]), 7)
+
     def test_minimumTime(self):
         # 2187.Minimum Time to Complete Trips
         self.assertEqual(self.sl.minimumTime([1, 2, 3], 5), 3)

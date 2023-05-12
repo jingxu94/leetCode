@@ -37,6 +37,13 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.maxUncrossedLines([2, 5, 1, 2, 5], [10, 5, 2, 1, 5, 2]), 3)
         self.assertEqual(self.sl.maxUncrossedLines([1, 3, 7, 1, 7, 5], [1, 9, 2, 5, 1]), 2)
 
+    def test_isRobotBounded(self):
+        # 1041.Robot Bounded In Circle
+        self.assertTrue(self.sl.isRobotBounded("GGLLGG"))
+        self.assertFalse(self.sl.isRobotBounded("GG"))
+        self.assertTrue(self.sl.isRobotBounded("GL"))
+        self.assertTrue(self.sl.isRobotBounded("RLLGGLRGLGLLLGRLRLRLRRRRLRLGRLLLGGL"))
+
     def test_lastStoneWeight(self):
         # 1046.Last Stone Weight
         self.assertEqual(self.sl.lastStoneWeight([2, 7, 4, 1, 8, 1]), 1)

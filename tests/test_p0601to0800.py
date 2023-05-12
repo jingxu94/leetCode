@@ -64,6 +64,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertFalse(self.sl.findTarget(root, 28))
         self.assertFalse(self.sl.findTarget(create_binary_tree([]), 28))
 
+    def test_judgeCircle(self):
+        # 657.Robot Return to Origin
+        self.assertTrue(self.sl.judgeCircle("UD"))
+        self.assertFalse(self.sl.judgeCircle("LL"))
+
     def test_widthOfBinaryTree(self):
         # 662.Maximum Width of Binary Tree
         root = create_binary_tree([1, 3, 2, 5, 3, None, 9])
@@ -80,6 +85,12 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.findNumberOfLIS([2, 2, 2, 2, 2]), 5)
         self.assertEqual(self.sl.findNumberOfLIS([1, 2, 3, 1, 2, 3, 1, 2, 3]), 10)
         self.assertEqual(self.sl.findNumberOfLIS([]), 0)
+
+    def test_calPoints(self):
+        # 682.Baseball Game
+        self.assertEqual(self.sl.calPoints(["5", "2", "C", "D", "+"]), 30)
+        self.assertEqual(self.sl.calPoints(["5", "-2", "4", "C", "D", "9", "+", "+"]), 27)
+        self.assertEqual(self.sl.calPoints(["1", "C"]), 0)
 
     def test_topKFrequent(self):
         # 692.Top K Frequent Words

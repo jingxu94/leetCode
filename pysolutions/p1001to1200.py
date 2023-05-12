@@ -64,6 +64,18 @@ class Pro1001To1200:
             dfs(grid, m - 1, j)
         return len(list(1 for i in range(m) for j in range(n) if grid[i][j] == 1))
 
+    def isRobotBounded(self, instructions: str) -> bool:
+        # 1041.Robot Bounded In Circle
+        x, y, dx, dy = 0, 0, 0, 1
+        for i in instructions:
+            if i == "G":
+                x, y = x + dx, y + dy
+            elif i == "L":
+                dx, dy = -dy, dx
+            else:
+                dx, dy = dy, -dx
+        return (x, y) == (0, 0) or (dx, dy) != (0, 1)
+
     def lastStoneWeight(self, stones: List[int]) -> int:
         # 1046.Last Stone Weight
         while len(stones) > 1:
