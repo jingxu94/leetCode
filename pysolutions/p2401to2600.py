@@ -54,6 +54,24 @@ class Pro2401To2600:
                     next_tail -= 1
         return answer
 
+    def countGoodStrings(self, low: int, high: int, zero: int, one: int) -> int:
+        # 2466.Count Ways To Build Good Strings
+        dp = [1] + [-1] * (high)
+        mod = int(1e9 + 7)
+
+        def dfs(end):  # pragma: no cover
+            if dp[end] != -1:
+                return dp[end]
+            ans = 0
+            if end >= zero:
+                ans += dfs(end - zero)
+            if end >= one:
+                ans += dfs(end - one)
+            dp[end] = ans % mod
+            return dp[end]
+
+        return sum(dfs(end) for end in range(low, high + 1)) % mod
+
     def minScore(self, n: int, roads: List[List[int]]) -> int:
         # 2492.Minimum Score of a Path Between Two Cities
         ans = math.inf

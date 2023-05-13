@@ -24,6 +24,13 @@ class TestP2401To2600(unittest.TestCase):
         self.assertEqual(self.sl.totalCost([1, 2, 4, 1], 3, 3), 4)
         self.assertEqual(self.sl.totalCost([31, 25, 72, 79, 74, 65, 84, 91, 18, 59, 27, 9, 81, 33, 17, 58], 11, 2), 423)
 
+    def test_countGoodStrings(self):
+        # 2466.Count Ways To Build Good Strings
+        self.assertEqual(self.sl.countGoodStrings(1, 1, 1, 1), 2)
+        self.assertEqual(self.sl.countGoodStrings(2, 2, 1, 1), 4)
+        self.assertEqual(self.sl.countGoodStrings(3, 3, 1, 1), 8)
+        self.assertEqual(self.sl.countGoodStrings(2, 3, 1, 2), 5)
+
     def test_minScore(self):
         # 2492.Minimum Score of a Path Between Two Cities
         self.assertEqual(self.sl.minScore(4, [[1, 2, 9], [2, 3, 6], [2, 4, 5], [1, 4, 7]]), 5)

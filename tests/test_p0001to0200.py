@@ -348,6 +348,12 @@ class TestP0001To0200(unittest.TestCase):
         )
         self.assertEqual(self.sl.groupAnagrams([""]), [[""]])
 
+    def test_myPow(self):
+        # 50.Pow(x,n)
+        eps = 1e-6
+        self.assertTrue(abs(self.sl.myPow(2.00000, 10) - 1024.00000) < eps)
+        self.assertTrue(abs(self.sl.myPow(2.10000, 3) - 9.26100) < eps)
+
     def test_maxSubArray(self):
         # 53.Maximum Subarray
         self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)
