@@ -110,3 +110,12 @@ class TestP1601To1800(unittest.TestCase):
         self.assertFalse(self.sl.areAlmostEqual("attack", "defend"))
         self.assertFalse(self.sl.areAlmostEqual("yhy", "hyc"))
         self.assertFalse(self.sl.areAlmostEqual("aa", "ac"))
+
+    def test_maxScore(self):
+        # 1799.Maximize Score After N Operations
+        nums1 = [1, 2]
+        nums2 = [3, 4, 6, 8]
+        nums3 = [1, 2, 3, 4, 5, 6]
+        self.assertEqual(self.sl.maxScore(nums1), 1)
+        self.assertEqual(self.sl.maxScore(nums2), 11)
+        self.assertEqual(self.sl.maxScore(nums3), 14)

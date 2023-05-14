@@ -225,6 +225,34 @@ class Pro1601To1800:
             return False
         return True
 
+    def maxScore(self, nums: List[int]) -> int:
+        # 1799.Maximize Score After N Operations
+        # Determine number of elements
+        num_elems = len(nums)
+        # Construct matrix of greatest common divisors for all pairs of elements
+        gcd_pairs = [[math.gcd(nums[i], nums[j]) for j in range(num_elems)] for i in range(num_elems)]
+        # Use dynamic programming to find maximum score
+        max_scores = [0] * (1 << num_elems)
+        for state in range(1, 1 << num_elems):
+            num_selected = bin(state).count("1")
+            # Skip states with odd number of selected elements
+            if num_selected % 2 == 1:
+                continue
+            # Iterate over all pairs of selected elements
+            for i in range(num_elems):
+                if not (state & (1 << i)):
+                    continue
+                for j in range(i + 1, num_elems):
+                    if not (state & (1 << j)):
+                        continue
+                    # Compute score for current state based on previous state and current pair of elements
+                    prev_state = state ^ (1 << i) ^ (1 << j)
+                    current_score = max_scores[prev_state] + num_selected // 2 * gcd_pairs[i][j]
+                    # Update maximum score for current state
+                    max_scores[state] = max(max_scores[state], current_score)
+        # Return maximum score for state with all elements selected
+        return max_scores[(1 << num_elems) - 1]
+
 
 class ParkingSystem:  # pragma: no cover
     # 1603.Design Parking System

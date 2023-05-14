@@ -1502,7 +1502,7 @@ class Pro0001To0200:
         # 116.Populating Next Right Pointers in Each Node
         if not root:
             return None
-        q = deque([root])
+        q: deque = deque([root])
         while q:
             right_node = None
             for _ in range(len(q)):
