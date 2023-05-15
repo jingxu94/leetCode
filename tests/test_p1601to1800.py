@@ -1,6 +1,7 @@
 import unittest
 
 from pysolutions import Pro1601To1800
+from pysolutions.utils import create_linked_list, eq_linked_list
 
 
 class TestP1601To1800(unittest.TestCase):
@@ -83,6 +84,15 @@ class TestP1601To1800(unittest.TestCase):
         grid2 = [[-1]]
         self.assertEqual(self.sl.findBall(grid1), [1, -1, -1, -1, -1])
         self.assertEqual(self.sl.findBall(grid2), [-1])
+
+    def test_swapNodes(self):
+        # 1721.Swapping Nodes in a Linked List
+        head1 = create_linked_list([1, 2, 3, 4, 5])
+        ans1 = create_linked_list([1, 4, 3, 2, 5])
+        self.assertTrue(eq_linked_list(self.sl.swapNodes(head1, 2), ans1))
+        head2 = create_linked_list([7, 9, 6, 6, 7, 8, 3, 0, 9, 5])
+        ans2 = create_linked_list([7, 9, 6, 6, 8, 7, 3, 0, 9, 5])
+        self.assertTrue(eq_linked_list(self.sl.swapNodes(head2, 5), ans2))
 
     def test_largestAltitude(self):
         # 1732.Find the Highest Altitude

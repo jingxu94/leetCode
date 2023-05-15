@@ -1,6 +1,7 @@
 import math
 from collections import Counter, deque
-from typing import Dict, List
+from typing import Dict, List, Optional
+from .utils import ListNode
 
 
 class Pro1601To1800:
@@ -171,6 +172,20 @@ class Pro1601To1800:
             else:
                 ans.append(y)
         return ans
+
+    def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        # 1721.Swapping Nodes in a Linked List
+        dummy = ListNode(0, head)
+        fast = slow = dummy
+        for _ in range(k):
+            fast = fast.next
+        first = fast
+        while fast:
+            fast = fast.next
+            slow = slow.next
+        second = slow
+        first.val, second.val = second.val, first.val
+        return dummy.next
 
     def largestAltitude(self, gain: List[int]) -> int:
         # 1732.Find the Highest Altitude
