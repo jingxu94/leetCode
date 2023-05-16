@@ -354,6 +354,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(abs(self.sl.myPow(2.00000, 10) - 1024.00000) < eps)
         self.assertTrue(abs(self.sl.myPow(2.10000, 3) - 9.26100) < eps)
 
+    def test_soloveNQueens(self):
+        # 51.N-Queens
+        self.assertEqual(self.sl.solveNQueens(4), [[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]])
+        self.assertEqual(self.sl.solveNQueens(1), [["Q"]])
+
     def test_maxSubArray(self):
         # 53.Maximum Subarray
         self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)
@@ -765,6 +770,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([1, 2, 3])), 25)
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([4, 9, 0, 5, 1])), 1026)
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([])), 0)
+
+    def test_partition(self):
+        # 131.Palindrome Partitioning
+        self.assertListEqual(self.sl.partition("aab"), [["a", "a", "b"], ["aa", "b"]])
+        self.assertListEqual(self.sl.partition("a"), [["a"]])
 
     def test_singleNumber(self):
         # 136.Single Number

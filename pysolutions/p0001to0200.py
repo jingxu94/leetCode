@@ -2,7 +2,7 @@ import math
 import re
 from collections import Counter, deque
 from itertools import chain, combinations, permutations
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
 from .utils import ListNode, Node, TreeNode
 
@@ -653,6 +653,47 @@ class Pro0001To0200:
 
         f = function()
         return float(f) if n >= 0 else 1 / f
+
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        # 51.N-Queens
+        def backtrack(row=0):
+            for col in range(n):
+                if is_not_under_attack(row, col):
+                    place_queen(row, col)
+                    if row + 1 == n:
+                        add_solution()
+                    else:
+                        backtrack(row + 1)
+                    remove_queen(row, col)
+
+        def is_not_under_attack(row, col):
+            return not (cols[col] + hill_diagonals[row - col] + dale_diagonals[row + col])
+
+        def place_queen(row, col):
+            queens.add((row, col))
+            cols[col] = 1
+            hill_diagonals[row - col] = 1
+            dale_diagonals[row + col] = 1
+
+        def remove_queen(row, col):
+            queens.remove((row, col))
+            cols[col] = 0
+            hill_diagonals[row - col] = 0
+            dale_diagonals[row + col] = 0
+
+        def add_solution():
+            solution = []
+            for _, col in sorted(queens):
+                solution.append("." * col + "Q" + "." * (n - col - 1))
+            output.append(solution)
+
+        cols = [0] * n
+        hill_diagonals = [0] * (2 * n - 1)
+        dale_diagonals = [0] * (2 * n - 1)
+        queens: Set[str] = set()
+        output: List[List[str]] = []
+        backtrack()
+        return output
 
     def maxSubArray(self, nums: List[int]) -> int:
         # 53.Maximum Subarray
@@ -1640,6 +1681,25 @@ class Pro0001To0200:
                 if board[i][j] == "O" and (i, j) not in seen:
                     board[i][j] = "X"
         return
+
+    def partition(self, s: str) -> List[List[str]]:
+        # 131.Palindrome Partitioning
+        def is_palindrome(s: str) -> bool:
+            return s == s[::-1]
+
+        def backtrack(start: int, end: int, path: List[str]) -> None:
+            if start == end:
+                ans.append(path[:])
+                return
+            for i in range(start, end):
+                if is_palindrome(s[start : i + 1]):
+                    path.append(s[start : i + 1])
+                    backtrack(i + 1, end, path)
+                    path.pop()
+
+        ans: List[List[str]] = []
+        backtrack(0, len(s), [])
+        return ans
 
     def cloneGraph(self, node: "Node") -> "Node":  # pragma: no cover
         # 133.Clone Graph
