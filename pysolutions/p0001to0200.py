@@ -1539,6 +1539,26 @@ class Pro0001To0200:
         dfs(root, targetSum, [])
         return paths
 
+    def flatten(self, root: Optional[TreeNode]) -> None:  # pragma: no cover
+        # 114.Flatten Binary Tree to Linked List
+        curr: Optional[TreeNode] = None
+
+        def dfs(node):
+            nonlocal curr
+            if not node:
+                return
+            left, right = node.left, node.right
+            node.left = None
+            if curr:
+                curr.right = node
+                curr = curr.right
+            else:
+                curr = node
+            dfs(left)
+            dfs(right)
+
+        dfs(root)
+
     def connect(self, root: Optional[Node]) -> Optional[Node]:  # pragma: no cover
         # 116.Populating Next Right Pointers in Each Node
         if not root:
@@ -1633,6 +1653,22 @@ class Pro0001To0200:
             if prices[i] < prices[i + 1]:
                 ans += prices[i + 1] - prices[i]
         return ans
+
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        # 124.Binary Tree Maximum Path Sum
+        max_sum = -1000
+
+        def helper(node: Optional[TreeNode]) -> int:
+            nonlocal max_sum
+            if not node:
+                return 0
+            left_gain = max(helper(node.left), 0)
+            right_gain = max(helper(node.right), 0)
+            max_sum = max(max_sum, node.val + left_gain + right_gain)
+            return node.val + max(left_gain, right_gain)
+
+        helper(root)
+        return max_sum
 
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         # 129.Sum Root to Leaf Numbers

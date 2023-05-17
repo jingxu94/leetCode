@@ -765,6 +765,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.maxProfit_v2([1, 2, 3, 4, 5]), 4)
         self.assertEqual(self.sl.maxProfit_v2([7, 6, 4, 3, 1]), 0)
 
+    def test_maxPathSum(self):
+        # 124.Binary Tree Maximum Path Sum
+        self.assertEqual(self.sl.maxPathSum(create_binary_tree([1, 2, 3])), 6)
+        self.assertEqual(self.sl.maxPathSum(create_binary_tree([-10, 9, 20, None, None, 15, 7])), 42)
+
     def test_sumNumbers(self):
         # 129.Sum Root to Leaf Numbers
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([1, 2, 3])), 25)
