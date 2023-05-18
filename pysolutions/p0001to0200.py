@@ -449,6 +449,20 @@ class Pro0001To0200:
                 haystack = haystack[1:]
         return -1
 
+    def longestValidParentheses(self, s: str) -> int:
+        # 32.Longest Valid Parentheses
+        stack = [-1]
+        ans = 0
+        for i in range(len(s)):
+            if s[i] == "(":
+                stack.append(i)
+            elif stack[-1] != -1 and s[stack[-1]] == "(":
+                stack.pop()
+                ans = max(ans, i - stack[-1])
+            else:
+                stack.append(i)
+        return ans
+
     def search(self, nums: List[int], target: int) -> int:
         # 33.Search in Rotated Sorted Array
         if not nums:

@@ -69,6 +69,27 @@ class Pro0201To0400:
             curr = curr.next
         return ans
 
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # 207.Course Schedule
+        adj_list: defaultdict = defaultdict(list)
+        indegree: Dict[int, int] = {}
+        for dest, src in prerequisites:
+            adj_list[src].append(dest)
+            indegree[dest] = indegree.get(dest, 0) + 1
+        zero_indegree_queue = deque([k for k in range(numCourses) if k not in indegree])
+        topological_sorted_order: List[int] = []
+        while zero_indegree_queue:
+            vertex = zero_indegree_queue.popleft()
+            topological_sorted_order.append(vertex)
+            if vertex in adj_list:
+                for neighbor in adj_list[vertex]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        zero_indegree_queue.append(neighbor)
+        if len(topological_sorted_order) == numCourses:
+            return True
+        return False
+
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         # 209.Minimum Size Subarray Sum
         left = total = 0

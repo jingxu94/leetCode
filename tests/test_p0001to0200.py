@@ -253,6 +253,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.strStr(haystack1, needle1), expected1)
         self.assertEqual(self.sl.strStr(haystack2, needle2), expected2)
 
+    def test_longestValidParentheses(self):
+        # 32.Longest Valid Parentheses
+        self.assertEqual(self.sl.longestValidParentheses("(()"), 2)
+        self.assertEqual(self.sl.longestValidParentheses(")()())"), 4)
+        self.assertEqual(self.sl.longestValidParentheses(""), 0)
+
     def test_search(self):
         # 33.Search in Rotated Sorted Array
         self.assertEqual(self.sl.search([4, 5, 6, 7, 0, 1, 2], 0), 4)

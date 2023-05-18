@@ -50,6 +50,12 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([1, 2])), create_linked_list([2, 1])))
         self.assertTrue(eq_linked_list(self.sl.reverseList(create_linked_list([])), create_linked_list([])))
 
+    def test_canFinish(self):
+        # 207.Course Schedule
+        self.assertTrue(self.sl.canFinish(2, [[1, 0]]))
+        self.assertFalse(self.sl.canFinish(2, [[1, 0], [0, 1]]))
+        self.assertTrue(self.sl.canFinish(5, [[1, 4], [2, 4], [3, 1], [3, 2]]))
+
     def test_minSubArrayLen(self):
         # 209.Minimum Size Subarray Sum
         self.assertEqual(self.sl.minSubArrayLen(7, [2, 3, 1, 2, 4, 3]), 2)
