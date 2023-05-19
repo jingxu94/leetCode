@@ -416,6 +416,19 @@ class Pro0601To0800:
             ans.append(snew)
         return ans
 
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        # 785.Is Graph Bipartite?
+        n = len(graph)
+        color = [0] * n
+
+        def dfs(node, c):
+            if color[node]:
+                return color[node] == c
+            color[node] = c
+            return all(dfs(nei, -c) for nei in graph[node])
+
+        return all(dfs(node, 1) for node in range(n) if not color[node])
+
     def numTilings(self, n: int) -> int:
         # 790.Domino and Tromino Tiling
         if n < 3:

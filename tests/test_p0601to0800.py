@@ -214,6 +214,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertCountEqual(self.sl.letterCasePermutation_v2("a1b2"), ["a1b2", "a1B2", "A1b2", "A1B2"])
         self.assertCountEqual(self.sl.letterCasePermutation_v2("3z4"), ["3z4", "3Z4"])
 
+    def test_isBipartite(self):
+        # 785.Is Graph Bipartite?
+        self.assertTrue(self.sl.isBipartite([[1, 3], [0, 2], [1, 3], [0, 2]]))
+        self.assertFalse(self.sl.isBipartite([[1, 2, 3], [0, 2], [0, 1, 3], [0, 2]]))
+
     def test_numTilings(self):
         # 790.Domino and Tromino Tiling
         self.assertEqual(self.sl.numTilings(2), 2)
