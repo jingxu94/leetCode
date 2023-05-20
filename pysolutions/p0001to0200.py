@@ -1684,6 +1684,22 @@ class Pro0001To0200:
         helper(root)
         return max_sum
 
+    def longestConsecutive(self, nums: List[int]) -> int:
+        # 128.Longest Consecutive Sequence
+        if not nums:
+            return 0
+        nums_set = set(nums)
+        longest = 0
+        for num in nums_set:
+            if num - 1 not in nums_set:
+                current = num
+                current_length = 1
+                while current + 1 in nums_set:
+                    current += 1
+                    current_length += 1
+                longest = max(longest, current_length)
+        return longest
+
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         # 129.Sum Root to Leaf Numbers
         def helper(node: Optional[TreeNode], current_sum: int) -> int:

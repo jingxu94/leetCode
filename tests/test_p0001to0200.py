@@ -776,6 +776,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.maxPathSum(create_binary_tree([1, 2, 3])), 6)
         self.assertEqual(self.sl.maxPathSum(create_binary_tree([-10, 9, 20, None, None, 15, 7])), 42)
 
+    def test_longestConsecutive(self):
+        # 128.Longest Consecutive Sequence
+        self.assertEqual(self.sl.longestConsecutive([]), 0)
+        self.assertEqual(self.sl.longestConsecutive([100, 4, 200, 1, 3, 2]), 4)
+        self.assertEqual(self.sl.longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1]), 9)
+
     def test_sumNumbers(self):
         # 129.Sum Root to Leaf Numbers
         self.assertEqual(self.sl.sumNumbers(create_binary_tree([1, 2, 3])), 25)
