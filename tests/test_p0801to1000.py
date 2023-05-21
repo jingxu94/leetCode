@@ -131,6 +131,15 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.minFallingPathSum(A1), 12)
         self.assertEqual(self.sl.minFallingPathSum(A2), -59)
 
+    def test_shortestBridge(self):
+        # 934.Shortest Bridge
+        grid = [[0, 1], [1, 0]]
+        self.assertEqual(self.sl.shortestBridge(grid), 1)
+        grid = [[0, 1, 0], [0, 0, 0], [0, 0, 1]]
+        self.assertEqual(self.sl.shortestBridge(grid), 2)
+        grid = [[1, 1, 1, 1, 1], [1, 0, 0, 0, 1], [1, 0, 1, 0, 1], [1, 0, 0, 0, 1], [1, 1, 1, 1, 1]]
+        self.assertEqual(self.sl.shortestBridge(grid), 1)
+
     def test_validateStackSequences(self):
         # 946.Validate Stack Sequences
         pushed1 = [1, 2, 3, 4, 5]
