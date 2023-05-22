@@ -754,6 +754,40 @@ class Solution:  # pragma: no cover
         return left or right
 
 
+class MedianFinder:  # pragma: no cover
+    # 295.Find Median from Data Stream
+    def __init__(self):
+        self.nums = []
+
+    def addNum(self, num: int) -> None:
+        self.nums.append(num)
+
+    def findMedian(self) -> float:
+        self.nums.sort()
+        n = len(self.nums)
+        if n % 2 == 0:
+            return (self.nums[n // 2 - 1] + self.nums[n // 2]) / 2
+        else:
+            return self.nums[n // 2]
+
+
+# from sortedcontainers import SortedList
+# class MedianFinder_v2: # pragma: no cover
+#     # 295.Find Median from Data Stream
+#     def __init__(self):
+#         self.nums = SortedList([])
+
+#     def addNum(self, num: int) -> None:
+#         self.nums.add(num)
+
+#     def findMedian(self) -> float:
+#         n = len(self.nums)
+#         if n % 2 == 0:
+#             return (self.nums[n // 2 - 1] + self.nums[n // 2]) / 2
+#         else:
+#             return self.nums[n // 2]
+
+
 class Codec:  # pragma: no cover
     # 297.Serialize and Deserialize Binary Tree
     def serialize(self, root: TreeNode) -> str:
