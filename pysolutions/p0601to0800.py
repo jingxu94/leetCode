@@ -1,3 +1,4 @@
+import heapq
 from collections import Counter
 from typing import List, Optional
 
@@ -490,6 +491,23 @@ class MyCircularQueue:  # pragma: no cover
 
     def isFull(self) -> bool:
         return (self.tail + 1) % self.size == self.head
+
+
+class KthLargest:  # pragma: no cover
+    # 703.Kth Largest Element in a Stream
+    def __init__(self, k: int, nums: List[int]):
+        self.k = k
+        self.heap = nums
+        heapq.heapify(self.heap)
+        while len(self.heap) > k:
+            heapq.heappop(self.heap)
+
+    def add(self, val: int) -> int:
+        if len(self.heap) < self.k:
+            heapq.heappush(self.heap, val)
+        elif val > self.heap[0]:
+            heapq.heappushpop(self.heap, val)
+        return self.heap[0]
 
 
 class MyHashMap:  # pragma: no cover
