@@ -1,6 +1,6 @@
 import math
 import re
-from collections import Counter, deque
+from collections import Counter, deque, OrderedDict
 from itertools import chain, combinations, permutations
 from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
@@ -2159,6 +2159,26 @@ class Pro0001To0200:
                     num_islands += 1
                     dfs(grid, row, col)
         return num_islands
+
+
+class LRUCache:  # pragma: no cover
+    # 146.LRU Cache
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache: OrderedDict = OrderedDict()
+
+    def get(self, key: int) -> int:
+        if key in self.cache.keys():
+            self.cache.move_to_end(key)
+            return self.cache[key]
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache.keys():
+            self.cache.move_to_end(key)
+        self.cache[key] = value
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)
 
 
 class MinStack:  # pragma: no cover
