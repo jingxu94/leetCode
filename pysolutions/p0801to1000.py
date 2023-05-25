@@ -40,6 +40,19 @@ class Pro0801To1000:
         # If the target is not reachable, return -1
         return -1
 
+    def new21Game(self, n: int, k: int, maxPts: int) -> float:
+        # 837.New 21 Game
+        dp = [0.0] * (n + 1)
+        dp[0] = 1.0
+        s = 1.0 if k > 0 else 0
+        for i in range(1, n + 1):
+            dp[i] = s / maxPts
+            if i < k:
+                s += dp[i]
+            if i - maxPts >= 0 and i - maxPts < k:
+                s -= dp[i - maxPts]
+        return sum(dp[k:])
+
     def numSimilarGroups(self, strs: List[str]) -> int:
         # 839.Similar String Groups
         def is_similar(str1: str, str2: str) -> bool:

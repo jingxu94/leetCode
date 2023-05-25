@@ -18,6 +18,12 @@ class TestP0801To1000(unittest.TestCase):
         source2, target2 = 15, 12
         self.assertEqual(self.sl.numBusesToDestination(routes2, source2, target2), -1)
 
+    def test_new21Game(self):
+        # 837.New 21 Game
+        self.assertAlmostEqual(self.sl.new21Game(10, 1, 10), 1.0)
+        self.assertAlmostEqual(self.sl.new21Game(6, 1, 10), 0.6)
+        self.assertAlmostEqual(self.sl.new21Game(21, 17, 10), 0.73277778)
+
     def test_numSimilarGroups(self):
         # 839.Similar String Groups
         strs1 = ["tars", "rats", "arts", "star"]
