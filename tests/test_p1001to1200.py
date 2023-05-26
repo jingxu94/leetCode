@@ -70,6 +70,49 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.tribonacci(4), 4)
         self.assertEqual(self.sl.tribonacci(25), 1389537)
 
+    def test_stoneGameII(self):
+        # 1140.Stone Game II
+        self.assertEqual(self.sl.stoneGameII([2, 7, 9, 4, 4]), 10)
+        self.assertEqual(self.sl.stoneGameII([1, 2, 3, 4, 5, 100]), 104)
+        piles = [
+            3111,
+            4303,
+            2722,
+            2183,
+            6351,
+            5227,
+            8964,
+            7167,
+            9286,
+            6626,
+            2347,
+            1465,
+            5201,
+            7240,
+            5463,
+            8523,
+            8163,
+            9391,
+            8616,
+            5063,
+            7837,
+            7050,
+            1246,
+            9579,
+            7744,
+            6932,
+            7704,
+            9841,
+            6163,
+            4829,
+            7324,
+            6006,
+            4689,
+            8781,
+            621,
+        ]
+        self.assertEqual(self.sl.stoneGameII(piles), 112766)
+
     def test_longestCommonSubsequence(self):
         # 1143.Longest Common Subsequence
         self.assertEqual(self.sl.longestCommonSubsequence("abcde", "ace"), 3)

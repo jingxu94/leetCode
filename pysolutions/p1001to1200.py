@@ -1,6 +1,6 @@
 import math
 from collections import Counter, deque
-from typing import List, Optional
+from typing import Dict, List, Optional
 from .utils import TreeNode
 
 
@@ -141,6 +141,26 @@ class Pro1001To1200:
             for _ in range(n - 2):
                 fst, sec, trd = sec, trd, fst + sec + trd
             return trd
+
+    def stoneGameII(self, piles: List[int]) -> int:
+        # 1140.Stone Game II
+        n = len(piles)
+        for i in range(n - 2, -1, -1):
+            piles[i] += piles[i + 1]
+        memo: Dict[set, int] = {}
+
+        def helper(i, m):
+            if (i, m) in memo:
+                return memo[(i, m)]
+            if i + 2 * m >= n:
+                return piles[i]
+            best = 0
+            for x in range(1, 2 * m + 1):
+                best = max(best, piles[i] - helper(i + x, max(m, x)))
+            memo[(i, m)] = best
+            return best
+
+        return helper(0, 1)
 
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         # 1143.Longest Common Subsequence
