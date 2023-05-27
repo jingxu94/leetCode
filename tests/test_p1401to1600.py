@@ -9,6 +9,12 @@ class TestP1401To1600(unittest.TestCase):
     def sl(self):
         return Pro1401To1600()
 
+    def test_stoneGameIII(self):
+        # 1406.Stone Game III
+        self.assertEqual(self.sl.stoneGameIII([1, 2, 3, 7]), "Bob")
+        self.assertEqual(self.sl.stoneGameIII([1, 2, 3, -9]), "Alice")
+        self.assertEqual(self.sl.stoneGameIII([1, 2, 3, 6]), "Tie")
+
     def test_numberOfArray(self):
         # 1416.Restore The Array
         self.assertEqual(self.sl.numberOfArrays("1000", 10000), 1)

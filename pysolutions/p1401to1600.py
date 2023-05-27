@@ -7,6 +7,14 @@ class Pro1401To1600:
     def __init__(self):
         pass
 
+    def stoneGameIII(self, stoneValue: List[int]) -> str:
+        # 1406.Stone Game III
+        n = len(stoneValue)
+        dp = [0] * 4
+        for i in range(n - 1, -1, -1):
+            dp[i % 4] = max(sum(stoneValue[i : i + k]) - dp[(i + k) % 4] for k in range(1, 4))
+        return "Alice" if dp[0] > 0 else "Bob" if dp[0] < 0 else "Tie"
+
     def numberOfArrays(self, s: str, k: int) -> int:
         # 1416.Restore The Array
         m, n = len(s), len(str(k))
