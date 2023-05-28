@@ -203,6 +203,17 @@ class Pro1401To1600:
             seen.add(curr)
         return ans
 
+    def minCost(self, n: int, cuts: List[int]) -> int:
+        # 1547.Minimum Cost to Cut a Stick
+        cuts.sort()
+        cuts = [0] + cuts + [n]
+        m = len(cuts)
+        dp = [[0] * m for _ in range(m)]
+        for i in range(m - 2, -1, -1):
+            for j in range(i + 2, m):
+                dp[i][j] = min(dp[i][k] + dp[k][j] for k in range(i + 1, j)) + cuts[j] - cuts[i]
+        return dp[0][m - 1]
+
     def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
         # 1557.Minimum Number of Vertices to Reach All Nodes
         in_degrees = [0] * n

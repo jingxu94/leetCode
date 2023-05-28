@@ -99,6 +99,11 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.maxNonOverlapping([1, 1, 1, 1, 1], 2), 2)
         self.assertEqual(self.sl.maxNonOverlapping([-1, 3, 5, 1, 4, 2, -9], 6), 2)
 
+    def test_minCost(self):
+        # 1547.Minimum Cost to Cut a Stick
+        self.assertEqual(self.sl.minCost(7, [1, 3, 4, 5]), 16)
+        self.assertEqual(self.sl.minCost(9, [5, 6, 1, 4, 2]), 22)
+
     def test_findSmallestSetOfVertices(self):
         # 1557.Minimum Number of Vertices to Reach All Nodes
         self.assertEqual(self.sl.findSmallestSetOfVertices(6, [[0, 1], [0, 2], [2, 5], [3, 4], [4, 2]]), [0, 3])
