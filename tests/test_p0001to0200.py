@@ -535,6 +535,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(eq_linked_list(ans2, expected2))
         self.assertTrue(eq_linked_list(ans3, expected3))
 
+    def test_largestRectangleArea(self):
+        # 84.Largest Rectangle in Histogram
+        self.assertEqual(self.sl.largestRectangleArea([2, 1, 5, 6, 2, 3]), 10)
+        self.assertEqual(self.sl.largestRectangleArea([2, 1, 2]), 3)
+        self.assertEqual(self.sl.largestRectangleArea([1, 1]), 2)
+
     def test_isScramble(self):
         # 87.Scramble String
         self.assertTrue(self.sl.isScramble("great", "rgeat"))

@@ -1151,6 +1151,19 @@ class Pro0001To0200:
         res.next = None
         return head
 
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        # 84.Largest Ractangle in Histogram
+        st: List[Tuple[int, int]] = []
+        ans = 0
+        for bar in heights + [-1]:  # add -1 to have an additional iteration
+            step = 0
+            while st and st[-1][1] >= bar:
+                w, h = st.pop()
+                step += w
+                ans = max(ans, step * h)
+            st.append((step + 1, bar))
+        return ans
+
     def isScramble(self, s1: str, s2: str) -> bool:
         # 87.Scramble String
         # n = len(s1)
