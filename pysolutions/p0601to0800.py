@@ -510,6 +510,36 @@ class KthLargest:  # pragma: no cover
         return self.heap[0]
 
 
+class MyHashSet:  # pragma: no cover
+    # 705.Design HashSet
+    def __init__(self):
+        self.buckets = [[] for _ in range(1000)]
+
+    def _hash(self, key: int) -> int:
+        return key % len(self.buckets)
+
+    def add(self, key: int) -> None:
+        index = self._hash(key)
+        for k in self.buckets[index]:
+            if k == key:
+                return
+        self.buckets[index].append(key)
+
+    def remove(self, key: int) -> None:
+        index = self._hash(key)
+        for i, k in enumerate(self.buckets[index]):
+            if k == key:
+                self.buckets[index].pop(i)
+                return
+
+    def contains(self, key: int) -> bool:
+        index = self._hash(key)
+        for k in self.buckets[index]:
+            if k == key:
+                return True
+        return False
+
+
 class MyHashMap:  # pragma: no cover
     # 706.Design HashMap
     def __init__(self):
