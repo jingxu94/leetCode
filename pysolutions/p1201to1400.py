@@ -397,3 +397,21 @@ class Pro1201To1400:
             if (i == n or arr2[i] - x > d) and (i == 0 or x - arr2[i - 1] > d):
                 count += 1
         return count
+
+
+class UndergroundSystem:  # pragma: no cover
+    # 1396.Design Underground System
+    def __init__(self):
+        self.check_in = {}
+        self.travel_times = defaultdict(list)
+
+    def checkIn(self, id: int, stationName: str, t: int) -> None:
+        self.check_in[id] = (stationName, t)
+
+    def checkOut(self, id: int, stationName: str, t: int) -> None:
+        station, check_in_time = self.check_in[id]
+        self.travel_times[(station, stationName)].append(t - check_in_time)
+
+    def getAverageTime(self, startStation: str, endStation: str) -> float:
+        times = self.travel_times[(startStation, endStation)]
+        return sum(times) / len(times)
