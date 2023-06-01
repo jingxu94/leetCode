@@ -352,6 +352,16 @@ class Pro0201To0400:
 
         return nums
 
+    def findDuplicate(self, nums: List[int]) -> int:
+        # 287.Find the Duplicate Number
+        slow, fast = nums[0], nums[nums[0]]
+        while slow != fast:
+            slow, fast = nums[slow], nums[nums[fast]]
+        slow = 0
+        while slow != fast:
+            slow, fast = nums[slow], nums[fast]
+        return slow
+
     def wordPattern(self, pattern: str, s: str) -> bool:
         # 290.Word Pattern
         dict_f: defaultdict[str, str] = defaultdict()

@@ -234,6 +234,11 @@ class TestP0201To0400(unittest.TestCase):
         self.assertListEqual(self.sl.moveZeroes([0]), [0])
         self.assertEqual(self.sl.moveZeroes([0]), [0])
 
+    def test_findDuplicate(self):
+        # 287.Find the Duplicate Number
+        self.assertEqual(self.sl.findDuplicate([1, 3, 4, 2, 2]), 2)
+        self.assertEqual(self.sl.findDuplicate([3, 1, 3, 4, 2]), 3)
+
     def test_wordPattern(self):
         # 290.Word Pattern
         self.assertTrue(self.sl.wordPattern("abba", "dog cat cat dog"))
