@@ -22,6 +22,12 @@ class TestP2001To2200(unittest.TestCase):
         expected = create_linked_list([2])
         self.assertTrue(eq_linked_list(self.sl.deleteMiddle(head), expected))
 
+    def test_maximumDetonation(self):
+        # 2101.Detonate the Maximum Bombs
+        self.assertEqual(self.sl.maximumDetonation([[2, 1, 3], [6, 1, 4]]), 2)
+        self.assertEqual(self.sl.maximumDetonation([[1, 1, 5], [10, 10, 5]]), 1)
+        self.assertEqual(self.sl.maximumDetonation([[1, 2, 3], [2, 3, 1], [3, 4, 2], [4, 5, 3], [5, 6, 4]]), 5)
+
     def test_pairSum(self):
         # 2130.Maximum Twin Sum of a Linked List
         head = create_linked_list([5, 4, 2, 1])
