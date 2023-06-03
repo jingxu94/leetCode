@@ -449,6 +449,25 @@ class Pro0001To0200:
                 haystack = haystack[1:]
         return -1
 
+    def nextPermutation(self, nums: List[int]) -> None:  # pragma: no cover
+        # 31.Next Permutation
+        # Do not return anything, modify nums in-place instead.
+        if len(nums) <= 1:
+            return
+        i = len(nums) - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        if i >= 0:
+            j = len(nums) - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            nums[i], nums[j] = nums[j], nums[i]
+        left, right = i + 1, len(nums) - 1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            right -= 1
+            left += 1
+
     def longestValidParentheses(self, s: str) -> int:
         # 32.Longest Valid Parentheses
         stack = [-1]
