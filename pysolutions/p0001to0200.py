@@ -590,6 +590,18 @@ class Pro0001To0200:
         backtrack(0, target, [], ans)
         return ans
 
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        # 41.First Missing Positive
+        n = len(nums)
+        for i in range(n):
+            while 0 < nums[i] <= n and nums[i] != nums[nums[i] - 1]:
+                # Swap
+                nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+        for i in range(n):
+            if nums[i] != i + 1:
+                return i + 1
+        return n + 1
+
     def trap(self, height: List[int]) -> int:
         # 42.Trapping Rain Water
         left, right, up, ans = 0, len(height) - 1, 0, 0

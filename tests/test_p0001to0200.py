@@ -320,6 +320,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.combinationSum2([10, 1, 2, 7, 6, 1, 5], 8), [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]])
         self.assertEqual(self.sl.combinationSum2([2, 5, 2, 1, 2], 5), [[1, 2, 2], [5]])
 
+    def test_firstMissingPositive(self):
+        # 41.First Missing Positive
+        self.assertEqual(self.sl.firstMissingPositive([1, 2, 0]), 3)
+        self.assertEqual(self.sl.firstMissingPositive([3, 4, -1, 1]), 2)
+        self.assertEqual(self.sl.firstMissingPositive([7, 8, 9, 11, 12]), 1)
+        self.assertEqual(self.sl.firstMissingPositive([1]), 2)
+
     def test_trap(self):
         # 42.Trapping Rain Water
         self.assertEqual(self.sl.trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]), 6)
