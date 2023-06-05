@@ -180,6 +180,30 @@ class Pro0001To0200:
                 right -= 1
         return max_area
 
+    def intToRoman(self, num: int) -> str:
+        # 12.Integer to Roman
+        roman = {
+            1: "I",
+            4: "IV",
+            5: "V",
+            9: "IX",
+            10: "X",
+            40: "XL",
+            50: "L",
+            90: "XC",
+            100: "C",
+            400: "CD",
+            500: "D",
+            900: "CM",
+            1000: "M",
+        }
+        result = ""
+        for n in sorted(roman.keys(), reverse=True):
+            while num >= n:
+                result += roman[n]
+                num -= n
+        return result
+
     def romanToInt(self, s: str) -> int:
         """13.Roman to Integer
         Roman numerals are represented by seven different symbols:

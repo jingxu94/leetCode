@@ -100,6 +100,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]), 49)
         self.assertEqual(self.sl.maxArea([1, 1]), 1)
 
+    def test_intToRoman(self):
+        # 12.Integer to Roman
+        self.assertEqual(self.sl.intToRoman(3), "III")
+        self.assertEqual(self.sl.intToRoman(4), "IV")
+        self.assertEqual(self.sl.intToRoman(9), "IX")
+
     def test_romanToInt(self):
         # 13.Roman to Integer
         self.assertEqual(self.sl.romanToInt("III"), 3)
