@@ -153,6 +153,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.letterCombinations("23"), ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"])
         self.assertEqual(self.sl.letterCombinations(""), [])
 
+    def test_fourSum(self):
+        # 18.4Sum
+        self.assertEqual(self.sl.fourSum([1, 0, -1, 0, -2, 2], 0), [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]])
+        self.assertEqual(self.sl.fourSum([2, 2, 2, 2, 2], 8), [[2, 2, 2, 2]])
+        self.assertEqual(self.sl.fourSum([5, 5, 3, 5, 1, -5, 1, -2], 4), [[-5, 1, 3, 5]])
+        self.assertEqual(self.sl.fourSum([-2, -1, -1, 1, 1, 2, 2], 0), [[-2, -1, 1, 2], [-1, -1, 1, 1]])
+
     def test_removeNthFromEnd(self):
         # 19.Remove Nth Node From of List
         self.assertTrue(
