@@ -500,6 +500,37 @@ class Pro0001To0200:
                 haystack = haystack[1:]
         return -1
 
+    def divide(self, dividend: int, divisor: int) -> int:
+        # 29.Divide Two Integers
+        if dividend == -int(2**31) and divisor == -1:
+            return int(2**31 - 1)
+        if dividend == 0:
+            return 0
+        if divisor == 1:
+            return dividend
+        if divisor == -1:
+            return -dividend
+        sign = 1
+        if dividend < 0:
+            sign = -sign
+            dividend = -dividend
+        if divisor < 0:
+            sign = -sign
+            divisor = -divisor
+        res = 0
+        while dividend >= divisor:
+            temp = divisor
+            i = 1
+            while dividend >= temp:
+                dividend -= temp
+                res += i
+                i <<= 1
+                temp <<= 1
+        if sign == 1:
+            return res
+        else:
+            return -res
+
     def nextPermutation(self, nums: List[int]) -> None:  # pragma: no cover
         # 31.Next Permutation
         # Do not return anything, modify nums in-place instead.

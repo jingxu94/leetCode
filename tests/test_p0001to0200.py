@@ -266,6 +266,16 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.strStr(haystack1, needle1), expected1)
         self.assertEqual(self.sl.strStr(haystack2, needle2), expected2)
 
+    def test_divide(self):
+        # 29.Divide Two Integers
+        self.assertEqual(self.sl.divide(10, 3), 3)
+        self.assertEqual(self.sl.divide(7, -3), -2)
+        self.assertEqual(self.sl.divide(0, 1), 0)
+        self.assertEqual(self.sl.divide(1, 1), 1)
+        self.assertEqual(self.sl.divide(1, -1), -1)
+        self.assertEqual(self.sl.divide(-2, 2), -1)
+        self.assertEqual(self.sl.divide(-2147483648, -1), 2147483647)
+
     def test_longestValidParentheses(self):
         # 32.Longest Valid Parentheses
         self.assertEqual(self.sl.longestValidParentheses("(()"), 2)
