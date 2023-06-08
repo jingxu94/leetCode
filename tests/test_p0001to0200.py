@@ -276,6 +276,15 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.divide(-2, 2), -1)
         self.assertEqual(self.sl.divide(-2147483648, -1), 2147483647)
 
+    def test_findSubstring(self):
+        # 30.Substring with Concatenation of All Words
+        s1, words1 = "barfoothefoobarman", ["foo", "bar"]
+        expected1 = [0, 9]
+        s2, words2 = "wordgoodgoodgoodbestword", ["word", "good", "best", "word"]
+        expected2 = []
+        self.assertEqual(self.sl.findSubstring(s1, words1), expected1)
+        self.assertEqual(self.sl.findSubstring(s2, words2), expected2)
+
     def test_longestValidParentheses(self):
         # 32.Longest Valid Parentheses
         self.assertEqual(self.sl.longestValidParentheses("(()"), 2)
