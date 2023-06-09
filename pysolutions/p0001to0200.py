@@ -688,6 +688,21 @@ class Pro0001To0200:
                     res += [(i, element), (element, j), (i // 3, j // 3, element)]
         return len(res) == len(set(res))
 
+    def countAndSay(self, n: int) -> str:
+        # 38.Count and Say
+        if n == 1:
+            return "1"
+        s = self.countAndSay(n - 1)
+        res = ""
+        count = 1
+        for i in range(len(s)):
+            if i == len(s) - 1 or s[i] != s[i + 1]:
+                res += str(count) + s[i]
+                count = 1
+            else:
+                count += 1
+        return res
+
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         # 39.Combination Sum
         def backtrack(start, target, comb, ans):

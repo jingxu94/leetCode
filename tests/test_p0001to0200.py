@@ -341,6 +341,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.isValidSudoku(board1))
         self.assertFalse(self.sl.isValidSudoku(board2))
 
+    def test_countAndSay(self):
+        # 38.Count and Say
+        self.assertEqual(self.sl.countAndSay(1), "1")
+        self.assertEqual(self.sl.countAndSay(4), "1211")
+
     def test_combinationSum(self):
         # 39.Combination Sum
         self.assertEqual(self.sl.combinationSum([2, 3, 6, 7], 7), [[2, 2, 3], [7]])
