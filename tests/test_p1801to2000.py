@@ -8,6 +8,11 @@ class TestP1801To2000(unittest.TestCase):
     def sl(self):
         return Pro1801To2000()
 
+    def test_maxValue(self):
+        # 1802.Maximum Value at a Given Index in a Bounded Array
+        self.assertEqual(self.sl.maxValue(4, 2, 6), 2)
+        self.assertEqual(self.sl.maxValue(6, 1, 10), 3)
+
     def test_arraySign(self):
         # 1822.Sign of the Product of an Array
         self.assertEqual(self.sl.arraySign([-1, -2, -3, -4, 3, 2, 1]), 1)

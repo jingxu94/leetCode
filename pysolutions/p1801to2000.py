@@ -8,6 +8,29 @@ class Pro1801To2000:
     def __init__(self) -> None:
         pass
 
+    def maxValue(self, n: int, index: int, maxSum: int) -> int:
+        # 1802.Maximum Value at a Given Index in a Bounded Array
+        def getSum(index: int, value: int, n: int) -> int:
+            count = 0
+            if value > index:
+                count += (value + value - index) * (index + 1) // 2
+            else:
+                count += (value + 1) * value // 2 + index - value + 1
+            if value >= n - index:
+                count += (value + value - n + 1 + index) * (n - index) // 2
+            else:
+                count += (value + 1) * value // 2 + n - index - value
+            return count - value
+
+        left, right = 1, maxSum
+        while left < right:
+            mid = (left + right + 1) // 2
+            if getSum(index, mid, n) <= maxSum:
+                left = mid
+            else:
+                right = mid - 1
+        return left
+
     def arraySign(self, nums: List[int]) -> int:
         # 1822.Sign of the Product of an Array
         if 0 in nums:
