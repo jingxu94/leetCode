@@ -194,3 +194,28 @@ class Pro1001To1200:
                 ans = level
             level += 1
         return ans
+
+
+class SnapshotArray:  # pragma: no cover
+    # 1146.Snapshot Array
+    def __init__(self, length: int):
+        self.id = 0
+        self.history_records = [[[0, 0]] for _ in range(length)]
+
+    def set(self, index: int, val: int) -> None:
+        self.history_records[index].append([self.id, val])
+
+    def snap(self) -> int:
+        self.id += 1
+        return self.id - 1
+
+    def get(self, index: int, snap_id: int) -> int:
+        history_record = self.history_records[index]
+        left, right = 0, len(history_record) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if history_record[mid][0] <= snap_id:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return history_record[right][1]
