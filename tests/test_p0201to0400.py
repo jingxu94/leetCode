@@ -125,6 +125,11 @@ class TestP0201To0400(unittest.TestCase):
         expected = create_binary_tree([])
         self.assertTrue(eq_binary_tree(self.sl.invertTree(root), expected))
 
+    def test_summaryRanges(self):
+        # 228.Summary Ranges
+        self.assertEqual(self.sl.summaryRanges([0, 1, 2, 4, 5, 7]), ["0->2", "4->5", "7"])
+        self.assertEqual(self.sl.summaryRanges([0, 2, 3, 4, 6, 8, 9]), ["0", "2->4", "6", "8->9"])
+
     def test_kthSmallest(self):
         # 230.Kth Smallest Element in a BST
         root = create_binary_tree([3, 1, 4, None, 2])

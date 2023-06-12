@@ -185,6 +185,22 @@ class Pro0201To0400:
         root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root
 
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        # 228.Summary Ranges
+        ans: List[str] = []
+        i = 0
+        while i < len(nums):
+            low = i
+            i += 1
+            while i < len(nums) and nums[i] == nums[i - 1] + 1:
+                i += 1
+            high = i - 1
+            if low < high:
+                ans.append(str(nums[low]) + "->" + str(nums[high]))
+            else:
+                ans.append(str(nums[low]))
+        return ans
+
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         # 230.Kth Smallest Element in a BST
         def inorder(root: Optional[TreeNode]) -> List[int]:
