@@ -948,6 +948,22 @@ class Pro0001To0200:
         ans.append(curr)
         return ans
 
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        # 57.Insert Interval
+        intervals.append(newInterval)
+        intervals.sort()
+        ans: List[List[int]] = []
+        curr = intervals[0]
+        for i in range(1, len(intervals)):
+            next = intervals[i]
+            if curr[1] < next[0]:
+                ans.append(curr)
+                curr = next
+            elif next[1] >= curr[1]:
+                curr = [curr[0], next[1]]
+        ans.append(curr)
+        return ans
+
     def lengthOfLastWord(self, s: str) -> int:
         # 58.Length of Last Word
         return len(s.split()[-1])
