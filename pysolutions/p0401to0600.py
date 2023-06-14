@@ -361,6 +361,23 @@ class Pro0401To0600:
                 dp[i] += dp[i - coin]
         return dp[amount]
 
+    def getMinimumDifference(self, root: Optional[TreeNode]) -> int:  # pragma: no cover
+        # 530.Minimum Absolute Difference in BST
+        ans = int(1e5)
+        prev = int(-1e5)
+
+        def dfs(node: TreeNode) -> None:
+            nonlocal ans, prev
+            if not node:
+                return
+            dfs(node.left)
+            ans = min(ans, node.val - prev)
+            prev = node.val
+            dfs(node.right)
+
+        dfs(root)
+        return ans
+
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
         # 542.0 1 Matrix
         m, n = len(mat), len(mat[0])
