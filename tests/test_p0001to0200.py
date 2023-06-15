@@ -493,6 +493,22 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.minPathSum([[1, 3, 1], [1, 5, 1], [4, 2, 1]]), 7)
         self.assertEqual(self.sl.minPathSum([[1, 2, 3], [4, 5, 6]]), 12)
 
+    def test_isNumber(self):
+        # 65.Valid Number
+        self.assertTrue(self.sl.isNumber("0"))
+        self.assertTrue(self.sl.isNumber(" 0.1 "))
+        self.assertFalse(self.sl.isNumber("abc"))
+        self.assertFalse(self.sl.isNumber("1 a"))
+        self.assertTrue(self.sl.isNumber("2e10"))
+        self.assertTrue(self.sl.isNumber(" -90e3   "))
+        self.assertFalse(self.sl.isNumber(" 1e"))
+        self.assertFalse(self.sl.isNumber("e3"))
+        self.assertTrue(self.sl.isNumber(" 6e-1"))
+        self.assertFalse(self.sl.isNumber(" 99e2.5 "))
+        self.assertTrue(self.sl.isNumber("53.5e93"))
+        self.assertFalse(self.sl.isNumber(" --6 "))
+        self.assertFalse(self.sl.isNumber(""))
+
     def test_plusOne(self):
         # 66.Plus One
         self.assertEqual(self.sl.plusOne([1, 2, 3]), [1, 2, 4])
