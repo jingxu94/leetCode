@@ -115,6 +115,12 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.getMaxLen([0, 1, -2, -3, -4]), 3)
         self.assertEqual(self.sl.getMaxLen([-1, -2, -3, 0, 1]), 2)
 
+    def test_numOfWays(self):
+        # 1569.Number of Ways to Reorder Array to Get Same BST
+        self.assertEqual(self.sl.numOfWays([2, 1, 3]), 1)
+        self.assertEqual(self.sl.numOfWays([3, 4, 5, 1, 2]), 5)
+        self.assertEqual(self.sl.numOfWays([1, 2, 3]), 0)
+
     def test_diagonalSum(self):
         # 1572.Matrix Diagonal Sum
         self.assertEqual(self.sl.diagonalSum([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), 25)

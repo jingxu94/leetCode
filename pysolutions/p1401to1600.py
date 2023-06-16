@@ -1,3 +1,4 @@
+import math
 from collections import defaultdict
 from typing import List
 from .utils import TreeNode
@@ -233,6 +234,20 @@ class Pro1401To1600:
                 pos = neg = 0
             ans = max(ans, pos)
         return ans
+
+    def numOfWays(self, nums: List[int]) -> int:
+        # 1569.Number of Ways to Recorder Array to Get Same BST
+        mod = 10**9 + 7
+
+        def dfs(nums):
+            m = len(nums)
+            if m < 3:
+                return 1
+            left = [x for x in nums if x < nums[0]]
+            right = [x for x in nums if x > nums[0]]
+            return dfs(left) * dfs(right) * math.comb(m - 1, len(left)) % mod
+
+        return (dfs(nums) - 1) % mod
 
     def diagonalSum(self, mat: List[List[int]]) -> int:
         # 1572.Matrix Diagonal Sum
