@@ -125,3 +125,9 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.maxLevelSum(root), 2)
         root = create_binary_tree([989, None, 10250, 98693, -89388, None, None, None, -32127])
         self.assertEqual(self.sl.maxLevelSum(root), 2)
+
+    def test_makeArrayIncreasing(self):
+        # 1187.Make Array Strictly Increasing
+        self.assertEqual(self.sl.makeArrayIncreasing([1, 5, 3, 6, 7], [1, 3, 2, 4]), 1)
+        self.assertEqual(self.sl.makeArrayIncreasing([1, 5, 3, 6, 7], [4, 3, 1]), 2)
+        self.assertEqual(self.sl.makeArrayIncreasing([1, 5, 3, 6, 7], [1, 6, 3, 3]), -1)

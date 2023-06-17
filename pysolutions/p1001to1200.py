@@ -1,5 +1,7 @@
+import bisect
 import math
-from collections import Counter, deque
+
+from collections import Counter, defaultdict, deque
 from typing import Dict, List, Optional
 from .utils import TreeNode
 
@@ -194,6 +196,24 @@ class Pro1001To1200:
                 ans = level
             level += 1
         return ans
+
+    def makeArrayIncreasing(self, arr1: List[int], arr2: List[int]) -> int:
+        # 1187.Make Array Strictly Increasing
+        arr2.sort()
+        dp = {-1: 0}
+        for num in arr1:
+            tmp: defaultdict = defaultdict(lambda: float("inf"))
+            for key in dp:
+                if num > key:
+                    tmp[num] = min(tmp[num], dp[key])
+                loc = bisect.bisect_right(arr2, key)
+                if loc < len(arr2):
+                    tmp[arr2[loc]] = min(tmp[arr2[loc]], dp[key] + 1)
+            dp = tmp
+        if dp:
+            return min(dp.values())
+        else:
+            return -1
 
 
 class SnapshotArray:  # pragma: no cover
