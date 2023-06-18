@@ -92,6 +92,26 @@ class Pro2201To2400:
         # total_unreachable = sum(x * (n - x) for x in components_size)
         # return total_unreachable // 2
 
+    def countPaths(self, grid: List[List[int]]) -> int:
+        # 2328.Number of Increasing Paths in a Grid
+        m, n = len(grid), len(grid[0])
+        mod = 10**9 + 7
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        dp = [[0] * n for _ in range(m)]
+
+        def dfs(x: int, y: int) -> int:
+            if dp[x][y]:
+                return dp[x][y]
+            answer = 1
+            for dx, dy in directions:
+                prev_x, prev_y = x + dx, y + dy
+                if 0 <= prev_x < m and 0 <= prev_y < n and grid[prev_x][prev_y] < grid[x][y]:
+                    answer += dfs(prev_x, prev_y)
+            dp[x][y] = answer
+            return answer
+
+        return sum(dfs(i, j) for i in range(m) for j in range(n)) % mod
+
     def zeroFilledSubarray(self, nums: List[int]) -> int:
         # 2348.Number of Zero-Filled Subarrays
         zero_subs = []

@@ -30,6 +30,11 @@ class TestP2201To2400(unittest.TestCase):
         self.assertEqual(self.sl.countPairs(3, [[0, 1], [0, 2], [1, 2]]), 0)
         self.assertEqual(self.sl.countPairs(7, [[0, 2], [0, 5], [2, 4], [1, 6], [5, 4]]), 14)
 
+    def test_countPaths(self):
+        # 2328.Number of Increasing Paths in a Grid
+        self.assertEqual(self.sl.countPaths([[1, 1], [3, 4]]), 8)
+        self.assertEqual(self.sl.countPaths([[1], [2]]), 3)
+
     def test_zeroFilledSubarray(self):
         # 2348.Number of Zero-Filled Subarrays
         self.assertEqual(self.sl.zeroFilledSubarray([1, 3, 0, 0, 2, 0, 0, 4]), 6)
