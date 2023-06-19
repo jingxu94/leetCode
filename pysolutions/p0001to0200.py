@@ -688,6 +688,42 @@ class Pro0001To0200:
                     res += [(i, element), (element, j), (i // 3, j // 3, element)]
         return len(res) == len(set(res))
 
+    def solveSudoku(self, board: List[List[str]]) -> None:  # pragma: no cover
+        # 37.Sudoku Solver
+        def is_valid(board, row, col, c):
+            for i in range(9):
+                if board[i][col] != "." and board[i][col] == c:
+                    return False
+                if board[row][i] != "." and board[row][i] == c:
+                    return False
+                if (
+                    board[3 * (row // 3) + i // 3][3 * (col // 3) + i % 3] != "."
+                    and board[3 * (row // 3) + i // 3][3 * (col // 3) + i % 3] == c
+                ):
+                    return False
+            return True
+
+        def backtrack(board, row, col):
+            if col == 9:
+                return backtrack(board, row + 1, 0)
+            if row == 9:
+                return True
+            for i in range(row, 9):
+                for j in range(col, 9):
+                    if board[i][j] != ".":
+                        return backtrack(board, i, j + 1)
+                    for c in range(1, 10):
+                        if not is_valid(board, i, j, str(c)):
+                            continue
+                        board[i][j] = str(c)
+                        if backtrack(board, i, j + 1):
+                            return True
+                        board[i][j] = "."
+                    return False
+            return False
+
+        backtrack(board, 0, 0)
+
     def countAndSay(self, n: int) -> str:
         # 38.Count and Say
         if n == 1:
