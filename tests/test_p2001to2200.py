@@ -9,6 +9,12 @@ class TestP2001To2200(unittest.TestCase):
     def sl(self):
         return Pro2001To2200()
 
+    def test_getAverages(self):
+        # 2090.K Radius Subarray Averages
+        self.assertEqual(self.sl.getAverages([7, 4, 3, 9, 1, 8, 5, 2, 6], 3), [-1, -1, -1, 5, 4, 4, -1, -1, -1])
+        self.assertEqual(self.sl.getAverages([100000], 0), [100000])
+        self.assertEqual(self.sl.getAverages([8], 100000), [-1])
+
     def test_deleteMiddle(self):
         # 2095.Delete the Middle Node of a Linked List
         self.assertEqual(self.sl.deleteMiddle(None), None)
