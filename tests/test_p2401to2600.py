@@ -18,6 +18,11 @@ class TestP2401To2600(unittest.TestCase):
         self.assertEqual(self.sl.minimizeArrayValue([3, 7, 1, 6]), 5)
         self.assertEqual(self.sl.minimizeArrayValue([10, 1]), 10)
 
+    def test_minCost(self):
+        # 2448.Minimum Cost to Make Array Equal
+        self.assertEqual(self.sl.minCost([1, 3, 5, 2], [2, 3, 1, 14]), 8)
+        self.assertEqual(self.sl.minCost([2, 2, 2, 2, 2], [4, 2, 8, 1, 3]), 0)
+
     def test_totalCost(self):
         # 2462.Total Cost to Hire K Workers
         self.assertEqual(self.sl.totalCost([17, 12, 10, 2, 7, 2, 11, 20, 8], 3, 4), 11)
