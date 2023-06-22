@@ -466,6 +466,12 @@ class TestP0001To0200(unittest.TestCase):
         matrix = [[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]
         self.assertEqual(self.sl.generateMatrix(4), matrix)
 
+    def test_getPermutation(self):
+        # 60.Permutation Sequence
+        self.assertEqual(self.sl.getPermutation(3, 3), "213")
+        self.assertEqual(self.sl.getPermutation(4, 9), "2314")
+        self.assertEqual(self.sl.getPermutation(3, 1), "123")
+
     def test_rotateRight(self):
         # 61.Rotate List
         self.assertTrue(

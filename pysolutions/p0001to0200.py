@@ -1027,6 +1027,17 @@ class Pro0001To0200:
                 num += 1
         return matrix
 
+    def getPermutation(self, n: int, k: int) -> str:
+        # 60.Permutation Sequence
+        nums = [i for i in range(1, n + 1)]
+        ans = ""
+        k -= 1
+        while n > 0:
+            n -= 1
+            index, k = divmod(k, math.factorial(n))
+            ans += str(nums.pop(index))
+        return ans
+
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         # 61.Rotate List
         if not head or not head.next:
