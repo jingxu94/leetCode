@@ -31,6 +31,12 @@ class TestP1001To1200(unittest.TestCase):
         # 1020.Number of Enclaves
         self.assertEqual(self.sl.numEnclaves([[0, 0, 0, 0], [1, 0, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]), 3)
 
+    def test_longestArithSeqLength(self):
+        # 1027.Longest Arithmetic Subsequence
+        self.assertEqual(self.sl.longestArithSeqLength([3, 6, 9, 12]), 4)
+        self.assertEqual(self.sl.longestArithSeqLength([9, 4, 7, 2, 10]), 3)
+        self.assertEqual(self.sl.longestArithSeqLength([20, 1, 15, 3, 10, 5, 8]), 4)
+
     def test_maxUncrossedLines(self):
         # 1035.Uncrossed Lines
         self.assertEqual(self.sl.maxUncrossedLines([1, 4, 2], [1, 2, 4]), 2)

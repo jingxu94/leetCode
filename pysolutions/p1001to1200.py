@@ -66,6 +66,17 @@ class Pro1001To1200:
             dfs(grid, m - 1, j)
         return len(list(1 for i in range(m) for j in range(n) if grid[i][j] == 1))
 
+    def longestArithSeqLength(self, nums: List[int]) -> int:
+        # 1027.Longest Arithmetic Subsequence
+        dp: Dict[int, Dict[int, int]] = defaultdict(dict)
+        ans = 0
+        for i in range(len(nums)):
+            for j in range(i):
+                diff = nums[i] - nums[j]
+                dp[i][diff] = dp[j].get(diff, 1) + 1
+                ans = max(ans, dp[i][diff])
+        return ans
+
     def isRobotBounded(self, instructions: str) -> bool:
         # 1041.Robot Bounded In Circle
         x, y, dx, dy = 0, 0, 0, 1
