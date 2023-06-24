@@ -169,6 +169,12 @@ class TestP0801To1000(unittest.TestCase):
         self.assertFalse(self.sl.isAlienSorted(words, order))
         self.assertTrue(self.sl.isAlienSorted(["app", "apple"], order))
 
+    def test_tallestBillboard(self):
+        # 956.Tallest Billboard
+        self.assertEqual(self.sl.tallestBillboard([1, 2, 3, 6]), 6)
+        self.assertEqual(self.sl.tallestBillboard([1, 2, 3, 4, 5, 6]), 10)
+        self.assertEqual(self.sl.tallestBillboard([1, 2]), 0)
+
     def test_isCompleteTree(self):
         # 958.Check Completeness of a Binary Tree
         root1 = create_binary_tree([1, 2, 3, 4, 5, 6])
