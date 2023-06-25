@@ -261,6 +261,21 @@ class Pro1401To1600:
             sdiag -= mat[mid][mid]
         return pdiag + sdiag
 
+    def countRoutes(self, locations: List[int], start: int, finish: int, fuel: int) -> int:
+        # 1575.Count All Possible Routes
+        n = len(locations)
+        dp = [[0] * (fuel + 1) for _ in range(n)]
+        for i in range(fuel + 1):
+            dp[finish][i] = 1
+        for j in range(fuel + 1):
+            for i in range(n):
+                for k in range(n):
+                    if k == i:
+                        continue
+                    if abs(locations[i] - locations[k]) <= j:
+                        dp[i][j] = (dp[i][j] + dp[k][j - abs(locations[i] - locations[k])]) % 1000000007
+        return dp[start][fuel]
+
     def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:
         # 1579.Remove Max Number of Edges to Keep Graph Fully Traversable
         def find(i, root):

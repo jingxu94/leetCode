@@ -127,6 +127,12 @@ class TestP1401To1600(unittest.TestCase):
         self.assertEqual(self.sl.diagonalSum([[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]), 8)
         self.assertEqual(self.sl.diagonalSum([[5]]), 5)
 
+    def test_countRoutes(self):
+        # 1575.Count All Possible Routes
+        self.assertEqual(self.sl.countRoutes([2, 3, 6, 8, 4], 1, 3, 5), 4)
+        self.assertEqual(self.sl.countRoutes([4, 3, 1], 1, 0, 6), 5)
+        self.assertEqual(self.sl.countRoutes([5, 2, 1], 0, 2, 3), 0)
+
     def test_maxNumEdgesToRemove(self):
         # 1579.Remove Max Number of Edges to Keep Graph Fully Traversable
         self.assertEqual(
