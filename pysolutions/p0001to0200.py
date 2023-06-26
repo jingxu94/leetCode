@@ -1181,6 +1181,23 @@ class Pro0001To0200:
 
         return num2bstr(bstr2num(a) + bstr2num(b))
 
+    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
+        # 68.Text Justification
+        result: List[str] = []
+        line: List[str] = []
+        line_len = 0
+        for word in words:
+            if line_len + len(word) + len(line) > maxWidth:
+                for i in range(maxWidth - line_len):
+                    line[i % (len(line) - 1 or 1)] += " "
+                result.append("".join(line))
+                line = []
+                line_len = 0
+            line.append(word)
+            line_len += len(word)
+        result.append(" ".join(line).ljust(maxWidth))
+        return result
+
     def mySqrt(self, x: int) -> int:
         # 69.Sqrt(x)
         if x == 0 or x == 1:

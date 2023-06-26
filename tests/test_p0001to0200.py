@@ -527,6 +527,50 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.addBinary("1010", "1011"), "10101")
         self.assertEqual(self.sl.addBinary("0", "0"), "0")
 
+    def test_fullJustify(self):
+        # 68.Text Justification
+        self.assertEqual(
+            self.sl.fullJustify(["This", "is", "an", "example", "of", "text", "justification."], 16),
+            ["This    is    an", "example  of text", "justification.  "],
+        )
+        self.assertEqual(
+            self.sl.fullJustify(["What", "must", "be", "acknowledgment", "shall", "be"], 16),
+            ["What   must   be", "acknowledgment  ", "shall be        "],
+        )
+        self.assertEqual(
+            self.sl.fullJustify(
+                [
+                    "Science",
+                    "is",
+                    "what",
+                    "we",
+                    "understand",
+                    "well",
+                    "enough",
+                    "to",
+                    "explain",
+                    "to",
+                    "a",
+                    "computer.",
+                    "Art",
+                    "is",
+                    "everything",
+                    "else",
+                    "we",
+                    "do",
+                ],
+                20,
+            ),
+            [
+                "Science  is  what we",
+                "understand      well",
+                "enough to explain to",
+                "a  computer.  Art is",
+                "everything  else  we",
+                "do                  ",
+            ],
+        )
+
     def test_mySqrt(self):
         # 69.Sqrt(x)
         self.assertEqual(self.sl.mySqrt(0), 0)
