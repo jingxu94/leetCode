@@ -336,6 +336,13 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.isPerfectSquare(16))
         self.assertFalse(self.sl.isPerfectSquare(14))
 
+    def test_kSmallestPairs(self):
+        # 373.Find K Pairs with Smallest Sums
+        self.assertListEqual(self.sl.kSmallestPairs([1, 7, 11], [2, 4, 6], 3), [[1, 6], [1, 2], [1, 4]])
+        self.assertListEqual(self.sl.kSmallestPairs([1, 1, 2], [1, 2, 3], 2), [[1, 1], [1, 1]])
+        self.assertListEqual(self.sl.kSmallestPairs([1, 2], [3], 3), [[2, 3], [1, 3]])
+        self.assertListEqual(self.sl.kSmallestPairs([1, 2], [], 3), [])
+
     def test_wiggleMaxLength(self):
         # 376.Wiggle Subsequence
         self.assertEqual(self.sl.wiggleMaxLength([1, 7, 4, 9, 2, 5]), 6)

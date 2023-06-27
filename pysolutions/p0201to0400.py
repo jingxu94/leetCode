@@ -550,6 +550,23 @@ class Pro0201To0400:
                 right = mid - 1
         return False
 
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        # 373.Find K Pairs with Smallest Sums
+        if not nums1 or not nums2:
+            return []
+        heap: List[tuple[int, List[int]]] = []
+        for i in range(len(nums1)):
+            for j in range(len(nums2)):
+                if len(heap) < k:
+                    heapq.heappush(heap, (-nums1[i] - nums2[j], [nums1[i], nums2[j]]))
+                else:
+                    if -heap[0][0] > nums1[i] + nums2[j]:
+                        heapq.heappop(heap)
+                        heapq.heappush(heap, (-nums1[i] - nums2[j], [nums1[i], nums2[j]]))
+                    else:
+                        break
+        return [item[1] for item in heap]
+
     def guessNumber(self, n: int) -> int:  # pragma: no cover
         # 374.Guess Number Higher or Lower
         def guess(num: int) -> int:
