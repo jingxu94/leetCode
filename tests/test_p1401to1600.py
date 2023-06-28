@@ -84,6 +84,12 @@ class TestP1401To1600(unittest.TestCase):
         self.assertFalse(self.sl.canMakeArithmeticProgression([1, 2, 4]))
         self.assertTrue(self.sl.canMakeArithmeticProgression([1, 2]))
 
+    def test_maxProbability(self):
+        # 1514.Path with Maximum Probability
+        self.assertEqual(self.sl.maxProbability(3, [[0, 1], [1, 2], [0, 2]], [0.5, 0.5, 0.2], 0, 2), 0.25)
+        self.assertEqual(self.sl.maxProbability(3, [[0, 1], [1, 2], [0, 2]], [0.5, 0.5, 0.3], 0, 2), 0.3)
+        self.assertEqual(self.sl.maxProbability(3, [[0, 1]], [0.5], 0, 2), 0.0)
+
     def test_countOdds(self):
         # 1523.Count Odd Numbers in an Interval Range
         self.assertEqual(self.sl.countOdds(3, 7), 3)
