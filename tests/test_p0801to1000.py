@@ -57,6 +57,17 @@ class TestP0801To1000(unittest.TestCase):
         self.assertFalse(self.sl.lemonadeChange([10, 10]))
         self.assertFalse(self.sl.lemonadeChange([5, 20, 20, 20, 20]))
 
+    def test_shortestPathAllKeys(self):
+        # 864.Shortest Path to Get All Keys
+        grid1 = ["@.a.#", "###.#", "b.A.B"]
+        grid2 = ["@..aA", "..B#.", "....b"]
+        grid3 = ["@...a", ".###A", "b.BCc"]
+        grid4 = ["@Aa"]
+        self.assertEqual(self.sl.shortestPathAllKeys(grid1), 8)
+        self.assertEqual(self.sl.shortestPathAllKeys(grid2), 6)
+        self.assertEqual(self.sl.shortestPathAllKeys(grid3), 10)
+        self.assertEqual(self.sl.shortestPathAllKeys(grid4), -1)
+
     def test_leafSimilar(self):
         # 872.Leaf-Similar Trees
         root1 = create_binary_tree([3, 5, 1, 6, 2, 9, 8, None, None, 7, 4])
