@@ -85,3 +85,12 @@ class TestP1801To2000(unittest.TestCase):
         self.assertEqual(self.sl.longestObstacleCourseAtEachPosition([1, 2, 3, 2]), [1, 2, 3, 3])
         self.assertEqual(self.sl.longestObstacleCourseAtEachPosition([2, 2, 1]), [1, 2, 1])
         self.assertEqual(self.sl.longestObstacleCourseAtEachPosition([3, 1, 5, 6, 4, 2]), [1, 1, 2, 3, 2, 2])
+
+    def test_latestDayToCross(self):
+        # 1970.Last Day Where You Can Still Cross
+        self.assertEqual(self.sl.latestDayToCross(0, 0, []), -1)
+        self.assertEqual(self.sl.latestDayToCross(2, 2, [[1, 1], [2, 1], [1, 2], [2, 2]]), 2)
+        self.assertEqual(self.sl.latestDayToCross(2, 2, [[1, 1], [1, 2], [2, 1], [2, 2]]), 1)
+        self.assertEqual(
+            self.sl.latestDayToCross(3, 3, [[1, 2], [2, 1], [3, 3], [2, 2], [1, 1], [1, 3], [2, 3], [3, 2], [3, 1]]), 3
+        )
