@@ -25,6 +25,11 @@ class TestP2201To2400(unittest.TestCase):
         self.assertEqual(self.sl.successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7), [4, 0, 3])
         self.assertEqual(self.sl.successfulPairs([3, 1, 2], [8, 5, 8], 16), [2, 0, 2])
 
+    def test_distributeCookies(self):
+        # 2305.Fair Distribution of Cookies
+        self.assertEqual(self.sl.distributeCookies([8, 15, 10, 20, 8], 2), 31)
+        self.assertEqual(self.sl.distributeCookies([6, 1, 3, 2, 2, 4, 1, 2], 3), 7)
+
     def test_countPairs(self):
         # 2316.Count Unreachable Pairs of Nodes in an Undirected Graph
         self.assertEqual(self.sl.countPairs(3, [[0, 1], [0, 2], [1, 2]]), 0)
