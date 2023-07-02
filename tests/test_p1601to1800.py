@@ -9,6 +9,16 @@ class TestP1601To1800(unittest.TestCase):
     def sl(self):
         return Pro1601To1800()
 
+    def test_maximumRequests(self):
+        # 1601.Maximum Number of Achievable Transfer Requests
+        n1, requests1 = 5, [[0, 1], [1, 0], [0, 1], [1, 2], [2, 0], [3, 4]]
+        n2, requests2 = 3, [[0, 0], [1, 2], [2, 1]]
+        n3, requests3 = 4, [[0, 3], [3, 1], [1, 2], [2, 0]]
+        res1, res2, res3 = 5, 3, 4
+        self.assertEqual(res1, self.sl.maximumRequests(n1, requests1))
+        self.assertEqual(res2, self.sl.maximumRequests(n2, requests2))
+        self.assertEqual(res3, self.sl.maximumRequests(n3, requests3))
+
     def test_specialArray(self):
         # 1608.Special Array With X Elements Greater Than or Equal X
         self.assertEqual(self.sl.specialArray([3, 5]), 2)

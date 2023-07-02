@@ -8,6 +8,28 @@ class Pro1601To1800:
     def __init__(self):
         pass
 
+    def maximumRequests(self, n: int, requests: List[List[int]]) -> int:
+        # 1601.Maximum Number of Achievable Transfer Requests
+        def solve(ind, building):
+            if ind == m:
+                for i in arr:
+                    if i != 0:
+                        return -int(1e9)
+                return 0
+            # Request[ind] is not taken
+            not_take = solve(ind + 1, arr)
+            # Request[ind] is taken
+            building[requests[ind][0]] -= 1
+            building[requests[ind][1]] += 1
+            take = 1 + solve(ind + 1, arr)
+            building[requests[ind][0]] += 1
+            building[requests[ind][1]] -= 1
+            return max(take, not_take)
+
+        m = len(requests)
+        arr = [0 for i in range(n + 1)]
+        return solve(0, arr)
+
     def specialArray(self, nums: List[int]) -> int:
         # 1608.Special Array With X Elements Greater Than or Equal X
         count = Counter(nums)
