@@ -50,6 +50,14 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.peakIndexInMountainArray([0, 2, 1, 0]), 1)
         self.assertEqual(self.sl.peakIndexInMountainArray([0, 10, 5, 2]), 1)
 
+    def test_buddyStrings(self):
+        # 859.Buddy Strings
+        self.assertTrue(self.sl.buddyStrings("ab", "ba"))
+        self.assertFalse(self.sl.buddyStrings("ab", "ab"))
+        self.assertTrue(self.sl.buddyStrings("aa", "aa"))
+        self.assertTrue(self.sl.buddyStrings("aaaaaaabc", "aaaaaaacb"))
+        self.assertFalse(self.sl.buddyStrings("", "aa"))
+
     def test_lemonadeChange(self):
         # 860.Lemonade Change
         self.assertTrue(self.sl.lemonadeChange([5, 5, 5, 10, 20]))
