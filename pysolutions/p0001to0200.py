@@ -2099,6 +2099,16 @@ class Pro0001To0200:
         count = Counter(nums)
         return count.most_common()[-1][0]
 
+    def singleNumber_v2(self, nums: List[int]) -> int:
+        # 137.Single Number II
+        count: defaultdict = defaultdict(int)
+        for num in nums:
+            count[num] += 1
+        for key in count.keys():
+            if count[key] == 1:
+                return int(key)
+        return -1
+
     def copyRandomList(self, head: "Optional[NodeTwo]") -> "Optional[NodeTwo]":  # pragma: no cover
         # 138.Copy List with Random Pointer
         if not head:

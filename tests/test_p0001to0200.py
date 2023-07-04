@@ -925,6 +925,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.singleNumber([4, 1, 2, 1, 2]), 4)
         self.assertEqual(self.sl.singleNumber([1]), 1)
 
+    def test_singleNumber_v2(self):
+        # 137.Single Number II
+        self.assertEqual(self.sl.singleNumber_v2([2, 2, 3, 2]), 3)
+        self.assertEqual(self.sl.singleNumber_v2([0, 1, 0, 1, 0, 1, 99]), 99)
+        self.assertEqual(self.sl.singleNumber_v2([]), -1)
+
     def test_wordBreak(self):
         # 139.Word Break
         self.assertTrue(self.sl.wordBreak("leetcode", ["leet", "code"]))
