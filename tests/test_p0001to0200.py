@@ -699,6 +699,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.numTrees(3), 5)
         self.assertEqual(self.sl.numTrees(1), 1)
 
+    def test_isInterleave(self):
+        # 97.Interleaving String
+        self.assertTrue(self.sl.isInterleave("aabcc", "dbbca", "aadbbcbcac"))
+        self.assertFalse(self.sl.isInterleave("aabcc", "dbbca", "aadbbbaccc"))
+        self.assertTrue(self.sl.isInterleave("", "", ""))
+        self.assertFalse(self.sl.isInterleave("b", "a", "baba"))
+
     def test_isValidBST(self):
         # 98.Validate Binary Search Tree
         self.assertTrue(self.sl.isValidBST(create_binary_tree([2, 1, 3])))
