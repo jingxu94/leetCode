@@ -69,6 +69,19 @@ class TestP0201To0400(unittest.TestCase):
         self.assertEqual(self.sl.findOrder(1, []), [0])
         self.assertEqual(self.sl.findOrder(3, [[1, 0], [1, 2], [0, 1]]), [])
 
+    def test_findWords(self):
+        # 212.Word Search II
+        self.assertEqual(
+            sorted(
+                self.sl.findWords(
+                    [["o", "a", "a", "n"], ["e", "t", "a", "e"], ["i", "h", "k", "r"], ["i", "f", "l", "v"]],
+                    ["oath", "pea", "eat", "rain"],
+                )
+            ),
+            sorted(["eat", "oath"]),
+        )
+        self.assertEqual(sorted(self.sl.findWords([["a", "b"], ["c", "d"]], ["abcb"])), sorted([]))
+
     def test_rob(self):
         # 213.House Robber II
         self.assertEqual(self.sl.rob([2, 3, 2]), 3)
