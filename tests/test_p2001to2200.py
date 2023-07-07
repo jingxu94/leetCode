@@ -9,6 +9,12 @@ class TestP2001To2200(unittest.TestCase):
     def sl(self):
         return Pro2001To2200()
 
+    def test_maxConsecutiveAnswers(self):
+        # 2024.Maximize the Confusion of an Exam
+        self.assertEqual(self.sl.maxConsecutiveAnswers("TTFF", 2), 4)
+        self.assertEqual(self.sl.maxConsecutiveAnswers("TFFT", 1), 3)
+        self.assertEqual(self.sl.maxConsecutiveAnswers("TTFTTFTT", 1), 5)
+
     def test_getAverages(self):
         # 2090.K Radius Subarray Averages
         self.assertEqual(self.sl.getAverages([7, 4, 3, 9, 1, 8, 5, 2, 6], 3), [-1, -1, -1, 5, 4, 4, -1, -1, -1])

@@ -7,6 +7,22 @@ class Pro2001To2200:
     def __init__(self):
         pass
 
+    def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
+        # 2024.Maximize the Confusion of an Exam
+        n = len(answerKey)
+        left = 0
+        right = 0
+        max_len = 0
+        count: defaultdict = defaultdict(int)
+        while right < n:
+            count[answerKey[right]] += 1
+            while count["T"] > k and count["F"] > k:
+                count[answerKey[left]] -= 1
+                left += 1
+            max_len = max(max_len, right - left + 1)
+            right += 1
+        return max_len
+
     def getAverages(self, nums: List[int], k: int) -> List[int]:
         # 2090.K Radius Subarray Averages
         averages = [-1] * len(nums)
