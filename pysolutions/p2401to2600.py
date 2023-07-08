@@ -135,6 +135,21 @@ class Pro2401To2600:
             answer = max(answer, top_k_sum * pairs[i][1])
         return answer
 
+    def putMarbles(self, weights: List[int], k: int) -> int:
+        # 2551.Put Marbles in Bags
+        # We collect and sort the value of all n - 1 pairs.
+        n = len(weights)
+        pair_weights = [0] * (n - 1)
+        for i in range(n - 1):
+            pair_weights[i] = weights[i] + weights[i + 1]
+        pair_weights.sort()
+        # Get the difference between the largest k - 1 values and the
+        # smallest k - 1 values.
+        answer = 0
+        for i in range(k - 1):
+            answer += pair_weights[n - 2 - i] - pair_weights[i]
+        return answer
+
     def splitNum(self, num: int) -> int:
         # 2578.Split With Minimum Sum
         digits = list(int(n) for n in str(num))
