@@ -20,6 +20,12 @@ class TestP2201To2400(unittest.TestCase):
             self.sl.maxValueOfCoins([[100], [100], [100], [100], [100], [100], [1, 1, 1, 1, 1, 1, 700]], 7), 706
         )
 
+    def test_largestVariance(self):
+        # 2272.Substring With Largest Variance
+        self.assertEqual(self.sl.largestVariance("aababbb"), 3)
+        self.assertEqual(self.sl.largestVariance("abcde"), 0)
+        self.assertEqual(self.sl.largestVariance("icexiahccknibwuwgi"), 3)
+
     def test_successfulPairs(self):
         # 2300.Successful Pairs of Spells and Potions
         self.assertEqual(self.sl.successfulPairs([5, 1, 3], [1, 2, 3, 4, 5], 7), [4, 0, 3])
