@@ -845,9 +845,15 @@ class TestP0001To0200(unittest.TestCase):
     def test_minDepth(self):
         # 111.Minimum Depth of Binary Tree
         self.assertEqual(self.sl.minDepth(create_binary_tree([3, 9, 20, None, None, 15, 7])), 2)
+        self.assertEqual(self.sl.minDepth_v2(create_binary_tree([3, 9, 20, None, None, 15, 7])), 2)
         input = TreeNode(2, right=TreeNode(3, right=TreeNode(4, right=TreeNode(5, right=TreeNode(6)))))
         self.assertEqual(self.sl.minDepth(input), 5)
+        self.assertEqual(self.sl.minDepth_v2(input), 5)
+        input = TreeNode(2, left=TreeNode(3, left=TreeNode(4, left=TreeNode(5, left=TreeNode(6)))))
+        self.assertEqual(self.sl.minDepth(input), 5)
+        self.assertEqual(self.sl.minDepth_v2(input), 5)
         self.assertEqual(self.sl.minDepth(None), 0)
+        self.assertEqual(self.sl.minDepth_v2(None), 0)
 
     def test_hasPathSum(self):
         # 112.Path Sum

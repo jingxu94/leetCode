@@ -1852,6 +1852,24 @@ class Pro0001To0200:
         right_depth = math.inf if not root.right else self.minDepth(root.right)
         return int(min(left_depth, right_depth)) + 1
 
+    def minDepth_v2(self, root: Optional[TreeNode]) -> int:
+        # 111.Minimum Depth of Binary Tree
+        if not root:
+            return 0
+        queue: deque[TreeNode] = deque()
+        queue.append(root)
+        depth = 1
+        while queue:  # pragma: no cover
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if not node.left and not node.right:
+                    return depth
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            depth += 1
+
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         # 112.Path Sum
         if not root:
