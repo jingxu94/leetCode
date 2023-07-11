@@ -65,6 +65,15 @@ class TestP0801To1000(unittest.TestCase):
         self.assertFalse(self.sl.lemonadeChange([10, 10]))
         self.assertFalse(self.sl.lemonadeChange([5, 20, 20, 20, 20]))
 
+    def test_distanceK(self):
+        # 863.All Nodes Distance K in Binary Tree
+        root1 = create_binary_tree([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4])
+        target1 = root1.left
+        self.assertEqual(self.sl.distanceK(root1, target1, 2), [1, 7, 4])
+        root2 = create_binary_tree([0, 1, None, 3, 2])
+        target2 = root2.left.right
+        self.assertEqual(self.sl.distanceK(root2, target2, 1), [1])
+
     def test_shortestPathAllKeys(self):
         # 864.Shortest Path to Get All Keys
         grid1 = ["@.a.#", "###.#", "b.A.B"]
