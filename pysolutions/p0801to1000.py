@@ -8,6 +8,35 @@ class Pro0801To1000:
     def __init__(self):
         pass
 
+    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
+        # 802.Find Eventual Safe States
+        n = len(graph)
+        indegree = [0] * n
+        adj: List[List[int]] = [[] for _ in range(n)]
+        for i in range(n):
+            for node in graph[i]:
+                adj[node].append(i)
+                indegree[i] += 1
+        q: deque[int] = deque()
+        # Push all the nodes with indegree zero in the queue.
+        for i in range(n):
+            if indegree[i] == 0:
+                q.append(i)
+        safe = [False] * n
+        while q:
+            node = q.popleft()
+            safe[node] = True
+            for neighbor in adj[node]:
+                # Delete the edge "node -> neighbor".
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    q.append(neighbor)
+        safeNodes = []
+        for i in range(n):
+            if safe[i]:
+                safeNodes.append(i)
+        return safeNodes
+
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
         # 815.Bus Routes
         if source == target:

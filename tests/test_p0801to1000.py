@@ -9,6 +9,11 @@ class TestP0801To1000(unittest.TestCase):
     def sl(self):
         return Pro0801To1000()
 
+    def test_eventualSafeNodes(self):
+        # 802.Find Eventual Safe States
+        self.assertEqual(self.sl.eventualSafeNodes([[1, 2], [2, 3], [5], [0], [5], [], []]), [2, 4, 5, 6])
+        self.assertEqual(self.sl.eventualSafeNodes([[1, 2, 3, 4], [1, 2], [3, 4], [0, 4], []]), [4])
+
     def test_numBusesToDestination(self):
         # 815.Bus Routes
         routes1, source1, target1 = [[1, 2, 7], [3, 6, 7]], 1, 6
