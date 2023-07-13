@@ -90,6 +90,27 @@ class Pro0201To0400:
             return True
         return False
 
+    def canFinish_v2(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # 207.Course Schedule
+        indegree = [0] * numCourses
+        adj: List[List[int]] = [[] for _ in range(numCourses)]
+        for prerequisite in prerequisites:
+            adj[prerequisite[1]].append(prerequisite[0])
+            indegree[prerequisite[0]] += 1
+        queue: deque[int] = deque()
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                queue.append(i)
+        nodesVisited = 0
+        while queue:
+            node = queue.popleft()
+            nodesVisited += 1
+            for neighbor in adj[node]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    queue.append(neighbor)
+        return nodesVisited == numCourses
+
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         # 209.Minimum Size Subarray Sum
         left = total = 0

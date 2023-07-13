@@ -55,6 +55,9 @@ class TestP0201To0400(unittest.TestCase):
         self.assertTrue(self.sl.canFinish(2, [[1, 0]]))
         self.assertFalse(self.sl.canFinish(2, [[1, 0], [0, 1]]))
         self.assertTrue(self.sl.canFinish(5, [[1, 4], [2, 4], [3, 1], [3, 2]]))
+        self.assertTrue(self.sl.canFinish_v2(2, [[1, 0]]))
+        self.assertFalse(self.sl.canFinish_v2(2, [[1, 0], [0, 1]]))
+        self.assertTrue(self.sl.canFinish_v2(5, [[1, 4], [2, 4], [3, 1], [3, 2]]))
 
     def test_minSubArrayLen(self):
         # 209.Minimum Size Subarray Sum
