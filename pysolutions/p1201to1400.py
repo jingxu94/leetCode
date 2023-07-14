@@ -17,6 +17,13 @@ class Pro1201To1400:
             counter[num] += 1
         return len(set(counter.values())) == len(counter)
 
+    def longestSubsequence(self, arr: List[int], difference: int) -> int:
+        # 1218.Longest Arithmetic Subsequence of Given Difference
+        dp: Dict[int, int] = {}
+        for num in arr:
+            dp[num] = dp.get(num - difference, 0) + 1
+        return max(dp.values())
+
     def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
         """1232.Check If It Is a Straight Line
         Check if the given coordinates form a straight line.

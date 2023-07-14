@@ -15,6 +15,12 @@ class TestP1201To1400(unittest.TestCase):
         self.assertFalse(self.sl.uniqueOccurrences([1, 2]))
         self.assertTrue(self.sl.uniqueOccurrences([-3, 0, 1, -3, 1, 1, 1, -3, 10, 0]))
 
+    def test_longestSubsequence(self):
+        # 1218.Longest Arithmetic Subsequence of Given Difference
+        self.assertEqual(self.sl.longestSubsequence([1, 2, 3, 4], 1), 4)
+        self.assertEqual(self.sl.longestSubsequence([1, 3, 5, 7], 1), 1)
+        self.assertEqual(self.sl.longestSubsequence([1, 5, 7, 8, 5, 3, 4, 2, 1], -2), 4)
+
     def test_checkStraightLine(self):
         # 1232.Check If It Is a Straight Line
         self.assertTrue(self.sl.checkStraightLine([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]]))
