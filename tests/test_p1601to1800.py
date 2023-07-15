@@ -110,6 +110,15 @@ class TestP1601To1800(unittest.TestCase):
         self.assertEqual(self.sl.largestAltitude(gain1), 1)
         self.assertEqual(self.sl.largestAltitude(gain2), 0)
 
+    def test_maxValue(self):
+        # 1751.Maximum Number of Events That Can Be Attended II
+        events1, k1 = [[1, 2, 4], [3, 4, 3], [2, 3, 1]], 2
+        events2, k2 = [[1, 2, 4], [3, 4, 3], [2, 3, 10]], 2
+        events3, k3 = [[1, 1, 1], [2, 2, 2], [3, 3, 3], [4, 4, 4]], 3
+        self.assertEqual(self.sl.maxValue(events1, k1), 7)
+        self.assertEqual(self.sl.maxValue(events2, k2), 10)
+        self.assertEqual(self.sl.maxValue(events3, k3), 9)
+
     def test_mergeAlternately(self):
         # 1768.Merge Strings Alternately
         self.assertEqual(self.sl.mergeAlternately("abc", "pqr"), "apbqcr")
