@@ -143,6 +143,23 @@ class Pro1001To1200:
                     queue.append((nx, ny, steps + 1))
         return -1
 
+    def smallestSufficientTeam(self, req_skills: List[str], people: List[List[str]]) -> List[int]:
+        # 1125.Smallest Sufficient Team
+        n = len(req_skills)
+        key = {v: i for i, v in enumerate(req_skills)}
+        dp: Dict[int, List[int]] = {0: []}
+        for i, p in enumerate(people):
+            his_skill = 0
+            for skill in p:
+                his_skill |= 1 << key[skill]
+            for skill_set, need in list(dp.items()):
+                with_him = skill_set | his_skill
+                if with_him == skill_set:
+                    continue
+                if with_him not in dp or len(dp[with_him]) > len(need) + 1:
+                    dp[with_him] = need + [i]
+        return dp[(1 << n) - 1]
+
     def tribonacci(self, n: int) -> int:
         # 1137.N-th Tribonacci Number
         if n == 0 or n == 1:

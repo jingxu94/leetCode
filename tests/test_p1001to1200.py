@@ -69,6 +69,29 @@ class TestP1001To1200(unittest.TestCase):
         self.assertEqual(self.sl.shortestPathBinaryMatrix([[1, 1], [1, 0]]), -1)
         self.assertEqual(self.sl.shortestPathBinaryMatrix([[0, 1], [1, 1]]), -1)
 
+    def test_smallestSufficientTeam(self):
+        # 1125.Smallest Sufficient Team
+        self.assertEqual(
+            self.sl.smallestSufficientTeam(
+                ["java", "nodejs", "reactjs"], [["java"], ["nodejs"], ["nodejs", "reactjs"]]
+            ),
+            [0, 2],
+        )
+        self.assertEqual(
+            self.sl.smallestSufficientTeam(
+                ["algorithms", "math", "java", "reactjs", "csharp", "aws"],
+                [
+                    ["algorithms", "math", "java"],
+                    ["algorithms", "math", "reactjs"],
+                    ["java", "csharp", "aws"],
+                    ["reactjs", "csharp"],
+                    ["csharp", "math"],
+                    ["aws", "java"],
+                ],
+            ),
+            [1, 2],
+        )
+
     def test_tribonacci(self):
         # 1137.N-th Tribonacci Number
         self.assertEqual(self.sl.tribonacci(1), 1)
