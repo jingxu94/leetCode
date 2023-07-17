@@ -101,6 +101,22 @@ class TestP0401To0600(unittest.TestCase):
         l2 = create_linked_list([0])
         ans = create_linked_list([0])
         self.assertTrue(eq_linked_list(self.sl.addTwoNumbers(l1, l2), ans))
+        l1 = create_linked_list([7, 2, 4, 3])
+        l2 = create_linked_list([5, 6, 4])
+        ans = create_linked_list([7, 8, 0, 7])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers_v2(l1, l2), ans))
+        l1 = create_linked_list([7, 2, 4, 3])
+        l2 = create_linked_list([5, 6, 4])
+        ans = create_linked_list([7, 8, 0, 7])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers_v2(l2, l1), ans))
+        l1 = create_linked_list([2, 4, 3])
+        l2 = create_linked_list([5, 6, 4])
+        ans = create_linked_list([8, 0, 7])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers_v2(l1, l2), ans))
+        l1 = create_linked_list([0])
+        l2 = create_linked_list([0])
+        ans = create_linked_list([0])
+        self.assertTrue(eq_linked_list(self.sl.addTwoNumbers_v2(l1, l2), ans))
 
     def test_deleteNode(self):
         # 450.Delete Node in a BST
