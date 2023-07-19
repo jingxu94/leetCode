@@ -172,6 +172,18 @@ class Pro0401To0600:
                 end = intervals[i][1]
         return count
 
+    def eraseOverlapIntervals_v2(self, intervals: List[List[int]]) -> int:
+        # 435.Non-overlapping Intervals
+        intervals.sort(key=lambda x: x[1])
+        ans = 0
+        k = int(-1e5)
+        for x, y in intervals:
+            if x >= k:
+                k = y
+            else:
+                ans += 1
+        return ans
+
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         # 437.Path Sum III
         def helper(node, target):

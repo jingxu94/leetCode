@@ -58,6 +58,9 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [2, 3], [3, 4], [1, 3]]), 1)
         self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [1, 2], [1, 2]]), 2)
         self.assertEqual(self.sl.eraseOverlapIntervals([[1, 2], [2, 3]]), 0)
+        self.assertEqual(self.sl.eraseOverlapIntervals_v2([[1, 2], [2, 3], [3, 4], [1, 3]]), 1)
+        self.assertEqual(self.sl.eraseOverlapIntervals_v2([[1, 2], [1, 2], [1, 2]]), 2)
+        self.assertEqual(self.sl.eraseOverlapIntervals_v2([[1, 2], [2, 3]]), 0)
 
     def test_pathSum(self):
         # 437.Path Sum III
