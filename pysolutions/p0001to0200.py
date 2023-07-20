@@ -1508,6 +1508,13 @@ class Pro0001To0200:
 
             write_index -= 1
 
+    def grayCode(self, n: int) -> List[int]:
+        # 89.Gray Code
+        ans = [0]
+        for i in range(n):
+            ans += [x + 2**i for x in reversed(ans)]
+        return ans
+
     def subsetsWithDup(self, nums: List[int]) -> Any:  # pragma: no cover
         # 90.Subsets II
         nums.sort()

@@ -681,6 +681,11 @@ class TestP0001To0200(unittest.TestCase):
         self.sl.merge(nums1, m, nums2, n)
         self.assertEqual(nums1, [1])
 
+    def test_grayCode(self):
+        # 89.Gray Code
+        self.assertEqual(self.sl.grayCode(2), [0, 1, 3, 2])
+        self.assertEqual(self.sl.grayCode(0), [0])
+
     def test_numDecodings(self):
         # 91.Decode Ways
         self.assertEqual(self.sl.numDecodings("12"), 2)
