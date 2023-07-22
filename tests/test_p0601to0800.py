@@ -96,6 +96,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.calPoints(["5", "-2", "4", "C", "D", "9", "+", "+"]), 27)
         self.assertEqual(self.sl.calPoints(["1", "C"]), 0)
 
+    def test_knightProbability(self):
+        # 688.Knight Probability in Chessboard
+        self.assertAlmostEqual(self.sl.knightProbability(3, 2, 0, 0), 0.0625)
+        self.assertAlmostEqual(self.sl.knightProbability(3, 3, 0, 0), 0.015625)
+
     def test_topKFrequent(self):
         # 692.Top K Frequent Words
         words = ["i", "love", "leetcode", "i", "love", "coding"]
