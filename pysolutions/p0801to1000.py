@@ -311,6 +311,22 @@ class Pro0801To1000:
                     queue.popleft()
         return count
 
+    def allPossibleFBT(self, n: int) -> List[Optional[TreeNode]]:
+        # 894.All Possible Full Binary Trees
+        if n % 2 == 0:
+            return []
+        if n == 1:
+            return [TreeNode(0)]
+        ans: List[Optional[TreeNode]] = []
+        for i in range(1, n, 2):
+            for left in self.allPossibleFBT(i):
+                for right in self.allPossibleFBT(n - i - 1):
+                    root = TreeNode(0)
+                    root.left = left
+                    root.right = right
+                    ans.append(root)
+        return ans
+
     def isMonotonic(self, nums: List[int]) -> bool:
         # 896.Monotonic Array
         if nums == sorted(nums):

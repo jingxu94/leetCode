@@ -136,6 +136,16 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.numRescueBoats([3, 2, 2, 1], 3), 3)
         self.assertEqual(self.sl.numRescueBoats([3, 5, 3, 4], 5), 4)
 
+    def test_allPossibleFBT(self):
+        # 894.All Possible Full Binary Trees
+        n1 = 7
+        n2 = 3
+        ans1 = self.sl.allPossibleFBT(n1)
+        ans2 = self.sl.allPossibleFBT(n2)
+        self.assertEqual(len(ans1), 5)
+        self.assertEqual(len(ans2), 1)
+        self.assertEqual(self.sl.allPossibleFBT(2), [])
+
     def test_isMonotonic(self):
         # 896.Monotonic Array
         self.assertTrue(self.sl.isMonotonic([1, 2, 2, 3]))
