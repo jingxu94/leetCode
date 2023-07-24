@@ -403,6 +403,10 @@ class TestP0001To0200(unittest.TestCase):
         eps = 1e-6
         self.assertTrue(abs(self.sl.myPow(2.00000, 10) - 1024.00000) < eps)
         self.assertTrue(abs(self.sl.myPow(2.10000, 3) - 9.26100) < eps)
+        self.assertTrue(abs(self.sl.myPow_v2(2.00000, 10) - 1024.00000) < eps)
+        self.assertTrue(abs(self.sl.myPow_v2(2.10000, 3) - 9.26100) < eps)
+        self.assertTrue(abs(self.sl.myPow_v2(2.10000, 0) - 1.0) < eps)
+        self.assertTrue(abs(self.sl.myPow_v2(2.00000, -1) - 0.5) < eps)
 
     def test_soloveNQueens(self):
         # 51.N-Queens
