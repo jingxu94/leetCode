@@ -413,6 +413,11 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.solveNQueens(4), [[".Q..", "...Q", "Q...", "..Q."], ["..Q.", "Q...", "...Q", ".Q.."]])
         self.assertEqual(self.sl.solveNQueens(1), [["Q"]])
 
+    def test_totalNQueens(self):
+        # 52.N-Queens II
+        self.assertEqual(self.sl.totalNQueens(4), 2)
+        self.assertEqual(self.sl.totalNQueens(1), 1)
+
     def test_maxSubArray(self):
         # 53.Maximum Subarray
         self.assertEqual(self.sl.maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]), 6)
