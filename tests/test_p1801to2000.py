@@ -57,6 +57,12 @@ class TestP1801To2000(unittest.TestCase):
         )
         self.assertEqual(self.sl.largestPathValue("a", [[0, 0]]), -1)
 
+    def test_minSpeedOnTime(self):
+        # 1870.Minimum Speed to Arrive on Time
+        self.assertEqual(self.sl.minSpeedOnTime([1, 3, 2], 6), 1)
+        self.assertEqual(self.sl.minSpeedOnTime([1, 3, 2], 2.7), 3)
+        self.assertEqual(self.sl.minSpeedOnTime([1, 3, 2], 1.9), -1)
+
     def test_findRotation(self):
         # 1886.Determine Whether Matrix Can Be Obtained By Rotation
         self.assertTrue(self.sl.findRotation([[0, 1], [1, 0]], [[0, 1], [1, 0]]))

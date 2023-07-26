@@ -1,4 +1,5 @@
 import heapq
+import math
 
 from collections import Counter, defaultdict
 from typing import List
@@ -97,6 +98,19 @@ class Pro1801To2000:
                 for i in range(26):
                     color_count[neighbor][i] = max(color_count[neighbor][i], color_count[node][i])
         return max(max(row) for row in color_count)
+
+    def minSpeedOnTime(self, dist: List[int], hour: float) -> int:
+        # 1870.Minimum Speed to Arrive on Time
+        if hour <= len(dist) - 1:
+            return -1
+        left, right = 1, 10**7
+        while left < right:
+            mid = (left + right) // 2
+            if sum([math.ceil(d / mid) for d in dist[:-1]]) + dist[-1] / mid <= hour:
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
     def findRotation(self, mat: List[List[int]], target: List[List[int]]) -> bool:
         # 1886.Determine Whether Matrix Can Be Obtained By Rotation
