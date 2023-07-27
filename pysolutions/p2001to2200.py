@@ -146,6 +146,20 @@ class Pro2001To2200:
 
         return dfs(0)
 
+    def maxRunTime(self, n: int, batteries: List[int]) -> int:
+        # 2141.Maximum Running Time of N Computers
+        left, right = 1, sum(batteries) // n
+        while left < right:
+            target = right - (right - left) // 2
+            extra = 0
+            for power in batteries:
+                extra += min(power, target)
+            if extra // n >= target:
+                left = target
+            else:
+                right = target - 1
+        return left
+
     def minimumTime(self, time: List[int], totalTrips: int) -> int:
         # 2187.Minimum Time to Complete
         def cal_trips(time: List[int], now: int):

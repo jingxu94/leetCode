@@ -61,6 +61,12 @@ class TestP2001To2200(unittest.TestCase):
         self.assertEqual(self.sl.mostPoints([[3, 2], [4, 3], [4, 4], [2, 5]]), 5)
         self.assertEqual(self.sl.mostPoints([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]), 7)
 
+    def test_maxRunTime(self):
+        # 2141.Maximum Running Time of N Computers
+        self.assertEqual(self.sl.maxRunTime(2, [3, 3, 3]), 4)
+        self.assertEqual(self.sl.maxRunTime(2, [1, 1, 1, 1]), 2)
+        self.assertEqual(self.sl.maxRunTime(3, [10, 10, 3, 5]), 8)
+
     def test_minimumTime(self):
         # 2187.Minimum Time to Complete Trips
         self.assertEqual(self.sl.minimumTime([1, 2, 3], 5), 3)
