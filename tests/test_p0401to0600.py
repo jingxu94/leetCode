@@ -163,6 +163,11 @@ class TestP0401To0600(unittest.TestCase):
         self.assertFalse(self.sl.repeatedSubstringPattern("abababb"))
         self.assertTrue(self.sl.repeatedSubstringPattern("abcabcabcabc"))
 
+    def test_PredictTheWinner(self):
+        # 486.Predict the Winner
+        self.assertFalse(self.sl.PredictTheWinner([1, 5, 2]))
+        self.assertTrue(self.sl.PredictTheWinner([1, 5, 233, 7]))
+
     def test_nextGreaterElement(self):
         # 496.Next Greater Element1
         self.assertListEqual(self.sl.nextGreaterElement([4, 1, 2], [1, 3, 4, 2]), [-1, 3, -1])

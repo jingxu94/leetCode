@@ -341,6 +341,17 @@ class Pro0401To0600:
                     return True
         return False
 
+    def PredictTheWinner(self, nums: List[int]) -> bool:
+        # 486.Predict the Winner
+        n = len(nums)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = nums[i]
+        for i in range(n - 2, -1, -1):
+            for j in range(i + 1, n):
+                dp[i][j] = max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1])
+        return dp[0][n - 1] >= 0
+
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # 496.Next Greater Element1
         ans = list([-1 for _ in range(len(nums1))])
