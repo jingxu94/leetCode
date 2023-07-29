@@ -14,6 +14,13 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.eventualSafeNodes([[1, 2], [2, 3], [5], [0], [5], [], []]), [2, 4, 5, 6])
         self.assertEqual(self.sl.eventualSafeNodes([[1, 2, 3, 4], [1, 2], [3, 4], [0, 4], []]), [4])
 
+    def test_soupServings(self):
+        # 808.Soup Servings
+        self.assertAlmostEqual(self.sl.soupServings(50), 0.625)
+        self.assertAlmostEqual(self.sl.soupServings(100), 0.71875)
+        self.assertAlmostEqual(self.sl.soupServings(101), 0.7421875)
+        self.assertAlmostEqual(self.sl.soupServings(660295675), 0.9999999995343387)
+
     def test_numBusesToDestination(self):
         # 815.Bus Routes
         routes1, source1, target1 = [[1, 2, 7], [3, 6, 7]], 1, 6

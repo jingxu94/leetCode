@@ -37,6 +37,26 @@ class Pro0801To1000:
                 safeNodes.append(i)
         return safeNodes
 
+    def soupServings(self, n: int) -> float:
+        # 808.Soup Servings
+        if n >= 5000:
+            return 1.0
+        memo: dict = {}
+
+        def dfs(a: int, b: int) -> float:
+            if (a, b) in memo:
+                return memo[(a, b)]
+            if a <= 0 and b <= 0:
+                return 0.5
+            if a <= 0:
+                return 1.0
+            if b <= 0:
+                return 0.0
+            memo[(a, b)] = 0.25 * (dfs(a - 100, b) + dfs(a - 75, b - 25) + dfs(a - 50, b - 50) + dfs(a - 25, b - 75))
+            return memo[(a, b)]
+
+        return dfs(n, n)
+
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
         # 815.Bus Routes
         if source == target:
