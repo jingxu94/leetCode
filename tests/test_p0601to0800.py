@@ -79,6 +79,12 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.widthOfBinaryTree(root), 2)
         self.assertEqual(self.sl.widthOfBinaryTree(None), 0)
 
+    def test_strangePrinter(self):
+        # 664.Strange Printer
+        self.assertEqual(self.sl.strangePrinter("aaabbb"), 2)
+        self.assertEqual(self.sl.strangePrinter("aba"), 2)
+        self.assertEqual(self.sl.strangePrinter("abcabc"), 5)
+
     def test_findNumberOfLIS(self):
         # 673.Number of Longest Increasing Subsequence
         self.assertEqual(self.sl.findNumberOfLIS([1, 3, 5, 4, 7]), 2)
