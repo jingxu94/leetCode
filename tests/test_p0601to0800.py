@@ -161,6 +161,11 @@ class TestP0601To0800(unittest.TestCase):
         self.assertEqual(self.sl.toLowerCase("here"), "here")
         self.assertEqual(self.sl.toLowerCase("LOVELY"), "lovely")
 
+    def test_minimumDeleteSum(self):
+        # 712.Minimum ASCII Delete Sum for Two Strings
+        self.assertEqual(self.sl.minimumDeleteSum("sea", "eat"), 231)
+        self.assertEqual(self.sl.minimumDeleteSum("delete", "leet"), 403)
+
     def test_numSubarrayProductLessThanK(self):
         # 713.Subarray Product Less Than K
         self.assertEqual(self.sl.numSubarrayProductLessThanK([10, 5, 2, 6], 100), 8)
