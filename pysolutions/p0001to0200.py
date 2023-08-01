@@ -1414,6 +1414,25 @@ class Pro0001To0200:
         backtrack(1, [])
         return result
 
+    def combine_v2(self, n: int, k: int) -> List[List[int]]:
+        # 77.Combinations
+        def generate_combinations(elems, num):
+            elems_tuple = tuple(elems)
+            total = len(elems_tuple)
+            curr_indices = list(range(num))
+            while True:
+                yield tuple(elems_tuple[i] for i in curr_indices)
+                for idx in reversed(range(num)):
+                    if curr_indices[idx] != idx + total - num:
+                        break
+                else:
+                    return
+                curr_indices[idx] += 1
+                for j in range(idx + 1, num):
+                    curr_indices[j] = curr_indices[j - 1] + 1
+
+        return [list(combination) for combination in generate_combinations(range(1, n + 1), k)]
+
     def subsets(self, nums: List[int]) -> Any:  # pragma: no cover
         # 78.Subsets
         return list(chain.from_iterable(list(combinations(nums, k) for k in range(len(nums) + 1))))

@@ -627,6 +627,8 @@ class TestP0001To0200(unittest.TestCase):
         # 77.Combinations
         self.assertListEqual(self.sl.combine(4, 2), [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]])
         self.assertListEqual(self.sl.combine(1, 1), [[1]])
+        self.assertListEqual(self.sl.combine_v2(4, 2), [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]])
+        self.assertListEqual(self.sl.combine_v2(1, 1), [[1]])
 
     def test_exist(self):
         # 79.Word Search
