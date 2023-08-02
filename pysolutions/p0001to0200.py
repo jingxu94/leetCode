@@ -1,3 +1,4 @@
+import itertools
 import math
 import re
 from collections import Counter, defaultdict, deque, OrderedDict
@@ -848,6 +849,10 @@ class Pro0001To0200:
         result: List[List[int]] = []
         backtrack([])
         return result
+
+    def permute_v2(self, nums: List[int]) -> List[List[int]]:
+        # 46.Permutations
+        return list(itertools.permutations(nums, len(nums)))
 
     def permuteUnique(self, nums: List[int]) -> Any:  # pragma: no cover
         # 47.Permutations II

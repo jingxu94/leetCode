@@ -389,6 +389,11 @@ class TestP0001To0200(unittest.TestCase):
         )
         self.assertListEqual(self.sl.permute([0, 1]), [[0, 1], [1, 0]])
         self.assertListEqual(self.sl.permute([1]), [[1]])
+        self.assertListEqual(
+            self.sl.permute_v2([1, 2, 3]), [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]
+        )
+        self.assertListEqual(self.sl.permute_v2([0, 1]), [(0, 1), (1, 0)])
+        self.assertListEqual(self.sl.permute_v2([1]), [(1,)])
 
     def test_groupAnagrams(self):
         # 49.Group Anagrams
