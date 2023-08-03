@@ -1460,6 +1460,17 @@ class Pro0001To0200:
                     return True
         return False
 
+    def removeDuplicates_s2(self, nums: List[int]) -> int:
+        # 80.Remove Duplicates from Sorted Array II
+        if len(nums) <= 2:
+            return len(nums)
+        i = 2
+        for j in range(2, len(nums)):
+            if nums[j] != nums[i - 2]:
+                nums[i] = nums[j]
+                i += 1
+        return i
+
     def deleteDuplicates_v2(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # 82.Remove Duplicates from Sorted List II
         # if head is None:

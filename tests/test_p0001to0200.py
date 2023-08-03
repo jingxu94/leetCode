@@ -641,6 +641,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.exist([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "SEE"))
         self.assertFalse(self.sl.exist([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCB"))
 
+    def test_removeDuplicates_s2(self):
+        # 80.Remove Duplicates from Sorted Array II
+        self.assertEqual(self.sl.removeDuplicates_s2([1]), 1)
+        self.assertEqual(self.sl.removeDuplicates_s2([1, 1, 1, 2, 2, 3]), 5)
+        self.assertEqual(self.sl.removeDuplicates_s2([0, 0, 1, 1, 1, 1, 2, 3, 3]), 7)
+
     def test_deleteDuplicates_v2(self):
         # 82.Remove Duplicates from Sorted List II
         head = create_linked_list([1, 2, 3, 3, 4, 4, 5])
