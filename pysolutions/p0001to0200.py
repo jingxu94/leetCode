@@ -2268,6 +2268,20 @@ class Pro0001To0200:
                     break
         return dp[-1]
 
+    def wordBreak_v2(self, s: str, wordDict: List[str]) -> bool:
+        # 139.Word Break
+        dp = [False] * len(s)
+        for i in range(len(s)):
+            for word in wordDict:
+                # Handle out of bounds case
+                if i < len(word) - 1:
+                    continue
+                if i == len(word) - 1 or dp[i - len(word)]:
+                    if s[i - len(word) + 1 : i + 1] == word:
+                        dp[i] = True
+                        break
+        return dp[-1]
+
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # 141.Linked List Cycle
         if head is None:

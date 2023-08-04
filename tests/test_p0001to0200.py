@@ -976,6 +976,9 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.wordBreak("leetcode", ["leet", "code"]))
         self.assertTrue(self.sl.wordBreak("applepenapple", ["apple", "pen"]))
         self.assertFalse(self.sl.wordBreak("catsandog", ["cats", "dog", "sand", "and", "cat"]))
+        self.assertTrue(self.sl.wordBreak_v2("leetcode", ["leet", "code"]))
+        self.assertTrue(self.sl.wordBreak_v2("applepenapple", ["apple", "pen"]))
+        self.assertFalse(self.sl.wordBreak_v2("catsandog", ["cats", "dog", "sand", "and", "cat"]))
 
     def test_hasCycle(self):
         # 141.Linked List Cycle
