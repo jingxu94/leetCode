@@ -180,6 +180,12 @@ class TestP0801To1000(unittest.TestCase):
         self.assertEqual(self.sl.maxSubarraySumCircular([5, -3, 5]), 10)
         self.assertEqual(self.sl.maxSubarraySumCircular([-3, -2, -3]), -2)
 
+    def test_numMusicPlaylists(self):
+        # 920.Number of Music Playlists
+        self.assertEqual(self.sl.numMusicPlaylists(3, 3, 1), 6)
+        self.assertEqual(self.sl.numMusicPlaylists(2, 3, 0), 6)
+        self.assertEqual(self.sl.numMusicPlaylists(2, 3, 1), 2)
+
     def test_minFallingPathSum(self):
         # 931.Minimum Falling Path Sum
         A1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
