@@ -620,6 +620,9 @@ class TestP0001To0200(unittest.TestCase):
         self.assertTrue(self.sl.searchMatrix(matrix, 3))
         self.assertFalse(self.sl.searchMatrix(matrix, 13))
         self.assertFalse(self.sl.searchMatrix([[]], 1))
+        self.assertTrue(self.sl.searchMatrix_v2(matrix, 3))
+        self.assertFalse(self.sl.searchMatrix_v2(matrix, 13))
+        self.assertFalse(self.sl.searchMatrix_v2(matrix, 130))
 
     def test_minWindow(self):
         # 76.Minimum Window Substring
