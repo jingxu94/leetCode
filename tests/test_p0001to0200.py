@@ -299,6 +299,12 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.search([6, 7, 8, 1, 2, 3, 4, 5], 8), 2)
         self.assertEqual(self.sl.search([1], 0), -1)
         self.assertEqual(self.sl.search([], 0), -1)
+        self.assertEqual(self.sl.search_v2([4, 5, 6, 7, 0, 1, 2], 0), 4)
+        self.assertEqual(self.sl.search_v2([4, 5, 6, 7, 0, 1, 2], 3), -1)
+        self.assertEqual(self.sl.search_v2([6, 7, 1, 2, 3, 4, 5], 3), 4)
+        self.assertEqual(self.sl.search_v2([6, 7, 8, 1, 2, 3, 4, 5], 8), 2)
+        self.assertEqual(self.sl.search_v2([1], 0), -1)
+        self.assertEqual(self.sl.search_v2([], 0), -1)
 
     def test_searchRange(self):
         # 34.Find First and Last Position of Element in Sorted Array
