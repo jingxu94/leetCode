@@ -55,3 +55,8 @@ class TestP2401To2600(unittest.TestCase):
         # 2578.Split With Minimum Sum
         self.assertEqual(self.sl.splitNum(4325), 59)
         self.assertEqual(self.sl.splitNum(687), 75)
+
+    def test_minimizeMax(self):
+        # 2616.Minimize the Maximum Difference of Pairs
+        self.assertEqual(self.sl.minimizeMax([10, 1, 2, 7, 1, 3], 2), 1)
+        self.assertEqual(self.sl.minimizeMax([4, 2, 1, 2], 1), 0)
