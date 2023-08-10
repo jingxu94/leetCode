@@ -656,6 +656,13 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.removeDuplicates_s2([1, 1, 1, 2, 2, 3]), 5)
         self.assertEqual(self.sl.removeDuplicates_s2([0, 0, 1, 1, 1, 1, 2, 3, 3]), 7)
 
+    def test_search_p81(self):
+        # 81.Search in Rotated Sorted Array II
+        self.assertTrue(self.sl.search_p81([2, 5, 6, 0, 0, 1, 2], 0))
+        self.assertFalse(self.sl.search_p81([2, 5, 6, 0, 0, 1, 2], 3))
+        self.assertFalse(self.sl.search_p81([1, 2, 1], 0))
+        self.assertFalse(self.sl.search_p81([5, 1, 3], 2))
+
     def test_deleteDuplicates_v2(self):
         # 82.Remove Duplicates from Sorted List II
         head = create_linked_list([1, 2, 3, 3, 4, 4, 5])
