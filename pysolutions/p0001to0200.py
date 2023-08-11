@@ -1,4 +1,4 @@
-import bisect
+# import bisect
 import itertools
 import math
 import re
@@ -1379,13 +1379,13 @@ class Pro0001To0200:
                 high = mid - 1
         return False
 
-    def searchMatrix_v2(self, matrix: list[list[int]], target: int) -> bool:
-        # 74.Search a 2D Matrix
-        if target > matrix[-1][-1]:
-            return False  # <-- #3
-        row = matrix[bisect.bisect_left(matrix, target, key=lambda x: x[-1])]  # <-- #1
-        idx = bisect.bisect_left(row, target)  # <-- #2
-        return row[idx] == target
+    # def searchMatrix_v2(self, matrix: list[list[int]], target: int) -> bool:
+    #     # 74.Search a 2D Matrix
+    #     if target > matrix[-1][-1]:
+    #         return False  # <-- #3
+    #     row = matrix[bisect.bisect_left(matrix, target, key=lambda x: x[-1])]  # <-- #1
+    #     idx = bisect.bisect_left(row, target)  # <-- #2
+    #     return row[idx] == target
 
     def sortColors(self, nums: List[int]) -> None:  # pragma: no cover
         # 75.Sort Colors
