@@ -196,6 +196,9 @@ class TestP0401To0600(unittest.TestCase):
         self.assertEqual(self.sl.change(5, [1, 2, 5]), 4)
         self.assertEqual(self.sl.change(3, [2]), 0)
         self.assertEqual(self.sl.change(10, [10]), 1)
+        self.assertEqual(self.sl.change_v2(5, [1, 2, 5]), 4)
+        self.assertEqual(self.sl.change_v2(3, [2]), 0)
+        self.assertEqual(self.sl.change_v2(10, [10]), 1)
 
     def test_updateMatrix(self):
         # 542.0 1 Matrix
