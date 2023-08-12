@@ -513,6 +513,10 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.uniquePathsWithObstacles([[0, 1], [0, 0]]), 1)
         self.assertEqual(self.sl.uniquePathsWithObstacles([[0, 0], [1, 1], [0, 0]]), 0)
         self.assertEqual(self.sl.uniquePathsWithObstacles([[1, 0], [1, 1], [0, 0]]), 0)
+        self.assertEqual(self.sl.uniquePathsWithObstacles_v2([[0, 0, 0], [0, 1, 0], [0, 0, 0]]), 2)
+        self.assertEqual(self.sl.uniquePathsWithObstacles_v2([[0, 1], [0, 0]]), 1)
+        self.assertEqual(self.sl.uniquePathsWithObstacles_v2([[0, 0], [1, 1], [0, 0]]), 0)
+        self.assertEqual(self.sl.uniquePathsWithObstacles_v2([[1, 0], [1, 1], [0, 0]]), 0)
 
     def test_minPathSum(self):
         # 64.Minimum Path Sum

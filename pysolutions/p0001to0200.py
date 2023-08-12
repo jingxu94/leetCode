@@ -1170,6 +1170,21 @@ class Pro0001To0200:
                     obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
         return obstacleGrid[m - 1][n - 1]
 
+    def uniquePathsWithObstacles_v2(self, obstacleGrid: List[List[int]]) -> int:
+        # 63.Unique Paths II
+        if not obstacleGrid or not obstacleGrid[0] or obstacleGrid[0][0] == 1:
+            return 0
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+        previous = [0] * n
+        current = [0] * n
+        previous[0] = 1
+        for i in range(m):
+            current[0] = 0 if obstacleGrid[i][0] == 1 else previous[0]
+            for j in range(1, n):
+                current[j] = 0 if obstacleGrid[i][j] == 1 else current[j - 1] + previous[j]
+            previous[:] = current
+        return previous[n - 1]
+
     def minPathSum(self, grid: List[List[int]]) -> int:
         # 64.Minimum Path Sum
         m, n = len(grid), len(grid[0])
