@@ -62,6 +62,11 @@ class TestP2201To2400(unittest.TestCase):
         self.assertEqual(self.sl.longestCycle([3, 3, 4, 2, 3]), 3)
         self.assertEqual(self.sl.longestCycle([2, -1, 3, 1]), -1)
 
+    def test_validPartition(self):
+        # 2369.Check if There is a Valid Partition For The Array
+        self.assertTrue(self.sl.validPartition([4, 4, 4, 5, 6]))
+        self.assertFalse(self.sl.validPartition([1, 1, 1, 2]))
+
     def test_removeStars(self):
         # 2390.Removing Stars From a String
         self.assertEqual(self.sl.removeStars("leet**cod*e"), "lecoe")
