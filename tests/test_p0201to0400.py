@@ -97,6 +97,8 @@ class TestP0201To0400(unittest.TestCase):
         # 215.Kth Largest Element in an Array
         self.assertEqual(self.sl.findKthLargest([3, 2, 1, 5, 6, 4], 2), 5)
         self.assertEqual(self.sl.findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4)
+        self.assertEqual(self.sl.findKthLargest_v2([3, 2, 1, 5, 6, 4], 2), 5)
+        self.assertEqual(self.sl.findKthLargest_v2([3, 2, 3, 1, 2, 4, 5, 5, 6], 4), 4)
 
     def test_combinationSum3(self):
         # 216.Combination Sum III

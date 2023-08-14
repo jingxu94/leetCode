@@ -212,6 +212,19 @@ class Pro0201To0400:
         # 215.Kth Largest Element in an Array
         return heapq.nlargest(k, nums)[-1]
 
+    def findKthLargest_v2(self, nums: List[int], k: int) -> int:  # pragma: no cover
+        # 215.Kth Largest Element in an Array
+        min_value = min(nums)
+        max_value = max(nums)
+        count = [0] * (max_value - min_value + 1)
+        for num in nums:
+            count[num - min_value] += 1
+        remain = k
+        for num in range(len(count) - 1, -1, -1):
+            remain -= count[num]
+            if remain <= 0:
+                return num + min_value
+
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         # 216.Combination Sum III
         ans: List[List[int]] = []
