@@ -1615,6 +1615,20 @@ class Pro0001To0200:
             st.append((step + 1, bar))
         return ans
 
+    def partition_v2(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        # 86.Partition List
+        before, after = ListNode(0), ListNode(0)
+        before_curr, after_curr = before, after
+        while head:
+            if head.val < x:
+                before_curr.next, before_curr = head, head
+            else:
+                after_curr.next, after_curr = head, head
+            head = head.next
+        after_curr.next = None
+        before_curr.next = after.next
+        return before.next
+
     def isScramble(self, s1: str, s2: str) -> bool:
         # 87.Scramble String
         # n = len(s1)

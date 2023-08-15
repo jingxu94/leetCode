@@ -703,6 +703,15 @@ class TestP0001To0200(unittest.TestCase):
         self.assertEqual(self.sl.largestRectangleArea([2, 1, 2]), 3)
         self.assertEqual(self.sl.largestRectangleArea([1, 1]), 2)
 
+    def test_partition_v2(self):
+        # 86.Partition List
+        head = create_linked_list([1, 4, 3, 2, 5, 2])
+        expected = create_linked_list([1, 2, 2, 4, 3, 5])
+        self.assertTrue(eq_linked_list(self.sl.partition_v2(head, 3), expected))
+        head = create_linked_list([2, 1])
+        expected = create_linked_list([1, 2])
+        self.assertTrue(eq_linked_list(self.sl.partition_v2(head, 2), expected))
+
     def test_isScramble(self):
         # 87.Scramble String
         self.assertTrue(self.sl.isScramble("great", "rgeat"))
